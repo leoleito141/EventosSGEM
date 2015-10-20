@@ -1,0 +1,47 @@
+
+.PerfilWrapper{
+	
+	height: 100%;
+	
+
+}
+html, body  { height: 100%; width: 100%; margin: 0; }
+
+.FullHeight{
+	height: 100%;
+}
+.PerfilContent{
+	
+	width: 100%;
+	/* background-image: url('http://destinosa1.com/wp-content/uploads/2015/06/PlazaIndependencia21.jpg'); */
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+	
+}
+.HeaderPerfil{
+	margin-left: 10%;
+	margin-right: 10%;
+	height: 25%;
+}
+.ImagenPerfil{
+	background: rgb(255,255,255);
+	height: 100%;
+	padding: 5px !important;
+	
+}
+.TituloPerfil{
+	background: rgb(25,100,255);
+	height: 70%;
+}
+.bannerPerfil{
+	height: 30%;
+	/*background: rgb(255,0,255);*/
+	
+}
+.PerfilNews{
+	margin-left: 10%;
+	margin-right: 10%;
+	min-height:70%
+	
+}

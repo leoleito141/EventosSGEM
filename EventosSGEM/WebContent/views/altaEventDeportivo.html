@@ -1,0 +1,74 @@
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+</style>
+
+
+	<form role="form" >
+		<div class="form-group">
+		
+			<label class="control-label col-sm-2" for="inputNombreDeporte">Nombre Deporte:</label>
+			<div class="col-sm-10">
+				<input id="inputNombreDeporte" placeholder="Nombre Deporte"
+					ng-model="eventoDeportivo.nombreDeporte" class="form-control">
+			</div>
+
+			<label class="control-label col-sm-2" for="inputDisciplina">Disciplina:</label>
+			<div class="col-sm-10">
+				<input id="inputDisciplina" placeholder="Disciplina"
+					ng-model="eventoDeportivo.nombreDisciplina" class="form-control">
+			</div>
+			
+			
+			
+			    <label class="control-label col-sm-2" for="singleSelect"> Sexo: </label><br>
+			  <div class="col-sm-10">
+			  <label>
+			  <input type="radio" ng-model="eventoDeportivo.sexo" value="Masculino"> Masculino
+			  </label>
+			  <label>
+			  <input type="radio" ng-model="eventoDeportivo.sexo" value="Femenino"> Femenino
+			  </label><br>
+			
+				<div class="col-md-8">
+			
+				<div class="col-md-6">
+				<pre>Fecha de Inicio: <em>{{eventoDeportivo.fechaInicio | date:'fullDate' }}</em></pre>
+		            <p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaInicio" is-open="statusInicio.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="openInicio($eventInicio)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+	       		</div>
+	       		
+	       		
+				<div class="col-md-6">
+				<pre>Fecha de Cierre: <em>{{eventoDeportivo.fechaFin | date:'fullDate' }}</em></pre>
+		            <p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaFin" is-open="statusFin.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="openFin($eventFin)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+	       		</div>
+            </div>
+
+			
+
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" ng-click="altaEventoDeportivo()" class="btn btn-default">
+				Alta Evento Deportivo</button>
+			</div>
+
+		</div>
+
+	</form>

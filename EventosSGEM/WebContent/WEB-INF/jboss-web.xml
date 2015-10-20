@@ -1,0 +1,5 @@
+<jboss-web>
+  <server-instance>secondary-server</server-instance>
+  <context-root>/</context-root>
+  <virtual-host>sgemEventos</virtual-host>
+</jboss-web>
