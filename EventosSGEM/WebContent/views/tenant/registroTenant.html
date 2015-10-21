@@ -7,47 +7,40 @@
 	    </p>    
 	</div>
 	
-	<form role="form">
+	<div class="row">
+		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+	</div>
+	
+	<form role="form" name="formRegistro">
 
 		<div class="form-group">
 
-			<label class="control-label col-sm-2" for="email">Email:</label>
-			<div class="col-sm-10">
-				<input type="email" id="email" placeholder="ejemplo@correo.com" ng-model="usuario.email"
-					class="form-control">
-			</div>
-
-			<label class="control-label col-sm-2" for="contrasenia">Contrase&ntildea:</label>
-			<div class="col-sm-10">
-				<input type="password" id="contrasenia" placeholder="Contrase&ntilde;a"
-					ng-model="usuario.password" class="form-control">
-			</div>
-
-			<label class="control-label col-sm-2" for="facebook">Cuenta Facebook:</label>
-			<div class="col-sm-10">
-				<input id="facebook" placeholder="Facebook"
-					ng-model="usuario.facebook" class="form-control">
-			</div>
-
-			<label class="control-label col-sm-2" for="twitter">Cuenta	Twitter:</label>
-			<div class="col-sm-10">
-				<input id="twitter" placeholder="Twiter"
-					ng-model="usuario.twitter" class="form-control">
+			<div class="row">
+				<label class="control-label col-sm-2" for="email">Email:</label>
+				<div class="col-sm-10">
+					<input type="email" id="email" placeholder="Ejemplo@correo.com" ng-model="usuario.email"
+						class="form-control" required>
+				</div>
 			</div>
 			
-			<label class="control-label col-sm-2" for="youtube">Canal Youtube:</label>
-			<div class="col-sm-10">
-				<input id="youtube" placeholder="Canal Youtube"
-					ng-model="usuario.canalYoutube" class="form-control">
+			<div class="row">
+				<label class="control-label col-sm-2" for="contrasenia">Contrase&ntildea:</label>
+				<div class="col-sm-10">
+					<input type="password" id="contrasenia" placeholder="Contrase&ntilde;a"
+						ng-model="usuario.password" class="form-control" required>
+				</div>
 			</div>
-
-			<br/>
-
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" ng-click="altaUsuarioComun()"
-					class="btn btn-default">Aceptar</button>
+			
+				
+			<div class="row">
+	            <div class="col-sm-offset-2 col-sm-8">
+					<button type="submit" ng-disabled="formRegistro.$invalid" ng-click="altaUsuarioComun()"	class="btn btn-default">Aceptar</button>
+						
+	            	<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />
+	            	<a ui-sref="login({ tenant: nombreTenant })" class="btn btn-link">Cancelar</a>
+	        	</div>
 			</div>
-
+			
 		</div>
 
 	</form>
