@@ -1,12 +1,46 @@
 <style>
-body  
-{  
-/*   background: url('resources/defecto/img/tenant1/Lighthouse.jpg') fixed;   */
-     background-size: cover;   
-     padding: 0;   
-     margin: 0;   
-}  
+body
+{
+    background: url('resources/defecto/img/aros_olimpicos.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+form.login input[type="text"], form.login input[type="password"]
+{
+   
+   
+    padding: 5px;
 
+   
+    margin-bottom: 15px;
+   
+
+}
+/*
+ border-bottom: 1px solid #FFFFFF;
+ color: #FFFFFF;
+ font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    
+        background: 0;
+    border: 0;
+       outline: 0;
+    outline: 0;
+    
 .wrap
 {
     width: 100%;
@@ -18,17 +52,7 @@ body
     z-index: 99;
 }
 
-p.form-title
-{
-    font-family: 'Open Sans' , sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-    color: #FFFFFF;
-    margin-top: 5%;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-}
+
 
 form
 {
@@ -180,21 +204,27 @@ form.login a:hover
     padding: 10px;
     left: 45%;
 
+}*/
+.loginWrap{
+
+background-color: rgba(255, 255, 255, 0.5);
 }
 </style>
 
 <div class="container"  >
     <div class="row">
         <div class="col-md-12">
-            <div class="wrap">
+            <div class="wrap col-md-8 col-md-offset-2 ">
                 <p class="form-title">Login</p>
                 <form class="login">
-                    <input type="text" placeholder="Email"  ng-model="usuario.email"/>
-                    <input type="password" placeholder="Contraseña" ng-model="usuario.password" />
-                    <input type="submit" value="Login" class="btn btn-success btn-sm" ng-click="loginUser()" /> 
+                	<div class="col-md-10 col-md-offset-1 loginWrap jumbotron">
+	                    <input type="text" placeholder="Ejemplo@email.com"  ng-model="usuario.email"  class="col-md-6  form-control"/>
+	                    <input type="password" placeholder="Contrase&ntilde;a" ng-model="usuario.password" class="col-md-6  form-control"/>
+	                    <input type="submit" value="Login" class="btn btn-success btn-sm col-md-4 col-md-offset-4 " ng-click="loginUsuario()" /> 
+	                	<label class="text-danger" ng-show="mostrarValidacion" ng-bind="mensajeValidacion" class="col-md-6  form-control"></label>
+                    </div>
                 </form>
             </div>
         </div>
-    </div>
-   
+    </div>   
 </div>

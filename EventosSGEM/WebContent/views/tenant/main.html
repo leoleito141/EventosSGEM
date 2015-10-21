@@ -1,0 +1,37 @@
+<div class="container"  >
+
+	<div class="header" ng-show="isAuthenticated()">
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container">
+
+				<ul class="nav navbar-nav">
+					<li class="text-navbar active">
+						<a href="/main">Inicio Usuario Comun</a>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="text-navbar"><a ng-click="salir()">Cerrar Sesion</a></li>
+				</ul>
+
+			</div>
+		</nav>
+	</div>
+
+
+	<div class="row">
+        <div class="col-md-12">
+           <div class="jumbotron text-center">
+	    <h1>MAIN <span class="text-danger" ng-bind="nombreTenant"></span></h1>
+	</div>
+        </div>
+    </div>
+
+   
+   <div class="row" > 
+	   <div class="col-md-12">
+		   <button ui-sref="login({ tenant: nombreTenant })">Login</button>
+		   <button ui-sref="altaUsuarioComun({ tenant: nombreTenant })">Registro</button>
+	   </div>
+   </div>
+</div>
