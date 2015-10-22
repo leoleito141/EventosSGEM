@@ -30,7 +30,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer'])
     })
     .state('main', {
     	url:'/:tenant/',
-		templateUrl : 'views/tenant/main.html',
+		templateUrl : 'views/main.html',
 		controller : 'MainCtrl',
 		 resolve: { 
 	    	dataTenant: function(dataFactory,$stateParams) {
@@ -85,6 +85,25 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer'])
 	    	}  
 	    }
 	})
+	.state('altaNovedad', {
+		url:'/:tenant/nuevaNovedad',
+		templateUrl : 'views/tenant/comite/altaNovedad.html',
+		controller : 'UsuarioCtrl',
+	    resolve: { 
+	    	dataTenant:function(dataFactory,$stateParams) {
+    			/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/   
+	    	}  
+	    }
+	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
         var state = $injector.get('$state');

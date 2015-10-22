@@ -15,7 +15,7 @@ angular.module('eventosSGEM')
 	    $auth.logout(); //Limpia localStorage y pone isAuthenticated en false
 	
 	    event.preventDefault();
-	    $state.go('main', { tenant: $scope.nombreTenant});
+	    $state.go('main', { tenant: JSON.parse(localStorage.getItem("tenantActual")).nombre_url });
     };
     
     $scope.isAuthenticated = function() {    	 

@@ -1,50 +1,96 @@
+<style>
+body
+{
+/*     background: url('resources/defecto/img/aros_olimpicos.jpg') fixed; */
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+form.registro input[type="text"], form.registro input[type="password"]
+{
+    padding: 5px;   
+    margin-bottom: 15px;   
+}
+form.registro label, form.registro input[type="password"]
+{
+    padding: 5px;   
+    margin-bottom: 15px;   
+}
+
+form.registro label, form.regasdistro input[type="password"]
+{
+    padding: 5px;   
+    margin-bottom: 15px;   
+}
+
+.loader{
+	margin-left: 2%;
+}
+
+.registroWrap{
+
+background-color: rgba(255, 255, 255, 0.5);
+}
+</style>
+
 <div class="container">
 
-	<div class="jumbotron text-center">
-	    <h1>Registro Usuario</h1>
-	    <p> Ingrese la informaci&oacuten del usuario a ingresar en 
-	    	<span class="text-danger" ng-bind="nombreTenant"></span>
-	    </p>    
-	</div>
-	
-	<div class="row">
-		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
-	</div>
-	
-	<form role="form" name="formRegistro">
-
-		<div class="form-group">
-
-			<div class="row">
-				<label class="control-label col-sm-2" for="email">Email:</label>
-				<div class="col-sm-10">
-					<input type="email" id="email" placeholder="Ejemplo@correo.com" ng-model="usuario.email"
-						class="form-control" required>
-				</div>
-			</div>
-			
-			<div class="row">
-				<label class="control-label col-sm-2" for="contrasenia">Contrase&ntildea:</label>
-				<div class="col-sm-10">
-					<input type="password" id="contrasenia" placeholder="Contrase&ntilde;a"
-						ng-model="usuario.password" class="form-control" required>
-				</div>
-			</div>
-			
+<!-- 	<div class="jumbotron text-center"> -->
+<!-- 	    <h1>Registro Usuario</h1> -->
+<!-- 	    <p> Ingrese la informaci&oacuten del usuario a ingresar en  -->
+<!-- 	    	<span class="text-danger" ng-bind="nombreTenant"></span> -->
+<!-- 	    </p>     -->
+<!-- 	</div> -->
+<div class="row">
+	<div class="col-md-12">
+		<div class="wrap col-md-8 col-md-offset-2 ">
+       		<p class="form-title">Registro</p>
+				<form role="form" class="registro" name="formRegistro">
+					<div class="col-md-10 col-md-offset-1 registroWrap jumbotron">
 				
-			<div class="row">
-	            <div class="col-sm-offset-2 col-sm-8">
-					<button type="submit" ng-disabled="formRegistro.$invalid" ng-click="altaUsuarioComun()"	class="btn btn-default">Aceptar</button>
+						<div class="row">
+							<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+						</div>
+		
+						<div class="row">
+							<label class="col-lg-2 control-label" for="email">Email</label>
+							<div class="col-sm-10">
+								<input type="email" id="email" placeholder="Ejemplo@correo.com" ng-model="usuario.email"
+									class="form-control" required>
+							</div>
+						</div>
 						
-	            	<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />
-	            	<a ui-sref="login({ tenant: nombreTenant })" class="btn btn-link">Cancelar</a>
-	        	</div>
+						<div class="row">
+							<label class="col-lg-2 control-label" for="contrasenia">Contrase&ntildea</label>
+							<div class="col-sm-10">
+								<input type="password" id="contrasenia" placeholder="Contrase&ntilde;a"
+									ng-model="usuario.password" class="form-control" required>
+							</div>
+						</div>
+												
+						<div class="row">
+				            <div class="col-sm-offset-2 col-sm-8">
+								<input type="submit" ng-disabled="formRegistro.$invalid" value="Aceptar" class="btn btn-success btn-sm col-md-4 " ng-click="altaUsuarioComun()" />	
+				            	<img class="loader" ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />
+				            	<a ui-sref="login({ tenant: nombreTenant })" class="btn btn-link">Cancelar</a>
+				        	</div>
+						</div>
+							
+					</div>					
+				</form>
+
 			</div>
-			
 		</div>
-
-	</form>
-
-
-
+	</div>
 </div>

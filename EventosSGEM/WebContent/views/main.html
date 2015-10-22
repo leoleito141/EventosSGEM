@@ -11,8 +11,8 @@
    
    <div class="row" > 
 	   <div class="col-md-12">
-		   <button ui-sref="login({ tenant: nombreTenant })">Login</button>
-		   <button ui-sref="altaUsuarioComun({ tenant: nombreTenant })">Registro</button>
+		   <button ng-show="!isAuthenticated()" ng-cloak ui-sref="login({ tenant: nombreTenant })">Login</button>
+		   <button ng-show="!isAuthenticated()" ng-cloak ui-sref="altaUsuarioComun({ tenant: nombreTenant })">Registro</button>
 	   </div>
    </div>
 </div>
