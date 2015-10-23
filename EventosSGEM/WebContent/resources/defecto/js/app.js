@@ -30,7 +30,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer'])
     })
     .state('main', {
     	url:'/:tenant/',
-		templateUrl : 'views/main.html',
+		templateUrl : 'views/tenant/main.html',
 		controller : 'MainCtrl',
 		 resolve: { 
 	    	dataTenant: function(dataFactory,$stateParams) {
