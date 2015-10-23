@@ -1,0 +1,90 @@
+<form role="form" >
+		<div class="form-group">
+
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="inputNombreDeportista">Nombre:</label>
+			<div class="col-sm-9">
+				<input id="inputNombreDeportista" placeholder="Nombre"
+					ng-model="deportista.nombre" class="form-control">
+			</div>
+		</div>
+		
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="inputApellido">Apellido:</label>
+			<div class="col-sm-9">
+				<input id="inputApellido" placeholder="Apellido"
+					ng-model="deportista.apellido" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="inputApellido">Fecha Nacimiento:</label>	
+			<div class="control-label col-sm-2">
+				<p class="input-group">
+					<input type="text" class="form-control"
+						datepicker-popup='dd-MMMM-yyyy' ng-model="deportista.fechaNac"
+						is-open="statusInicio.opened" min-date="minDate"
+						max-date="maxDate" datepicker-options="dateOptions"
+						ng-required="true" close-text="Close" /> <span
+						class="input-group-btn">
+						<button type="button" class="btn btn-default"
+							ng-click="openInicio($eventInicio)">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</p>
+				<br>
+			</div>
+		</div>
+		
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Sexo: </label>
+			<div class="control-label col-sm-2">
+				<label>
+					<input type="radio" ng-model="deportista.sexo" ng-change="obtenerDeportes(deportista.sexo)" value="Masculino"> Masculino
+				</label> 
+				<label> 
+					<input type="radio" ng-model="deportista.sexo" ng-change="obtenerDeportes(deportista.sexo)" value="Femenino"> Femenino
+				</label><br>
+			</div>
+		</div>
+		
+		<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Deporte:    </label>
+				<div class="control-label col-sm-2">
+		   <select data-ng-model="selectDeportes" ng-options="d as d for d in deportes" ng-change="obtenerDisciplina(deportista.sexo, selectDeportes)"></select>
+		   		</div>
+		</div>
+		
+		<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Disciplina:    </label>
+				<div class="control-label col-sm-2">
+		  	 
+		 <label ng-repeat="nombreDis in disciplinas">
+			  <input
+			    type="checkbox"
+			    name="selectDisciplinas[]"
+			    value="{{nombreDis}}"
+			    ng-checked="selection.indexOf(nombreDis) > -1"
+			    ng-click="toggleSelection(nombreDis)"
+			  > {{nombreDis}}
+			</label>
+		  	 
+		  	 
+		  	 
+		   		</div>
+		</div>
+		
+		
+		
+		
+		<div class="row">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" ng-click="altaDeportista(selectDeportes,selection)"
+					class="btn btn-default">Alta Deportista</button>
+			</div>
+
+		</div>
+		<div class="row"></form>
