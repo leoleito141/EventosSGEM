@@ -104,12 +104,13 @@ angular.module('eventosSGEM')
  	
  	/********************************** COMITE OLIMPICO **********************************/
  	
-	 $scope.altaComite = function(){
+ 	$scope.altaComite = function(){
 		  
 		  $scope.comite.tenantId = dataTenant.tenantId;
 			  
 		  dataFactory.altaComite($scope.comite)
 	     	.then(function (data, status, headers, config) {
+	                $scope.status = data.status;
 	                console.log("Entre Alta comite");
 	                console.log(data.status);
 	                console.log(status);

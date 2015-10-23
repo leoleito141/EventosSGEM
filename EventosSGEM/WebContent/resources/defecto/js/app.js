@@ -103,6 +103,52 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer'])
 	    		/**********************************************************/   
 	    	}  
 	    }
+	}).state('altaComite', {
+		url:'/:tenant/altaComite',
+		templateUrl : 'views/tenant/comite/altaComite.html',
+		controller : 'UsuarioCtrl',
+		resolve: { 
+		    	dataTenant: function(dataFactory,$stateParams) {
+		    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+		    		
+		    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+		    			return dataFactory.getDataTenant($stateParams.tenant);
+		    			
+		    		}else{
+		    			return JSON.parse(localStorage.getItem("tenantActual"));
+		    		}
+		    		/**********************************************************/
+		    	}
+		}
+	}).state('perfilComite', {
+		url:'/:tenant/perfilComite',
+		templateUrl : 'views/tenant/comite/perfilComite.html',
+		controller : 'PerfilCtrl'
+			
+	}).state('altaDeportista', {
+		url:'/:tenant/altaDeportista',
+		templateUrl : 'views/tenant/comite/altaDeportista.html',
+		controller : 'deportistaCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
+	}).state('altaEventoDeportivo', {
+		url:'/:tenant/altaEventoDeportivo',
+		templateUrl : 'views/tenant/organizador/altaEventDeportivo.html',
+		controller : 'EventDeportivoCtrl',
+		
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
