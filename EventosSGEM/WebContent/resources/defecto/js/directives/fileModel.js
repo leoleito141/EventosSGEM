@@ -1,4 +1,4 @@
-angular.module('pruebaAngularApp')
+angular.module('eventosSGEM')
 .directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',

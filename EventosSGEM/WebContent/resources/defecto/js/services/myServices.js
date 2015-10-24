@@ -38,6 +38,38 @@
         		{ headers: { 'Rol' : 'VISITANTE'} });       	
     }; 
 
+    dataFactory.altaNovedad = function(novedad){
+    	
+    	return $http.post(dominio+'UsuarioService/novedades', novedad,
+        		{ headers: { 'Rol' : 'COMITE_OLIMPICO'} });
+    };
+//    			.then(function (response) {
+//    				
+//    				console.log(response);
+//    				if(response){
+//						var formData = new FormData();
+//					    formData.append("file", foto);
+//					    return $http.post(dominio+'EventoMultiService/subirImagen', formData,{
+//					    		transformRequest: angular.identity,
+//					            headers: {'Content-Type': undefined}
+//						}); 
+//    				}
+//    				    				
+//			 }).catch(function(response){
+//			     	console.log(response); 
+//			});  
+    		
+//    }; 
 	    
-        return dataFactory;
+    dataFactory.subirImagen = function(foto){
+    	var formData = new FormData();
+	    formData.append("file", foto);
+    	
+	    return $http.post(dominio+'UsuarioService/subirImagen', formData,{
+			transformRequest: angular.identity,
+	        headers: {'Content-Type': undefined}
+	    }); 
+    };
+    
+    return dataFactory;
 }]); 

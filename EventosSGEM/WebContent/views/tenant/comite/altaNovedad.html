@@ -1,3 +1,9 @@
+
+<style>
+<!--
+textarea { resize:vertical ; }
+-->
+</style>
 <div class="container">
 
 	<div class="jumbotron text-center">
@@ -11,9 +17,9 @@
 	<form role="form" name="formNovedad">
 
 		<div class="form-group">
-
+					
 			<div class="row">
-				<label class="control-label col-sm-2" for="email">T&iacutetulo :</label>
+				<label class="control-label col-sm-2" for="titulo">T&iacutetulo :</label>
 				<div class="col-sm-10">
 					<input type="text" id="titulo" placeholder="Mi T&iacute;tulo" ng-model="novedad.titulo"
 						class="form-control" required>
@@ -21,17 +27,31 @@
 			</div>
 			
 			<div class="row">
-				<label class="control-label col-sm-2" for="contrasenia">Descripci&oacuten:</label>
+				<label class="control-label col-sm-2" for="descripcion">Descripci&oacuten:</label>
 				<div class="col-sm-10">
-					<input type="text" id="descripcion" placeholder="Descripci&oacute;n"
-						ng-model="novedad.descripcion" class="form-control" required>
+					<textarea id="descripcion" ng-model="novedad.descripcion" rows="10" cols="30" placeholder="Descripci&oacute;n" class="form-control" required></textarea>
 				</div>
 			</div>
 			
+			<div class="row">
+				<label class="control-label col-sm-2" for="columna">Columna:</label>
+				<div class="col-sm-1">
+				 	<select id="selectColumna" name="selectColumna" ng-model="dataColumna.selectedOption" 
+				 	 	ng-options="valor.valor for valor in dataColumna.valores track by valor.id"
+				 		class="form-control" convert-to-number required>
+				    </select>
+				</div>
+			</div>	
+			
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-sm-offset-2 col-sm-2"> -->
+<!-- 					<input name="file" type="file" file-model="myFile"/> -->
+<!-- 				</div>				 -->
+<!-- 			</div> -->
 				
 			<div class="row">
 	            <div class="col-sm-offset-2 col-sm-8">
-					<button type="submit" ng-disabled="formRegistro.$invalid" ng-click="altaNovedad()" class="btn btn-default">Aceptar</button>
+					<button type="submit" ng-disabled="formNovedad.$invalid" ng-click="altaNovedad()" class="btn btn-default">Aceptar</button>
 	            	<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />
 	            	<a ui-sref="main({ tenant: nombreTenant })" class="btn btn-link">Inicio</a>
 	        	</div>
@@ -40,7 +60,5 @@
 		</div>
 
 	</form>
-
-
 
 </div>

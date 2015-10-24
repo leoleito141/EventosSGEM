@@ -5,6 +5,10 @@ angular.module('eventosSGEM')
                                      function ($scope, $state, $auth, dataFactory,dataTenant) {
 
 //   console.log(dataTenant.tenantId);
+   const usuario_comun = "UsuarioComun";
+   const usuario_juez = "Juez";
+   const usuario_comite = "ComiteOlimpico";
+   const usuario_organizador = "Organizador";	  
    
    $scope.customStyle.background= 'url(resources/defecto/img/tenant1/' + dataTenant.login_back_img +')fixed';
    
@@ -14,22 +18,72 @@ angular.module('eventosSGEM')
    $scope.comite={};   
    
    $scope.mensajeValidacion = "";   
+   
+   $scope.loginUsuario = function () {
+  	     $scope.cargando = true;
+  	     
+	   	 setTimeout( function(){	  
+	   		var usuario = $scope.usuario;
+	     
+	        $auth.login({
+	            email: usuario.email,
+	            password: btoa(usuario.password), // base 64
+	            tenantId : dataTenant.tenantId
+	        })
+	        .then(function (data){           
+	             $scope.usrLogin.email = $scope.usuario.email;
+	             $scope.usuario.password="";
+	             
+	             var payLoad = $auth.getPayload();             
+	             var dataUsuario = payLoad.dataUsuario;
+	            
+	             // ver bien si es en el local o session...
+	             localStorage.setItem("dataUsuario", JSON.stringify(dataUsuario));  // localStorage.getItem("dataUsuario") para obtenerlo
+	             	             
+	             if(dataUsuario.tipoUsuario == usuario_comun){ 
+	            	 event.preventDefault();
+	            	 $state.go('main', { tenant: $scope.nombreTenant } );
+	             }else if (dataUsuario.tipoUsuario == usuario_comite){
+	            	 event.preventDefault();
+	            	 $state.go('altaNovedad', { tenant: $scope.nombreTenant} );
+	             }else if(dataUsuario.tipoUsuario == usuario_juez){
+	            	 event.preventDefault();
+	            	 $state.go('main', { tenant: $scope.nombreTenant } );
+	             }else if(dataUsuario.tipoUsuario == usuario_organizador){
+	            	 event.preventDefault();
+	            	 $state.go('main', { tenant: $scope.nombreTenant } );
+	             }
+	         })
+	         .catch(function(error){
+	
+	       		console.log(error);
+	       		console.log(error.status);
+	       		if(error.status == 404){
+	       		  $scope.cargando = false;
+	       		  $scope.mensajeValidacion = "Email o contrase\u00F1a incorrecta.";
+	       		}else{
+	       		  $scope.cargando = false;
+	       		  $scope.mensajeValidacion = "Error al autenticar usuario.";
+	       		}
+	         });
+	        
+	    }, 1000); //espera 1 segundo
+	};
+   
+   
+   /********************************** USUARIO COMUN **********************************/
+   
    $scope.altaUsuarioComun = function () {
 	  $scope.cargando = true;
 	  setTimeout( function(){	
 		  		  
 		  var usuarioComun = $scope.usuario;
 	      usuarioComun.tenantId = dataTenant.tenantId;
-	      usuarioComun.tipoUsuario = "Comun";
 	      usuarioComun.password = btoa(usuarioComun.password);
 	      console.log("entre insertar" + usuarioComun);
 	       
 	      dataFactory.altaUsuarioComun(usuarioComun)
 	      	.success(function (response, status, headers, config) {
-	              console.log(response);
-	              console.log(status);
-	              console.log(headers);
-	              console.log(config);
 	              if(response){
 	            	  	event.preventDefault(); //NO ANDA EN MOZILLA...
 						$state.go('login', { tenant: $scope.nombreTenant});//le agrega el tenant a la url, para no tener que buscar devuelta el datatenant
@@ -52,55 +106,8 @@ angular.module('eventosSGEM')
 			  
 	  }, 1000); //espera 1 segundo
      
-      
    	};
    
-   	$scope.loginUsuario = function () {
-   	     $scope.cargando = true;
-   	     
-	   	 setTimeout( function(){	  
-	   		var usuario = $scope.usuario;
-	     
-	        $auth.login({
-	            email: usuario.email,
-	            password: btoa(usuario.password), // base 64
-	            tenantId : dataTenant.tenantId
-	        })
-	        .then(function (data){           
-	             $scope.usrLogin.email = $scope.usuario.email;
-	             $scope.usuario.password="";
-	             
-	             var payLoad = $auth.getPayload();             
-	             var dataUsuario = payLoad.dataUsuario;
-	            
-	             // ver bien si es en el local o session...
-	             localStorage.setItem("dataUsuario", JSON.stringify(dataUsuario));  // localStorage.getItem("dataUsuario") para obtenerlo
-	             	             
-	             if(dataUsuario.tipoUsuario == "Comun"){ 
-	            	 event.preventDefault();
-	            	 $state.go('main', { tenant: $scope.nombreTenant } );
-	             }else if (dataUsuario.tipoUsuario == "Comite"){
-	            	 event.preventDefault();
-	            	 $state.go('altaNovedad', { tenant: $scope.nombreTenant} );
-	             }
-	         })
-	         .catch(function(error){
-	
-	       		console.log(error);
-	       		console.log(error.status);
-	       		if(error.status == 404){
-	       		  $scope.cargando = false;
-	       		  $scope.mensajeValidacion = "Email o contrase\u00F1a incorrecta.";
-	       		}else{
-	       		  $scope.cargando = false;
-	       		  $scope.mensajeValidacion = "Error al autenticar usuario.";
-	       		}
-	         });
-	        
-	    }, 1000); //espera 1 segundo
- 	};
- 	  
- 	
  	
  	/********************************** COMITE OLIMPICO **********************************/
  	
@@ -124,24 +131,64 @@ angular.module('eventosSGEM')
 	            });
 	  };
 	  
+	  $scope.dataColumna = {
+		 valores: [
+		   {id: '1', valor: 1},
+		   {id: '2', valor: 2}
+		 ],
+		 selectedOption: {id: '1', valor: 1} 
+	  };
+
 	  $scope.altaNovedad = function(){
+		  $scope.cargando = true;
+		  
+		  //fijarse que la imagen no sea vacía
+//		  var foto = $scope.myFile;
+//		  
+//		  if(foto != null){
+//			  
+//		  }else{
+//			  alert("Ingrese foto!");
+//		  }
+//		  
 		  var novedad = $scope.novedad; 
 		  novedad.tenantId = dataTenant.tenantId;
+		  novedad.columna = $scope.dataColumna.selectedOption.valor;
+		  novedad.emailComiteOlimpico = (JSON.parse(localStorage.getItem("dataUsuario"))).email;
 			  
+//		  dataFactory.subirImagen(foto).
+//			then(function (response, status, headers, config) {
+//				
+//			}).catch(function(response){
+//				$scope.cargando = false;
+//				$scope.mensajeValidacion = "Error al subir im\u00E1gen de la novedad. Contacte con soporte.";
+//			});
+			
+		  
+		  
 		  dataFactory.altaNovedad(novedad)
-	     	.then(function (data, status, headers, config) {
-	                console.log("Entre Alta comite");
-	                console.log(data.status);
-	                console.log(status);
-	                console.log(headers);
-	                console.log(config);
-	                
-	            })
-	            .catch(function(response){
-	                // Si ha habido errores llegamos a esta parte
-	            	console.log(response); 
-	            });
-	  };
+	     	.then(function (response, status, headers, config) {
+	     		if(response){
+	     			event.preventDefault();
+	            	$state.go('main', { tenant: $scope.nombreTenant} );
+	     		}else{
+	     			//borrar la imagen subida
+	     			$scope.cargando = false;
+	       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
+	     		}	                
+	        })
+	        .catch(function(response){      
+	        	//borrar la imagen subida
+	        	if(error.status == 404){
+	        		$scope.cargando = false;
+	        		$scope.mensajeValidacion = "No se pudieron validar sus credenciales. Contacte con soporte.";
+	       		}else{
+	       			$scope.cargando = false;
+	       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
+	       		}	        	
+	        });
+		  
+	  }; // cierra altaNovedad
 	  
 	   
    
