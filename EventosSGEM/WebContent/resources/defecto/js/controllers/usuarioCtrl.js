@@ -91,7 +91,7 @@ angular.module('eventosSGEM')
 	            	  $scope.cargando = false;
 	            	  $scope.mensajeValidacion = "Error al registrar usuario.";
 	              }
-	      	}).error(function(error,status) {
+	      	}).catch(function(error,status) {
 	      		
 	      		console.log(error);
 	      		console.log(status);
@@ -138,55 +138,63 @@ angular.module('eventosSGEM')
 		 ],
 		 selectedOption: {id: '1', valor: 1} 
 	  };
-
+	  
+	  $scope.deshabilitado = function(){		  
+		  if($scope.novedad == undefined){
+			  return true;
+		  }
+		  return ($scope.novedad.titulo == null || $scope.novedad.descripcion == null || $scope.myFile == null);	
+	  }
+	  
 	  $scope.altaNovedad = function(){
-		  $scope.cargando = true;
+		  $scope.cargando = true;		  
+		  var foto = $scope.myFile;
 		  
-		  //fijarse que la imagen no sea vacía
-//		  var foto = $scope.myFile;
-//		  
-//		  if(foto != null){
-//			  
-//		  }else{
-//			  alert("Ingrese foto!");
-//		  }
-//		  
-		  var novedad = $scope.novedad; 
-		  novedad.tenantId = dataTenant.tenantId;
-		  novedad.columna = $scope.dataColumna.selectedOption.valor;
-		  novedad.emailComiteOlimpico = (JSON.parse(localStorage.getItem("dataUsuario"))).email;
+		  if(foto != null){
 			  
-//		  dataFactory.subirImagen(foto).
-//			then(function (response, status, headers, config) {
-//				
-//			}).catch(function(response){
-//				$scope.cargando = false;
-//				$scope.mensajeValidacion = "Error al subir im\u00E1gen de la novedad. Contacte con soporte.";
-//			});
-			
+			  dataFactory.subirImagen(foto,dataTenant.tenantId).
+				then(function (response, status, headers, config) {
+					
+					  var imagen = {};
+					  imagen.mime = response.data.mime;
+					  imagen.ruta = response.data.ruta;
+					  imagen.tenantId = response.data.tenantId;
+					  
+					  var novedad = $scope.novedad; 
+					  novedad.tenantId = dataTenant.tenantId;
+					  novedad.columna = $scope.dataColumna.selectedOption.valor;
+					  novedad.emailComiteOlimpico = (JSON.parse(localStorage.getItem("dataUsuario"))).email;
+					  novedad.imagen = imagen;
+					  
+					  dataFactory.altaNovedad(novedad)
+				     	.then(function (response, status, headers, config) {
+				     		if(response){
+				     			event.preventDefault();
+				            	$state.go('main', { tenant: $scope.nombreTenant} );
+				     		}else{
+				     			$scope.cargando = false;
+				       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
+				     		}	                
+				        })
+				        .catch(function(response){      				        	
+				        	if(response.status == 404){
+				        		$scope.cargando = false;
+				        		$scope.mensajeValidacion = "No se pudieron validar sus credenciales. La novedad no se crear\u00E1. Contacte con soporte.";
+				       		}else{
+				       			$scope.cargando = false;
+				       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
+				       		}	        	
+				        });
 		  
+				}).catch(function(response){
+					$scope.cargando = false;
+					$scope.mensajeValidacion = "Error al subir im\u00E1gen de la novedad. Contacte con soporte.";
+				});
 		  
-		  dataFactory.altaNovedad(novedad)
-	     	.then(function (response, status, headers, config) {
-	     		if(response){
-	     			event.preventDefault();
-	            	$state.go('main', { tenant: $scope.nombreTenant} );
-	     		}else{
-	     			//borrar la imagen subida
-	     			$scope.cargando = false;
-	       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
-	     		}	                
-	        })
-	        .catch(function(response){      
-	        	//borrar la imagen subida
-	        	if(error.status == 404){
-	        		$scope.cargando = false;
-	        		$scope.mensajeValidacion = "No se pudieron validar sus credenciales. Contacte con soporte.";
-	       		}else{
-	       			$scope.cargando = false;
-	       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
-	       		}	        	
-	        });
+		  }else{
+			  $scope.mensajeValidacion = "Debe seleccionar una im\u00E1gen, para la novedad.";
+			  $scope.cargando = false;
+		  }
 		  
 	  }; // cierra altaNovedad
 	  

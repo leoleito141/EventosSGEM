@@ -12,7 +12,7 @@ angular.module('eventosSGEM')
                     modelSetter(scope.$parent, element[0].files[0]);
                    
                 });
-            });
+            });            
         }
     };
 }]);

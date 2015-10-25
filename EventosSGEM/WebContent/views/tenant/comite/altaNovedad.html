@@ -1,9 +1,8 @@
 
 <style>
-<!--
-textarea { resize:vertical ; }
--->
+	textarea { resize:vertical ; }
 </style>
+
 <div class="container">
 
 	<div class="jumbotron text-center">
@@ -43,15 +42,15 @@ textarea { resize:vertical ; }
 				</div>
 			</div>	
 			
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-sm-offset-2 col-sm-2"> -->
-<!-- 					<input name="file" type="file" file-model="myFile"/> -->
-<!-- 				</div>				 -->
-<!-- 			</div> -->
-				
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-2">
+					<input id="file" name="file" type="file" file-model="myFile"/>
+				</div>				
+			</div>
+			
 			<div class="row">
 	            <div class="col-sm-offset-2 col-sm-8">
-					<button type="submit" ng-disabled="formNovedad.$invalid" ng-click="altaNovedad()" class="btn btn-default">Aceptar</button>
+					<button type="submit" ng-disabled="deshabilitado()" ng-click="altaNovedad()" class="btn btn-default">Aceptar</button>
 	            	<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />
 	            	<a ui-sref="main({ tenant: nombreTenant })" class="btn btn-link">Inicio</a>
 	        	</div>
