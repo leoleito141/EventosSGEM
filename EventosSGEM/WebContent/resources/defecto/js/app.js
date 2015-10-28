@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer'])
+angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart'])
 .run(['dataFactory','$rootScope','$state','$auth',function(dataFactory,$rootScope, $state, $auth){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
 	  
@@ -148,7 +148,39 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer'])
 		url:'/:tenant/altaEventoDeportivo',
 		templateUrl : 'views/tenant/organizador/altaEventDeportivo.html',
 		controller : 'EventDeportivoCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
 		
+	}).state('usoSitio', {
+		url:'/:tenant/usoSitio',
+		templateUrl : 'views/tenant/organizador/reporteUsoSitio.html',
+		controller : 'UsuarioCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){

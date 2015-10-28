@@ -53,6 +53,14 @@
     	return $http.post(dominio+'UsuarioService/novedades', novedad,
         		{ headers: { 'Rol' : 'COMITE_OLIMPICO'} });
     };
+    
+    dataFactory.obtenerHistorial = function(tenant){
+    	   
+	   	return $http.get(dominio+'UsuarioService/obtenerHistorial/'+tenant, {
+            headers: { 'Rol' : 'ORGANIZADOR'} 
+        });
+	         		 
+    };
 	    
     return dataFactory;
 }]); 

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('UsuarioCtrl', ['$scope','$state','$auth','dataFactory','dataTenant', 
+  .controller('UsuarioCtrl', ['$scope','$state','$auth','dataFactory','dataTenant',// 'googlechart', 'googlechart-docs',
                                      function ($scope, $state, $auth, dataFactory,dataTenant) {
-
+ 
 //   console.log(dataTenant.tenantId);
    const usuario_comun = "UsuarioComun";
    const usuario_juez = "Juez";
@@ -51,7 +51,7 @@ angular.module('eventosSGEM')
 	            	 $state.go('main', { tenant: $scope.nombreTenant } );
 	             }else if(dataUsuario.tipoUsuario == usuario_organizador){
 	            	 event.preventDefault();
-	            	 $state.go('main', { tenant: $scope.nombreTenant } );
+	            	 $state.go('usoSitio', { tenant: $scope.nombreTenant } );
 	             }
 	         })
 	         .catch(function(error){
@@ -199,6 +199,224 @@ angular.module('eventosSGEM')
 	  }; // cierra altaNovedad
 	  
 	   
+	  angular.element(document).ready(function () {
+		/// cargar esto en on run.. si la vista que viene es usoSitio.html
+		  if($auth.isAuthenticated() ){
+			  		  
+			  dataFactory.obtenerHistorial(dataTenant.tenantId).
+				then(function (response, status, headers, config) {
+					$scope.historial = response.data;
+					
+					// imagino que el evento empezo en el 01/10/2015
+
+					var fecha_inicio = new Date("2015/10/01");
+					
+					 var d1 = new Date($scope.historial[0].fecha);
+					 var d2 = new Date($scope.historial[1].fecha);
+					 var d3 = new Date($scope.historial[2].fecha);
+					 var d4 = new Date($scope.historial[3].fecha);
+					
+					 
+					 //diferencia en semanas
+					 $scope.semanas = Math.round((d4-fecha_inicio)/ 604800000);
+					 
+				alert(			d1.getDate() + '/' + (d1.getMonth()+1) + '/' + d1.getFullYear()
+								+ " ------------- " +
+								d2.getDate() + '/' + (d2.getMonth()+1) + '/' +d2.getFullYear()
+								+ " ------------- " +
+								d3.getDate() + '/' + (d3.getMonth()+1) + '/' + d3.getFullYear()
+								+ " ------------- " +
+								d4.getDate() + '/' + (d4.getMonth()+1) + '/' + d4.getFullYear()
+								+ " ------------- " +
+								"Semanas : "+ $scope.semanas);
+				
+			
+				
+				
+				
+				  // usar 
+			      
+			     var semanas = $scope.semanas;
+			   
+		    	  for(var i= 0; i< semanas ; i++){
+//		    		  $scope.rows[0].c[i].v[i] = "Semana"+i;
+		    		  
+//		    		  
+//		    		  var c = [];
+//		    		  
+//		    		  var v = { id: "v", value: "Semana"+i };
+//		    		  c.push(v);
+		    		  
+		    		  $scope.rows[0].c[i].push({ id: "v", value: "Semana"+i });
+		    		  for(var j= 0; i< 2 ; i++){//cant datos a mostrar
+		    			  
+		    		  }
+		    	  }
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				}).catch(function(response){
+					console.log(response);
+				})
+		  }
+		});
+	  
+	  
+	  $scope.rows = [];
+	  $scope.rows.c = [];
+	  $scope.rows.c.v = [];
+	  
+	  
+	  // Properties
+      $scope.chartObject = {};
+
+      //Methods
+      $scope.hideSeries = hideSeries;
+      
+      init();
+
+      function hideSeries(selectedItem) {
+          var col = selectedItem.column;
+          if (selectedItem.row === null) {
+              if ($scope.chartObject.view.columns[col] == col) {
+                  $scope.chartObject.view.columns[col] = {
+                      label: $scope.chartObject.data.cols[col].label,
+                      type: $scope.chartObject.data.cols[col].type,
+                      calc: function() {
+                          return null;
+                      }
+                  };
+                  $scope.chartObject.options.colors[col - 1] = '#CCCCCC';
+              }
+              else {
+                  $scope.chartObject.view.columns[col] = col;
+                  $scope.chartObject.options.colors[col - 1] = $scope.chartObject.options.defaultColors[col - 1];
+              }
+          }
+      }
+      
+    
+      
+      
+      function init() {
+          $scope.chartObject.type = "LineChart";
+          $scope.chartObject.displayed = false;
+          $scope.chartObject.data = {
+        		  // debería ser fecha inicio del evento hasta hoy.
+              "cols": [{
+                  id: "semana",
+                  label: "semana",
+                  type: "string"
+              }, {
+                  id: "usuarios",
+                  label: "Usuarios",
+                  type: "number"
+              }
+//              , {
+//                  id: "desktop-id",
+//                  label: "Desktop",
+//                  type: "number"
+//              }, {
+//                  id: "server-id",
+//                  label: "Server",
+//                  type: "number"
+//              }, {
+//                  id: "cost-id",
+//                  label: "Shipping",
+//                  type: "number"
+//              }
+          ],
+              "rows": //$scope.rows
+            	  [{
+                  c: [{
+                      v: "January"
+                  }, {
+                      v: 19,
+                      f: "42 items"
+                  }
+//                  ,{
+//                      v: 12,
+//                      f: "Ony 12 items"
+//                  }, {
+//                      v: 7,
+//                      f: "7 servers"
+//                  }, {
+//                      v: 4
+//                  }
+              ]
+              }, {
+                  c: [{
+                      v: "February"
+                  }, {
+                      v: 152
+                  }
+//                  , {
+//                      v: 1,
+//                      f: "1 unit (Out of stock this month)"
+//                  }, {
+//                      v: 12
+//                  }, {
+//                      v: 2
+//                  }
+//              ]
+//
+//              }, {
+//                  c: [{
+//                      v: "March"
+//                  }, {
+//                      v: 24
+//                  }
+////                  ,{
+////                      v: 5
+////                  }, {
+////                      v: 11
+////                  }, {
+////                      v: 6
+////                  }
+              ]
+              }]
+          };
+          
+          //Estilos y titulos
+          $scope.chartObject.options = {
+              "title": "Logins en funcion de semanas",
+              "colors": ['#0000FF', '#009900', '#CC0000', '#DD9900'],
+              "defaultColors": ['#0000FF', '#009900', '#CC0000', '#DD9900'],
+              "isStacked": "true",
+              "fill": 20,
+              "displayExactValues": true,
+              "vAxis": {
+                  "title": "Logins de Usuarios",
+                  "gridlines": {
+                      "count": 10
+                  }
+              },
+              "hAxis": {
+                  "title": "Semanas"
+              }
+          };
+
+          $scope.chartObject.view = {
+              columns: [0, 1 ]//, 2, 3, 4]
+          };
+      }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
    
 	  
 	  
