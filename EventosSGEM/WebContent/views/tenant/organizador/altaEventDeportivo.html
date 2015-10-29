@@ -15,32 +15,41 @@
 	<form role="form" >
 		<div class="form-group">
 		
+		
+		<div class="row">
 			<label class="control-label col-sm-2" for="inputNombreDeporte">Nombre Deporte:</label>
 			<div class="col-sm-10">
 				<input id="inputNombreDeporte" placeholder="Nombre Deporte"
 					ng-model="eventoDeportivo.nombreDeporte" class="form-control">
 			</div>
-
+		</div>
+		
+		<div class="row">
 			<label class="control-label col-sm-2" for="inputDisciplina">Disciplina:</label>
 			<div class="col-sm-10">
 				<input id="inputDisciplina" placeholder="Disciplina"
 					ng-model="eventoDeportivo.nombreDisciplina" class="form-control">
 			</div>
 			
+		</div>
 			
-			
+		<div class="row">
 			    <label class="control-label col-sm-2" for="singleSelect"> Sexo: </label><br>
-			  <div class="col-sm-10">
-			  <label>
+			  <div class="control-label col-sm-2">
+			  <label >
 			  <input type="radio" ng-model="eventoDeportivo.sexo" value="Masculino"> Masculino
 			  </label>
 			  <label>
 			  <input type="radio" ng-model="eventoDeportivo.sexo" value="Femenino"> Femenino
-			  </label><br>
+			  </label>
+			  </div><br>
+		</div>	  
+		
 			
-				<div class="col-md-8">
+		<div class="row">	
+				
 			
-				<div class="col-md-6">
+				<div class="col-md-2">
 				<pre>Fecha de Inicio: <em>{{eventoDeportivo.fechaInicio | date:'fullDate' }}</em></pre>
 		            <p class="input-group">
 		              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaInicio" is-open="statusInicio.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
@@ -50,8 +59,8 @@
 		            </p>
 	       		</div>
 	       		
-	       		
-				<div class="col-md-6">
+	       	<div class="row">
+				<div class="col-md-2">
 				<pre>Fecha de Cierre: <em>{{eventoDeportivo.fechaFin | date:'fullDate' }}</em></pre>
 		            <p class="input-group">
 		              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaFin" is-open="statusFin.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
@@ -61,7 +70,31 @@
 		            </p>
 	       		</div>
             </div>
-
+			
+			</div>
+			
+			<div class="row">
+		 <label class="control-label col-sm-2" for="singleSelect"> Rondas: </label><br>
+			  <div class="col-sm-10">
+				<div class="control-label col-sm-2">
+		  	 
+		 
+			 	<div class="control-label col-sm-2">
+		   <select name="singleSelect" ng-model="eventoDeportivo.cantRondas">
+     			 <option value="1">1</option>
+      			 <option value="2">2</option>
+      			 <option value="3">3</option>
+      			 <option value="4">4</option>
+      			 <option value="5">5</option>
+      			 <option value="6">6</option>
+    		</select>
+		   		</div>
+			</div>
+		  	</div> 
+		  	 
+		  	 
+		   		</div>
+		
 			
 
 			<div class="col-sm-offset-2 col-sm-10">

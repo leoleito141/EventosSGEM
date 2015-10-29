@@ -1,4 +1,4 @@
-angular.module('pruebaAngularApp')
+angular.module('eventosSGEM')
   .controller('deportistaCtrl', ['$scope','dataFactory','dataTenant', 
                            function ($scope, dataFactory,dataTenant) {
 	
