@@ -97,5 +97,12 @@
         		{headers: { 'Rol' : 'COMITE_OLIMPICO'}});       	
     };
     
+    
+    dataFactory.altaJuez = function(datos){
+    	console.log(datos);
+        return $http.post(dominio+'UsuarioService/altaJuez', datos,
+        		{headers: { 'Rol' : 'ORGANIZADOR'}});       	
+    };
+    
     return dataFactory;
 }]); 

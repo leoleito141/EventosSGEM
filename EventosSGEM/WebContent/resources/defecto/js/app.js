@@ -163,6 +163,25 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	    	}
 		}
 		
+	}).state('altaJuez', {
+		url:'/:tenant/altaJuez',
+		templateUrl : 'views/tenant/organizador/altaJuez.html',
+		controller : 'JuezCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
+		
 	}).state('usoSitio', {
 		url:'/:tenant/usoSitio',
 		templateUrl : 'views/tenant/organizador/reporteUsoSitio.html',
