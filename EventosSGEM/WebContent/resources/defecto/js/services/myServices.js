@@ -54,15 +54,17 @@
         		{ headers: { 'Rol' : 'COMITE_OLIMPICO'} });
     };
     
-    dataFactory.obtenerHistorial = function(tenant){
-    	   
+    dataFactory.obtenerHistorial = function(tenant){    	   
 	   	return $http.get(dominio+'UsuarioService/obtenerHistorial/'+tenant, {
             headers: { 'Rol' : 'ORGANIZADOR'} 
-        });
-	         		 
+        });	         		 
     };
-	    
     
+    dataFactory.obtenerCantidadRegistrados = function(tenant){ 	   
+	   	return $http.get(dominio+'UsuarioService/obtenerCantidadRegistrados/'+tenant, {
+            headers: { 'Rol' : 'ORGANIZADOR'} 
+        });	         		 
+    };    
     
     dataFactory.altaEventoDeportivo = function(datos){
     	console.log(datos);

@@ -1,21 +1,32 @@
 
-<<style>
-<!--
+<style>
+
 rect {
 	opacity: 0.9;
 }
--->
+
+.texto-cantidad {
+	color: white;
+}
+
 </style>
 
 <div class="container" data-ng-init="init()">
 
 	<div class="jumbotron text-center">
 	    <h1>Uso del sitio web</h1>   
-	</div>
+	</div>	
 	
+	<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
 
+	<div class="texto-cantidad">
+		<h4>
+			Cantidad de usuarios registrados: <span class="text-warning" ng-bind="cantRegistrados"></span>
+		</h4>
+	</div>
 
-<div google-chart chart="chartObject" on-select="hideSeries(selectedItem)" style="height:450px; width:100%;">
-</div>
+	<hr>
+
+	<div google-chart chart="chartObject" on-select="hideSeries(selectedItem)" style="height:450px; width:100%;"></div>
 
 </div>
