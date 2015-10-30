@@ -177,36 +177,23 @@ angular.module('eventosSGEM')
 		  };  
 		  
 		  
-	//	  sexo,estadio,cantEntradas,precioEntrada,fechaInicio,selectDeportes,selectDisciplinas,selectRondas,selectJueces,selection
 		 
 		  $scope.guardarCompetencia = function(sexo,estadio,cantEntradas,precioEntrada,fechaInicio,selectDeportes,selectDisciplinas,selectRondas,selectJueces,selection){
 			  
 			  
+			  $scope.competencia.tenantId = dataTenant.tenantId;
+			  $scope.competencia.sexo = sexo;
+			  $scope.competencia.estadio = estadio;
+			  $scope.competencia.cantEntradas = cantEntradas;
+			  $scope.competencia.precioEntrada = precioEntrada;
 			  $scope.competencia.deporte = selectDeportes;
+			  $scope.competencia.fechaInicio = fechaInicio;
 			  $scope.competencia.disciplina = selectDisciplinas;
 			  $scope.competencia.ronda = selectRondas;
 			  $scope.competencia.juez = selectJueces;
 			  $scope.competencia.deportistas = selection;
-			  $scope.competencia.sexo = sexo;
 			  
-			  
-			  
-			  
-			  console.log(selectRondas)
-			  console.log(selectDeportes)
-			  console.log(selectDisciplinas)
-			  console.log(sexo)
-			  console.log(selection)
-			  console.log(selectJueces)
-			  
-			  
-			  console.log(competencia.estadio)
-			  console.log(competencia.deportistas)
-			  console.log(competencia.precioEntrada)
-			  console.log(competencia.cantEntradas)
-			  console.log(competencia.fechaInicio)
-			  
-			  dataFactory.altaDeportista()
+			  dataFactory.altaCompetencia($scope.competencia)
 		     	.then(function (data, status, headers, config) {
 		                $scope.status = data.status;
 		                console.log("Entre Alta Deportista");

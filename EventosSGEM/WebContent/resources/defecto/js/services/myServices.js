@@ -126,5 +126,13 @@
         		);
     };
     
+    
+    dataFactory.altaCompetencia = function(datos){
+    	console.log(datos);
+        return $http.post(dominio+'CompetenciaService/guardarCompetencia', datos,
+        		{headers: { 'Rol' : 'ORGANIZADOR'}});       	
+    };
+    
+    
     return dataFactory;
 }]); 

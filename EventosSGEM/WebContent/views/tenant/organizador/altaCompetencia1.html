@@ -18,7 +18,7 @@
 		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
 				Deporte:    </label>
 				<div class="control-label col-sm-2">
-		   <select data-ng-model="selectDeportes" ng-options="d as d for d in deportes" ng-change="obtenerDisciplina(competencia.sexo, selectDeportes)"></select>
+		   <select  ng-model="competencia.selectDeportes" ng-options="d as d for d in deportes" ng-change="obtenerDisciplina(competencia.sexo, competencia.selectDeportes)"></select>
 		   		</div>
 		</div>
 		
@@ -26,7 +26,7 @@
 		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
 				Disciplina:    </label>
 				<div class="control-label col-sm-2">
-		  	  <select data-ng-model="selectDisciplinas" ng-options="d as d for d in disciplinas" ng-change="obtenerRondas(competencia.sexo,selectDeportes,selectDisciplinas)"></select>
+		  	  <select ng-model="competencia.selectDisciplinas" ng-options="d as d for d in disciplinas" ng-change="obtenerRondas(competencia.sexo,competencia.selectDeportes,competencia.selectDisciplinas)"></select>
 	
 	 		</div>
 		</div>
@@ -35,7 +35,7 @@
 		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
 				Ronda:    </label>
 				<div class="control-label col-sm-2">
-		  	  <select data-ng-model="selectRondas" ng-options="r as r for r in rondas"  ></select>
+		  	  <select ng-model="competencia.selectRondas" ng-options="r as r for r in rondas"  ></select>
 	
 	 		</div>
 		</div>
@@ -43,7 +43,7 @@
 		
 		
 		<div class="row">
-	<md-button ng-click="obtenerDeportistas(competencia.sexo,selectDeportes,selectDisciplinas)" 
+	<md-button ng-click="obtenerDeportistas(competencia.sexo,competencia.selectDeportes,competencia.selectDisciplinas)" 
 			  >
 	<md-button ng-click="obtenerJueces()" 
 			  >
