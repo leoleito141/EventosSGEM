@@ -20,33 +20,33 @@
 		<div class="row">
 			<label class="col-sm-offset-1 control-label col-sm-2" for="inputCantidadEntradas">Cantidad de Entradas:</label>
 			<div class="col-sm-9">
-				<input id="inputMailJuez" placeholder="Email"
+				<input id="inputMailJuez" placeholder="Cantidad Entradas"
 					ng-model="competencia.cantEntradas" class="form-control">
 			</div>
 		</div>
 		
+		
 		<div class="row">
-		<label class="col-sm-offset-1 control-label col-sm-2" for="inputPassword">Contraseña:</label>
-			<div class="col-sm-9">
-				<input id="inputPassword"  type="password" placeholder="Contraseña" ng-model="juez.password"
-					class="form-control">
-			</div>
+		<div class="col-md-2">
+				<pre>Fecha: <em>{{competencia.fechaInicio | date:'fullDate' }}</em></pre>
+		            <p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="competencia.fechaInicio" is-open="statusInicio.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="openInicio($eventInicio)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+	       		</div>
+		
 		</div>
-		
-	
 	
 		
 		
 		
 		<div class="row">
-	<md-button ng-click="obtenerDeportistas(competencia.sexo,selectDeportes,selectDisciplinas)" 
-			  >
-	<md-button ng-click="obtenerJueces()" 
-			  >b
-	<a ui-sref="formAltaCompetencia.Paso2"
-	class="btn btn-block btn-info"> Finalizar<span
-			class="glyphicon glyphicon-circle-arrow-right"></span>
-	</a></md-button></md-button>
+	<button type="submit" ng-click="guardarCompetencia(competencia.sexo,competencia.estadio,competencia.cantEntradas,competencia.precioEntrada,competencia.fechaInicio,selectDeportes,selectDisciplinas,selectRondas,selectJueces,selection)" class="glyphicon glyphicon-circle-arrow-right">
+	
+	
+				Alta Evento</button>
 		</div>
 	</div>
 		<div class="row"></form>

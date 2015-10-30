@@ -14,7 +14,26 @@ angular.module('eventosSGEM')
 	  $scope.deportistas = {};
 	  
 	  
+	  $scope.openInicio = function($eventInicio) {
+		    $scope.statusInicio.opened = true;
+		  };
+
+	  $scope.openFin = function($eventFin) {
+		    $scope.statusFin.opened = true;
+		  };
+	   
+	  $scope.statusInicio = {
+			    opened: false
+			  };
 	  
+	  $scope.statusFin = {
+			    opened: false
+			  };
+	  
+	  $scope.dateOptions = {
+			    formatYear: 'yy',
+			    startingDay: 1
+			  };
 	  
 	  $scope.obtenerDeportes = function(sexo) {
 		    
@@ -157,5 +176,55 @@ angular.module('eventosSGEM')
 	      
 		  };  
 		  
-	  
+		  
+	//	  sexo,estadio,cantEntradas,precioEntrada,fechaInicio,selectDeportes,selectDisciplinas,selectRondas,selectJueces,selection
+		 
+		  $scope.guardarCompetencia = function(sexo,estadio,cantEntradas,precioEntrada,fechaInicio,selectDeportes,selectDisciplinas,selectRondas,selectJueces,selection){
+			  
+			  
+			  $scope.competencia.deporte = selectDeportes;
+			  $scope.competencia.disciplina = selectDisciplinas;
+			  $scope.competencia.ronda = selectRondas;
+			  $scope.competencia.juez = selectJueces;
+			  $scope.competencia.deportistas = selection;
+			  $scope.competencia.sexo = sexo;
+			  
+			  
+			  
+			  
+			  console.log(selectRondas)
+			  console.log(selectDeportes)
+			  console.log(selectDisciplinas)
+			  console.log(sexo)
+			  console.log(selection)
+			  console.log(selectJueces)
+			  
+			  
+			  console.log(competencia.estadio)
+			  console.log(competencia.deportistas)
+			  console.log(competencia.precioEntrada)
+			  console.log(competencia.cantEntradas)
+			  console.log(competencia.fechaInicio)
+			  
+			  dataFactory.altaDeportista()
+		     	.then(function (data, status, headers, config) {
+		                $scope.status = data.status;
+		                console.log("Entre Alta Deportista");
+		                console.log(data.status);
+		                console.log(status);
+		                console.log(headers);
+		                console.log(config);
+		                
+		            })
+		            error(function(response){
+		                // Si ha habido errores llegamos a esta parte
+		            	console.log(response); 
+		            });
+			  
+			  
+			  
+		  }; 
+		  
+		  
+		  
   }]);
