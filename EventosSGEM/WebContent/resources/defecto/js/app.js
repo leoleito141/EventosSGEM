@@ -163,7 +163,64 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	    	}
 		}
 		
-	}).state('altaJuez', {
+	}).state('formAltaCompetencia', {
+		url:'/:tenant/altaCompetencia',
+		templateUrl : 'views/tenant/organizador/formAltaCompetencia.html',
+		controller : 'competenciaCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
+	
+	})// nested states 
+	.state('formAltaCompetencia.Paso1', {
+		url:'/Competencia1',
+		templateUrl : 'views/tenant/organizador/altaCompetencia1.html',
+			resolve: { 
+		    	dataTenant: function(dataFactory,$stateParams) {
+		    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+		    		
+		    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+		    			return dataFactory.getDataTenant($stateParams.tenant);
+		    			
+		    		}else{
+		    			return JSON.parse(localStorage.getItem("tenantActual"));
+		    		}
+		    		/**********************************************************/
+		    	}
+			}
+
+	})// nested states each of these sections will have their own view url will be nested (/altaEvento/organizador)
+	.state('formAltaCompetencia.Paso2', {
+        url: '/Competencia2',
+        templateUrl: 'views/tenant/organizador/altaCompetencia2.html',
+        resolve: { 
+    	    	dataTenant: function(dataFactory,$stateParams) {
+    	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+    	    		
+    	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+    	    			return dataFactory.getDataTenant($stateParams.tenant);
+    	    			
+    	    		}else{
+    	    			return JSON.parse(localStorage.getItem("tenantActual"));
+    	    		}
+    	    		/**********************************************************/
+    	    	}
+    		}
+        	
+    }).state('altaJuez', {
 		url:'/:tenant/altaJuez',
 		templateUrl : 'views/tenant/organizador/altaJuez.html',
 		controller : 'JuezCtrl',

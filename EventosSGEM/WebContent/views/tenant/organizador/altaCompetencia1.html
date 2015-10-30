@@ -1,0 +1,55 @@
+<form role="form" >
+		<div class="form-group">
+		
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Sexo: </label>
+			<div class="control-label col-sm-2">
+				<label>
+					<input type="radio" ng-model="competencia.sexo" ng-change="obtenerDeportes(competencia.sexo)" value="Masculino"> Masculino
+				</label> 
+				<label> 
+					<input type="radio" ng-model="competencia.sexo" ng-change="obtenerDeportes(competencia.sexo)" value="Femenino"> Femenino
+				</label><br>
+			</div>
+		</div>
+		
+		<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Deporte:    </label>
+				<div class="control-label col-sm-2">
+		   <select data-ng-model="selectDeportes" ng-options="d as d for d in deportes" ng-change="obtenerDisciplina(competencia.sexo, selectDeportes)"></select>
+		   		</div>
+		</div>
+		
+		<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Disciplina:    </label>
+				<div class="control-label col-sm-2">
+		  	  <select data-ng-model="selectDisciplinas" ng-options="d as d for d in disciplinas" ng-change="obtenerRondas(competencia.sexo,selectDeportes,selectDisciplinas)"></select>
+	
+	 		</div>
+		</div>
+		
+			<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Ronda:    </label>
+				<div class="control-label col-sm-2">
+		  	  <select data-ng-model="selectRondas" ng-options="r as r for r in rondas" ng-change="obtenerDeportistas(competencia.sexo,selectDeportes,selectDisciplinas)" ></select>
+	
+	 		</div>
+		</div>
+		
+		
+		
+		<div class="row">
+			<div class="col-sm-2">
+		<a ui-sref="formAltaCompetencia.Paso2"
+			
+			class="btn btn-block btn-info"> Alta Organizador<span
+			class="glyphicon glyphicon-circle-arrow-right"></span>
+		</a>
+	</div>
+
+		</div>
+		<div class="row"></form>

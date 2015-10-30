@@ -89,7 +89,20 @@
         		{headers: { 'Rol' : 'COMITE_OLIMPICO'} }
         		);
     };
+    
+    dataFactory.listarRondas = function(tenantId,sexo,selectDeportes,selectDisciplinas){
+        return $http.get(dominio+'EventoDeportivoService/listarRondas/'+tenantId+'/'+sexo+'/'+selectDeportes+'/'+selectDisciplinas , 
+        		{headers: { 'Rol' : 'COMITE_OLIMPICO'} }
+        		);
+    };
 
+    dataFactory.listarDeportistasEventoDeportivo= function(tenantId,sexo,selectDeportes,selectDisciplinas){
+        return $http.get(dominio+'DeportistaService/listarDeportistas/'+tenantId+'/'+sexo+'/'+selectDeportes+'/'+selectDisciplinas , 
+        		{headers: { 'Rol' : 'COMITE_OLIMPICO'} }
+        		);
+    };
+
+    
     
     dataFactory.altaDeportista = function(datos){
     	console.log(datos);
