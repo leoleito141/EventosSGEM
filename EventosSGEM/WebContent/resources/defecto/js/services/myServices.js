@@ -119,5 +119,12 @@
         		{headers: { 'Rol' : 'ORGANIZADOR'}});       	
     };
     
+    
+    dataFactory.listarJueces = function(tenantId){
+        return $http.get(dominio+'UsuarioService/listarJueces/'+tenantId , 
+        		{headers: { 'Rol' : 'ORGANIZADOR'} }
+        		);
+    };
+    
     return dataFactory;
 }]); 

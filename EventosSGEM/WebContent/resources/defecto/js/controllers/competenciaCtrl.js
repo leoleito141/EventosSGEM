@@ -11,6 +11,8 @@ angular.module('eventosSGEM')
 	  
 	  $scope.rondas = {};
 	  
+	  $scope.deportistas = {};
+	  
 	  
 	  
 	  
@@ -105,9 +107,9 @@ angular.module('eventosSGEM')
               console.log(headers);
               console.log(config);
               
-              $scope.rondas = response;
+              $scope.deportistas = response;
               
-              $scope.selectRondas = $scope.rondas [0];
+              $scope.selectDeportistas = $scope.deportistas [0];
 
       	}).error(function(error) {
       		console.log(error);
@@ -116,5 +118,44 @@ angular.module('eventosSGEM')
       
 	  };  
 	  
+	  $scope.selection = [];
+	  
+	  $scope.toggleSelection = function toggleSelection(nombreDis) {
+		    var idx = $scope.selection.indexOf(nombreDis);
+
+		   if (idx > -1) {
+		      $scope.selection.splice(idx, 1);
+		    }
+
+		   else {
+		      $scope.selection.push(nombreDis);
+		    }
+		  };
+	  
+		  
+		  $scope.obtenerJueces = function() {
+			    
+			  console.log(dataTenant.tenantId);
+			 
+			  
+			  
+			  dataFactory.listarJueces(dataTenant.tenantId)
+			  .success(function (response, status, headers, config) {
+	              console.log(response);
+	              console.log(status);
+	              console.log(headers);
+	              console.log(config);
+	              
+	              $scope.jueces = response;
+	              
+	              $scope.selectjueces = $scope.jueces [0];
+
+	      	}).error(function(error) {
+	      		console.log(error);
+	      		alert("Error al listar jueces");
+	      	});
+	      
+		  };  
+		  
 	  
   }]);

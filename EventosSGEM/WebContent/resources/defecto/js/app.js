@@ -220,6 +220,24 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
     	    	}
     		}
         	
+    }).state('formAltaCompetencia.Paso3', {
+        url: '/Competencia3',
+        templateUrl: 'views/tenant/organizador/altaCompetencia3.html',
+        resolve: { 
+    	    	dataTenant: function(dataFactory,$stateParams) {
+    	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+    	    		
+    	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+    	    			return dataFactory.getDataTenant($stateParams.tenant);
+    	    			
+    	    		}else{
+    	    			return JSON.parse(localStorage.getItem("tenantActual"));
+    	    		}
+    	    		/**********************************************************/
+    	    	}
+    		}
+        	
     }).state('altaJuez', {
 		url:'/:tenant/altaJuez',
 		templateUrl : 'views/tenant/organizador/altaJuez.html',

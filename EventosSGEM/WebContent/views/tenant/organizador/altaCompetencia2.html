@@ -1,19 +1,29 @@
 <form role="form" >
 		<div class="form-group">
-
+		
+				<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Juez:    </label>
+				<div class="control-label col-sm-2">
+		  	  <select  name ="jueces" data-ng-model="selectJueces" ng-options="j.nombre +' '+  j.apellido for j in jueces"  ></select>
+	
+	 		</div>
+		</div>
+		
+		
 		<div class="row">
 		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
 				Seleccionar Competidores:    </label>
 				<div class="control-label col-sm-2">
 		  	 
-		 <label ng-repeat="nombreDeportista in deportistas">
+		 <label ng-repeat="nombreDis in deportistas">
 			  <input
 			    type="checkbox"
-			    name="selectDeportistas[]"
+			    name="selectDisciplinas[]"
 			    value="{{nombreDis}}"
-			    ng-checked="selection.indexOf(nombreDeportista) > -1"
-			    ng-click="toggleSelection(nombreDeportista)"
-			  > {{nombreDeportista}}
+			    ng-checked="selection.indexOf(nombreDis) > -1"
+			    ng-click="toggleSelection(nombreDis)"
+			  > {{nombreDis.nombre}} {{nombreDis.apellido}} ({{nombreDis.pais}})
 			</label>
 		  	 
 		  	 
@@ -22,13 +32,12 @@
 		</div>
 		
 		
-		
-		
-		<div class="row">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" ng-click="altaDeportista(selectDeportes,selection)"
-					class="btn btn-default">Alta Deportista</button>
-			</div>
-
+			<div class="row">
+	<md-button  >
+	<a ui-sref="formAltaCompetencia.Paso3"
+	class="btn btn-block btn-info"> Siguiente<span
+			class="glyphicon glyphicon-circle-arrow-right"></span>
+	</a></md-button>
 		</div>
+		
 		<div class="row"></form>

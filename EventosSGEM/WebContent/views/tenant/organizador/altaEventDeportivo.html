@@ -9,6 +9,7 @@
     border-radius: 32px;
     color: black;
   }
+  
 </style>
 
 
@@ -63,7 +64,7 @@
 				<div class="col-md-2">
 				<pre>Fecha de Cierre: <em>{{eventoDeportivo.fechaFin | date:'fullDate' }}</em></pre>
 		            <p class="input-group">
-		              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaFin" is-open="statusFin.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+		              <input type="text" class="form-control"   datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaFin" is-open="statusFin.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
 		              <span class="input-group-btn">
 		                <button type="button" class="btn btn-default" ng-click="openFin($eventFin)"><i class="glyphicon glyphicon-calendar"></i></button>
 		              </span>
@@ -72,6 +73,9 @@
             </div>
 			
 			</div>
+			
+
+       
 			
 			<div class="row">
 		 <label class="control-label col-sm-2" for="singleSelect"> Rondas: </label><br>

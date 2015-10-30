@@ -1,0 +1,52 @@
+<form role="form" >
+		<div class="form-group">
+	
+	<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="inputEstadio">Estadio:</label>
+			<div class="col-sm-9">
+				<input id="inputEstadio" placeholder="Estadio"
+					ng-model="competencia.estadio" class="form-control">
+			</div>
+		</div>
+
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="inputNombreDeportista">Precio Entradas $:</label>
+			<div class="col-sm-9">
+				<input id="inputPrecioEntradas" placeholder="Precio entradas"
+					ng-model="competencia.precioEntrada" class="form-control">
+			</div>
+		</div>
+		
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2" for="inputCantidadEntradas">Cantidad de Entradas:</label>
+			<div class="col-sm-9">
+				<input id="inputMailJuez" placeholder="Email"
+					ng-model="competencia.cantEntradas" class="form-control">
+			</div>
+		</div>
+		
+		<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="inputPassword">Contraseña:</label>
+			<div class="col-sm-9">
+				<input id="inputPassword"  type="password" placeholder="Contraseña" ng-model="juez.password"
+					class="form-control">
+			</div>
+		</div>
+		
+	
+	
+		
+		
+		
+		<div class="row">
+	<md-button ng-click="obtenerDeportistas(competencia.sexo,selectDeportes,selectDisciplinas)" 
+			  >
+	<md-button ng-click="obtenerJueces()" 
+			  >b
+	<a ui-sref="formAltaCompetencia.Paso2"
+	class="btn btn-block btn-info"> Finalizar<span
+			class="glyphicon glyphicon-circle-arrow-right"></span>
+	</a></md-button></md-button>
+		</div>
+	</div>
+		<div class="row"></form>

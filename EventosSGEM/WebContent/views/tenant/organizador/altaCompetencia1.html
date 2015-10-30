@@ -35,7 +35,7 @@
 		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
 				Ronda:    </label>
 				<div class="control-label col-sm-2">
-		  	  <select data-ng-model="selectRondas" ng-options="r as r for r in rondas" ng-change="obtenerDeportistas(competencia.sexo,selectDeportes,selectDisciplinas)" ></select>
+		  	  <select data-ng-model="selectRondas" ng-options="r as r for r in rondas"  ></select>
 	
 	 		</div>
 		</div>
@@ -43,13 +43,13 @@
 		
 		
 		<div class="row">
-			<div class="col-sm-2">
-		<a ui-sref="formAltaCompetencia.Paso2"
-			
-			class="btn btn-block btn-info"> Alta Organizador<span
+	<md-button ng-click="obtenerDeportistas(competencia.sexo,selectDeportes,selectDisciplinas)" 
+			  >
+	<md-button ng-click="obtenerJueces()" 
+			  >
+	<a ui-sref="formAltaCompetencia.Paso2"
+	class="btn btn-block btn-info"> Siguiente<span
 			class="glyphicon glyphicon-circle-arrow-right"></span>
-		</a>
-	</div>
-
+	</a></md-button></md-button>
 		</div>
 		<div class="row"></form>
