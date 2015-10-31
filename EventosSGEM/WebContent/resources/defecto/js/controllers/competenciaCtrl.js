@@ -51,7 +51,7 @@ angular.module('eventosSGEM')
               
               $scope.nombreDeporte = $scope.deportes[0];
 
-      	}).error(function(error) {
+      	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
       	});
@@ -77,7 +77,7 @@ angular.module('eventosSGEM')
               
               $scope.nombreDisciplina = $scope.disciplinas [0];
 
-      	}).error(function(error) {
+      	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
       	});
@@ -103,7 +103,7 @@ angular.module('eventosSGEM')
               
               $scope.ronda = $scope.rondas [0];
 
-      	}).error(function(error) {
+      	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
       	});
@@ -130,7 +130,7 @@ angular.module('eventosSGEM')
               
               $scope.selectDeportistas = $scope.deportistas [0];
 
-      	}).error(function(error) {
+      	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
       	});
@@ -169,7 +169,7 @@ angular.module('eventosSGEM')
 	              
 	              $scope.juez = $scope.jueces [0];
 
-	      	}).error(function(error) {
+	      	}).catch(function(error) {
 	      		console.log(error);
 	      		alert("Error al listar jueces");
 	      	});
@@ -209,7 +209,7 @@ angular.module('eventosSGEM')
 		                console.log(config);
 		                
 		            })
-		            error(function(response){
+		            .catch(function(response){
 		                // Si ha habido errores llegamos a esta parte
 		            	console.log(response); 
 		            });
