@@ -49,7 +49,7 @@ angular.module('eventosSGEM')
               
               $scope.deportes = response;
               
-              $scope.selectDeportes = $scope.deportes[0];
+              $scope.nombreDeporte = $scope.deportes[0];
 
       	}).error(function(error) {
       		console.log(error);
@@ -58,15 +58,15 @@ angular.module('eventosSGEM')
       
 	  };
 	  
-	  $scope.obtenerDisciplina = function(sexo, selectDeportes) {
+	  $scope.obtenerDisciplina = function(sexo, nombreDeporte) {
 		    
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
-		  console.log(selectDeportes);
+		  console.log(nombreDeporte);
 		  
 		  
 		  
-		  dataFactory.listarDisciplinas(dataTenant.tenantId,sexo,selectDeportes)
+		  dataFactory.listarDisciplinas(dataTenant.tenantId,sexo,nombreDeporte)
 		  .success(function (response, status, headers, config) {
               console.log(response);
               console.log(status);
@@ -75,7 +75,7 @@ angular.module('eventosSGEM')
               
               $scope.disciplinas = response;
               
-              $scope.selectDisciplinas = $scope.disciplinas [0];
+              $scope.nombreDisciplina = $scope.disciplinas [0];
 
       	}).error(function(error) {
       		console.log(error);
@@ -84,15 +84,15 @@ angular.module('eventosSGEM')
       
 	  };  
 	  
-	  $scope.obtenerRondas = function(sexo, selectDeportes,selectDisciplinas) {
+	  $scope.obtenerRondas = function(sexo, nombreDeporte,nombreDisciplina) {
 		    
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
-		  console.log(selectDeportes);
+		  console.log(nombreDeporte);
 		  
 		  
 		  
-		  dataFactory.listarRondas(dataTenant.tenantId,sexo,selectDeportes,selectDisciplinas)
+		  dataFactory.listarRondas(dataTenant.tenantId,sexo,nombreDeporte,nombreDisciplina)
 		  .success(function (response, status, headers, config) {
               console.log(response);
               console.log(status);
@@ -101,7 +101,7 @@ angular.module('eventosSGEM')
               
               $scope.rondas = response;
               
-              $scope.selectRondas = $scope.rondas [0];
+              $scope.ronda = $scope.rondas [0];
 
       	}).error(function(error) {
       		console.log(error);
@@ -113,13 +113,13 @@ angular.module('eventosSGEM')
 	  
 	  
 	  
-	  $scope.obtenerDeportistas = function(sexo, selectDeportes,selectDisciplinas) {
+	  $scope.obtenerDeportistas = function(sexo, nombreDeporte,nombreDisciplina) {
 		    
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
-		  console.log(selectDeportes);
+		  console.log(nombreDeporte);
 		  
-		  dataFactory.listarDeportistasEventoDeportivo(dataTenant.tenantId,sexo,selectDeportes,selectDisciplinas)
+		  dataFactory.listarDeportistasEventoDeportivo(dataTenant.tenantId,sexo,nombreDeporte,nombreDisciplina)
 		  .success(function (response, status, headers, config) {
               console.log(response);
               console.log(status);
@@ -167,7 +167,7 @@ angular.module('eventosSGEM')
 	              
 	              $scope.jueces = response;
 	              
-	              $scope.selectjueces = $scope.jueces [0];
+	              $scope.juez = $scope.jueces [0];
 
 	      	}).error(function(error) {
 	      		console.log(error);
@@ -178,22 +178,28 @@ angular.module('eventosSGEM')
 		  
 		  
 		 
-		  $scope.guardarCompetencia = function(sexo,estadio,cantEntradas,precioEntrada,fechaInicio,selectDeportes,selectDisciplinas,selectRondas,selectJueces,selection){
+		  $scope.guardarCompetencia = function(sexo,estadio,cantEntradas,precioEntrada,fechaInicio,nombreDeporte,nombreDisciplina,ronda,juez,selection){
 			  
 			  
-			  $scope.competencia.tenantId = dataTenant.tenantId;
-			  $scope.competencia.sexo = sexo;
-			  $scope.competencia.estadio = estadio;
-			  $scope.competencia.cantEntradas = cantEntradas;
-			  $scope.competencia.precioEntrada = precioEntrada;
-			  $scope.competencia.deporte = selectDeportes;
-			  $scope.competencia.fechaInicio = fechaInicio;
-			  $scope.competencia.disciplina = selectDisciplinas;
-			  $scope.competencia.ronda = selectRondas;
-			  $scope.competencia.juez = selectJueces;
-			  $scope.competencia.deportistas = selection;
+			  $scope.datos = {};
+			  var juez1 = juez;
+			  var deportistas = selection;
+		//	  $scope.datos.juez = juez1;
+		//	  $scope.datos.sexo = sexo;
 			  
-			  dataFactory.altaCompetencia($scope.competencia)
+			  $scope.datos.tenantId = dataTenant.tenantId;
+			  $scope.datos.sexo = sexo;
+			  $scope.datos.estadio = estadio;
+			  $scope.datos.cantEntradas = cantEntradas;
+			  $scope.datos.precioEntrada = precioEntrada;
+			  $scope.datos.nombreDeporte = nombreDeporte;
+			  $scope.datos.fecha = fechaInicio;
+			  $scope.datos.nombreDisciplina = nombreDisciplina;
+			  $scope.datos.ronda = ronda;
+			  $scope.datos.juez = juez1;
+			  $scope.datos.deportistas = deportistas;
+			  
+			  dataFactory.altaCompetencia($scope.datos)
 		     	.then(function (data, status, headers, config) {
 		                $scope.status = data.status;
 		                console.log("Entre Alta Deportista");
