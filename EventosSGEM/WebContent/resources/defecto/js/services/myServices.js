@@ -133,6 +133,13 @@
         		{headers: { 'Rol' : 'ORGANIZADOR'}});       	
     };
     
+    dataFactory.listarCompetencias= function(tenantId,sexo,selectDeportes,selectDisciplinas,ronda){
+        return $http.get(dominio+'CompetenciaService/listarCompetenciasPorRonda/'+tenantId+'/'+sexo+'/'+selectDeportes+'/'+selectDisciplinas+'/'+ronda , 
+        		{headers: { 'Rol' : 'VISITANTE'} }
+        		);
+    };
+    
+    
     
     return dataFactory;
 }]); 

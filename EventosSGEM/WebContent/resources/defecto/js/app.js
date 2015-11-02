@@ -259,7 +259,64 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	    	}
 		}
 		
-	}).state('usoSitio', {
+	}).state('formCompraEntrada', {
+		url:'/:tenant/compraEntrada',
+		templateUrl : 'views/tenant/formCompraEntrada.html',
+		controller : 'entradasCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
+	
+	})// nested states 
+	.state('formCompraEntrada.Paso1', {
+		url:'/CompraEntrada1',
+		templateUrl : 'views/tenant/compraEntrada1.html',
+			resolve: { 
+		    	dataTenant: function(dataFactory,$stateParams) {
+		    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+		    		
+		    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+		    			return dataFactory.getDataTenant($stateParams.tenant);
+		    			
+		    		}else{
+		    			return JSON.parse(localStorage.getItem("tenantActual"));
+		    		}
+		    		/**********************************************************/
+		    	}
+			}
+
+	})
+	.state('formCompraEntrada.Paso2', {
+        url: '/CompraEntrada2',
+        templateUrl: 'views/tenant/compraEntrada2.html',
+        resolve: { 
+    	    	dataTenant: function(dataFactory,$stateParams) {
+    	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+    	    		
+    	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+    	    			return dataFactory.getDataTenant($stateParams.tenant);
+    	    			
+    	    		}else{
+    	    			return JSON.parse(localStorage.getItem("tenantActual"));
+    	    		}
+    	    		/**********************************************************/
+    	    	}
+    		}
+        	
+    }).state('usoSitio', {
 		url:'/:tenant/usoSitio',
 		templateUrl : 'views/tenant/organizador/reporteUsoSitio.html',
 		controller : 'UsuarioCtrl',

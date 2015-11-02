@@ -2,6 +2,7 @@
 
 angular.module('eventosSGEM')
   .controller('competenciaCtrl', ['$scope','dataFactory','$state','dataTenant', function ($scope,dataFactory,$state,dataTenant) {
+	   
 	  
 	  $scope.competencia={};
 	  
