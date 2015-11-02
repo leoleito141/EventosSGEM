@@ -94,7 +94,8 @@ angular.module('eventosSGEM')
 		  $scope.altaDeportista = function(selectDeportes,selection){
 			  
 			  $scope.deportista.tenantId = dataTenant.tenantId;
-			  $scope.deportista.pais = "Uruguay";
+//			  $scope.deportista.pais = "Uruguay";
+			  $scope.deportista.pais = (JSON.parse(localStorage.getItem("dataUsuario"))).pais;
 			  $scope.deportista.deporte = selectDeportes;
 			  $scope.deportista.disciplinas = selection;
 			  
@@ -107,8 +108,7 @@ angular.module('eventosSGEM')
 		                console.log(headers);
 		                console.log(config);
 		                
-		            })
-		            error(function(response){
+		            }).catch(function(response){
 		                // Si ha habido errores llegamos a esta parte
 		            	console.log(response); 
 		            });

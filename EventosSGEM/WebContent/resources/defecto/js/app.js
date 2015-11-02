@@ -17,8 +17,10 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
     /* Act on the event */
   });
   
-}]).config(function ($authProvider,$stateProvider, $urlRouterProvider) {
+}]).config(function ($authProvider,$stateProvider, $urlRouterProvider,$locationProvider) {
 	
+	
+//	$locationProvider.html5Mode(true);
 	// Parametros de configuración
     $authProvider.loginUrl = "https://sgem.com/rest/UsuarioService/loginUsuario";
     $authProvider.tokenName = "token";
