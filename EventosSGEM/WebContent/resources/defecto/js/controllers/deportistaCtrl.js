@@ -2,6 +2,8 @@ angular.module('eventosSGEM')
   .controller('deportistaCtrl', ['$scope','dataFactory','dataTenant', 
                            function ($scope, dataFactory,dataTenant) {
 	
+	  $scope.mensajeValidacion = ""; 
+	   
 	  $scope.deportista={};
 	  console.log($scope.deportista);
 	  
@@ -43,7 +45,7 @@ angular.module('eventosSGEM')
 //              }else{
 //            	  alert("Error al dar de alta");
 //              }
-      	}).error(function(error) {
+      	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
       	});
@@ -69,7 +71,7 @@ angular.module('eventosSGEM')
               
               $scope.selectDisciplinas = $scope.disciplinas [0];
 
-      	}).error(function(error) {
+      	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
       	});
@@ -91,31 +93,46 @@ angular.module('eventosSGEM')
 		  };
 	  
 	  
-		  $scope.altaDeportista = function(selectDeportes,selection){
+	  $scope.altaDeportista = function(selectDeportes,selection){
+		  $scope.cargando = true;
+		  var foto = $scope.myFile;
+		  
+		  if(foto != null){
 			  
-			  $scope.deportista.tenantId = dataTenant.tenantId;
-//			  $scope.deportista.pais = "Uruguay";
-			  $scope.deportista.pais = (JSON.parse(localStorage.getItem("dataUsuario"))).pais;
-			  $scope.deportista.deporte = selectDeportes;
-			  $scope.deportista.disciplinas = selection;
+			  dataFactory.subirImagenDeportista(foto,dataTenant.tenantId,(JSON.parse(localStorage.getItem("dataUsuario"))).comiteId).
+				then(function (response, status, headers, config) {
 			  
-			  dataFactory.altaDeportista($scope.deportista)
-		     	.then(function (data, status, headers, config) {
-		                $scope.status = data.status;
-		                console.log("Entre Alta Deportista");
-		                console.log(data.status);
-		                console.log(status);
-		                console.log(headers);
-		                console.log(config);
-		                
+				  var foto = {};
+				  foto.mime = response.data.mime;
+				  foto.ruta = response.data.ruta;
+				  foto.tenantId = response.data.tenantId;
+					
+				  $scope.deportista.tenantId = dataTenant.tenantId;
+				  $scope.deportista.pais = (JSON.parse(localStorage.getItem("dataUsuario"))).pais;
+				  $scope.deportista.deporte = selectDeportes;
+				  $scope.deportista.disciplinas = selection;
+				  $scope.deportista.foto = foto;
+				  
+				  dataFactory.altaDeportista($scope.deportista)
+			     	.then(function (data, status, headers, config) {
+			     		  event.preventDefault();
+			     		  $state.go('main', { tenant: $scope.nombreTenant} );			                
 		            }).catch(function(response){
-		                // Si ha habido errores llegamos a esta parte
-		            	console.log(response); 
+		            	 $scope.cargando = false;
+			       		 $scope.mensajeValidacion = "Error al crear deportista.";
 		            });
+				  
+				}).catch(function(response){
+						$scope.cargando = false;
+						$scope.mensajeValidacion = "Error al subir im\u00E1gen para el deportista. Contacte con soporte.";
+				});
 			  
+		  }else{
+			  $scope.cargando = false;
+			  $scope.mensajeValidacion = "Debe seleccionar una im\u00E1gen para el deportista.";
+		  }
 			  
-			  
-		  }; 
+	  }; 
 		  
 		  
 		  

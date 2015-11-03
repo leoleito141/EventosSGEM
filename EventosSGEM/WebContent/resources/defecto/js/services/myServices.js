@@ -38,11 +38,11 @@
         		{ headers: { 'Rol' : 'VISITANTE'} });       	
     }; 
 
-    dataFactory.subirImagen = function(foto,tenantId){
+    dataFactory.subirImagenNovedad = function(foto,tenantId){
     	var formData = new FormData();
     	formData.append("file", foto);
     	formData.append("tenantId", tenantId);
-    	return $http.post(dominio+'UsuarioService/subirImagen', formData,{
+    	return $http.post(dominio+'UsuarioService/subirImagenNovedad', formData,{
     		transformRequest: angular.identity,
     		headers: {'Content-Type': undefined , 'Rol' : 'COMITE_OLIMPICO' }
     	}); 
@@ -76,9 +76,18 @@
     dataFactory.altaComite = function(datos){
     	console.log(datos);
         return $http.post(dominio+'UsuarioService/altaComite', datos,
-        		{headers: { 'Rol' : 'ADMIN'}});       	
+        		{headers: { 'Rol' : 'ORGANIZADOR'}});       	
     }; 
     
+    dataFactory.subirImagenComite = function(foto,tenantId){
+    	var formData = new FormData();
+    	formData.append("file", foto);
+    	formData.append("tenantId", tenantId);
+    	return $http.post(dominio+'UsuarioService/subirImagenComite', formData,{
+    		transformRequest: angular.identity,
+    		headers: {'Content-Type': undefined , 'Rol' : 'ORGANIZADOR' }
+    	}); 
+    };
     
     dataFactory.listarDeportes = function(tenantId,sexo){
         return $http.get(dominio+'EventoDeportivoService/listarDeportes/'+tenantId+'/'+sexo , 
@@ -103,15 +112,6 @@
         		{headers: { 'Rol' : 'COMITE_OLIMPICO'} }
         		);
     };
-
-    
-    
-    dataFactory.altaDeportista = function(datos){
-    	console.log(datos);
-        return $http.post(dominio+'DeportistaService/altaDeportista', datos,
-        		{headers: { 'Rol' : 'COMITE_OLIMPICO'}});       	
-    };
-    
     
     dataFactory.altaJuez = function(datos){
     	console.log(datos);
@@ -139,7 +139,22 @@
         		);
     };
     
+    dataFactory.altaDeportista = function(datos){
+    	console.log(datos);
+        return $http.post(dominio+'DeportistaService/altaDeportista', datos,
+        		{headers: { 'Rol' : 'COMITE_OLIMPICO'}});       	
+    };
     
+    dataFactory.subirImagenDeportista = function(foto,tenantId,comiteId){
+    	var formData = new FormData();
+    	formData.append("file", foto);
+    	formData.append("tenantId", tenantId);
+    	formData.append("comiteId", comiteId);
+    	return $http.post(dominio+'DeportistaService/subirImagenDeportista', formData,{
+    		transformRequest: angular.identity,
+    		headers: {'Content-Type': undefined , 'Rol' : 'COMITE_OLIMPICO' }
+    	}); 
+    };
     
     return dataFactory;
 }]); 

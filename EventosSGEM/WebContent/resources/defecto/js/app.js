@@ -107,7 +107,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	    }
 	}).state('altaComite', {
 		url:'/:tenant/altaComite',
-		templateUrl : 'views/tenant/comite/altaComite.html',
+		templateUrl : 'views/tenant/organizador/altaComite.html',
 		controller : 'UsuarioCtrl',
 		resolve: { 
 		    	dataTenant: function(dataFactory,$stateParams) {
