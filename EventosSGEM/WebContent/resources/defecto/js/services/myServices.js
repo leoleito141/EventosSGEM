@@ -146,6 +146,15 @@
     };
     
     
+    
+    dataFactory.realizarCompraEntradas = function(datos){
+    	console.log(datos);
+        return $http.post(dominio+'CompetenciaService/comprarEntradas', datos,
+        		{headers: { 'Rol' : 'USUARIO_COMUN'}});       	
+    };
+    
+    
+    
     dataFactory.altaDeportista = function(datos){
     	console.log(datos);
         return $http.post(dominio+'DeportistaService/altaDeportista', datos,

@@ -12,7 +12,7 @@ angular.module('eventosSGEM')
 	  $scope.rondas = {};
 	  
 	 
-	  
+	  $scope.entrada.cantEntradas = '';
 	  
 	  $scope.openInicio = function($eventInicio) {
 		    $scope.statusInicio.opened = true;
@@ -164,10 +164,37 @@ angular.module('eventosSGEM')
 	                // Si ha habido errores llegamos a esta parte
 	            	console.log(response); 
 	            });
-		  
-		  
+
 		  
 	  };   
+	  
+	  $scope.realizarCompra = function(idCompetencia,cantEntradas){
+		  
+		  $scope.datos = {};
+		  
+	      $scope.datos.tenantId = dataTenant.tenantId;
+		  $scope.datos.idCompetencia = idCompetencia;
+		  $scope.datos.cantEntradas = cantEntradas;
+		  $scope.datos.mail = (JSON.parse(localStorage.getItem("dataUsuario"))).email;
+		  
+		  
+		  dataFactory.realizarCompraEntradas($scope.datos)
+	     	.then(function (data, status, headers, config) {
+	                $scope.status = data.status;
+	                console.log("Entre a realizarCompra");
+	                console.log(data.status);
+	                console.log(status);
+	                console.log(headers);
+	                console.log(config);
+	                
+	            })
+	            .catch(function(response){
+	                // Si ha habido errores llegamos a esta parte
+	            	console.log(response); 
+	            });
+		  
+			  
+	  }; 
 	  
 		  
   }]);
