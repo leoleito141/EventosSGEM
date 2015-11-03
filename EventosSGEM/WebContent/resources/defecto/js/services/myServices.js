@@ -139,6 +139,13 @@
         		);
     };
     
+    dataFactory.obtenerPrecio= function(tenantId, idCompetencia){
+        return $http.get(dominio+'CompetenciaService/obtenerPrecio/'+tenantId+'/'+idCompetencia , 
+        		{headers: { 'Rol' : 'VISITANTE'} }
+        		);
+    };
+    
+    
     dataFactory.altaDeportista = function(datos){
     	console.log(datos);
         return $http.post(dominio+'DeportistaService/altaDeportista', datos,

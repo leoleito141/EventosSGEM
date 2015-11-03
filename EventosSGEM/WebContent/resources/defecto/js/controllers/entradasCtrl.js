@@ -115,13 +115,19 @@ angular.module('eventosSGEM')
 	
 		  
 		  dataFactory.listarCompetencias(dataTenant.tenantId,sexo,nombreDeporte,nombreDisciplina,ronda)
-	     	.then(function (data, status, headers, config) {
-	                $scope.status = data.status;
+	     	.then(function (response, status, headers, config) {
+	                $scope.status = response.status;
 	                console.log("Entre al listar Competencias");
-	                console.log(data.status);
+	                console.log(response.status);
 	                console.log(status);
 	                console.log(headers);
 	                console.log(config);
+	               
+	              
+	               
+	                
+	               $scope.competencias = response.data;
+	   
 	                
 	            })
 	            .catch(function(response){
@@ -132,7 +138,36 @@ angular.module('eventosSGEM')
 		  
 		  
 	  }; 
+	  
+	  
+	 		  
+ $scope.obtenerPrecio = function(idCompetencia){
+	
+		  
+		  dataFactory.obtenerPrecio(dataTenant.tenantId,idCompetencia)
+	     	.then(function (response, status, headers, config) {
+	                $scope.status = response.status;
+	                console.log("Entre al listar Competencias");
+	                console.log(response.status);
+	                console.log(status);
+	                console.log(headers);
+	                console.log(config);
+	               
+	              
+	               
+	                
+	                $scope.precioEntrada = response.data;
+	                
+	                
+	            })
+	            .catch(function(response){
+	                // Si ha habido errores llegamos a esta parte
+	            	console.log(response); 
+	            });
 		  
 		  
+		  
+	  };   
+	  
 		  
   }]);

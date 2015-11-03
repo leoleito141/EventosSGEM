@@ -1,0 +1,57 @@
+<form role="form" >
+	
+		
+		
+		<div class="row">
+		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+				Seleccionar Competencia:    </label>
+				<div class=" col-sm-offset-1 control-label col-sm-12">
+		  	
+		  	 <div ng-repeat="comp in competencias">
+            <input type="radio" name="compGroup" ng-model="entrada.idCompetencia" value="{{comp.idCompetencia}}" ng-change=" obtenerPrecio(entrada.idCompetencia)">
+            Estadio:{{comp.estadio}} Fecha: {{comp.fecha | date:'dd/MM/yyyy HH:mm a' }} Precio US$: {{comp.precioEntrada}} Entradas Disponibles: {{comp.cantEntradas - comp.entradasVendidas}}
+        </div>
+		  	 
+		  	 		
+		  	 
+		   		</div>
+		</div>
+		
+		
+		<div class="row">
+		 <label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect"> Cantidad Entradas: </label><br>
+			
+		  	 
+		 
+			 	<div class="col-sm-offset-1 control-label col-sm-12">
+		   <select name="singleSelect" ng-model="entrada.cantEntradas">
+     			 <option value="1">1</option>
+      			 <option value="2">2</option>
+      			 <option value="3">3</option>
+      			 <option value="4">4</option>
+      			 <option value="5">5</option>
+    		</select>
+		   		</div>
+			
+		  	</div> 
+		  	 
+		  	 
+		   	<div class="row">
+		 <label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect"> Precio Final US$: {{entrada.cantEntradas * precioEntrada}}</label><br>
+			
+		  	 
+		 
+			 	
+			
+		  	</div> 
+		
+		
+			<div class="row">
+	<md-button  >
+	<a ui-sref="formAltaCompetencia.Paso3"
+	class="btn btn-block btn-info"> Siguiente<span
+			class="glyphicon glyphicon-circle-arrow-right"></span>
+	</a></md-button>
+		</div>
+		
+		<div class="row"></form>
