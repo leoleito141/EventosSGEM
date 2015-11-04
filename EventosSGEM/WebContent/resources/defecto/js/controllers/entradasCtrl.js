@@ -3,17 +3,16 @@
 angular.module('eventosSGEM')
   .controller('entradasCtrl', ['$scope','dataFactory','$state','dataTenant', function ($scope,dataFactory,$state,dataTenant) {
 	  
-	  $scope.entrada={};
-	  
 	  $scope.deportes = {};
 	  
 	  $scope.disciplinas = {};
 	  
 	  $scope.rondas = {};
 	  
-	 
-	  $scope.entrada.cantEntradas = '';
-	  
+	  $scope.entrada={};
+	  $scope.entrada.cantEntradas = 0;
+	  $scope.precioEntrada = 0;
+      
 	  $scope.openInicio = function($eventInicio) {
 		    $scope.statusInicio.opened = true;
 		  };

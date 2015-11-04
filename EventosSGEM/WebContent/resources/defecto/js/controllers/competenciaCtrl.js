@@ -15,29 +15,109 @@ angular.module('eventosSGEM')
 	  $scope.deportistas = {};
 	  
 	  
-	  $scope.openInicio = function($eventInicio) {
-		    $scope.statusInicio.opened = true;
-		  };
+//	  $scope.openInicio = function($eventInicio) {
+//		    $scope.statusInicio.opened = true;
+//		  };
+//
+//	  $scope.openFin = function($eventFin) {
+//		    $scope.statusFin.opened = true;
+//		  };
+//	   
+//	  $scope.statusInicio = {
+//			    opened: false
+//			  };
+//	  
+//	  $scope.statusFin = {
+//			    opened: false
+//			  };
+//	  
+//	  $scope.dateOptions = {
+//			    formatYear: 'yy',
+//			    startingDay: 1
+//			  };
 
-	  $scope.openFin = function($eventFin) {
-		    $scope.statusFin.opened = true;
-		  };
-	   
-	  $scope.statusInicio = {
-			    opened: false
-			  };
+	    var that = this;
+
+	    $scope.isOpen = false;
+
+	    $scope.openCalendar = function(e) {
+	        e.preventDefault();
+	        e.stopPropagation();
+
+	        that.isOpen = true;
+	    };
 	  
-	  $scope.statusFin = {
-			    opened: false
-			  };
-	  
-	  $scope.dateOptions = {
-			    formatYear: 'yy',
-			    startingDay: 1
-			  };
-	  
+	    var that = this;
+	    
+	    var in10Days = new Date();
+	    in10Days.setDate(in10Days.getDate() + 10);
+	    
+	    $scope.dates = {
+	      date1: new Date('2015-03-01T00:00:00Z'),
+	      date2: new Date('2015-03-01T12:30:00Z'),
+	      date3: new Date(),
+	      date4: new Date(),
+	      date5: in10Days,
+	      date6: new Date(),
+	      date7: new Date(),
+	      date8: new Date()
+	    };
+	    
+	    $scope.open = {
+	      date1: false,
+	      date2: false,
+	      date3: false,
+	      date4: false,
+	      date5: false,
+	      date6: false,
+	      date7: false,
+	      date8: false
+	    };
+	    
+	    // Disable weekend selection
+	    $scope.disabled = function(date, mode) {
+	      return (mode === 'day' && (new Date().toDateString() == date.toDateString()));
+	    };
+
+	    $scope.dateOptions = {
+	      showWeeks: false,
+	      startingDay: 1
+	    };
+	    
+	    $scope.timeOptions = {
+	      readonlyInput: false,
+	      showMeridian: false
+	    };
+	    
+	    $scope.dateModeOptions = {
+	      minMode: 'year',
+	      maxMode: 'year'
+	    };
+	    
+	    $scope.openCalendar = function(e, date) {
+	        that.open[date] = true;
+	    };
+	    
+	    // watch date4 and date5 to calculate difference
+	    $scope.calculateWatch = $scope.$watch(function() {
+	      return that.dates;
+	    }, function() {
+	      if (that.dates.date4 && that.dates.date5) {
+	        var diff = that.dates.date4.getTime() - that.dates.date5.getTime();
+	        that.dayRange = Math.round(Math.abs(diff/(1000*60*60*24)))
+	      } else {
+	        that.dayRange = 'n/a';
+	      }
+	    }, true);
+	    
+	    $scope.$on('$destroy', function() {
+	    	$scope.calculateWatch();
+	    });
+	    
+	    
 	  $scope.obtenerDeportes = function(sexo) {
-		    
+		  
+		  
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
 		  
