@@ -59,7 +59,27 @@
 		              </span>
 		            </p>
 	       		</div>
+	       </div>	
 	       		
+	       				<div class="row">
+		 <label class="control-label col-sm-2" for="singleSelect"> Tipo: </label><br>
+			  <div class="col-sm-10">
+				<div class="control-label col-sm-2">
+		  	 
+		 
+			 	<div class="control-label col-sm-2">
+		   <select name="singleSelect" ng-model="eventoDeportivo.tipo">
+     			 <option value="individual">Individual</option>
+      			 <option value="colectivo">Colectivo</option>
+    		</select>
+		   		</div>
+			</div>
+		  	</div> 
+		  	 
+		  	 
+		   		</div>
+	       		
+	     		
 	       	<div class="row">
 				<div class="col-md-2">
 				<pre>Fecha de Cierre: <em>{{eventoDeportivo.fechaFin | date:'fullDate' }}</em></pre>
@@ -72,7 +92,7 @@
 	       		</div>
             </div>
 			
-			</div>
+		
 			
 
        
