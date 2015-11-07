@@ -14,29 +14,29 @@ angular.module('eventosSGEM')
 	  
 	  $scope.deportistas = {};
 	  
-	  
-//	  $scope.openInicio = function($eventInicio) {
-//		    $scope.statusInicio.opened = true;
-//		  };
-//
-//	  $scope.openFin = function($eventFin) {
-//		    $scope.statusFin.opened = true;
-//		  };
-//	   
-//	  $scope.statusInicio = {
-//			    opened: false
-//			  };
-//	  
-//	  $scope.statusFin = {
-//			    opened: false
-//			  };
-//	  
-//	  $scope.dateOptions = {
-//			    formatYear: 'yy',
-//			    startingDay: 1
-//			  };
+  
+	  $scope.openInicio = function($eventInicio) {
+		    $scope.statusInicio.opened = true;
+		  };
 
-	    var that = this;
+	  $scope.openFin = function($eventFin) {
+		    $scope.statusFin.opened = true;
+		  };
+	   
+	  $scope.statusInicio = {
+			    opened: false
+			  };
+	  
+	  $scope.statusFin = {
+			    opened: false
+			  };
+	  
+	  $scope.dateOptions = {
+			    formatYear: 'yy',
+			    startingDay: 1
+			  };
+
+/*	    var that = this;
 
 	    $scope.isOpen = false;
 
@@ -114,7 +114,7 @@ angular.module('eventosSGEM')
 	    	$scope.calculateWatch();
 	    });
 	    
-	    
+*/	    
 	  $scope.obtenerDeportes = function(sexo) {
 		  
 		  

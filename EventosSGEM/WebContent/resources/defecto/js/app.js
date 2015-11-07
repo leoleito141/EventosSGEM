@@ -1,6 +1,6 @@
 'use strict';
-
-angular.module('eventosSGEM', ['ui.router','ui.bootstrap','ui.bootstrap.datetimepicker','satellizer','googlechart'])
+//,'ui.bootstrap.datetimepicker'
+angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart'])
 .run(['dataFactory','$rootScope','$state','$auth',function(dataFactory,$rootScope, $state, $auth){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
 	  
