@@ -11,7 +11,7 @@ angular.module('eventosSGEM')
   	console.log($scope.customStyle);
 
   	$scope.salir = function() {  		
-	    $scope.usrLogin={nombre:""};//Deja usrLogin vacio
+  		localStorage.removeItem("dataUsuario");
 	    $auth.logout(); //Limpia localStorage y pone isAuthenticated en false
 	
 	    event.preventDefault();
