@@ -172,5 +172,17 @@
     	}); 
     };
     
+    dataFactory.listarCompetenciasPendientes = function(tenantId,juezID){
+    	  return $http.get(dominio+'CompetenciaService/listarCompetenciasPendientes/'+tenantId+'/'+juezID , 
+          			{headers: { 'Rol' : 'JUEZ'} 
+    	  }); 	
+    };
+    
+    dataFactory.altaResultado = function(resultado){
+        return $http.post(dominio+'CompetenciaService/guardarResultado', resultado,
+        		{headers: { 'Rol' : 'JUEZ'}
+        });       	
+    };
+    
     return dataFactory;
 }]); 

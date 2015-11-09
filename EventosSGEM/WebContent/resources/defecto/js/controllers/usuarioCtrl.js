@@ -47,7 +47,7 @@ angular.module('eventosSGEM')
 	            	 $state.go('altaNovedad', { tenant: $scope.nombreTenant} );
 	             }else if(dataUsuario.tipoUsuario == usuario_juez){
 	            	 event.preventDefault();
-	            	 $state.go('main', { tenant: $scope.nombreTenant } );
+	            	 $state.go('altaResultado.paso1', { tenant: $scope.nombreTenant } );
 	             }else if(dataUsuario.tipoUsuario == usuario_organizador){
 	            	 event.preventDefault();
 	            	 $state.go('usoSitio', { tenant: $scope.nombreTenant } );

@@ -1,6 +1,6 @@
 'use strict';
 //,'ui.bootstrap.datetimepicker'
-angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart'])
+angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart','ngAnimate'])
 .run(['dataFactory','$rootScope','$state','$auth',function(dataFactory,$rootScope, $state, $auth){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
 	  
@@ -334,7 +334,67 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	    		/**********************************************************/
 	    	}
 		}
-	});
+	})
+	
+	
+	/****** Resultado ********/
+	
+	
+	.state('altaResultado', {
+		url:'/:tenant/altaResultado',
+		templateUrl : 'views/tenant/juez/formAltaResultado.html',
+		controller : 'ResultadoCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
+	})
+    .state('altaResultado.paso1', {
+    	url:'/altaResultado1',
+		templateUrl : 'views/tenant/juez/altaResultado1.html',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
+    })
+    .state('altaResultado.paso2', {
+    	url:'/altaResultado2',
+		templateUrl : 'views/tenant/juez/altaResultado2.html',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    		/***** ESTO ESTARÍA BUENO IMPLEMENTARLO EN UN UTIL O FUNCION ****/
+	    		
+	    		if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != $stateParams.tenant){
+
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    			
+	    		}else{
+	    			return JSON.parse(localStorage.getItem("tenantActual"));
+	    		}
+	    		/**********************************************************/
+	    	}
+		}
+    });
 	
     $urlRouterProvider.otherwise(function($injector, $location){
         var state = $injector.get('$state');
