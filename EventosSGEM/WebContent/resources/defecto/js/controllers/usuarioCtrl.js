@@ -16,7 +16,11 @@ angular.module('eventosSGEM')
    
    $scope.comite={};   
    
-   $scope.mensajeValidacion = "";   
+   if(dataMensajes.mensaje != null && dataMensajes.mensaje != ""){
+	   $scope.mensajeValidacion = dataMensajes.mensaje;
+   }else{
+	   $scope.mensajeValidacion = "";   
+   }
    
    $scope.loginUsuario = function () {
   	     $scope.cargando = true;
@@ -32,7 +36,7 @@ angular.module('eventosSGEM')
 	        .then(function (data){           
 	             $scope.usrLogin.email = $scope.usuario.email;
 	             $scope.usuario.password="";
-	             
+	             dataMensajes.add("");
 	             var payLoad = $auth.getPayload();             
 	             var dataUsuario = payLoad.dataUsuario;
 	            
