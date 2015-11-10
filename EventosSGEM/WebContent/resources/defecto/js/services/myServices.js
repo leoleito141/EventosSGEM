@@ -14,21 +14,21 @@
            
     dataFactory.getDataTenant = function(tenant){
    
-	   	return $http.get(dominio+'EventoMultiService/obtenerDataTenant/'+tenant)
-		       	.then(function (response) {
+	   	 if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != tenant){
 
-		       		localStorage.setItem("tenantActual", JSON.stringify(response.data));
-		       				       		
-		                 console.log("Entre get Data tenant");
-		                 console.log(response);
-		                 console.log(response.status);
-		                 console.log(response.headers);
-		                 console.log(response.config);
-		                 return response; 
-		                 
-	             }).error(function(response){
-		             	console.log(response); 
-		        });
+             return $http.get(dominio+'EventoMultiService/obtenerDataTenant/'+tenant)
+                .then(function (response) {
+
+                    localStorage.setItem("tenantActual", JSON.stringify(response.data));    
+                    return response; 
+                                 
+                 }).error(function(response){
+                     console.log(response); 
+                 });
+            
+        }else{
+            return JSON.parse(localStorage.getItem("tenantActual"));
+        }
 	         		 
 	    };
      

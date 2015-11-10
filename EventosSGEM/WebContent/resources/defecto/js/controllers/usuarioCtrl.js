@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('UsuarioCtrl', ['$scope','$state','$auth','dataFactory','dataTenant',
-                                     function ($scope, $state, $auth, dataFactory,dataTenant) {
+  .controller('UsuarioCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes',
+                                     function ($scope, $state, $auth, dataFactory,dataTenant,dataMensajes) {
  
    const usuario_comun = "UsuarioComun";
    const usuario_juez = "Juez";
@@ -128,58 +128,69 @@ angular.module('eventosSGEM')
 	  }
 	  
 	  $scope.altaNovedad = function(){
-		  $scope.cargando = true;		  
+		   $scope.cargando = true;		  
 		  var foto = $scope.myFile;
-		  
-		  if(foto != null){
+		  if($auth.isAuthenticated()){
+			  if(foto != null){
+				  
+				  dataFactory.subirImagenNovedad(foto,dataTenant.tenantId).
+					then(function (response, status, headers, config) {
+						
+						  var imagen = {};
+						  imagen.mime = response.data.mime;
+						  imagen.ruta = response.data.ruta;
+						  imagen.tenantId = response.data.tenantId;
+						  
+						  var novedad = $scope.novedad; 
+						  novedad.tenantId = dataTenant.tenantId;
+						  novedad.columna = $scope.dataColumna.selectedOption.valor;
+						  novedad.emailComiteOlimpico = (JSON.parse(localStorage.getItem("dataUsuario"))).email;
+						  novedad.imagen = imagen;
+						  
+						  dataFactory.altaNovedad(novedad)
+					     	.then(function (response, status, headers, config) {
+					     		if(response){
+					     			event.preventDefault();
+					            	$state.go('main', { tenant: $scope.nombreTenant} );
+					     		}else{
+					     			$scope.cargando = false;
+					       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
+					     		}	                
+					        })
+					        .catch(function(response){      				        	
+					        	if(response.status == 404){
+					        		$scope.cargando = false;
+					        		$scope.mensajeValidacion = "No se pudieron validar sus credenciales. La novedad no se crear\u00E1. Contacte con soporte.";
+					       		}else{
+					       			$scope.cargando = false;
+					       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
+					       		}	        	
+					        });
 			  
-			  dataFactory.subirImagenNovedad(foto,dataTenant.tenantId).
-				then(function (response, status, headers, config) {
-					
-					  var imagen = {};
-					  imagen.mime = response.data.mime;
-					  imagen.ruta = response.data.ruta;
-					  imagen.tenantId = response.data.tenantId;
-					  
-					  var novedad = $scope.novedad; 
-					  novedad.tenantId = dataTenant.tenantId;
-					  novedad.columna = $scope.dataColumna.selectedOption.valor;
-					  novedad.emailComiteOlimpico = (JSON.parse(localStorage.getItem("dataUsuario"))).email;
-					  novedad.imagen = imagen;
-					  
-					  dataFactory.altaNovedad(novedad)
-				     	.then(function (response, status, headers, config) {
-				     		if(response){
-				     			event.preventDefault();
-				            	$state.go('main', { tenant: $scope.nombreTenant} );
-				     		}else{
-				     			$scope.cargando = false;
-				       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
-				     		}	                
-				        })
-				        .catch(function(response){      				        	
-				        	if(response.status == 404){
-				        		$scope.cargando = false;
-				        		$scope.mensajeValidacion = "No se pudieron validar sus credenciales. La novedad no se crear\u00E1. Contacte con soporte.";
-				       		}else{
-				       			$scope.cargando = false;
-				       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
-				       		}	        	
-				        });
-		  
-				}).catch(function(response){
-//					if(response.status == 498){ // mandar a que se loguee.. en todos los catch debería ir.
-//						
-//					}else{
-						$scope.cargando = false;
-						$scope.mensajeValidacion = "Error al subir im\u00E1gen de la novedad. Contacte con soporte.";
-//					}
-					
-				});
-		  
+					}).catch(function(response){
+						if(response.status == 498){ // mandar a que se loguee.. en todos los catch debería ir.
+						
+							$state.go('login', { tenant: $scope.nombreTenant});
+						}else{
+							$scope.cargando = false;
+							$scope.mensajeValidacion = "Error al subir im\u00E1gen de la novedad. Contacte con soporte.";
+						}
+						
+					});
+			  
+			  }else{
+				  $scope.cargando = false;
+				  $scope.mensajeValidacion = "Debe seleccionar una im\u00E1gen, para la novedad.";
+			  }
+			  
+			  
+			  
 		  }else{
-			  $scope.cargando = false;
-			  $scope.mensajeValidacion = "Debe seleccionar una im\u00E1gen, para la novedad.";
+			  
+			  dataMensajes.add("Sesion Caducada");
+			  $scope.mensajeValidacion = dataMensajes.getMensaje();
+			  $state.go('login', { tenant: $scope.nombreTenant});
+			  
 		  }
 		  
 	  }; // cierra altaNovedad
