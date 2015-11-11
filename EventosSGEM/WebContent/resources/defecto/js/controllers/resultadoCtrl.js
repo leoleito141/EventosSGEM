@@ -97,9 +97,12 @@ angular.module('eventosSGEM')
 		   $scope.estadisticas.push(e);
 		   
 		   // calculo las estadisticas y posiciones que quedan	   	
-		   var indice = $scope.objetosCombo.indexOf($scope.estadistica.participante);	   
-		   $scope.objetosCombo.splice(indice,1);// quito el participante que ya tiene estadistica.	   
-		   $scope.posiciones.shift(); // remuevo el primero
+		   var indicepar = $scope.objetosCombo.indexOf($scope.estadistica.participante);	   
+		   $scope.objetosCombo.splice(indicepar,1);// quito el participante que ya tiene estadistica.	   
+		   
+		   var indicepos = $scope.posiciones.indexOf($scope.estadistica.posicion);	   
+		   $scope.posiciones.splice(indicepos,1);// quito el posicion que ya tiene estadistica.	
+		   		   	
 		   	   
 		   if($scope.objetosCombo.length != 0){
 			   $scope.estadistica.participante = $scope.objetosCombo[0];
