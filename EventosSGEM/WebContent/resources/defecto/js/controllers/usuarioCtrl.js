@@ -14,7 +14,8 @@ angular.module('eventosSGEM')
    $scope.nombreTenant = dataTenant.nombre_url;
    $scope.usuario = {};
    
-   $scope.comite={};   
+   $scope.comite={}; 
+   $scope.co={};
    
    $scope.mensajeValidacion = "";   
    
@@ -394,7 +395,50 @@ angular.module('eventosSGEM')
               columns: [0, 1 ,2, 3]
           };
       }
-	    
+   ////////////////////////Prueba ImagenConf  ////// 
+      $scope.pruebaImagenConf  = function(){
+		  	  
+		  var banner = $scope.myFileBanner;
+		  var fondo  = $scope.myFileFondo;
+		  var pagina = $scope.myFilePagina;
+			  if(banner != null && fondo != null && pagina != null){
+				  
+				  dataFactory.subirImagenConf(banner,fondo,pagina,dataTenant.tenantId).
+					then(function (response, status, headers, config) {
+						console.log(response.data);
+						var banner = {};
+						 banner.mime = response.data[0].mime;
+						 banner.ruta = response.data[0].ruta;
+						 banner.tenantId = response[0].data.tenantId;
+						 var fondo = {};
+						 fondo.mime = response.data[1].mime;
+						 fondo.ruta = response.data[1].ruta;
+						 fondo.tenantId = response.data[1].tenantId;
+						 var pagina = {};
+						 pagina.mime = response.data[2].mime;
+						 pagina.ruta = response.data[2].ruta;
+						 pagina.tenantId = response.data[2].tenantId;
+						  
+						 $scope.con.tenantId = dataTenant.tenantId;
+						 $scope.co.banner = banner;
+						 $scope.co.fondo = fondo;
+						 $scope.co.pagina = pagina;
+						dataFactory.altaConfiguracion($scope.co).
+						then(function(response, status, headers, config){
+							console.log("imagen guardada");
+						}).catch(function (response){
+							consoe.log(response);
+						});
+					}).catch(function(response){
+						console.log("error en prueba");
+					});
+			  
+			  }else{
+				  console.log("Imagen null");
+			  } 
+		  
+	  };
+	   /////////////////////////////////////////////// 
 	  
 	  
   }]);

@@ -1,0 +1,43 @@
+<style>
+	textarea { resize:vertical ; }
+</style>
+
+<div class="container">
+
+	<div class="jumbotron text-center">
+	    <h1>Prueba Imagen</h1>   
+	</div>
+	
+	<div class="row">
+		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+	</div>
+	
+	<form role="form" name="formNovedad">
+
+		<div class="form-group">
+					
+			
+			
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-2">
+					<input id="fileBanner" name="fileBanner" type="file" file-model="myFileBanner"/>
+				</div>	
+				<div class="col-sm-offset-2 col-sm-2">
+					<input id="fileFondo" name="fileFondo" type="file" file-model="myFileFondo"/>
+				</div>		
+				<div class="col-sm-offset-2 col-sm-2">
+					<input id="filePagina" name="filePagina" type="file" file-model="myFilePagina"/>
+				</div>					
+			</div>
+			
+			<div class="row">
+	            <div class="col-sm-offset-2 col-sm-8">
+					<button type="submit"  ng-click="pruebaImagenConf()" class="btn btn-default">Aceptar</button>
+	        	</div>
+			</div>
+			
+		</div>
+
+	</form>
+
+</div>

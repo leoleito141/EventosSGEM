@@ -239,6 +239,17 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 
 	    	}
 		}
+    })
+    .state('pruebaImagenConf', {
+    	url:'/:tenant/pruebaImagenConf',
+		templateUrl : 'views/tenant/pruebaImagenConf.html',
+		controller : 'UsuarioCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    			    			return dataFactory.getDataTenant($stateParams.tenant);
+
+	    	}
+		}
     });
 	
     $urlRouterProvider.otherwise(function($injector, $location){

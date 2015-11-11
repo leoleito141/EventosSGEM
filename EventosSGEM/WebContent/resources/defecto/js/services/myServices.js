@@ -184,5 +184,23 @@
         });       	
     };
     
+    dataFactory.subirImagenConf = function(banner,fondo,pagina,tenantId){
+    	var formData = new FormData();
+    	formData.append("fileBanner", banner);
+    	formData.append("fileFondo", fondo);
+    	formData.append("filePagina", pagina);
+    	formData.append("tenantId", tenantId);
+    	return $http.post(dominio+'EventoMultiService/subirImagenConfiguracion', formData,{
+    		transformRequest: angular.identity,
+    		headers: {'Content-Type': undefined , 'Rol' : 'COMITE_OLIMPICO' }
+    	}); 
+    };
+    
+    dataFactory.altaConfiguracion = function(configuracion){
+    	
+    	return $http.post(dominio+'EventoMultiService/configuracion', configuracion,
+        		{ headers: { 'Rol' : 'COMITE_OLIMPICO'} });
+    };
+    
     return dataFactory;
 }]); 
