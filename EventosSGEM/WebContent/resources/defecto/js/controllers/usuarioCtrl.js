@@ -413,7 +413,7 @@ angular.module('eventosSGEM')
 						var banner = {};
 						 banner.mime = response.data[0].mime;
 						 banner.ruta = response.data[0].ruta;
-						 banner.tenantId = response[0].data.tenantId;
+						 banner.tenantId = response.data[0].tenantId;
 						 var fondo = {};
 						 fondo.mime = response.data[1].mime;
 						 fondo.ruta = response.data[1].ruta;
@@ -423,7 +423,7 @@ angular.module('eventosSGEM')
 						 pagina.ruta = response.data[2].ruta;
 						 pagina.tenantId = response.data[2].tenantId;
 						  
-						 $scope.con.tenantId = dataTenant.tenantId;
+						 $scope.co.tenantId = dataTenant.tenantId;
 						 $scope.co.banner = banner;
 						 $scope.co.fondo = fondo;
 						 $scope.co.pagina = pagina;
