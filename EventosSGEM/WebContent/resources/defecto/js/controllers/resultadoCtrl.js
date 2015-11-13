@@ -110,13 +110,10 @@ angular.module('eventosSGEM')
 			   for(var i = 0; i <  $scope.competenciaSeleccionada.deportistas.length; i++) {	
 				   var dep = $scope.competenciaSeleccionada.deportistas[i];
 				   if(dep.deportistaID == $scope.estadistica.objeto.id){
-					   var indiceDep = i;					   
+					   e.deportista = $scope.competenciaSeleccionada.deportistas[i];			   
 					   break;
 				   }
-			   }
-			   
-//			   var indiceDep = $scope.competenciaSeleccionada.deportistas.indexOf({'deportistaID': $scope.estadistica.objeto.id});
-			   e.deportista = $scope.competenciaSeleccionada.deportistas[indiceDep];		  
+			   }		   		  
 			   
 			   $scope.estadisticas.push(e);
 			   
@@ -135,8 +132,14 @@ angular.module('eventosSGEM')
 			   
 		   }
 		   
-		   var indiceObj = $scope.objetosCombo.indexOf($scope.estadistica.objeto);	  
-		   $scope.objetosCombo.splice(indiceObj,1);// quito el participante que ya tiene la estadistica.	   
+		   //busco indice del objeto a remover en el combo.
+		   for(var i = 0; i <  $scope.objetosCombo.length; i++) {	
+			   var obj = $scope.objetosCombo[i];
+			   if(obj.id == $scope.estadistica.objeto.id){		
+				   $scope.objetosCombo.splice(i,1); // quito el participante que ya tiene la estadistica.	   
+				   break;
+			   }
+		   }  		   
 		   
 		   var indicePos = $scope.posiciones.indexOf($scope.estadistica.posicion);	   
 		   $scope.posiciones.splice(indicePos,1);// quito la posicion que ya tiene la estadistica.	
