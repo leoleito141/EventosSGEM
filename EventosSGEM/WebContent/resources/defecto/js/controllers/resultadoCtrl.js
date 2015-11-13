@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant',
-                                     function ($scope, $state, $auth, dataFactory, dataTenant) {
+  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes',
+                                     function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes) {
  
+   const tipo_colectivo = "colectivo";
+   const tipo_individual = "individual";
+	  
    $scope.nombreTenant = dataTenant.nombre_url;   
    $scope.mensajeValidacion = "";   
    
@@ -18,16 +21,22 @@ angular.module('eventosSGEM')
    var juez = (JSON.parse(localStorage.getItem("dataUsuario")));   	
 
    $scope.listarCompetenciasPendientes = function(){
-	   dataFactory.listarCompetenciasPendientes(dataTenant.tenantId,juez.usuarioId).
-	   		then(function (response, status, headers, config) {	
-			
-				$scope.competencias = response.data;			
-//				console.log($scope.competencias);
+	   if($auth.isAuthenticated()){
+		   dataFactory.listarCompetenciasPendientes(dataTenant.tenantId,juez.usuarioId).
+		   		then(function (response, status, headers, config) {	
 				
-			}).catch(function(response){
-				$scope.mensajeValidacion = "Error obteniendo competencias pendientes.";
-			});
-	 
+					$scope.competencias = response.data;			
+	//				console.log($scope.competencias);
+					
+				}).catch(function(response){
+					$scope.mensajeValidacion = "Error obteniendo competencias pendientes.";
+				});
+	   }else {
+		  localStorage.removeItem("dataUsuario");
+		  dataMensajes.add("Sesion Caducada");
+		  $scope.mensajeValidacion = dataMensajes.getMensaje();
+		  $state.go('login', { tenant: $scope.nombreTenant});
+	   }
    };
   
    $scope.setCompetenciaSeleccionada = function(idCompetencia){
@@ -44,11 +53,13 @@ angular.module('eventosSGEM')
 			}
 		   $scope.competenciaSeleccionada = $scope.competencias[indice];
 		   
-		   if($scope.competenciaSeleccionada.tipoDeporte == 'individual'){//cargo deportistas
+		   if($scope.competenciaSeleccionada.tipoDeporte == tipo_individual){//cargo deportistas
 			 
 			   for(var i = 0; i < $scope.competenciaSeleccionada.deportistas.length; i++) {				    
-				   $scope.objetosCombo.push({'nombre' : $scope.competenciaSeleccionada.deportistas[i].nombre + " " + 
-			   											$scope.competenciaSeleccionada.deportistas[i].apellido});
+				   $scope.objetosCombo.push({'id': $scope.competenciaSeleccionada.deportistas[i].deportistaID, 
+					   						'nombre' : $scope.competenciaSeleccionada.deportistas[i].nombre + " " + 
+			   										   $scope.competenciaSeleccionada.deportistas[i].apellido
+   											});
 			   }
 			   
 			   for(var i = 0; i < $scope.objetosCombo.length; i++) {
@@ -66,7 +77,9 @@ angular.module('eventosSGEM')
 			   }
 			   
 			   for(var i = 0; i < paises.length; i++) {				    
-				  $scope.objetosCombo.push({'nombre' : paises[i] });
+				  $scope.objetosCombo.push({ 'id' : (i+1),
+					  						 'nombre' : paises[i] 
+		  									});
 			   }
 			   
 			   for(var i = 0; i < $scope.objetosCombo.length; i++) {
@@ -74,7 +87,7 @@ angular.module('eventosSGEM')
 			   }
 		   }
 		   
-		   $scope.estadistica.participante = $scope.objetosCombo[0];
+		   $scope.estadistica.objeto = $scope.objetosCombo[0];
 		   $scope.estadistica.posicion = $scope.posiciones[0];
 		   
 //		   $state.go("altaResultado.paso2"); 
@@ -87,57 +100,89 @@ angular.module('eventosSGEM')
    
    $scope.agregarEstadistica = function(){	 
 	   if(!$scope.habilitar()){
-//		   $scope.estadistica.tenantId = dataTenant.tenantId;
-		   var e = {};
-		   e.tenantId = dataTenant.tenantId;
-		   e.posicion = $scope.estadistica.posicion;
-		   e.participante = $scope.estadistica.participante.nombre;
-		   e.datoInformativo = $scope.estadistica.datoInformativo;
+		   		   
+		   if($scope.competenciaSeleccionada.tipoDeporte == tipo_individual){
+			   var e = {};
+			   e.tenantId = dataTenant.tenantId;
+			   e.posicion = $scope.estadistica.posicion;
+			   e.datoInformativo = $scope.estadistica.datoInformativo;		   			   
+			   
+			   for(var i = 0; i <  $scope.competenciaSeleccionada.deportistas.length; i++) {	
+				   var dep = $scope.competenciaSeleccionada.deportistas[i];
+				   if(dep.deportistaID == $scope.estadistica.objeto.id){
+					   var indiceDep = i;					   
+					   break;
+				   }
+			   }
+			   
+//			   var indiceDep = $scope.competenciaSeleccionada.deportistas.indexOf({'deportistaID': $scope.estadistica.objeto.id});
+			   e.deportista = $scope.competenciaSeleccionada.deportistas[indiceDep];		  
+			   
+			   $scope.estadisticas.push(e);
+			   
+		   }else{			   
+			   
+			   for(var i = 0; i <  $scope.competenciaSeleccionada.deportistas.length; i++) {					   
+				   if($scope.competenciaSeleccionada.deportistas[i].pais == $scope.estadistica.objeto.nombre){
+					   var e = {};
+					   e.tenantId = dataTenant.tenantId;
+					   e.posicion = $scope.estadistica.posicion;
+					   e.datoInformativo = $scope.estadistica.datoInformativo;
+					   e.deportista = $scope.competenciaSeleccionada.deportistas[i];		
+					   $scope.estadisticas.push(e)
+				   }				   
+			   }	
+			   
+		   }
 		   
-		   $scope.estadisticas.push(e);
+		   var indiceObj = $scope.objetosCombo.indexOf($scope.estadistica.objeto);	  
+		   $scope.objetosCombo.splice(indiceObj,1);// quito el participante que ya tiene la estadistica.	   
 		   
-		   // calculo las estadisticas y posiciones que quedan	   	
-		   var indicepar = $scope.objetosCombo.indexOf($scope.estadistica.participante);	   
-		   $scope.objetosCombo.splice(indicepar,1);// quito el participante que ya tiene estadistica.	   
-		   
-		   var indicepos = $scope.posiciones.indexOf($scope.estadistica.posicion);	   
-		   $scope.posiciones.splice(indicepos,1);// quito el posicion que ya tiene estadistica.	
-		   		   	
-		   	   
+		   var indicePos = $scope.posiciones.indexOf($scope.estadistica.posicion);	   
+		   $scope.posiciones.splice(indicePos,1);// quito la posicion que ya tiene la estadistica.	
+		   		   	   
 		   if($scope.objetosCombo.length != 0){
-			   $scope.estadistica.participante = $scope.objetosCombo[0];
+			   $scope.estadistica.objeto = $scope.objetosCombo[0];
 			   $scope.estadistica.posicion = $scope.posiciones[0];			   
 			   $scope.estadistica.datoInformativo = null;	   
 		   }else{
 			   $scope.estadistica = {};
 		   }
+		   		   
 	   }
    };
    
    
    $scope.altaResultado = function(){	 
-	   if($scope.estadisticas.length != 0){
-		   
-		   var resultado = {};
-		   
-		   resultado.tenantId = dataTenant.tenantId;
-		   resultado.estadisticas = $scope.estadisticas;
-		   resultado.competencia = $scope.competenciaSeleccionada;
-		   
-		   dataFactory.altaResultado(resultado).
-		   		then(function (response, status, headers, config) {	
+	   if($auth.isAuthenticated()){
+		   if($scope.estadisticas.length != 0){
+			   
+			   var resultado = {};
+			   
+			   resultado.tenantId = dataTenant.tenantId;
+			   resultado.estadisticas = $scope.estadisticas;
+			   resultado.competencia = $scope.competenciaSeleccionada;
+			   
+			   dataFactory.altaResultado(resultado).
+			   		then(function (response, status, headers, config) {	
+							
+						console.log(response);
+						$scope.estadisticas = [];
+						$scope.limpiarDatos(false);
 						
-					console.log(response);
-					$scope.estadisticas = [];
-					$scope.limpiarDatos(false);
-					
-				}).catch(function(response){
-					$scope.mensajeValidacion = "Error al agregar nuevo resultado.";
-				});
-		   
-		   
-	   }else{
-		   $scope.mensajeValidacion = "No hay estadisticas!";
+					}).catch(function(response){
+						$scope.mensajeValidacion = "Error al agregar nuevo resultado.";
+					});
+			   
+			   
+		   }else{
+			   $scope.mensajeValidacion = "No hay estadisticas!";
+		   }
+	   }else{		 
+		   	localStorage.removeItem("dataUsuario");
+			dataMensajes.add("Sesion Caducada");
+			$scope.mensajeValidacion = dataMensajes.getMensaje();
+			$state.go('login', { tenant: $scope.nombreTenant});
 	   }
 	   
    };
@@ -147,7 +192,7 @@ angular.module('eventosSGEM')
 		  return false;
 	  }
 	  return ($scope.objetosCombo.length <= 0) || 
-  			 ($scope.estadistica.datoInformativo == null || $scope.estadistica.posicion == null || $scope.estadistica.participante == null);	
+  			 ($scope.estadistica.datoInformativo == null || $scope.estadistica.posicion == null || $scope.estadistica.objeto == null);	
    };
    
    $scope.limpiarDatos = function(siguiente){
@@ -168,7 +213,5 @@ angular.module('eventosSGEM')
 	   }
    };
 	
-   
-   
 	  
   }]);
