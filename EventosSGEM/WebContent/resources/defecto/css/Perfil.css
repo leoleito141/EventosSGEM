@@ -1,3 +1,21 @@
+.FormCustom{
+	
+	background-color: white;
+	border-radius: 25px;
+	padding:2%;
+	line-height: 2px;
+	opacity: 0.97;	
+}
+.form-group > div {
+	
+	padding:5px!important;
+	
+}
+.RoundedTop{
+	border-top-left-radius: 25px;
+	border-top-right-radius:  25px;
+	
+}
 
 .iconBtn {
     width: 35px;
@@ -41,7 +59,7 @@
 
 }
 html, body  { height: 100%; width: 100%; margin: 0; 
-/* 	background-image: url('http://destinosa1.com/wp-content/uploads/2015/06/PlazaIndependencia21.jpg'); */
+
     background-repeat: no-repeat;
     background-size:cover;
     background-attachment: fixed;

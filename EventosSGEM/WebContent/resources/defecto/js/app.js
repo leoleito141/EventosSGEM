@@ -250,7 +250,50 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 
 	    	}
 		}
-    });
+    }).state('formEdicionEvento', {
+		url:'/:tenant/EditarEvento',
+		templateUrl : 'views/tenant/organizador/formEdicionEvento.html',
+		controller : 'EventMultiDeportivoCtrl',
+		resolve: { 
+			dataTenant: function(dataFactory,$stateParams) {
+    			return dataFactory.getDataTenant($stateParams.tenant);
+
+			}
+		}
+	
+	})// nested states 
+	.state('formEdicionEvento.Paso1', {
+		url:'/EditarEvento',
+		templateUrl : 'views/tenant/organizador/EdicionEvento1.html',
+			resolve: { 
+				dataTenant: function(dataFactory,$stateParams) {
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+
+				}
+			}
+
+	})// nested states each of these sections will have their own view url will be nested (/altaEvento/organizador)
+	.state('formEdicionEvento.Paso2', {
+        url: '/EditarEvento2',
+        templateUrl: 'views/tenant/organizador/EdicionEvento2.html',
+        resolve: { 
+        	dataTenant: function(dataFactory,$stateParams) {
+    			return dataFactory.getDataTenant($stateParams.tenant);
+
+			}
+		}
+        	
+    }).state('formEdicionEvento.Paso3', {
+        url: '/EditarEvento3',
+        templateUrl: 'views/tenant/organizador/EdicionEvento3.html',
+        resolve: { 
+        	dataTenant: function(dataFactory,$stateParams) {
+    			return dataFactory.getDataTenant($stateParams.tenant);
+
+			}
+		}
+    	
+});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
         var state = $injector.get('$state');

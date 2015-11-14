@@ -60,3 +60,9 @@
     animation:slideOutLeft 0.5s both ease;   
 }
 
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #555;
+    background-color: #e7e7e7;
+}
+

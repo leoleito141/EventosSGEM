@@ -9,8 +9,6 @@ angular.module('eventosSGEM')
    const usuario_comite = "ComiteOlimpico";
    const usuario_organizador = "Organizador";	  
    
-   $scope.customStyle.background= 'url(resources/defecto/img/tenant1/' + dataTenant.login_back_img +')fixed';
-    
    $scope.nombreTenant = dataTenant.nombre_url;
    $scope.usuario = {};
    
@@ -35,7 +33,6 @@ angular.module('eventosSGEM')
 	            tenantId : dataTenant.tenantId
 	        })
 	        .then(function (data){           
-	             $scope.usrLogin.email = $scope.usuario.email;
 	             $scope.usuario.password="";
 	             dataMensajes.add("");
 	             var payLoad = $auth.getPayload();             
@@ -44,19 +41,21 @@ angular.module('eventosSGEM')
 	             // ver bien si es en el local o session...
 	             localStorage.setItem("dataUsuario", JSON.stringify(dataUsuario));  // localStorage.getItem("dataUsuario") para obtenerlo
 	             	             
-	             if(dataUsuario.tipoUsuario == usuario_comun){ 
-	            	 event.preventDefault();
-	            	 $state.go('main', { tenant: $scope.nombreTenant } );
-	             }else if (dataUsuario.tipoUsuario == usuario_comite){
-	            	 event.preventDefault();
-	            	 $state.go('altaNovedad', { tenant: $scope.nombreTenant} );
-	             }else if(dataUsuario.tipoUsuario == usuario_juez){
-	            	 event.preventDefault();
-	            	 $state.go('altaResultado.paso1', { tenant: $scope.nombreTenant } );
-	             }else if(dataUsuario.tipoUsuario == usuario_organizador){
-	            	 event.preventDefault();
-	            	 $state.go('usoSitio', { tenant: $scope.nombreTenant } );
-	             }
+//	             if(dataUsuario.tipoUsuario == usuario_comun){ 
+//	            	 event.preventDefault();
+//	            	 $state.go('main', { tenant: $scope.nombreTenant } );
+//	             }else if (dataUsuario.tipoUsuario == usuario_comite){
+//	            	 event.preventDefault();
+//	            	 $state.go('altaNovedad', { tenant: $scope.nombreTenant} );
+//	             }else if(dataUsuario.tipoUsuario == usuario_juez){
+//	            	 event.preventDefault();
+//	            	 $state.go('altaResultado.paso1', { tenant: $scope.nombreTenant } );
+//	             }else if(dataUsuario.tipoUsuario == usuario_organizador){
+//	            	 event.preventDefault();
+//	            	 $state.go('usoSitio', { tenant: $scope.nombreTenant } );
+//	             }
+	             $state.go('main', { tenant: $scope.nombreTenant } );
+	             
 	         })
 	         .catch(function(error){
 	

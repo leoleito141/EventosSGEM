@@ -196,11 +196,16 @@
     	}); 
     };
     
-    dataFactory.altaConfiguracion = function(configuracion){
-    	
-    	return $http.post(dominio+'EventoMultiService/configuracion', configuracion,
-        		{ headers: { 'Rol' : 'COMITE_OLIMPICO'} });
+    dataFactory.guardarConfiguracion = function(datosEvento){
+        return $http.post(dominio+'EventoMultiService/configuracion', datosEvento,
+        		{headers: { 'Rol' : 'COMITE_OLIMPICO'}
+        });       	
     };
-    
+    dataFactory.getNovedades = function(tenant){
+  	   
+	   	return $http.get(dominio+'UsuarioService/getNovedades/'+tenant);
+		       	
+	         		 
+	    };
     return dataFactory;
 }]); 
