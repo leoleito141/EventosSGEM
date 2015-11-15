@@ -1,0 +1,27 @@
+<style>
+
+</style>
+
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
+	
+	<div class="PerfilNews FormCustom">
+	<div class=" text-center" style=" border-bottom: 1px solid #eee;">
+		<!-- the links to our nested states using relative paths -->
+		<!-- add the active class if the state matches our ui-sref -->
+		<h1 style="margin-bottom:2%;" >Bienvenido a la edicion de {{nombreTenant}}</h1>
+		
+		<div id="status-buttons " class="text-center">
+		
+			<a ui-sref-active="active" class="coolbtn" ui-sref=".Paso1"><img src="resources/defecto/img/1.png"/></a> 
+			<a ui-sref-active="active" class="coolbtn" ui-sref=".Paso2"><img src="resources/defecto/img/2.png"/></a> 
+			<a ui-sref-active="active" class="coolbtn" ui-sref=".Paso3"><img src="resources/defecto/img/3.png"/></a> 
+ 			
+		</div>
+	</div>
+	<form id="signup-form"  role="form">
+		<!-- our nested state views will be injected here -->
+		<div id="form-views" ui-view></div>
+	
+	</form>
+	</div>
+</div>

@@ -17,6 +17,22 @@
 <!--    </div> -->
 <!-- </div> -->
 
+
+<style>
+		#TwitterWidget > iframe{
+		
+			width:100% !important;
+			padding:10px!important;
+		}
+		
+		
+		#FacebookWidget > div{
+		
+			width:98% !important;
+			padding-top:10px!important;
+			margin-left:-5%!important;
+		}
+</style>
 <div id="PerfilWrapper" class="PerfilWrapper FullHeight" >
 
 		<div id="imgBanner" class="HeaderPerfilEvento">
@@ -29,26 +45,55 @@
 
 
 	
-	<div class="PerfilNews ">
-		<div class="col-md-12 " style="">
+	<div class="PerfilNews">
+	
 		
-		
-		 <button id="ConfigPerfil" type="button" class="btn col-md-3">Configurar perfil</button>
-		 <button type="button" class="btn col-md-3">Right</button>
-		  <button type="button" class="btn col-md-3">Middle</button>
-		   <button type="button" class="btn col-md-3">Right</button>
-		
-		
-		
+		<div class="col-md-12 ">
+		<ul class="nav navbar-nav navbar-right">
+		  <li role="presentation"><a class="iconBtn twitter" id="TwitterWidgetBtn">Twitter</a></li>		 
+		  <li role="presentation"><a class="iconBtn facebook" id="FacebookWidgetBtn">Facebook</a></li>
+		</ul>
 		</div>
+		
+	    
+	    <div class="col-md-8 newsWrapper" style="" id="newsWrapper"></div>
+	    
+	    <div class="col-md-4 "  id="SocialMedia" ng-init="cargarWidgets()">
+	    
+	    	<div class="col-md-12 "  id="FacebookWidget">
+	    		  
+				  <div class="fb-page" data-href="https://www.facebook.com/Rio2016" data-width="500" data-height="900" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+				  	<div class="fb-xfbml-parse-ignore">
+				   <blockquote cite="https://www.facebook.com/Rio2016">
+				   	<a href="https://www.facebook.com/Rio2016">Rio 2016</a>
+				   	</blockquote>
+				   </div>
+				  </div>
+	    	
+	    	</div>
+	    	
+	    	<div class="col-md-12 "  id="TwitterWidget">
+	    	 	<a style="width:500px" class="twitter-timeline" href="https://twitter.com/hashtag/Rio2016" data-widget-id="666003012909998085">Tweets sobre #Rio2016</a>
+	    	</div>
+	    
+	    
+	    </div>
+	    
+	    
+	    
+  
+<!-- 		 <button id="ConfigPerfil" type="button" class="btn col-md-3">Configurar perfil</button> -->
+<!-- 		 <button type="button" class="btn col-md-3">Right</button> -->
+<!-- 		  <button type="button" class="btn col-md-3">Middle</button> -->
+<!-- 		   <button type="button" class="btn col-md-3">Right</button> -->
+		
+		
+		
+
 	
 <div >
 
-<div class="col-md-12 newsWrapper" id="newsWrapper">
 
-
-  
-  </div>
   
   <div class="col-md-12">
   

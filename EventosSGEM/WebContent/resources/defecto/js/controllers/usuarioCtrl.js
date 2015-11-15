@@ -54,7 +54,7 @@ angular.module('eventosSGEM')
 //	            	 event.preventDefault();
 //	            	 $state.go('usoSitio', { tenant: $scope.nombreTenant } );
 //	             }
-	             $state.go('main', { tenant: $scope.nombreTenant } );
+	             $state.go('main.novedades', { tenant: $scope.nombreTenant } );
 	             
 	         })
 	         .catch(function(error){
@@ -155,7 +155,7 @@ angular.module('eventosSGEM')
 					     	.then(function (response, status, headers, config) {
 					     		if(response){
 					     			event.preventDefault();
-					            	$state.go('main', { tenant: $scope.nombreTenant} );
+					            	$state.go('main.novedades', { tenant: $scope.nombreTenant} );
 					     		}else{
 					     			$scope.cargando = false;
 					       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
@@ -230,7 +230,7 @@ angular.module('eventosSGEM')
 					 dataFactory.altaComite($scope.comite)
 				     	.then(function (data, status, headers, config) {				              
 				                event.preventDefault();
-				            	$state.go('main', { tenant: $scope.nombreTenant} );
+				            	$state.go('main.novedades', { tenant: $scope.nombreTenant} );
 				            })
 			            .catch(function(response){
 							if(response.status == 404){

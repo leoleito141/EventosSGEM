@@ -39,7 +39,8 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	    			return dataFactory.getDataTenant($stateParams.tenant);
 	    	}  
 	    }
-	})     
+	})  
+	
 	.state('altaUsuarioComun', {
 		url:'/:tenant/registroUC',
 		templateUrl : 'views/tenant/registroTenant.html',

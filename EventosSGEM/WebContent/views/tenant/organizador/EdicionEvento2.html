@@ -1,0 +1,44 @@
+<form role="form" >
+
+
+	<h1>Paso2 </h1>
+	<h4>Asignacion de Fotos</h4>
+	
+	<div class="">
+		<div class="col-sm-12">
+			<div class="col-sm-6">
+				<span>Seleccione la foto que ira en el banner</span>
+				<input id="fileBanner" name="fileBanner" type="file" file-model="fotoBanner"/>
+			</div>	
+			<div class="col-sm-6">		
+				<img id="fotofileBanner" src="#" alt="your image" height="200px" width="auto" />
+			</div>
+		</div>		
+			
+		<div class="col-sm-12">	
+			<div class="col-sm-6">
+				<span>Seleccione la foto que sera el fondo de la pagina, en caso de no asignarse sera el color del paso anterior</span>	
+				<input id="fileFondo" name="fileFondo" type="file" file-model="fotoFondo"/>
+			</div>
+			<div class="col-sm-6">		
+				<img id="fotofileFondo" src="#" alt="your image" height="200px" width="auto" />
+			</div>			
+		</div>	
+		
+		<div class="col-sm-12">	
+			<div class="col-sm-6">
+				<span>Seleccione la foto que ira en el Logo</span>	
+				<input id="filePagina" name="filePagina" type="file" file-model="fotoLogo"/>
+			</div>
+			<div class="col-sm-6">		
+				<img id="fotofilePagina" src="#" alt="your image" height="200px" width="auto" />
+			</div>	
+		</div>	
+		
+		<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />		
+		
+		<button type="submit"  ng-click="subirImagen()" class="btn btn-default">Aceptar</button>
+		<button type="submit" ng-click="guardarCompetencia()" class="glyphicon glyphicon-circle-arrow-right">	
+	</div>
+
+</form>
