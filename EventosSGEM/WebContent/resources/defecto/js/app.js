@@ -294,7 +294,18 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 			}
 		}
     	
-});
+})
+.state('buscarDeportistas', {
+    	url:'/:tenant/deportistas',
+		templateUrl : 'views/tenant/listarDeportistas.html',
+		controller : 'deportistaCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    			    			return dataFactory.getDataTenant($stateParams.tenant);
+
+	    	}
+		}
+    });
 	
     $urlRouterProvider.otherwise(function($injector, $location){
         var state = $injector.get('$state');

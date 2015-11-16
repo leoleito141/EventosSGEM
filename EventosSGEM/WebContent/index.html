@@ -10,7 +10,7 @@
   
   	<link rel="stylesheet" href="resources/angular/shared/minicolors/css/jquery.minicolors.css" /> 
 
- 	<link rel="icon" href="resources/defecto/img/favicon.jpg" type="image/x-icon" />
+<!--  	<link rel="icon" href="resources/defecto/img/favicon.jpg" type="image/x-icon" /> -->
   </head>
 
   <body ng-app="eventosSGEM" ng-controller="AppCtrl"  ng-style="customStyle" >
@@ -37,6 +37,8 @@
 				            <li><a ui-sref="perfilComite({tenant: tenant  })">Mi Perfil</a></li>
 				            <li><a ui-sref="altaDeportista({tenant: tenant  })">Crear Deportista</a></li>
 				            <li><a ui-sref="altaNovedad({tenant: tenant  })">Nueva Novedad</a></li>
+				         	<li><a ui-sref="buscarDeportistas({tenant: tenant  })">Deportistas</a></li>
+				            
 <!-- 				            <li role="separator" class="divider"></li> -->
 				          </ul>
 			        </li>
@@ -105,9 +107,8 @@
     <script  type="text/javascript" src="resources/angular/shared/satellizer/satellizer.min.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/angular-ui-router/angular-ui-router.min.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/angular-google-chart-0.0.11/ng-google-chart.js"></script>
-<!--    <script  type="text/javascript" src="resources/angular/shared/angular-datetime-picker/datetime-picker.js"></script>-->
-<!--     <script  type="text/javascript" src="resources/angular/shared/angular-datetime-picker/datetime-picker.min.js"></script> -->
-<!--     <script  type="text/javascript" src="resources/angular/shared/angular-datetime-picker/datetime-picker.tpls.js"></script> -->
+    <script  type="text/javascript" src="resources/angular/shared/angular-datetime-picker/datetime-picker.min.js"></script>
+
   <script  type="text/javascript" src="resources/angular/shared/minicolors/js/jquery.minicolors.min.js"></script>
 
     <!-- Modules -->

@@ -1,0 +1,62 @@
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
+	
+	<div class="PerfilNews FormCustom">
+	
+	
+	
+	<form role="form" name="formDeportista">
+	<div class="jumbotron text-center RoundedTop">
+	    <h1>Deportistas</h1>   
+	</div>
+	
+			<div class="form-group">
+			
+			<div class="row">
+				<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+					Sexo: </label>
+				<div class="control-label col-sm-2">
+					<label>
+						<input type="radio" ng-model="deportista.sexo" ng-change="obtenerDeportes(deportista.sexo)" value="Masculino"> Masculino
+					</label> 
+					<label> 
+						<input type="radio" ng-model="deportista.sexo" ng-change="obtenerDeportes(deportista.sexo)" value="Femenino"> Femenino
+					</label><br>
+				</div>
+			</div>
+			
+			<div class="row">
+				<label class="col-sm-offset-1 control-label col-sm-2" for="inputNombreDeportista">Nombre:</label>
+				<div class="col-sm-9">
+					<input id="inputNombreDeportista" placeholder="Nombre"
+						ng-model="deportista.nombre" class="form-control">
+				</div>
+				<div class="row">
+					<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+					Deportes:    </label>
+					<div class="control-label col-sm-2">
+			   			<select data-ng-model="selectDeportes" ng-options="d as d for d in deportes"></select>
+			   		</div>
+				</div>
+				
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			<div class="row">
+				<div class="col-sm-offset-10 col-sm-4">
+					<button type="submit" ng-click="altaDeportista(selectDeportes,selection)" class="btn btn-success">Guardar</button>
+				</div>
+	
+			</div>
+			
+		</div>
+	</form>
+	</div>
+</div>
+
+
+	

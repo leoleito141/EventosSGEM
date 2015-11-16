@@ -1,6 +1,6 @@
 angular.module('eventosSGEM')
-  .controller('deportistaCtrl', ['$scope','dataFactory','dataTenant', 
-                           function ($scope, dataFactory,dataTenant) {
+  .controller('deportistaCtrl', ['$scope','$state','dataFactory','dataTenant', 
+                           function ($scope,$state, dataFactory,dataTenant) {
 	
 	  $scope.mensajeValidacion = ""; 
 	   
@@ -108,7 +108,7 @@ angular.module('eventosSGEM')
 				  foto.tenantId = response.data.tenantId;
 					
 				  $scope.deportista.tenantId = dataTenant.tenantId;
-				  $scope.deportista.pais = (JSON.parse(localStorage.getItem("dataUsuario"))).pais;
+				  $scope.deportista.pais = (JSON.parse(localStorage.getItem("dataUsuario"))).dataPais;
 				  $scope.deportista.deporte = selectDeportes;
 				  $scope.deportista.disciplinas = selection;
 				  $scope.deportista.foto = foto;
@@ -133,7 +133,7 @@ angular.module('eventosSGEM')
 		  }
 			  
 	  }; 
-		  
+//////////////////////Listar Deportistas////////////////////////////////////////		  
 		  
 		  
 		  

@@ -12,7 +12,8 @@ angular.module('eventosSGEM')
    $scope.nombreTenant = dataTenant.nombre_url;
    $scope.usuario = {};
    
-   $scope.comite={}; 
+   $scope.comite={};
+   $scope.pais={};
    $scope.co={};
    
    if(dataMensajes.mensaje != null && dataMensajes.mensaje != ""){
@@ -54,7 +55,7 @@ angular.module('eventosSGEM')
 //	            	 event.preventDefault();
 //	            	 $state.go('usoSitio', { tenant: $scope.nombreTenant } );
 //	             }
-	             $state.go('main.novedades', { tenant: $scope.nombreTenant } );
+	             $state.go('main', { tenant: $scope.nombreTenant } );
 	             
 	         })
 	         .catch(function(error){
@@ -155,7 +156,7 @@ angular.module('eventosSGEM')
 					     	.then(function (response, status, headers, config) {
 					     		if(response){
 					     			event.preventDefault();
-					            	$state.go('main.novedades', { tenant: $scope.nombreTenant} );
+					            	$state.go('main', { tenant: $scope.nombreTenant} );
 					     		}else{
 					     			$scope.cargando = false;
 					       			$scope.mensajeValidacion = "Error al crear la novedad. Contacte con soporte.";
@@ -226,11 +227,11 @@ angular.module('eventosSGEM')
 					  
 					 $scope.comite.tenantId = dataTenant.tenantId;
 					 $scope.comite.logo = logo;
-					  
+					 $scope.comite.dataPais = $scope.pais;
 					 dataFactory.altaComite($scope.comite)
 				     	.then(function (data, status, headers, config) {				              
 				                event.preventDefault();
-				            	$state.go('main.novedades', { tenant: $scope.nombreTenant} );
+				            	$state.go('main', { tenant: $scope.nombreTenant} );
 				            })
 			            .catch(function(response){
 							if(response.status == 404){
@@ -328,23 +329,25 @@ angular.module('eventosSGEM')
       $scope.hideSeries = hideSeries; 
 
       function hideSeries(selectedItem) {
+    	  if(selectedItem != null){
           var col = selectedItem.column;
-          if (selectedItem.row === null) {
-              if ($scope.chartObject.view.columns[col] == col) {
-                  $scope.chartObject.view.columns[col] = {
-                      label: $scope.chartObject.data.cols[col].label,
-                      type: $scope.chartObject.data.cols[col].type,
-                      calc: function() {
-                          return null;
-                      }
-                  };
-                  $scope.chartObject.options.colors[col - 1] = '#CCCCCC';
-              }
-              else {
-                  $scope.chartObject.view.columns[col] = col;
-                  $scope.chartObject.options.colors[col - 1] = $scope.chartObject.options.defaultColors[col - 1];
-              }
-          }
+	          if (selectedItem.row === null) {
+	              if ($scope.chartObject.view.columns[col] == col) {
+	                  $scope.chartObject.view.columns[col] = {
+	                      label: $scope.chartObject.data.cols[col].label,
+	                      type: $scope.chartObject.data.cols[col].type,
+	                      calc: function() {
+	                          return null;
+	                      }
+	                  };
+	                  $scope.chartObject.options.colors[col - 1] = '#CCCCCC';
+	              }
+	              else {
+	                  $scope.chartObject.view.columns[col] = col;
+	                  $scope.chartObject.options.colors[col - 1] = $scope.chartObject.options.defaultColors[col - 1];
+	              }
+	          }
+    	  }
       }
            
       function init() {
