@@ -41,31 +41,51 @@
 				
 		</div>
 
-	
+		
+		
 
 
 	
 	<div class="PerfilNews">
 	
-		
-		<div class="col-md-12 ">
-		<ul class="nav navbar-nav navbar-right">
-		  <li role="presentation"><a class="iconBtn twitter" id="TwitterWidgetBtn">Twitter</a></li>		 
-		  <li role="presentation"><a class="iconBtn facebook" id="FacebookWidgetBtn">Facebook</a></li>
+	<div class="col-md-12  ">
+		<ul class="navbar navbar-default nav navbar-nav navbar-right">
+		  <li role="presentation"><a class="iconBtn twitter" id="TwitterWidgetBtn"></a></li>		 
+		  <li role="presentation"><a class="iconBtn facebook" id="FacebookWidgetBtn"></a></li>
+		  <li role="presentation"><a class="iconBtn youtube" id="YoutubeWidgetBtn"></a></li>
 		</ul>
 		</div>
+	
 		
 	    
-	    <div class="col-md-8 newsWrapper" style="" id="newsWrapper"></div>
+	    <div class="col-md-8 newsWrapper" style="" id="newsWrapper">
+	    
+	   
+	    
+	    <div ng-repeat="n in noticias"  >
+			 
+			
+			 <div class='col-sm-5 col-md-{{column(n.columna)}}'> 
+				 <div class='thumbnail'>
+					 <img class='reloadimg' src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='height:400px!important'>
+					 <div class='caption'>
+					 	<h3>{{n.titulo}}</h3>
+					 	
+					 	<p><a ng-click="redirectNoticia(n)" class='btn btn-primary' role='button'>Button</a></p>
+					 </div>
+				 </div>
+			 </div>
+		</div>
+	    </div>
 	    
 	    <div class="col-md-4 "  id="SocialMedia" ng-init="cargarWidgets()">
 	    
 	    	<div class="col-md-12 "  id="FacebookWidget">
 	    		  
-				  <div class="fb-page" data-href="https://www.facebook.com/Rio2016" data-width="500" data-height="900" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+				  <div class="fb-page" data-href="https://www.facebook.com/facebook" data-width="500" data-height="900" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
 				  	<div class="fb-xfbml-parse-ignore">
-				   <blockquote cite="https://www.facebook.com/Rio2016">
-				   	<a href="https://www.facebook.com/Rio2016">Rio 2016</a>
+				   <blockquote cite="https://www.facebook.com/facebook">
+				   	<a href="https://www.facebook.com/facebook">Facebook</a>
 				   	</blockquote>
 				   </div>
 				  </div>
@@ -73,11 +93,19 @@
 	    	</div>
 	    	
 	    	<div class="col-md-12 "  id="TwitterWidget">
-	    	 	<a style="width:500px" class="twitter-timeline" href="https://twitter.com/hashtag/Rio2016" data-widget-id="666003012909998085">Tweets sobre #Rio2016</a>
+	    	 	<a style="width:500px" class="twitter-timeline" href="https://twitter.com/hashtag/cute" data-widget-id="666003012909998085">Tweets sobre #Rio2016</a>
 	    	</div>
+	    	<div id="youtubeContainer" style=" border-style: solid;border-width: 1px;border-color:#e62f27;padding:0px!important;background-color: #f8f8f8;" class="col-md-9 col-md-offset-3 " >
+		    	<div style="background-color:#e62f27;width:100%;">
+		    		<img  src='resources/defecto/img/social/youtubewidget.jpg' style='height:50px;width:auto;'>	    	
+		    	</div>
+			</div>
 	    
 	    
 	    </div>
+	    
+
+		</div>
 	    
 	    
 	    
@@ -87,27 +115,22 @@
 <!-- 		  <button type="button" class="btn col-md-3">Middle</button> -->
 <!-- 		   <button type="button" class="btn col-md-3">Right</button> -->
 		
-		
-		
-
 	
-<div >
-
-
-  
-  <div class="col-md-12">
-  
-   
-  
-  
-  
-  </div>
-  
-
-
-</div>
+		
 	</div>
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+			
+	
+	
+	
+	
+	
 
 </div> 

@@ -12,6 +12,7 @@ angular.module('eventosSGEM')
 
 	/*************** PARA CARGAR ESTILO DEL TENANT *****************/
 	
+	if (dataTenant !=null){
 	var ruta = '/resources/defecto/img/Tenant1/noBackground.png';
 	   var ruta2={};
 	   if (dataTenant.banner!=null){
@@ -35,12 +36,15 @@ angular.module('eventosSGEM')
 		   
 			var ruta3 = dataTenant.pagina.ruta.substr(dataTenant.pagina.ruta.indexOf("resources")) ;
 			$("#logonav").html(' <img  src="'+ruta3+'" alt="Inicio" style="height:50px;padding:2px;" />');
+	   }else{
+		   
+		   $("#logonav").html(' <div style="height:50px;padding:2px;background-color:grey;color:white;" >Aqui va el logo<div/>');
 	   }
 	   
 			   
 			   
 			   
-	   $("#imgBanner").html('<img  src="'+ruta+'" alt="Recurso no encontrado" style=" display: block; width: 100%;  height: 100%;" />');
+	  // $("#imgBanner").html('<img  src="'+ruta+'" alt="Recurso no encontrado" style=" display: block; width: 100%;  height: 100%;" />');
 	   
 	/********************************/
 	   
@@ -65,13 +69,16 @@ angular.module('eventosSGEM')
   		$("#lnkIG").attr("href", dataTenant.instagram);
   	else
   		$("#lnkIG").parent().hide();
-  	
-  	$scope.salir = function() {  		
+	}
+	
+  	$scope.salir = function() {
+  		
   		localStorage.removeItem("dataUsuario");
 	    $auth.logout(); //Limpia localStorage y pone isAuthenticated en false
 	
 	    event.preventDefault();
 	    $state.go('main', { tenant: JSON.parse(localStorage.getItem("tenantActual")).nombre_url });
+	    
     };
     
     $scope.isAuthenticated = function() {    	 

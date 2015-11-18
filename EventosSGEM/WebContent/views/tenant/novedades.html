@@ -1,0 +1,28 @@
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
+	
+	<div class="PerfilNews FormCustom" style="overflow-y:auto;">
+	
+	
+		<div ng-hide="!existeNovedad()" class='col-sm-5 col-md-12'> 
+		
+			 <div class='col-sm-5 col-md-6 col-sm-offset-3'> 
+				 <img class='reloadimg' src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='width:100%!important'>
+			 </div>
+				 <div class='col-md-12'>
+				 
+				 	<h1>{{n.titulo}}</h1>
+				 	
+				 	<p style="word-wrap: break-word;line-height:15px;">
+    					{{n.descripcion}}
+    					</p>
+				 	
+				 </div>
+			 
+		</div>
+		<div ng-hide="existeNovedad()" class='col-sm-5 col-md-12'> 
+			<h1>No existe la novedad a la que intenta acceder!</h1>
+		
+		</div>
+	</div>
+	
+</div>

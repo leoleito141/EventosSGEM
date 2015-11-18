@@ -9,7 +9,9 @@
 	<form role="form" name="formNovedad">
 
 		<div class="form-group">
-					
+			<div class="row">
+							<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+						</div>		
 			<div class="row">
 				<label class="col-sm-offset-1 control-label col-sm-2" for="titulo">T&iacutetulo :</label>
 				<div class="col-sm-9">

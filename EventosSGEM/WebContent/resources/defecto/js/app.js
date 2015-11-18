@@ -316,6 +316,26 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 			}
 		}
 	
+	}).state('Novedad', {
+		url:'/:tenant/Novedad/:idnovedad',
+		templateUrl : 'views/tenant/novedades.html',
+		controller : 'NovedadCtrl',
+	    resolve: { 
+	    	dataTenant:function(dataFactory,$stateParams) {
+	    		return dataFactory.getDataTenant($stateParams.tenant);
+
+	    	}  
+	    }
+	}).state('Galeria', {
+		url:'/:tenant/Galeria',
+		templateUrl : 'views/tenant/instagram.html',
+		controller : 'InstagramCtrl',
+	    resolve: { 
+	    	dataTenant:function(dataFactory,$stateParams) {
+	    		return dataFactory.getDataTenant($stateParams.tenant);
+
+	    	}  
+	    }
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){

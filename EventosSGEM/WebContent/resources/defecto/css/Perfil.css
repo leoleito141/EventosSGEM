@@ -1,3 +1,6 @@
+.footer, .push {
+    height: 300px; /* .push must be the same height as .footer */
+}
 
 .coolbtn {
 	margin-right: 15px;
@@ -101,35 +104,36 @@
 }
 
 .iconBtn {
-    width: 35px;
-    height: 35px;
-    padding: :2px;
-    margin: 5px;
+    width: 52px;
+    height:50px;
+/*     padding: :2px; */
+     
+    background-color:transparent!important;
 }
 
 .iconBtn:hover {
-    width: 40px;
-    height: 40px;
+    -webkit-filter: invert(1);
+   filter: invert(1);
     
 }
 
 .facebook{
 	
-	background: url('/resources/defecto/img/social/facebook.jpg');
+	background: url('/resources/defecto/img/social/FacebookIcon.jpg');
 	background-size: contain;
 }
 .twitter{
-	background-image: url('/resources/defecto/img/social/icon-twitter_1.png');
+	background-image: url('/resources/defecto/img/social/twitterIcon.jpg');
 	background-size: contain;
    
 	
 }
 .youtube{
-	background-image: url('/resources/defecto/img/social/youtube.jpg');
+	background-image: url('/resources/defecto/img/social/youtubeIcon.jpg');
 	background-size: contain;
 }
 .instagram{
-	background-image: url("/resources/defecto/img/social/instagram.jpg");
+	background-image: url("/resources/defecto/img/social/instagramIcon.jpg");
 	background-size: contain;
 }
 

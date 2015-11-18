@@ -207,7 +207,12 @@
 		       	
 	         		 
 	    };
-	    
+dataFactory.getNovedad = function(idnovedad){
+		
+	   	   
+		return $http.get(dominio+'UsuarioService/getNovedad/'+idnovedad);			       	
+		         		 
+	};   
     dataFactory.listarComitesOlimpicos = function(tenant){    	
     	 return $http.get(dominio+'UsuarioService/listarComitesOlimpicos/'+tenant);  		 
     };
