@@ -1,6 +1,6 @@
 'use strict';
 //,'ui.bootstrap.datetimepicker'
-angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart','ngAnimate'])
+angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart','ngAnimate','duScroll'])
 .run(['dataFactory','$rootScope','$state','$auth',function(dataFactory,$rootScope, $state, $auth){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
 	  
@@ -305,7 +305,18 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 
 	    	}
 		}
-    });
+    }).state('perfilEvento', {
+		url:'/:tenant/perfilEvento',
+		templateUrl : 'views/tenant/perfilEvento.html',
+		controller : 'PerfilEventoCtrl',
+		resolve: { 
+			dataTenant: function(dataFactory,$stateParams) {
+    			return dataFactory.getDataTenant($stateParams.tenant);
+
+			}
+		}
+	
+	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
         var state = $injector.get('$state');

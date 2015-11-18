@@ -11,6 +11,9 @@
   	<link rel="stylesheet" href="resources/angular/shared/minicolors/css/jquery.minicolors.css" /> 
 
 <!--  	<link rel="icon" href="resources/defecto/img/favicon.jpg" type="image/x-icon" /> -->
+
+	<link href='https://fonts.googleapis.com/css?family=Aldrich'
+		rel='stylesheet' type='text/css'></link>
   </head>
 
   <body ng-app="eventosSGEM" ng-controller="AppCtrl"  ng-style="customStyle" >
@@ -28,7 +31,7 @@
 					</li>
 					<li> <a class="" >Deportistas</a> </li>
 					<li> <a class="" >Comites Olimpicos</a> </li>
-					<li> <a class="" >{{tenant}}</a> </li>
+					<li> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
 					
 					
 					<li ng-if="chequearComite()" class="dropdown">
@@ -109,7 +112,8 @@
     <script  type="text/javascript" src="resources/angular/shared/angular-google-chart-0.0.11/ng-google-chart.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/angular-datetime-picker/datetime-picker.min.js"></script>
 
-  <script  type="text/javascript" src="resources/angular/shared/minicolors/js/jquery.minicolors.min.js"></script>
+	<script  type="text/javascript" src="resources/angular/shared/minicolors/js/jquery.minicolors.min.js"></script>
+	<script  type="text/javascript" src="resources/Others/smooth-scroll/angular-scroll.min.js"></script>
 
     <!-- Modules -->
     <script src="resources/defecto/js/app.js"></script>
@@ -117,17 +121,18 @@
     <script src="resources/defecto/js/controllers/appController.js"></script> 
     <script src="resources/defecto/js/controllers/usuarioCtrl.js"></script>
     <script src="resources/defecto/js/controllers/mainCtrl.js"></script>
-    <script src="resources/defecto/js/controllers/eventoDeportivoCtrl.js"></script>
-    
+    <script src="resources/defecto/js/controllers/eventoDeportivoCtrl.js"></script>    
     <script src="resources/defecto/js/controllers/eventoMultiDeportivoCtrl.js"></script>
     <script src="resources/defecto/js/controllers/deportistaCtrl.js"></script>
     <script src="resources/defecto/js/controllers/juezCtrl.js"></script>
     <script src="resources/defecto/js/controllers/competenciaCtrl.js"></script>
     <script src="resources/defecto/js/controllers/entradasCtrl.js"></script>
     <script src="resources/defecto/js/controllers/resultadoCtrl.js"></script>
+    <script src="resources/defecto/js/controllers/perfilEventoCtrl.js"></script>
     <!-- Services -->
     <script src="resources/defecto/js/services/myServices.js"></script>
     <script src="resources/defecto/js/services/mensajes.js"></script>
+    <script src="resources/defecto/js/services/google-maps-initializer.js"></script>
       <!-- Directives -->
     <script src="resources/defecto/js/directives/fileModel.js"></script>
   

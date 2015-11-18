@@ -207,5 +207,14 @@
 		       	
 	         		 
 	    };
+	    
+    dataFactory.listarComitesOlimpicos = function(tenant){    	
+    	 return $http.get(dominio+'UsuarioService/listarComitesOlimpicos/'+tenant);  		 
+    };
+    
+    dataFactory.listarDeportes = function(tenant){    	
+    	return $http.get(dominio+'EventoDeportivoService/listarDeportes/'+tenant);  		 
+   };
+	    
     return dataFactory;
 }]); 

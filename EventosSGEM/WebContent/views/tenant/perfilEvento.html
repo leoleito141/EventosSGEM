@@ -1,0 +1,77 @@
+<style>
+	#map-canvas {
+	     height: 60%;
+	     width: 78%;
+	     margin: 0 auto;
+	     margin-top: 3%;   
+	     margin-bottom: 3%; 
+	     padding: 0px;
+	     position: absolute;
+	}
+	
+	.titulo-evento{
+		font-family:Aldrich;
+		font-size:100px;
+		margin-top:15%;
+	}
+	
+	.imagen-comite{
+		width:10%;
+		height:10%;
+	}
+</style>
+
+<div clas="container" ng-init="cargarDatos()">
+	
+	<div class="row">
+		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+	</div>
+	
+	<div class="PerfilNews FullHeight">
+	
+		<div>
+			<a id='logoEvento' style="padding:0px!important;" ></a> 
+			<span class="titulo-evento" ng-bind="nombreTenant"></span>
+		</div>
+		
+		<hr>
+		
+		<div id="map-canvas" style="border-radius: 0px 0px 0px 0px; -moz-border-radius: 0px 0px 0px 0px; -webkit-border-radius: 0px 0px 0px 0px; border: 7.5px double #000000;"></div>
+		
+		<div style="margin-top:45%">
+			<h1>Delegaciones</h1>
+			
+			<div ng-repeat="co in comitesOlimpicos">
+			        <div id="{{co.comiteId}}">
+			        
+			       		<div>
+		            		<h3>{{co.codigo}}</h3>
+		            	
+		            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}">
+	            	 	</div>
+		            	 
+<!-- 			            <hr /> -->
+			        </div>
+			    </div>
+		
+		</div>
+		
+		<div>
+			<h1>Deportes</h1>
+			
+			<div ng-repeat="d in deportes">
+			        <div class="row" id="{{d.nombreDeporte}} {{d.nombreDisciplina}}">
+			        
+			       		<div class="row">
+		            		<h5>{{d.nombreDeporte}} {{d.nombreDisciplina}} {{d.sexo}}</h5>
+		            	</div>		            	
+			            <hr />
+			        </div>
+			    </div>
+		
+		</div>
+		
+	</div>
+
+
+</div>
