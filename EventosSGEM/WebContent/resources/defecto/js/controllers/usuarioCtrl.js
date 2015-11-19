@@ -227,7 +227,7 @@ angular.module('eventosSGEM')
 					  
 					 $scope.comite.tenantId = dataTenant.tenantId;
 					 $scope.comite.logo = logo;
-					 $scope.comite.dataPais = $scope.pais;
+					 $scope.comite.pais = $scope.pais;
 					 dataFactory.altaComite($scope.comite)
 				     	.then(function (data, status, headers, config) {				              
 				                event.preventDefault();

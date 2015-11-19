@@ -2,6 +2,7 @@ angular.module('eventosSGEM')
   .controller('deportistaCtrl', ['$scope','$state','dataFactory','dataTenant', 
                            function ($scope,$state, dataFactory,dataTenant) {
 	
+	  $scope.nombreTenant = dataTenant.nombre_url;
 	  $scope.mensajeValidacion = ""; 
 	   
 	  $scope.deportista={};
@@ -108,7 +109,7 @@ angular.module('eventosSGEM')
 				  foto.tenantId = response.data.tenantId;
 					
 				  $scope.deportista.tenantId = dataTenant.tenantId;
-				  $scope.deportista.pais = (JSON.parse(localStorage.getItem("dataUsuario"))).dataPais;
+				  $scope.deportista.comite = (JSON.parse(localStorage.getItem("dataUsuario")));
 				  $scope.deportista.deporte = selectDeportes;
 				  $scope.deportista.disciplinas = selection;
 				  $scope.deportista.foto = foto;

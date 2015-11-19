@@ -71,8 +71,8 @@ angular.module('eventosSGEM')
 			   var paises = [];
 			   
 			   for(var i = 0; i < $scope.competenciaSeleccionada.deportistas.length; i++) {				    
-				   if(paises.indexOf($scope.competenciaSeleccionada.deportistas[i].pais.pais) == -1){					   
-					   paises.push($scope.competenciaSeleccionada.deportistas[i].pais.pais);
+				   if(paises.indexOf($scope.competenciaSeleccionada.deportistas[i].comite.pais.pais) == -1){					   
+					   paises.push($scope.competenciaSeleccionada.deportistas[i].comite.pais.pais);
 				   }
 			   }
 			   
@@ -120,7 +120,7 @@ angular.module('eventosSGEM')
 		   }else{			   
 			   
 			   for(var i = 0; i <  $scope.competenciaSeleccionada.deportistas.length; i++) {					   
-				   if($scope.competenciaSeleccionada.deportistas[i].pais.pais == $scope.estadistica.objeto.nombre){
+				   if($scope.competenciaSeleccionada.deportistas[i].comite.pais.pais == $scope.estadistica.objeto.nombre){
 					   var e = {};
 					   e.tenantId = dataTenant.tenantId;
 					   e.posicion = $scope.estadistica.posicion;

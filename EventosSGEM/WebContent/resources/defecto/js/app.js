@@ -84,7 +84,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 		}
 	}).state('perfilComite', {
 		url:'/:tenant/perfilComite/:comiteId',
-		templateUrl : 'views/tenant/comite/perfilComite.html',
+		templateUrl : 'views/tenant/perfilComite.html',
 		controller : 'PerfilComiteCtrl',
 		resolve: { 
 	    	dataTenant: function(dataFactory,$stateParams) {

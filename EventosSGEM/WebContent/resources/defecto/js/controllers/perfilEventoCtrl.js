@@ -57,7 +57,7 @@ angular.module('eventosSGEM')
 	      		}
 	      		
 	      		/*** Cargo Deportes ***/	      		
-	      		dataFactory.listarDeportes(dataTenant.tenantId)
+	      		dataFactory.listarDeportesPorTenant(dataTenant.tenantId)
     	      	.success(function (response, status, headers, config) {	              
     	      		
     	      		$scope.deportes = [];  
