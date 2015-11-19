@@ -7,8 +7,7 @@ angular.module('eventosSGEM')
 	  $scope.nombreTenant = dataTenant.nombre_url;
 	  
 	  if (dataTenant.pagina != null){		   
-			var ruta = dataTenant.pagina.ruta.substr(dataTenant.pagina.ruta.indexOf("resources")) ;
-			$("#logoEvento").html(' <img  src="'+ruta+'" alt="no-image" style="height:25%;width:25%;padding:2px;" />');
+		  $scope.rutaLogo = dataTenant.pagina.ruta.substr(dataTenant.pagina.ruta.indexOf("resources")) ;
 	   }
 	
 	  Initializer.mapsInitialized
@@ -61,7 +60,13 @@ angular.module('eventosSGEM')
 	      		dataFactory.listarDeportes(dataTenant.tenantId)
     	      	.success(function (response, status, headers, config) {	              
     	      		
-    	      		$scope.deportes = response;  
+    	      		$scope.deportes = [];  
+    	      		
+    	      		for(var i = 0; i< response.length ; i++){
+    	      			if($scope.deportes.indexOf(response[i].nombreDeporte) == -1){
+    	      				$scope.deportes.push(response[i].nombreDeporte);
+    	      			}
+    	      		}
     	      		
     	      	}).catch(function(error,status) {
     	      		$scope.mensajeValidacion = "Error al obtener eventos deportivos.";

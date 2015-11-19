@@ -31,7 +31,7 @@
 						</a>
 					</li>
 					<li> <a class="" >Deportistas</a> </li>
-					<li> <a class="" >Comites Olimpicos</a> </li>
+					<li> <a ui-sref="listarComites({tenant: tenant })" >Comites Olimpicos</a> </li>
 					<li> <a ui-sref="Galeria({tenant: tenant  })" >Galeria</a> </li>
 					<li> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
 					
@@ -132,9 +132,12 @@
 	<script src="resources/defecto/js/controllers/NovedadCtrl.js"></script>
     <script src="resources/defecto/js/controllers/InstagramCtrl.js"></script>
     <script src="resources/defecto/js/controllers/perfilEventoCtrl.js"></script>
+    <script src="resources/defecto/js/controllers/perfilComiteCtrl.js"></script>
+    <script src="resources/defecto/js/controllers/listarComitesCtrl.js"></script>
     <!-- Services -->
     <script src="resources/defecto/js/services/myServices.js"></script>
     <script src="resources/defecto/js/services/mensajes.js"></script>
+    <script src="resources/defecto/js/services/objetos.js"></script>
     <script src="resources/defecto/js/services/google-maps-initializer.js"></script>
       <!-- Directives -->
     <script src="resources/defecto/js/directives/fileModel.js"></script>

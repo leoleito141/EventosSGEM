@@ -83,10 +83,14 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 		    	}
 		}
 	}).state('perfilComite', {
-		url:'/:tenant/perfilComite',
+		url:'/:tenant/perfilComite/:comiteId',
 		templateUrl : 'views/tenant/comite/perfilComite.html',
-		controller : 'PerfilCtrl'
-			
+		controller : 'PerfilComiteCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    			    			return dataFactory.getDataTenant($stateParams.tenant);
+	    	}
+		}			
 	}).state('altaDeportista', {
 		url:'/:tenant/altaDeportista',
 		templateUrl : 'views/tenant/comite/altaDeportista.html',
@@ -294,8 +298,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 			}
 		}
     	
-})
-.state('buscarDeportistas', {
+	}).state('buscarDeportistas', {
     	url:'/:tenant/deportistas',
 		templateUrl : 'views/tenant/listarDeportistas.html',
 		controller : 'deportistaCtrl',
@@ -305,7 +308,18 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 
 	    	}
 		}
-    }).state('perfilEvento', {
+    }).state('listarComites', {
+		url:'/:tenant/listarComites',
+		templateUrl : 'views/tenant/listaComitesOlimpicos.html',
+		controller : 'listarComitesCtrl',
+		resolve: { 
+			dataTenant: function(dataFactory,$stateParams) {
+    			return dataFactory.getDataTenant($stateParams.tenant);
+
+			}
+		}
+	
+	}).state('perfilEvento', {
 		url:'/:tenant/perfilEvento',
 		templateUrl : 'views/tenant/perfilEvento.html',
 		controller : 'PerfilEventoCtrl',

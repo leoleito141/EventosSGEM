@@ -1,0 +1,48 @@
+<style>
+	
+	.contenedor-titulo{
+		padding-left:5%;
+		margin-top:5%;
+		height:5%;
+	}
+	
+	.titulo-evento{
+		font-family:Aldrich;
+		font-size:100px;
+	}
+	
+	.item-reporte{
+		text-align: center;		
+	}
+		
+	.imagen-comite{
+		width:25%;
+		height:25%;
+	}
+	
+</style>
+
+<div class="PerfilNews FullHeight" ng-init="cargarDatos()">
+
+
+		
+		<div class="col-sm-12" >
+			<h1>Delegaciones</h1>
+			
+			<div ng-repeat="co in comitesOlimpicos">
+			
+		        <div class="col-sm-4 item-reporte" id="{{co.comiteId}}">
+		        <a ng-click="irPerfilComite(co.comiteId)">
+		       		<div>
+	            		<h3> {{co.pais.pais}} </h3>	            	
+	            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}">
+            	 	</div>
+	            	</a> 
+		        </div>
+		       
+		    </div>
+		
+		</div>
+		
+		
+</div>

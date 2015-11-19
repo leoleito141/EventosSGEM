@@ -1,11 +1,36 @@
 'use strict';
 
-angular.module('pruebaAngularApp')
-  .controller('PerfilCtrl',['$scope','$modal','dataFactory', 
-                            function($scope,$modal,dataFactory) {
+angular.module('eventosSGEM')
+  .controller('PerfilComiteCtrl',['$scope','$state','$stateParams','dataFactory','dataTenant', 'objetos',
+                            function($scope, $state,$stateParams, dataFactory, dataTenant, objetos) {
    
-	    
 
+	  console.log(objetos.getObjeto());
+	  
+	  var existe = true;
+	  
+	  if(objetos.getObjeto() != null){
+		  $scope.comite = objetos.getObjeto();
+	  }else{
+		  // cargo el $scope.comite a partir del $stateParams.comiteId y dataTenant a el servicio..., 
+		  // si el servicio da error, existe = false
+		  
+	  }
+	  
+	  // voy a buscar las novedades de ese comite
+	  if(existe){
+		  
+	  }
+	  
+	  $scope.tenant = dataTenant.nombre_url;
+
+	  
+	  /***** ***/
+	  
+	  
+	  
+	  
+	  
 	  $scope.confPerfil={};
 	  
 
