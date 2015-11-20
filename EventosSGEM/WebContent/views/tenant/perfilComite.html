@@ -48,11 +48,28 @@
 <!-- 		            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}"> -->
 <!-- 	            	 	</div> -->
 		            	 
-<!-- <!-- 			            <hr /> --> -->
+<!-- 			            <hr /> --> 
 <!-- 			        </div> -->
 <!-- 			    </div> -->
 		
 		</div>
 		
+		<div class="col-md-8 newsWrapper" style="" id="newsWrapper">
+	    
+	   
+	    
+	    <div ng-repeat="n in novedades"  >			
+			 <div class='col-sm-5 col-md-{{column(n.columna)}}'> 
+				 <div class='thumbnail'>
+					 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='height:400px!important'>
+					 <div class='caption'>
+					 	<h3>{{n.titulo}}</h3>
+					 	
+					 	<p><a ng-click="redirectNoticia(n)" class='btn btn-primary' role='button'>Button</a></p>
+					 </div>
+				 </div>
+			 </div>
+		</div>
+	    </div>
 		
 </div>

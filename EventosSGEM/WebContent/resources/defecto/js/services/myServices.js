@@ -30,7 +30,7 @@
             return JSON.parse(localStorage.getItem("tenantActual"));
         }
 	         		 
-	    };
+    };
      
     dataFactory.altaUsuarioComun = function(usuario){
     	console.log(usuario);
@@ -144,16 +144,14 @@
         		{headers: { 'Rol' : 'VISITANTE'} }
         		);
     };
-    
-    
+        
     
     dataFactory.realizarCompraEntradas = function(datos){
     	console.log(datos);
         return $http.post(dominio+'CompetenciaService/comprarEntradas', datos,
         		{headers: { 'Rol' : 'USUARIO_COMUN'}});       	
     };
-    
-    
+        
     
     dataFactory.altaDeportista = function(datos){
     	console.log(datos);
@@ -201,29 +199,30 @@
         		{headers: { 'Rol' : 'COMITE_OLIMPICO'}
         });       	
     };
+    
     dataFactory.getNovedades = function(tenant){
-  	   
-	   	return $http.get(dominio+'UsuarioService/getNovedades/'+tenant);
-		       	
-	         		 
-	    };
-dataFactory.getNovedad = function(idnovedad){
-		
-	   	   
-		return $http.get(dominio+'UsuarioService/getNovedad/'+idnovedad);			       	
-		         		 
+	   	return $http.get(dominio+'UsuarioService/getNovedades/'+tenant);  		 
+    };
+    
+    dataFactory.getNovedad = function(idnovedad){
+		return $http.get(dominio+'UsuarioService/getNovedad/'+idnovedad);	
 	};   
+	
     dataFactory.listarComitesOlimpicos = function(tenant){    	
     	 return $http.get(dominio+'UsuarioService/listarComitesOlimpicos/'+tenant);  		 
     };
     
     dataFactory.listarDeportesPorTenant = function(tenant){    	
     	return $http.get(dominio+'EventoDeportivoService/listarDeportes/'+tenant);  		 
-   };
+    };
    
-   dataFactory.obtenerComite = function(tenant,idUsuario){    	
-   	return $http.get(dominio+'UsuarioService/obtenerComite/'+tenant+'/'+idUsuario );  		 
-  };
+    dataFactory.obtenerComite = function(tenant,idUsuario){    	
+	   return $http.get(dominio+'UsuarioService/obtenerComite/'+tenant+'/'+idUsuario );  		 
+    };
+  
+  	dataFactory.getNovedadesComite = function(tenant,comiteID){
+	   	return $http.get(dominio+'UsuarioService/getNovedadesComite/'+tenant+'/'+comiteID);   		 
+    };
 	    
     return dataFactory;
 }]); 
