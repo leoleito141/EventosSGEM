@@ -216,5 +216,15 @@ angular.module('eventosSGEM')
 	   }
    };
 	
+   // importar $document
+//   $scope.goTop = function(){
+//	   var top = 0;
+//	   var duration = 2000; //milliseconds 
+//	   
+//	   //Scroll to the exact position 
+//	   $document.scrollTop(top, duration).then(function() {
+//	     console && console.log('You just scrolled to the top!');
+//	   });
+//   }
 	  
   }]);

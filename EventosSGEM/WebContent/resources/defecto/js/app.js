@@ -353,6 +353,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
+//    	localStorage.removeItem("tenantActual"); OJO
         var state = $injector.get('$state');
         state.go('404');
         return $location.path();
