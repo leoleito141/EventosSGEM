@@ -208,6 +208,15 @@
 		return $http.get(dominio+'UsuarioService/getNovedad/'+idnovedad);	
 	};   
 	
+    dataFactory.listarFiltroDeportista = function(tenantId,sexo){
+        return $http.get(dominio+'EventoDeportivoService/listarFiltroDeportista/'+tenantId+'/'+sexo , 
+                {headers: { 'Rol' : 'USUARIO_COMUN'} });
+    };
+    dataFactory.buscarDesportistas = function(databusqueda){
+        
+        return $http.post(dominio+'EventoDeportivoService/buscarDesportistas', databusqueda , 
+                {headers: { 'Rol' : 'USUARIO_COMUN'} });
+    };
     dataFactory.listarComitesOlimpicos = function(tenant){    	
     	 return $http.get(dominio+'UsuarioService/listarComitesOlimpicos/'+tenant);  		 
     };

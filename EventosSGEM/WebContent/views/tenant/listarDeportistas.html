@@ -25,38 +25,130 @@
 			</div>
 			
 			<div class="row">
-				<label class="col-sm-offset-1 control-label col-sm-2" for="inputNombreDeportista">Nombre:</label>
-				<div class="col-sm-9">
-					<input id="inputNombreDeportista" placeholder="Nombre"
-						ng-model="deportista.nombre" class="form-control">
+				
+				<div class="span4">
+					<label  for="inputDeportista">Nombre:</label>
+				
+					<input id="inputNombreDeportista" placeholder="Nombre" ng-model="deportista.nombre" class="form-control">
+					
 				</div>
-				<div class="row">
-					<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-					Deportes:    </label>
-					<div class="control-label col-sm-2">
-			   			<select data-ng-model="selectDeportes" ng-options="d as d for d in deportes"></select>
-			   		</div>
+				<div class="span4">
+					<label  for="inputDeportes">Deportes:</label>
+					
+			   		<select data-ng-model="selectDeportes" ng-options="d as d for d in deportes"></select>
+			   		
+				</div>
+				<div class="span4">
+					<label  for="inputPaises">Paises:</label>
+					
+			   		<select data-ng-model="selectPaises" ng-options="p as p for p in paises"></select>
+			   		
 				</div>
 				
+				<div class="span4">
+					<label  for="inputDisciplina">Disciplinas:</label>
+					
+			   		<select data-ng-model="selectDisciplina" ng-options="di as di for di in disciplina"></select>
+			   		
+				</div>
+				
+				
+				
+				
 			</div>
-			
-			
-			
-			
-			
-			
+
 			
 			<div class="row">
 				<div class="col-sm-offset-10 col-sm-4">
-					<button type="submit" ng-click="altaDeportista(selectDeportes,selection)" class="btn btn-success">Guardar</button>
+					<button type="submit" ng-click="buscarDesportistas()" class="btn btn-success">Buscar</button>
 				</div>
 	
 			</div>
 			
 		</div>
 	</form>
+	
+
+	
+	
 	</div>
 </div>
 
+	<div class="container" >
+  
+  <div class="alert alert-info">
+    <p>Ordenado Por: {{ sortType }}</p>
+    <p>Busqueda: {{ searchNombre }}</p>
+  </div>
+   <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Busqueda por nombre" ng-model="searchNombre">
+
+      </div>      
+    </div>
+  </form>
+  
+  <table class="table table-bordered table-striped">
+    
+    <thead>
+      <tr>
+       <td>
+             Imagen 
+          </a>
+        </td>
+        <td>
+          <a href="" ng-click="sortType = 'nombre'; sortReverse = !sortReverse">
+             Nombre 
+            <span ng-show="sortType == 'nombre' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'nombre' && sortReverse" class="fa fa-caret-up"></span>
+            
+          </a>
+        </td>
+        <td>
+         <a href="" ng-click="sortType = 'apellido'; sortReverse = !sortReverse"> 
+          Apellido 
+          <span ng-show="sortType == 'apellido' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'apellido' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+        <a href="" ng-click="sortType = 'pais'; sortReverse = !sortReverse">
+          Pais
+         <span ng-show="sortType == 'pais' && !sortReverse" class="fa fa-caret-down"></span>
+         <span ng-show="sortType == 'pais' && sortReverse" class="fa fa-caret-up"></span>
+           
+          </a>
+        </td>
+        <td>
+        <a href="" ng-click="sortType = 'deporte'; sortReverse = !sortReverse">
+          
+          Deporte 
+          <span ng-show="sortType == 'deporte' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'deporte' && sortReverse" class="fa fa-caret-up"></span> 
+          </a>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr dir-paginate="d in deportista | orderBy:sortType:sortReverse | filter:searchNombre | itemsPerPage:2">
+        <td align="center" width="20%"> <img ng-src="{{d.foto.ruta}}"  width="30%" height="10%"></td>
+        <td>{{ d.nombre }}</td>
+        <td>{{ d.apellido }}</td>
+        <td>{{ d.comite.pais.pais }}</td>
+        <td>{{ d.deporte }}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <dir-pagination-controls
+        max-size="5"
+        direction-links="true"
+        boundary-links="true" >
+    </dir-pagination-controls>
+  
+</div>
 
 	

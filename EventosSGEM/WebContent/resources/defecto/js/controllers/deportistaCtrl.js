@@ -134,7 +134,7 @@ angular.module('eventosSGEM')
 		  }
 			  
 	  }; 
-//////////////////////Listar Deportistas////////////////////////////////////////		  
+
 		  
 		  
 		  
