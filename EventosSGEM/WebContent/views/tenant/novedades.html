@@ -1,3 +1,16 @@
+
+
+    <title>Your Website Title</title>
+    <!-- You can use Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+ <head>
+    <meta property="og:url"           content="https://sgem-eventos.com:8443/#/{{nombreTenant}}/Novedad/{{idnovedad}}" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{n.titulo}}" />
+    <meta property="og:description"   content="{{n.descripcion}}" />
+
+    </head>
+
 <div id="PerfilWrapper" class="PerfilWrapper FullHeight">
 	
 	<div class="PerfilNews FormCustom" style="overflow-y:auto;">
@@ -17,7 +30,7 @@
     					</p>
 				 	
 				 </div>
-			 
+			 <div class="fb-share-button" data-href="https://sgem-eventos.com:8443/#/{{nombreTenant}}/Novedad/{{idnovedad}}" data-layout="button"></div>
 		</div>
 		<div ng-hide="existeNovedad()" class='col-sm-5 col-md-12'> 
 			<h1>No existe la novedad a la que intenta acceder!</h1>
