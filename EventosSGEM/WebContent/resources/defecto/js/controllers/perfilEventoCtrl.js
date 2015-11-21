@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('PerfilEventoCtrl', ['$scope','$state','dataFactory','dataTenant','Initializer',
-                                     function ($scope, $state, dataFactory, dataTenant, Initializer) {
+  .controller('PerfilEventoCtrl', ['$scope','$state','dataFactory','dataTenant','Initializer', 'objetos',
+                                     function ($scope, $state, dataFactory, dataTenant, Initializer,objetos) {
  
 	  $scope.nombreTenant = dataTenant.nombre_url;
 	  
@@ -78,5 +78,21 @@ angular.module('eventosSGEM')
 		  
 	  };
 		
-   
+	  $scope.irPerfilComite = function(comiteId){			  
+		  console.log(comiteId);
+		  
+		  objetos.setObjeto( buscarComite(comiteId) );
+		  $state.go('perfilComite',{tenant: $scope.tenant, comiteId : comiteId });
+	  };
+	  
+	  function buscarComite(comiteId){
+		  for(var i = 0; i< $scope.comitesOlimpicos.length ; i++){
+				if($scope.comitesOlimpicos[i].comiteId == comiteId){
+      				return $scope.comitesOlimpicos[i];
+      			}
+		  }		  
+	  }
+	  
+	  
+	  
   }]);
