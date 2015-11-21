@@ -308,7 +308,15 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 
 	    	}
 		}
-    }).state('listarComites', {
+    }).state('buscarDeportistas.listado', {
+		url:'/deportistas',
+		templateUrl : 'views/tenant/deportistas.html'
+
+	}).state('buscarDeportistas.reporte', {
+		url:'/perfilDeportista',
+		templateUrl : 'views/tenant/perfilDeportista.html'
+
+	}).state('listarComites', {
 		url:'/:tenant/listarComites',
 		templateUrl : 'views/tenant/listaComitesOlimpicos.html',
 		controller : 'listarComitesCtrl',

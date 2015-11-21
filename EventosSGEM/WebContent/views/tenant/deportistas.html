@@ -1,0 +1,69 @@
+
+  
+  <div class="alert alert-info">
+    <p>Ordenado Por: {{ sortType }}</p>
+    <p>Busqueda: {{ searchNombre }}</p>
+  </div>
+   <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Busqueda por nombre" ng-model="searchNombre">
+
+      </div>      
+    </div>
+  </form>
+  
+  <table class="table table-bordered table-striped">
+    
+    <thead>
+      <tr>
+       <td>
+             Imagen 
+          </a>
+        </td>
+        <td>
+          <a href="" ng-click="sortType = 'nombre'; sortReverse = !sortReverse">
+             Nombre  
+            <span class="glyphicon sort-icon" ng-show="sortType == 'nombre'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>
+            
+          </a>
+        </td>
+        <td>
+         <a href="" ng-click="sortType = 'apellido'; sortReverse = !sortReverse"> 
+          Apellido 
+          <span class="glyphicon sort-icon" ng-show="sortType == 'apellido'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>
+          </a>
+        </td>
+        <td>
+        <a href="" ng-click="sortType = 'pais'; sortReverse = !sortReverse">
+          Pais
+         <span class="glyphicon sort-icon" ng-show="sortType == 'pais'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>           
+          </a>
+        </td>
+        <td>
+        <a href="" ng-click="sortType = 'deporte'; sortReverse = !sortReverse">
+          Deporte 
+          <span class="glyphicon sort-icon" ng-show="sortType == 'deporte'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>            
+          </a>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr dir-paginate="d in listDeportistas | orderBy:sortType:sortReverse | filter:searchNombre | itemsPerPage:2" ng-click="deportistaSeleccionado(d.nombre)">
+        <td align="center" width="20%"> <img ng-src="{{d.foto.ruta}}"  width="30%" height="10%"></td>
+        <td>{{ d.nombre }}</td>
+        <td>{{ d.apellido }}</td>
+        <td>{{ d.comite.pais.pais }}</td>
+        <td>{{ d.deporte }}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <dir-pagination-controls
+        max-size="5"
+        direction-links="true"
+        boundary-links="true" >
+    </dir-pagination-controls>
+  

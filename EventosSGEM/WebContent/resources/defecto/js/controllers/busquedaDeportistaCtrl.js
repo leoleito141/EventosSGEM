@@ -6,6 +6,7 @@ angular.module('eventosSGEM')
 	  $scope.deportista  = {};  
 	  $scope.deportes 	 = {};
 	  $scope.disciplinas = {};
+	  $scope.listDeportistas=[];
 	  
 	  $scope.sortType     = 'nombre';  // set the default sort type
 	  $scope.sortReverse  = false;    // set the default sort order
@@ -53,8 +54,9 @@ angular.module('eventosSGEM')
 		   			response[i].foto.ruta = response[i].foto.ruta.substr(response[i].foto.ruta.indexOf("resources"));
 		   		}
 		   		
-		   		$scope.deportista = response;
-		   		console.log($scope.deportista);
+		   		$scope.listDeportistas = response;
+		   		console.log($scope.listDeportistas);
+		   	    $state.go('buscarDeportistas.listado');
 
       	}).catch(function(error) {
       		console.log(error);
@@ -63,7 +65,29 @@ angular.module('eventosSGEM')
       
 	  };
 	  
-	  //////////////////////////////
+	  function search(nombre, arreglo){
+		    for (var i=0; i < arreglo.length; i++) {
+		        if (arreglo[i].nombre === nombre) {
+		            return arreglo[i];
+		        }
+		    }
+		}
+	  
+	  $scope.deportistaSeleccionado = function (nombreDeportista) {
+	       
+	        
+	        var resultObject = search(nombreDeportista, $scope.listDeportistas);
+	        console.log(resultObject);
+	        $scope.reporte={};
+	        $scope.reporte.nombre=resultObject.nombre;
+	        $scope.reporte.apellido=resultObject.apellido;
+	        $scope.reporte.fechaNac=resultObject.fechaNac;
+	        $scope.reporte.sexo=resultObject.sexo;
+	        $scope.reporte.deporte=resultObject.deporte;
+	        $scope.reporte.foto=resultObject.foto.ruta;
+	        $state.go('buscarDeportistas.reporte');
+	    };
+	
 		  
 		
 		  
