@@ -15,7 +15,10 @@
 		text-align: center;		
 	}
 		
-
+	.imagen-deportista{
+		width:25%;
+		height:25%;
+	}
 	
 </style>
 
@@ -35,51 +38,46 @@
 				
 		</div>
 		<hr>
-				
-		<div class="col-sm-12" style="margin-top:45%">
-			<h1>Deportistas</h1>
-			
-<!-- 			<div ng-repeat="co in comitesOlimpicos"> -->
-<!-- 			        <div class="col-sm-4 item-reporte" id="{{co.comiteId}}"> -->
-			        
-<!-- 			       		<div> -->
-<!-- 		            		<h3>{{co.pais.pais}}</h3> -->
-		            	
-<!-- 		            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}"> -->
-<!-- 	            	 	</div> -->
-		            	 
-<!-- 			            <hr /> --> 
-<!-- 			        </div> -->
-<!-- 			    </div> -->
-		
-		</div>
-		
-		<div class="col-md-8 newsWrapper" style="" id="newsWrapper">
-	    
-	   
-	    
-	    <div ng-repeat="n in novedades"  >			
-			 <div class='col-sm-5 col-md-{{column(n.columna)}}'> 
-				 <div class='thumbnail'>
-					 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='height:400px!important'>
-					 <div class='caption'>
-					 	<h3>{{n.titulo}}</h3>
-					 	
-					 	<p><a ng-click="redirectNoticia(n)" class='btn btn-primary' role='button'>Button</a></p>
-					 </div>
-				 </div>
-			 </div>
-		</div>
-	    </div>
-	    
-	    
-	    
+					    
 	    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="N28JFDC8R7MEQ">
+			<input type="hidden" name="return" value="https://sgem-eventos.com:8443/#/{{tenant}}/exitoPaypal">
+			<input type="hidden" name="hosted_button_id" value="{{comite.paypal}}">
 			<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 			<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
 		</form>
 	    
+		<div class="col-sm-12">
+			<h1>Deportistas</h1>
+			
+		<div ng-repeat="d in deportistas">
+	        <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}">
+	        
+	       		<div>
+            		<h3>{{d.nombre}} {{d.apellido}}</h3>
+            	
+            		<img class="imagen-deportista" alt="no-image" ng-src="{{d.foto.ruta}}">
+           	 	</div>
+            	 
+	            <hr /> 
+	        </div>
+	    </div>
+		
+		</div>
+		
+		<div class="col-md-8 newsWrapper" style="" id="newsWrapper">
+	        <div ng-repeat="n in novedades"  >			
+				 <div ng-class-odd="'col-md-8'" ng-class-even="'col-md-4'" > 
+					 <div class='thumbnail'>
+						 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='height:400px!important'>
+						 <div class='caption'>
+						 	<h3>{{n.titulo}}</h3>
+						 	
+						 	<p><a ng-click="redirectNoticia(n)" class='btn btn-primary' role='button'>Button</a></p>
+						 </div>
+					 </div>
+				 </div>
+			</div>
+	    </div>
 		
 </div>

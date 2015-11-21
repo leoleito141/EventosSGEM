@@ -232,6 +232,10 @@
   	dataFactory.getNovedadesComite = function(tenant,comiteID){
 	   	return $http.get(dominio+'UsuarioService/getNovedadesComite/'+tenant+'/'+comiteID);   		 
     };
-	    
+	
+    dataFactory.listarDeportistasPorComite = function(tenantId,comiteID){
+        return $http.get(dominio+'DeportistaService/listarDeportistasPorComite/'+tenantId+'/'+comiteID);
+    };
+    
     return dataFactory;
 }]); 
