@@ -12,7 +12,13 @@
   
 </style>
 
-
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
+	
+	<div class="PerfilNews FormCustom">
+	
+		<div class="jumbotron text-center RoundedTop jumpbotrongb">
+		    <h1>Nuevo Evento Deportivo</h1>   
+		</div>
 	<form role="form" >
 		<div class="form-group">
 		
@@ -50,16 +56,20 @@
 		<div class="row">	
 				
 			
+				<div class="col-md-12">
 				<div class="col-md-2">
 				<pre>Fecha de Inicio: <em>{{eventoDeportivo.fechaInicio | date:'fullDate' }}</em></pre>
-		            <p class="input-group">
-		              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaInicio" is-open="statusInicio.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
-		              <span class="input-group-btn">
-		                <button type="button" class="btn btn-default" ng-click="openInicio($eventInicio)"><i class="glyphicon glyphicon-calendar"></i></button>
-		              </span>
-		            </p>
+				</div>
+		            <div class="col-sm-4">
+			            <p class="input-group">
+			              <input type="text" class="form-control" datepicker-popup='dd-MMMM-yyyy' ng-model="eventoDeportivo.fechaInicio" is-open="statusInicio.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+			              <span class="input-group-btn">
+			                <button type="button" class="btn btn-default" ng-click="openInicio($eventInicio)"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+		            </div>
 	       		</div>
-	       </div>	
+	    </div>	
 	       		
 	       				<div class="row">
 		 <label class="control-label col-sm-2" for="singleSelect"> Tipo: </label><br>
@@ -129,3 +139,6 @@
 		</div>
 
 	</form>
+	</div>
+</div>
+	

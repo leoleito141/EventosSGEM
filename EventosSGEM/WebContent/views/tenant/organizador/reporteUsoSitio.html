@@ -6,27 +6,32 @@ rect {
 }
 
 .texto-cantidad {
-	color: white;
+/*	color: white;*/
 }
 
 </style>
-
-<div class="container" data-ng-init="init()">
-
-	<div class="jumbotron text-center">
-	    <h1>Uso del sitio web</h1>   
-	</div>	
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
 	
-	<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
-
-	<div class="texto-cantidad">
-		<h4>
-			Cantidad de usuarios registrados: <span class="text-warning" ng-bind="cantRegistrados"></span>
-		</h4>
+	<div class="PerfilNews FormCustom">
+		<div class="" data-ng-init="init()">
+		
+			<div class="jumbotron text-center RoundedTop jumpbotrongb">
+			    <h1>Uso del sitio web</h1>   
+			</div>	
+			
+			<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+		
+			<div class="texto-cantidad">
+				<h4>
+					Cantidad de usuarios registrados: <span class="text-warning" ng-bind="cantRegistrados"></span>
+				</h4>
+			</div>
+		
+			<hr>
+		
+			<div google-chart chart="chartObject" on-select="hideSeries(selectedItem)" style="height:450px; width:100%;"></div>
+		
+		</div>
+		
 	</div>
-
-	<hr>
-
-	<div google-chart chart="chartObject" on-select="hideSeries(selectedItem)" style="height:450px; width:100%;"></div>
-
 </div>

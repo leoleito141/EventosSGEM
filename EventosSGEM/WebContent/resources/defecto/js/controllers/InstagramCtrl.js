@@ -25,18 +25,23 @@ angular.module('eventosSGEM')
 	        function (dataInta) {
 	        	 
 	        	 var length = ( dataInta.length < 9 )?dataInta.length:9;
-	        	 
-	        	 for (var i = 0; (i < length); i++) { 
+	        	 var data=[];
+	        	 for (var i = 0; (i < 20); i++) { 
 	        		 
 	        		 var imagen = "<img src='"+dataInta.data[i].images.low_resolution.url+"'>";
 	            	 
-	            	 var title = "<a href='"+dataInta.data[i].link+"'> Ir a instagram </a>";
+	            	 var title = "<a style='text-decoration:none' href='"+dataInta.data[i].link+"'> Ir a instagram </a>";
 	            	 
 	            	 var linkglobal = "<div class='col-md-4' '> <a class='fancybox' rel='insta' title='<a href=\" "+dataInta.data[i].link+" \">Ir a instagram</a> ' href='"+dataInta.data[i].images.standard_resolution.url+"'  >"+imagen+"</a></div>";
 	            	 
-	        		 $("#instagramFeed").append(linkglobal);
+	            	 data.push({img: dataInta.data[i].images.standard_resolution.url, thumb: dataInta.data[i].images.low_resolution.url,caption:title});
+	        		// $("#instagramFeed").append(imagen);
 	        		   
 	        		}
+	        	 
+	        	  $('.fotorama').fotorama({
+	        		    data: data
+	        		  });
 	        	 
 	        	 
 	         }

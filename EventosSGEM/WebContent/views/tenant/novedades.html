@@ -6,7 +6,7 @@
 		<div ng-hide="!existeNovedad()" class='col-sm-5 col-md-12'> 
 		
 			 <div class='col-sm-5 col-md-6 col-sm-offset-3'> 
-				 <img class='reloadimg' src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='width:100%!important'>
+				 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='width:100%!important'>
 			 </div>
 				 <div class='col-md-12'>
 				 
@@ -23,6 +23,11 @@
 			<h1>No existe la novedad a la que intenta acceder!</h1>
 		
 		</div>
+		
+		
+		<div class="fb-comments" data-href="https://sgem-eventos.com:8443/#/Rio2016/Novedad/0" data-numposts="5"></div>
+		
+		
 	</div>
 	
 </div>

@@ -1,3 +1,13 @@
+.jumpbotrongb{
+	
+	
+	/*background-image: url('../img/jumpBG.jpg');*/
+	background-image: url('../img/bg2.jpg');
+/*	background-image: url('../img/bg1.jpg');*/
+	
+
+
+}
 .footer, .push {
     height: 300px; /* .push must be the same height as .footer */
 }
@@ -48,6 +58,7 @@
 	-webkit-border-radius: 140px;
 	border-radius: 140px;
 	opacity: 0.5;		
+	background-image: url('../img/bg2.jpg');	
 }
 
 

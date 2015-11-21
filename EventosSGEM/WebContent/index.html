@@ -5,12 +5,17 @@
   <!--    <link rel="stylesheet" href="resources/angular/shared/bootstrap/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="resources/defecto/css/Perfil.css" /> 
     <link rel="stylesheet" href="resources/defecto/css/Index.css" /> 
-    <link rel="stylesheet" href="resources/defecto/css/font-awesome-4.4.0/css/font-awesome.min.css"/>
+<!--   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />-->
 
 <!--     <base href="/"> -->
   
-  	<link rel="stylesheet" href="resources/angular/shared/minicolors/css/jquery.minicolors.css" /> 
-<link rel="stylesheet" href="resources/angular/shared/fancyBox/source/jquery.fancybox.css" /> 
+  	<link rel="stylesheet" href="resources/angular/shared/minicolors/css/jquery.minicolors.css" />
+  	 
+	<link rel="stylesheet" href="resources/angular/shared/fancyBox/source/jquery.fancybox.css" /> 
+	
+	<link rel="stylesheet" href="resources/Others/fotorama/fotorama.css" /> 
+	
+
 
 <!--  	<link rel="icon" href="resources/defecto/img/favicon.jpg" type="image/x-icon" /> -->
 
@@ -18,7 +23,42 @@
 		rel='stylesheet' type='text/css'></link>
   </head>
 
-  <body ng-app="eventosSGEM" ng-controller="AppCtrl"  ng-style="customStyle" >
+
+<style>
+
+
+.footer, .push {
+    height: 400px; /* .push must be the same height as .footer */
+    float:left;
+    width:100%;
+}
+
+.footer {
+
+  bottom: 0px;
+  margin: 0px;
+  padding: 0px;
+  height: 400px;
+  background-color: #f5f5f5;
+  float:left;
+  width:100%;
+  margin-top:5%;
+}
+
+.fullbody{
+	
+	width:100%;
+	float:left;
+	min-height:100%;
+	height:auto !important;
+	height:100%;
+	margin: 0 auto -60px;
+}
+
+</style>
+  <body ng-app="eventosSGEM" ng-controller="AppCtrl"  ng-style="customStyle"  style="height:100%;" >
+
+  <div class="fullbody">
 
 	<div class="header"  ng-cloak>
 		<nav class="navbar navbar-default navbar-static-top">
@@ -67,6 +107,8 @@
 			          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
 				          <ul class="dropdown-menu">
 				            <li><a ui-sref="formEdicionEvento.Paso1({tenant: tenant  })">Configurar Evento</a></li>
+				            <li><a ui-sref="usoSitio({tenant: tenant  })">Uso del sitio</a></li>
+				            <li><a ui-sref="formAltaCompetencia.Paso1({tenant: tenant  })">Alta competencia</a></li>
 				            <li><a ui-sref="altaEventoDeportivo({tenant: tenant  })">Crear Deportes</a></li>
 				            <li><a ui-sref="altaJuez({tenant: tenant  })">Crear Jueces</a></li>
 				            <li><a ui-sref="altaComite({tenant: tenant  })">Crear Delegaciones</a></li>
@@ -116,8 +158,10 @@
     <script  type="text/javascript" src="resources/angular/shared/angular-datetime-picker/datetime-picker.min.js"></script>
 	<script  type="text/javascript" src="resources/angular/shared/minicolors/js/jquery.minicolors.min.js"></script>
 	<script  type="text/javascript" src="resources/Others/smooth-scroll/angular-scroll.min.js"></script>
+	<script  type="text/javascript" src="resources/Others/fotorama/fotorama.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/fancyBox/source/jquery.fancybox.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/angularUtils-pagination/dirPagination.js"></script>
+	
     
     <!-- Modules -->
     <script src="resources/defecto/js/app.js"></script>
@@ -149,6 +193,14 @@
 	<script src="resources/defecto/js/services/novedad.js"></script>
   
 
+	</div>
+	
+  <div class="push"></div>
 </body>
 
+<footer  class="footer" > 
+    <div class="container">
+        <p class="text-muted">POWERED BY SOLOCIA</p>
+      </div>
+     </footer >
 </html>

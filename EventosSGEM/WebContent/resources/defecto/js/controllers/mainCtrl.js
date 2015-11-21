@@ -7,7 +7,7 @@ angular.module('eventosSGEM')
   // console.log(dataTenant.tenantId);
    
    $scope.nombreTenant = dataTenant.nombre_url;
-  
+   
   $scope.confPerfil={};
    
    $("#TwitterWidget").show();
@@ -72,6 +72,10 @@ angular.module('eventosSGEM')
    
 //   $scope.$on('$viewContentLoaded', function() {
  
+   
+    $("#player").attr('src',"https://www.youtube.com/embed/M7lc1UVf-VE")  ;
+   
+   
 	$scope.cargarWidgets = function() {
 		
 	   /**TWITTER***/
@@ -136,7 +140,9 @@ angular.module('eventosSGEM')
              $.each(data.items, function(i, item) {	
             	if(item.id.kind !="youtube#channel"){
             	 var image = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><img style='display:block; margin:auto;' src='"+item.snippet.thumbnails.medium.url+"' alt='...' width='196px' height='110px'></a>";
-            	 var titleLink = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><span >"+item.snippet.title+"</span></a>";
+            	// var titleLink = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><span >"+item.snippet.title+"</span></a>";
+            	 
+            	 var titleLink = "<a  onclick='loadplayer("+item.id.videoId+")'><span >"+item.snippet.title+"</span></a>";
             	 var description = "<p>"+item.snippet.description+"</p>";
             	 var merge = "<div class='col-sm-5 col-md-12'style='display:inline-block; margin:auto;text-align: center; border-bottom: solid #e62f27 1px;padding:3px;'>" +image+"" +titleLink+"</br>"+description +"</div>";
             	 $("#youtubeContainer").append(merge)
@@ -155,7 +161,7 @@ angular.module('eventosSGEM')
 			 $state.go('Novedad', {tenant: $scope.nombreTenant,idnovedad:novedad.id});		
 			 
 			
-		}
+		};
 	
 	
 	

@@ -1,5 +1,5 @@
 <form role="form" >
-		<div class="form-group">
+		<div class="form-group" style="line-height:2em">
 		
 		<div class="row">
 			<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
@@ -45,11 +45,13 @@
 		<div class="row">
 	<md-button ng-click="obtenerDeportistas(competencia.sexo,competencia.nombreDeporte,competencia.nombreDisciplina)" 
 			  >
-	<md-button ng-click="obtenerJueces()" 
-			  >
-	<a ui-sref="formAltaCompetencia.Paso2"
-	class="btn btn-block btn-info"> Siguiente<span
-			class="glyphicon glyphicon-circle-arrow-right"></span>
-	</a></md-button></md-button>
+	<md-button ng-click="obtenerJueces()"  >
+	
+		<a ui-sref="formAltaCompetencia.Paso2"	class="btn btn-block btn-success"> 
+		Siguiente <span class="glyphicon glyphicon-circle-arrow-right"></span>
+		</a>
+	</md-button>
+	
+	</md-button>
 		</div>
 		<div class="row"></form>

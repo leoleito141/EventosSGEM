@@ -12,18 +12,28 @@
 }
 </style>
 
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
+	
+	<div class="PerfilNews FormCustom">
+		<div class="page-header text-center">
+		
+		<div class="jumbotron text-center RoundedTop jumpbotrongb">
+	   		 <h1 style="margin-bottom:2%;" > Bienvenido a la creacion de competencias</h1>   
+		</div>
+		
 
-<div class="page-header text-center">
-	<!-- the links to our nested states using relative paths -->
-	<!-- add the active class if the state matches our ui-sref -->
-	<div id="status-buttons" class="text-center">
-		<a ui-sref-active="active" ui-sref=".Paso1">Primer Paso</a> 
-		<a ui-sref-active="active" ui-sref=".Paso2">Segundo Paso</a> 
-		<a ui-sref-active="active" ui-sref=".Paso3">Tercer Paso</a> 
+			<div id="status-buttons " class="text-center">
+		
+			<a ui-sref-active="active" class="coolbtn" ui-sref=".Paso1"><img src="resources/defecto/img/1.png"/></a> 
+			<a ui-sref-active="active" class="coolbtn" ui-sref=".Paso2"><img src="resources/defecto/img/2.png"/></a> 
+			<a ui-sref-active="active" class="coolbtn" ui-sref=".Paso3"><img src="resources/defecto/img/3.png"/></a> 
+ 			
+		</div>
+		</div>
+		<form id="signup-form" role="form">
+			<!-- our nested state views will be injected here -->
+			<div id="form-views" ui-view></div>
+		
+		</form>
 	</div>
 </div>
-<form id="signup-form" role="form">
-	<!-- our nested state views will be injected here -->
-	<div id="form-views" ui-view></div>
-
-</form>
