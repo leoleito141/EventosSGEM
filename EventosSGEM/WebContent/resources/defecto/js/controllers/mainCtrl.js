@@ -14,8 +14,6 @@ angular.module('eventosSGEM')
    $("#FacebookWidget").hide();   
    $("#youtubeContainer").hide(); 
    
-   
-   
    $("#YoutubeWidgetBtn").click(function(){
 	   
 	  
