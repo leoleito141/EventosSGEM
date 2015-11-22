@@ -110,9 +110,29 @@ angular.module('eventosSGEM')
 					
 				  $scope.deportista.tenantId = dataTenant.tenantId;
 				  $scope.deportista.comite = (JSON.parse(localStorage.getItem("dataUsuario")));
-				  $scope.deportista.deporte = selectDeportes;
-				  $scope.deportista.disciplinas = selection;
+			//	  $scope.deportista.deporte = selectDeportes;
+			//	  $scope.deportista.disciplinas = selection;
 				  $scope.deportista.foto = foto;
+				  
+				  
+				  $scope.deportista.listeventodeportivo = [];
+				 
+				  
+				  for(var i = 0; i < selection.length; i++) {				    
+					  
+				
+					  
+					  $scope.deportista.listeventodeportivo.push({ 'nombreDeporte' : selectDeportes,
+	  						 									   'nombreDisciplina' : selection[i],
+					  												'sexo' : $scope.deportista.sexo,
+					  												'tenantId' :  dataTenant.tenantId
+																});
+					  
+			//		  $scope.deportista.listeventodeportivo[i].nombreDeporte = selectDeportes;
+			//		  $scope.deportista.listeventodeportivo[i].nombreDisciplina = selection[i];
+				   }
+				  
+				  
 				  
 				  dataFactory.altaDeportista($scope.deportista)
 			     	.then(function (data, status, headers, config) {
