@@ -6,26 +6,27 @@ angular.module('eventosSGEM')
 	  console.log($scope.eventoDeportivo);
 	  
 	  
-	  $scope.openInicio = function($eventInicio) {
-		    $scope.statusInicio.opened = true;
-		  };
+	  $scope.$on('$viewContentLoaded' , function(){
+          $('#datetimepicker2').datetimepicker({
+        	  locale: 'es'	 
+        	  
+        	});
+          $("#datetimepicker2").on("dp.change", function (e) {
+        	  $scope.eventoDeportivo.fechaFin = e.date;
+              
+          });
+          $('#datetimepicker1').datetimepicker({
+        	  locale: 'es'
+        	  
+        	});
+          $("#datetimepicker1").on("dp.change", function (e) {
+        	  $scope.eventoDeportivo.fechaInicio = e.date;
+              
+          });
+          
+          
 
-	  $scope.openFin = function($eventFin) {
-		    $scope.statusFin.opened = true;
-		  };
-	   
-	  $scope.statusInicio = {
-			    opened: false
-			  };
-	  
-	  $scope.statusFin = {
-			    opened: false
-			  };
-	  
-	  $scope.dateOptions = {
-			    formatYear: 'yy',
-			    startingDay: 1
-			  };
+	  });
 	  
 	  $scope.altaEventoDeportivo = function(){
 		  

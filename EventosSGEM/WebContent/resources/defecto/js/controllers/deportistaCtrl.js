@@ -12,19 +12,20 @@ angular.module('eventosSGEM')
 	  
 	  $scope.disciplinas = {};
 	  
-	  $scope.openInicio = function($eventInicio) {
-		    $scope.statusInicio.opened = true;
-		  };
-   
-	  $scope.statusInicio = {
-			    opened: false
-			  };
 	  
-	  $scope.dateOptions = {
-			    formatYear: 'yy',
-			    startingDay: 1
-			  };
+	  $scope.$on('$viewContentLoaded' , function(){
+         
+          $('#datetimepicker1').datetimepicker({
+        	  locale: 'es'
+        	  
+        	});
+          $("#datetimepicker1").on("dp.change", function (e) {
+        	  $scope.deportista.fechaNac = e.date;
+              
+          });
 	  
+	  });   
+          
 	  $scope.obtenerDeportes = function(sexo) {
 		    
 		  console.log(dataTenant.tenantId);

@@ -32,20 +32,15 @@
 			</div>
 			<div class="row">
 				<label class="col-sm-offset-1 control-label col-sm-2" for="inputApellido">Fecha Nacimiento:</label>	
-				<div class="control-label col-sm-2">
-					<p class="input-group">
-						<input type="text" class="form-control"
-							datepicker-popup='dd-MMMM-yyyy' ng-model="deportista.fechaNac"
-							is-open="statusInicio.opened" min-date="minDate"
-							max-date="maxDate" datepicker-options="dateOptions"
-							ng-required="true" close-text="Close" /> <span
-							class="input-group-btn">
-							<button type="button" class="btn btn-default"
-								ng-click="openInicio($eventInicio)">
-								<i class="glyphicon glyphicon-calendar"></i>
-							</button>
-						</span>
-					</p>
+				<div class="control-label col-sm-3">
+					<div class="form-group">
+		            <div class='input-group date' id='datetimepicker1'>
+		                <input type='text' class="form-control" />
+		                <span class="input-group-addon">
+		                    <span class="glyphicon glyphicon-calendar"></span>
+		                </span>
+		            </div>
+		        </div>
 					<br>
 				</div>
 			</div>
