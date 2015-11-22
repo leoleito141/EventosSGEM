@@ -3,28 +3,27 @@ angular.module('eventosSGEM')
                            function ($scope, dataFactory,dataTenant,$state) {
 	
 	  
- $scope.DataEstilo={};
- 
+ $scope.DataEstilo={}; 
  
  $scope.nombreTenant = dataTenant.nombre_url;
- 
-	  $scope.$on('$viewContentLoaded', function() {
+ $scope.DataEstilo.FondoNovedades = dataTenant.colorNews;
+ $scope.DataEstilo.FondoBg = dataTenant.colorFondo;
+
+ $scope.widget = {};
+	  $scope.$on('$viewContentLoaded', function() {		  
+		  		  
 		  
-		  $scope.DataEstilo.FondoNovedades = dataTenant.colorNews;
-		  $scope.DataEstilo.FondoBg = dataTenant.colorFondo;
 		  
 		  var fondoNovedadesColor = ($scope.DataEstilo.FondoNovedades == "")?'#FFFFFF': $scope.DataEstilo.FondoNovedades;
+		  
 		  var fondoBgColor = ($scope.DataEstilo.FondoBg == "")?'#FFFFFF': $scope.DataEstilo.FondoBg;
-		  
 		
-		
-		  $("#FondoNovedades").attr('value',fondoNovedadesColor);	
-		  $("#FondoBg").attr('value',fondoBgColor);	
+		  $("#FondoNovedades").attr('value',$scope.DataEstilo.FondoNovedades);	
 		  
+		  $("#FondoBg").attr('value',$scope.DataEstilo.FondoBg);	
 		  
-		  
-		  $("#FondoBg").attr('value',fondoBgColor);		  
 		  $("#PreviewColor").css("background-color", $("#FondoNovedades").attr('value'));
+		  
 		  $("#PreviewColorBg").css("background-color", $("#FondoBg").val());
 		  
 		  $("#FondoNovedades").minicolors({
@@ -35,7 +34,7 @@ angular.module('eventosSGEM')
 			        console.log(value + ' - ' + opacity);
 			        $("#PreviewColor").css("background-color", value);
 			        $scope.DataEstilo.FondoNovedades = value;
-			        $(".PerfilNews").css("background-color", value);
+			       // $(".PerfilNews").css("background-color", value);
 			    }
 		});
 		  
@@ -53,10 +52,10 @@ angular.module('eventosSGEM')
 		});
 		  
 		  $("#fileBanner").change(function(){
-			    readURL(this);
+			    readURL(this);			  
 			});
 		  $("#fileFondo").change(function(){
-			    readURL(this);
+			    readURL(this);			 
 			});
 		  $("#filePagina").change(function(){
 			    readURL(this);
@@ -66,7 +65,6 @@ angular.module('eventosSGEM')
 			  	
 			    if (input.files && input.files[0]) {
 			        var reader = new FileReader();
-
 			        reader.onload = function (e) {
 			            $('#foto'+input.id).attr('src', e.target.result);
 			        }
@@ -76,18 +74,32 @@ angular.module('eventosSGEM')
 			}
 	  });
 	        
+	  $scope.preview = function(){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+$scope.DataEstilo.FondoBg+"), to("+$scope.DataEstilo.FondoNovedades+"))" 
+		  });
+		  
+		  //$(".PerfilNews").css("background-color",  "background: linear-gradient(to right bottom, "+$scope.DataEstilo.FondoBg+","+ $scope.DataEstilo.FondoNovedades+")");
+	 }
+	  
 	  $scope.subirImagen = function(){			  
 			  
 			  $scope.cargando = true;	
+			  
 			  $scope.co = {};
+			  
 			  var banner = $scope.fotoBanner;
+			  
 			  var fondo = $scope.fotoFondo;
+			  
 			  var pagina = $scope.fotoLogo;
 			  
-			  if((banner != null)&&(fondo!=null)&&(pagina !=null)){
+			  if((banner != null)&&(fondo!=null)&&(pagina !=null))
+			  {
 				  
 				  dataFactory.subirImagenConf(banner,fondo,pagina,dataTenant.tenantId).
-					then(function (response, status, headers, config) {
+					then(function (response, status, headers, config){
 						console.log(response.data);
 						
 						var banner = {};
@@ -113,13 +125,17 @@ angular.module('eventosSGEM')
 						 $scope.co.colorFondo = $scope.DataEstilo.FondoBg;
 						 $scope.co.colorNews = $scope.DataEstilo.FondoNovedades;
 						 
+						 $scope.co.widgetFacebook=$scope.widget.nombreFacebook;
+						 $scope.co.widgetInstagram=$scope.widget.hashtagInstaram;
+						 $scope.co.widgetYoutube=$scope.widget.channelId;
+						 $scope.co.widgetTwitter=$scope.widget.idHashtag;
+						 
+						 
 						dataFactory.guardarConfiguracion($scope.co).
 						then(function(response, status, headers, config){
 							
 						console.log("imagen guardada");							
-						localStorage.removeItem('tenantActual');
-						
-						
+						localStorage.removeItem('tenantActual');						
 							
 						}).catch(function (response){
 							console.log(response);
@@ -128,8 +144,10 @@ angular.module('eventosSGEM')
 						console.log("error en prueba");
 					});
 				  $state.go('main', { tenant: $scope.nombreTenant } );
-			  }else{
+				  
+			  }else{				  
 				  console.log("Imagen null");
+				  
 			  } 
 		  };
 	  

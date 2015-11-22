@@ -1,44 +1,61 @@
-<form role="form" >
-
-
-	<h1>Paso2 </h1>
-	<h4>Asignacion de Fotos</h4>
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
 	
-	<div class="">
-		<div class="col-sm-12">
-			<div class="col-sm-6">
-				<span>Seleccione la foto que ira en el banner</span>
-				<input id="fileBanner" name="fileBanner" type="file" file-model="fotoBanner"/>
-			</div>	
-			<div class="col-sm-6">		
-				<img id="fotofileBanner" src="#" alt="your image" height="200px" width="auto" />
-			</div>
-		</div>		
-			
-		<div class="col-sm-12">	
-			<div class="col-sm-6">
-				<span>Seleccione la foto que sera el fondo de la pagina, en caso de no asignarse sera el color del paso anterior</span>	
-				<input id="fileFondo" name="fileFondo" type="file" file-model="fotoFondo"/>
-			</div>
-			<div class="col-sm-6">		
-				<img id="fotofileFondo" src="#" alt="your image" height="200px" width="auto" />
-			</div>			
-		</div>	
+	<div class="PerfilNews FormCustom" style="line-heigth:3em">
+	
+		<h1>Bienvenido a la configuracion de Widgets!</h1>
 		
-		<div class="col-sm-12">	
-			<div class="col-sm-6">
-				<span>Seleccione la foto que ira en el Logo</span>	
-				<input id="filePagina" name="filePagina" type="file" file-model="fotoLogo"/>
-			</div>
-			<div class="col-sm-6">		
-				<img id="fotofilePagina" src="#" alt="your image" height="200px" width="auto" />
-			</div>	
-		</div>	
+		<form role="form" >
+<!-- 		Facebool	 -->
+		<div class="col-md-12" style="background-color:#3b579d;">
+		    		<img  src='resources/defecto/img/social/facebanner.jpg' style='height:50px;width:auto;'>	    	
+		</div>
 		
-		<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />		
+		<div class="col-md-12" style="margin:5px;padding:1em">
+				<label class="control-label col-sm-4" for="input">Nombre del perfil que consumira el widget: </label>
+				<div class="col-sm-8">
+					<input id="txbNombreFacebook" placeholder="Nombre del perfil" ng-model=widget.nombreFacebook class="form-control">
+				</div>
+		</div>
 		
-		<button type="submit"  ng-click="subirImagen()" class="btn btn-default">Aceptar</button>
-		<button type="submit" ng-click="guardarCompetencia()" class="glyphicon glyphicon-circle-arrow-right">	
-	</div>
+<!-- 			Twitter              -->
 
-</form>
+		<div class="col-md-12" style="background-color:#28a9e2;margin:5px">
+		    		<img  src='resources/defecto/img/social/Twitterbanner.jpg' style='height:50px;width:auto;'>	    	
+		</div>
+		<div class="col-md-12" style="margin:5px;padding:1em">
+				<label class="control-label col-sm-4" for="input">Ingrese el id de widget generado por twitter : </label>
+				<div class="col-sm-8">
+					<input id="txbNombreFacebook" placeholder="Id de #Hashtag" ng-model=widget.idHashtag class="form-control">
+				</div>
+		</div>
+			
+			
+<!-- 			Youtube -->
+		<div class="col-md-12" style="background-color:#e62f27;margin:5px">
+		    		<img  src='resources/defecto/img/social/youtubewidget.jpg' style='height:50px;width:auto;'>	    	
+		</div>
+		<div class="col-md-12" style="margin:5px;padding:1em" >
+				<label class="control-label col-sm-4" for="input">Ingrese el id de su canal de YouTube: </label>
+				<div class="col-sm-8">
+					<input id="txbNombreFacebook" placeholder="id de canal" ng-model=widget.channelId class="form-control">
+				</div>
+		</div>
+			
+<!-- 		Instagram	 -->
+		<div class="col-md-12" style="background-color:#3f6f97;margin:5px">
+		    		<img  src='resources/defecto/img/social/instagrambanner.jpg' style='height:50px;width:auto;'>	    	
+		</div>
+		<div class="col-md-12" style="margin:5px;padding:1em">
+				<label class="control-label col-sm-4" for="input">#Hashtag del cual consumira las imagenes:  </label>
+				<div class="col-sm-8">
+					<input id="txbNombreFacebook" placeholder="#Hashtag" ng-model=widget.hashtagInstaram class="form-control">
+				</div>
+		</div>
+			
+			<button type="submit"  ui-sref="formEdicionEvento.Paso1" class="btn btn-primary glyphicon glyphicon-chevron-left"></button>
+			
+			<button type="submit"  ui-sref="formEdicionEvento.Paso3" class="btn btn-primary col-md-offset-11 glyphicon glyphicon-chevron-right"></button>
+				
+		</form>	
+	</div>
+</div>

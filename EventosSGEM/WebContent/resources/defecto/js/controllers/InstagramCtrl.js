@@ -3,7 +3,9 @@
 angular.module('eventosSGEM')
   .controller('InstagramCtrl', ['$scope','$state','dataFactory','dataTenant','$stateParams', 'sharedProperties',
                                      function ($scope, $state, dataFactory,dataTenant,$stateParams,sharedProperties) {
-
+	  
+	  
+	  $scope.widgetInstagram=(dataTenant.widgetInstagram!=null)? dataTenant.widgetInstagram :"" ;   
 	 
 	  $(".fancybox").fancybox({
 		   'transitionIn'	:	'elastic',
@@ -14,8 +16,9 @@ angular.module('eventosSGEM')
   
   } );
 	  
+	  if($scope.widgetInstagram != ""){
 	  $.ajax({
-			 url: "https://api.instagram.com/v1/tags/Rio2016/media/recent?access_token=790945602.ab103e5.7ba83bd16c2649ada72d96fb4da31ae8",
+			 url: "https://api.instagram.com/v1/tags/"+ $scope.widgetInstagram+"/media/recent?access_token=790945602.ab103e5.7ba83bd16c2649ada72d96fb4da31ae8",
 			 //https://api.instagram.com/v1/tags/Rio2016?access_token=790945602.ab103e5.7ba83bd16c2649ada72d96fb4da31ae8
 			// 
 	         contentType: "application/json; charset=utf-8",
@@ -50,5 +53,9 @@ angular.module('eventosSGEM')
 		
 		
 		});
-   
+	  }else {
+		  
+		  $('.fotorama').html("<h1> EL Widget de instagram no esta configurado</h1>")
+		  
+	  }   
   }]);

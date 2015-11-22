@@ -6,10 +6,19 @@ angular.module('eventosSGEM')
 
   // console.log(dataTenant.tenantId);
    
-   $scope.nombreTenant = dataTenant.nombre_url;
+  $scope.nombreTenant = dataTenant.nombre_url;
    
   $scope.confPerfil={};
-   
+  
+  
+  
+  $scope.facebookUrl=(dataTenant.widgetFacebook!=null)? dataTenant.widgetFacebook :"" ;               //"Facebook";
+  $scope.Hastag=    (dataTenant.widgetInstagram!=null)?dataTenant.widgetInstagram:"";                        //"Rio2016";
+  $scope.idHashtag=   (dataTenant.widgetTwitter!=null)?dataTenant.widgetTwitter:"";              //"666003012909998085";
+  $scope.channelId=(dataTenant.widgetYoutube!=null)? dataTenant.widgetYoutube:"";    
+  //if esta seteado lo cambio
+  
+  
    $("#TwitterWidget").show();
    $("#FacebookWidget").hide();   
    $("#youtubeContainer").hide(); 
@@ -76,6 +85,11 @@ angular.module('eventosSGEM')
    
 	$scope.cargarWidgets = function() {
 		
+		if($scope.idHashtag!=""&&$scope.facebookUrl!=""){
+		
+		$("#WidgetTwitter").attr('data-widget-id',$scope.idHashtag);
+		$("#facebookWidget").attr('data-href','https://www.facebook.com/'+$scope.facebookUrl);
+		
 	   /**TWITTER***/
 	   !function(d,s,id){
 		   var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
@@ -86,87 +100,105 @@ angular.module('eventosSGEM')
 			   fjs.parentNode.insertBefore(js,fjs);
 			   }
 		   }(document,"script","twitter-wjs");
-		   
-		    
-	   
-	   /*****/
-		   
-		   /**FACEBOOK**/
-		   
-			  
-		   
-				   
-		   (function(d, s, id) {
+	  /**FACEBOOK**/		   
+	  (function(d, s, id) {
 			     var js, fjs = d.getElementsByTagName(s)[0];
 			     if (d.getElementById(id)) return;
 			     js = d.createElement(s); js.id = id;
 			     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
 			     fjs.parentNode.insertBefore(js, fjs);
 			   }(document, 'script', 'facebook-jssdk'));
-		  
-		   
-		   
-		   
+	  
 		   try{
 			   $timeout = twttr.widgets.load(); 
 		       FB.XFBML.parse(); 
 		   }catch(ex){
 			   console.log(ex);
 		   }
-		   /****/
+		   /**YOUTUBE**/		   
+			
+			$.ajax({
+
+	            url: "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCMIlK4EWwV1jBYRgMulke3cN0g6MKXih4&channelId="+$scope.channelId+"&part=snippet,id&order=date&maxResults=6",
+
+	            
+	            contentType: "application/json; charset=utf-8",
+	            dataType: "jsonp",
+	            responseType: "jsonp",
+	            success:
+	           function (data) {
+	               
+	             
+	             $.each(data.items, function(i, item) {	
+	            	if(item.id.kind !="youtube#channel"){
+	            	 var image = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><img style='display:block; margin:auto;' src='"+item.snippet.thumbnails.medium.url+"' alt='...' width='196px' height='110px'></a>";
+	            	// var titleLink = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><span >"+item.snippet.title+"</span></a>";
+	            	 
+	            	 var titleLink = "<a  onclick='loadplayer("+item.id.videoId+")'><span >"+item.snippet.title+"</span></a>";
+	            	 var description = "<p>"+item.snippet.description+"</p>";
+	            	 var merge = "<div class='col-sm-5 col-md-12'style='display:inline-block; margin:auto;text-align: center; border-bottom: solid #e62f27 1px;padding:3px;'>" +image+"" +titleLink+"</br>"+description +"</div>";
+	            	 $("#youtubeContainer").append(merge)
+	            	}
+	             });
+	              
+	           },
+
+	        });
+		}
+	else {
+		  
+		  $("#SocialMedia").html("");
+		 
+		  $("#SocialMedia").css("background-color","grey");
+		  $("#SocialMedia").html("<h1 style='heigth:50%'>Hay uno o mas widget sin configurar</h1>");
+		  
+		  
+	  }   
 	}
 	
 	
-//////Youtube
-	
-		
-	
-	
-	
-		$.ajax({
-
-            url: "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCMIlK4EWwV1jBYRgMulke3cN0g6MKXih4&channelId=UCmp42s1dVuavyzhY0L-9CFw&part=snippet,id&order=date&maxResults=6",
-
-            
-            contentType: "application/json; charset=utf-8",
-            dataType: "jsonp",
-            responseType: "jsonp",
-            success:
-           function (data) {
-               
-             
-             $.each(data.items, function(i, item) {	
-            	if(item.id.kind !="youtube#channel"){
-            	 var image = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><img style='display:block; margin:auto;' src='"+item.snippet.thumbnails.medium.url+"' alt='...' width='196px' height='110px'></a>";
-            	// var titleLink = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><span >"+item.snippet.title+"</span></a>";
-            	 
-            	 var titleLink = "<a  onclick='loadplayer("+item.id.videoId+")'><span >"+item.snippet.title+"</span></a>";
-            	 var description = "<p>"+item.snippet.description+"</p>";
-            	 var merge = "<div class='col-sm-5 col-md-12'style='display:inline-block; margin:auto;text-align: center; border-bottom: solid #e62f27 1px;padding:3px;'>" +image+"" +titleLink+"</br>"+description +"</div>";
-            	 $("#youtubeContainer").append(merge)
-            	}
-             });
-              
-           },
-
-        });
-		
-		
-
-	
-		$scope.redirectNoticia = function(novedad){
+	$scope.redirectNoticia = function(novedad){
 			
-			 $state.go('Novedad', {tenant: $scope.nombreTenant,idnovedad:novedad.id});		
+		$state.go('Novedad', {tenant: $scope.nombreTenant,idnovedad:novedad.id});		
 			 
 			
-		};
+	};
 	
+	var ultimaCol ;
 	
+	var coloque;
+	$scope.cssclass= "";
 	
-	$scope.column = function(col) {
+	$scope.column = function() {
 		
-		var size = (col==1)?6:12;
-		return size;
+		if (ultimaCol == 2){
+			
+			ultimaCol=1;
+			
+			coloque=false;
+			$scope.cssclass = 'col-sm-5 col-md-6';
+		}
+		else if (ultimaCol == 1 && !(coloque)){
+			
+			ultimaCol=1;
+			
+			$scope.coloque=true;
+			$scope.cssclass = 'col-sm-5 col-md-6';
+		}
+		else if(ultimaCol == 1 && coloque) {
+			
+			ultimaCol=2;
+			
+			coloque=false;
+			$scope.cssclass = 'col-sm-5 col-md-12';
+			
+		}else{
+			
+			ultimaCol=2;			
+			coloque=false;
+			$scope.cssclass = 'col-sm-5 col-md-6';
+			
+		}
 	
 	}; 
 	   var noticias;
@@ -174,37 +206,7 @@ angular.module('eventosSGEM')
 		  	  .then(function (response) {          
 	          
 		  		$scope.noticias = response.data;
-		  		sharedProperties.setNovedades($scope.noticias);
-		  		
-		  		
-		  		
-//		  		if ( noticias.length == 0 ) {
-//		  			
-//		  			$("#newsWrapper").html("<h1>No existen novedades actualmente!</h1>");
-//		  			console.log("etnntre");
-//		  		}else {
-//		  			
-//		  			
-//		  			$scope.noticias = response;
-		  			
-//		  			$("#newsWrapper").html("");
-//		  			 $.each(noticias, function(i, item) {	
-//		  					appendNews(((item.columna)),item.imagen.ruta,item.titulo,item.id);
-//		  			 });
-//		  			
-//		  				
-//	  				$.each($('.reloadimg'), function(j, item2) {	
-//	  					setTimeout(function(){
-//		  					var d = new Date();
-//		  					$(this).attr('src', $(this).attr('src')+'?'+d.getTime());
-//	  					},500+j*500);
-//			 	 		});	
-//		  		  
-		  			
-		  			
-//		  		}  		  
-		  		
-		  		  
+		  		sharedProperties.setNovedades($scope.noticias);  
 	      }).catch(function(response){
 	          // Si ha habido errores llegamos a esta parte
 	        	console.log(response); 
