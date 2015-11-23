@@ -41,73 +41,57 @@
 	
 </style>
 
-<div class="PerfilNews  "  style="float:left;width:80%" ng-init="cargarDatos()">
+<div class="PerfilNews"  style="float:left;width:80%" ng-init="cargarDatos()">
 
-		<div class="row">
-			<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
-		</div>
+	<div class="row">
+		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+	</div>
 	
-		<div >
-			<div class="col-md-3 ImagenPerfil"> 
-				<img ng-src="{{rutaLogo}}" alt="no-image" style="width:100%;max-height:100%;" />
-			</div>
-			<div class="col-md-9 contenedor-titulo" style="text-align: center;">
-				<span class="titulo-evento" ng-bind="nombreTenant"></span>
-			</div>
-<!-- 			<div class="col-md-9 contenedor-titulo " style="background-color:grey" ></div>  -->
-<!-- 			<div class="col-md-9 FullHeight" style="padding: 0px !important;"> -->
-<!-- 				<div class="col-md-12 TituloPerfil"> -->
-<!-- 				<h1>{{nombreTenant}}</h1> -->
-<!-- 				</div> -->
-				
-<!-- 				<div class="col-md-12 bannerPerfil" ></div> -->
-<!-- 			</div> -->
-
-				
+	<div>
+		<div class="col-md-3 ImagenPerfil"> 
+			<img ng-src="{{rutaLogo}}" alt="no-image" style="width:100%;max-height:100%;" />
 		</div>
+		<div class="col-md-9 contenedor-titulo" style="text-align: center;">
+			<span class="titulo-evento" ng-bind="nombreTenant"></span>
+		</div>				
+	</div>
 		
 		
+	<!--  Mapa -->
+	<div id="map-canvas" style="border-radius: 0px 0px 0px 0px; -moz-border-radius: 0px 0px 0px 0px; -webkit-border-radius: 0px 0px 0px 0px; border: 7.5px double #000000;"></div>
 		
-			<div id="map-canvas" style="border-radius: 0px 0px 0px 0px; -moz-border-radius: 0px 0px 0px 0px; -webkit-border-radius: 0px 0px 0px 0px; border: 7.5px double #000000;"></div>
 		
+	<div class="col-sm-12 " style="margin-top:40%">
+		<div class="col-sm-12 FormCustom">
 				
-		
-		
-		<div class="col-sm-12 " style="margin-top:40%">
-					   <div class="col-sm-12 FormCustom">
+			<h1>Delegaciones</h1>
+			
+			<div ng-repeat="co in comitesOlimpicos">
+				<div class="col-sm-4 item-reporte" id="{{co.comiteId}}">
+					<a ng-click="irPerfilComite(co.comiteId)">
+			       		<div>
+			           		<h3>{{co.pais.pais}}</h3>								            	
+			           		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}">
+			       	 	</div>
+					</a>
+				</div>
+			</div>
+							
+			<h1>Deportes</h1>
 					
-					<h1>Delegaciones</h1>
-					
-								<div ng-repeat="co in comitesOlimpicos">
-								        <div class="col-sm-4 item-reporte" id="{{co.comiteId}}">
-								          <a ng-click="irPerfilComite(co.comiteId)">
-								       		<div>
-							            		<h3>{{co.pais.pais}}</h3>
-							            	
-							            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}">
-						            	 	</div>
-							            	 </a>
-					<!-- 			            <hr /> -->
-								        </div>
-								    </div>
-								    
-							    
-<!-- 				    <div class="col-sm-12 "> -->
-						<h1>Deportes</h1>
+			<div ng-repeat="d in nombreDeportes">
+			        <div class="col-sm-4 item-reporte" id="{{d}}">
+				       	<a ng-click="irPerfilEventoDeportivo(d)">
+				       		<div>
+			            		<h3>{{d}}</h3>								            	
+			<!-- 				<img class="imagen-eventoDeportivo" alt="no-image" ng-src="{{d.foto.ruta}}"> -->
+			         		</div>	
+			        	</a>
+			     </div>
+			</div>
 						
-						<div ng-repeat="d in deportes">
-						        <div class="col-sm-4 item-reporte" id="{{d.nombreDeporte}}">
-						        
-						       		<div class="row">
-					            		<h5>{{d}}</h5>
-					            	</div>	
-						        </div>
-						    </div>
-					
-<!-- 					</div> -->
-				
-				</div>	
-		</div>
+		</div>	
+	</div>
 		
 		
 		

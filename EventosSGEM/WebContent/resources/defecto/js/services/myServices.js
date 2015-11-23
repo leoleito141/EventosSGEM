@@ -237,5 +237,14 @@
         return $http.get(dominio+'DeportistaService/listarDeportistasPorComite/'+tenantId+'/'+comiteID);
     };
     
+    dataFactory.listarDeportistasPorEventoDeportivo = function(tenantId,nombreDeporte){
+        return $http.get(dominio+'DeportistaService/listarDeportistasPorEventoDeportivo/'+tenantId+'/'+nombreDeporte);
+    };
+    
+    dataFactory.listarDisciplinasDeporte = function(tenantId,nombreDeporte){
+        return $http.get(dominio+'EventoDeportivoService/listarDisciplinasEventoDeportivo/'+tenantId+'/'+nombreDeporte);
+    };
+    
+    
     return dataFactory;
 }]); 

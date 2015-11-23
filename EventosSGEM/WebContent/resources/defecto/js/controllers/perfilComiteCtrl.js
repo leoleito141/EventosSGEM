@@ -5,18 +5,10 @@ angular.module('eventosSGEM')
                             function($scope, $state, $stateParams, dataFactory, dataTenant, objetos) {
    
 	  $scope.tenant = dataTenant.nombre_url;
-//	  console.log(objetos.getObjeto());
-	
-	  $scope.retornoPaypal = function(objeto){
-		  alert(objeto);
-		  console.log(objeto);		  
-	  }
-	  
-	  $scope.cargarDatos = function(){
-	  	  var existe = false;
+		  
+	  $scope.cargarDatos = function(){		
 		  
 		  if((objetos.getObjeto() != null)&&(objetos.getObjeto().codigo !=null)){
-			  existe = true;
 			  $scope.comite = objetos.getObjeto();
 			  $scope.rutaLogo = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
 			  listarDeportistas(dataTenant.tenantId,parseInt($stateParams.comiteId));
@@ -24,7 +16,6 @@ angular.module('eventosSGEM')
 		  }else{			
 			  dataFactory.obtenerComite(dataTenant.tenantId,$stateParams.comiteId)
 			  .success(function (response, status, headers, config) {
-		      	  existe = true;
 				  $scope.comite = response;
 				  $scope.rutaLogo = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
 				  listarDeportistas(dataTenant.tenantId,parseInt($stateParams.comiteId));
@@ -68,6 +59,5 @@ angular.module('eventosSGEM')
 			});
 			  
 		}
-	
 
   }]);

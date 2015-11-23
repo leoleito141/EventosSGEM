@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes',
-                                     function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes) {
+  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes','$document',
+                                     function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes, $document) {
  
    const tipo_colectivo = "colectivo";
    const tipo_individual = "individual";
@@ -215,16 +215,25 @@ angular.module('eventosSGEM')
 		   $scope.estadistica = {};
 	   }
    };
-	
+   
+   $(window).scroll(function() {
+	   	var verticalCenter = Math.floor(window.innerHeight/2);
+	    if ($(this).scrollTop() >= verticalCenter) {
+	        $('.backToTop:hidden').stop(true, true).fadeIn();
+	    } else {
+	        $('.backToTop').stop(true, true).fadeOut();
+	    }
+	});   
+   
    // importar $document
-//   $scope.goTop = function(){
-//	   var top = 0;
-//	   var duration = 2000; //milliseconds 
-//	   
-//	   //Scroll to the exact position 
-//	   $document.scrollTop(top, duration).then(function() {
-//	     console && console.log('You just scrolled to the top!');
-//	   });
-//   }
+   $scope.goTop = function(){
+	   var top = 0;
+	   var duration = 2000; //milliseconds 
+	   
+	   //Scroll to the exact position 
+	   $document.scrollTop(top, duration).then(function() {
+	     console && console.log('You just scrolled to the top!');
+	   });
+   }
 	  
   }]);

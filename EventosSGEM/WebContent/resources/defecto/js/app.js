@@ -368,6 +368,15 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 
 	    	}  
 	    }
+	}).state('perfilEventoDeportivo', {
+		url:'/:tenant/perfilEventoDeportivo/:nombreDeporte',
+		templateUrl : 'views/tenant/perfilEventoDeportivo.html',
+		controller : 'PerfilEventoDeportivoCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+    			return dataFactory.getDataTenant($stateParams.tenant);
+	    	}
+		}			
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
