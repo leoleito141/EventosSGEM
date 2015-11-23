@@ -245,6 +245,13 @@
         return $http.get(dominio+'EventoDeportivoService/listarDisciplinasEventoDeportivo/'+tenantId+'/'+nombreDeporte);
     };
     
+    dataFactory.listarCompetenciasPorDisciplina = function(tenantId,nombreDeporte,nombreDisciplina,sexo){
+        return $http.get(dominio+'CompetenciaService/listarCompetenciasPorDisciplina/'+tenantId+'/'+nombreDeporte+'/'+nombreDisciplina+'/'+sexo);
+    };
     
+    dataFactory.listarResultadosCompetencia = function(tenantId,competenciaID){//sin terminar
+        return $http.get(dominio+'CompetenciaService/listarResultadosCompetencia/'+tenantId+'/'+competenciaID);
+    };
+        
     return dataFactory;
 }]); 

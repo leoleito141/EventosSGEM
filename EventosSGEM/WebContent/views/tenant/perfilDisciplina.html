@@ -1,0 +1,37 @@
+<style>
+	
+	.contenedor-titulo{
+		margin-top:5%;
+		height:5%;
+	}
+	
+	.titulo-evento{
+		font-family:Aldrich;
+		font-size:100px;
+	}
+
+</style>
+
+<div class="PerfilNews">
+
+	<div class="row">
+		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
+	</div>
+	
+	
+	<div>
+<!-- 		<div class="col-md-3 ImagenPerfil">  -->
+<!-- 			<img ng-src="{{rutaFoto}}" alt="no-image" style="width:100%;max-height:100%;" /> -->
+<!-- 		</div> -->
+		
+		<div class="col-md-12 contenedor-titulo" style="text-align: center;">
+			<span class="titulo-evento" ng-bind="nombreDisciplina"></span>
+		</div>				
+		
+	</div>
+
+	<form id="perfilDisciplina" role="form" name="perfilDisciplina">
+		<div id="form-views" ui-view></div>
+	</form>
+
+</div>

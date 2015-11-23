@@ -377,6 +377,21 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
     			return dataFactory.getDataTenant($stateParams.tenant);
 	    	}
 		}			
+	}).state('perfilDisciplina', {
+		url:'/:tenant/perfilEventoDeportivo/:nombreDeporte/:nombreDisciplina/:sexo',
+		templateUrl : 'views/tenant/perfilDisciplina.html',
+		controller : 'PerfilDisciplinaCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+    			return dataFactory.getDataTenant($stateParams.tenant);
+	    	}
+		}			
+	}).state('perfilDisciplina.paso1', {
+		url:'/competencias',
+		templateUrl : 'views/tenant/perfilDisciplina1.html'
+	}).state('perfilDisciplina.paso2', {
+		url:'/resultados',
+		templateUrl : 'views/tenant/perfilDisciplina2.html'
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
