@@ -36,6 +36,20 @@ angular.module('eventosSGEM')
 			.success(function (response, status, headers, config) {
 			     
 				  $scope.deportistas = response;
+				  
+				  /// se ordenan los deportistas alfabeticamente por su apellido
+		      		 for(var i=0;i<($scope.deportistas.length-1);i++){
+				            for(var j=i+1;j<$scope.deportistas.length;j++){
+				                if($scope.deportistas[i].apellido>$scope.deportistas[j].apellido){
+				                    //Intercambiamos valores
+				                    var variableauxiliar=$scope.deportistas[i];
+				                    $scope.deportistas[i]=$scope.deportistas[j];
+				                    $scope.deportistas[j]=variableauxiliar;
+				                    
+				                }
+				            }
+				        }
+		      		 
 				  /*** adaptar a rutas relativas ***/
 		      	  for(var i = 0;i < $scope.deportistas.length; i++){
 		      		 var ruta = $scope.deportistas[i].foto.ruta.substr($scope.deportistas[i].foto.ruta.indexOf("resources"));

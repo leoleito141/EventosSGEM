@@ -40,6 +40,20 @@ angular.module('eventosSGEM')
 		  dataFactory.listarDeportistasPorEventoDeportivo(tenantID,nombreDeporte)
 		  .success(function (response, status, headers, config) {
 			  $scope.deportistas = response;
+			  
+			  /// se ordenan los deportistas alfabeticamente por su apellido
+	      		 for(var i=0;i<($scope.deportistas.length-1);i++){
+			            for(var j=i+1;j<$scope.deportistas.length;j++){
+			                if($scope.deportistas[i].apellido>$scope.deportistas[j].apellido){
+			                    //Intercambiamos valores
+			                    var variableauxiliar=$scope.deportistas[i];
+			                    $scope.deportistas[i]=$scope.deportistas[j];
+			                    $scope.deportistas[j]=variableauxiliar;
+			                    
+			                }
+			            }
+			        }
+			  
 //			  $scope.rutaFoto = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
       	  }).catch(function(error) {
       		  $scope.mensajeValidacion = "Error al obtener deportistas para el evento deportivo :"+ $scope.nombreDeporte;
@@ -57,6 +71,33 @@ angular.module('eventosSGEM')
 				$scope.deportesFemeninos.push(deportes[i]);
 			}
 		  }
+		  
+		  /// se ordenan los diciplinas alfabeticamente por su nombre
+   		 for(var i=0;i<($scope.deportesMasculinos.length-1);i++){
+		            for(var j=i+1;j<$scope.deportesMasculinos.length;j++){
+		                if($scope.deportesMasculinos[i].nombreDisciplina>$scope.deportesMasculinos[j].nombreDisciplina){
+		                    //Intercambiamos valores
+		                    var variableauxiliar=$scope.deportesMasculinos[i];
+		                    $scope.deportesMasculinos[i]=$scope.deportesMasculinos[j];
+		                    $scope.deportesMasculinos[j]=variableauxiliar;
+		                    
+		                }
+		            }
+		        }
+   		 
+   	  /// se ordenan los disciplinas alfabeticamente por su nombre
+   		 for(var i=0;i<($scope.deportesFemeninos.length-1);i++){
+		            for(var j=i+1;j<$scope.deportesFemeninos.length;j++){
+		                if($scope.deportesFemeninos[i].nombreDisciplina>$scope.deportesFemeninos[j].nombreDisciplina){
+		                    //Intercambiamos valores
+		                    var variableauxiliar=$scope.deportesFemeninos[i];
+		                    $scope.deportesFemeninos[i]=$scope.deportesFemeninos[j];
+		                    $scope.deportesFemeninos[j]=variableauxiliar;
+		                    
+		                }
+		            }
+		        }
+		  
 		  
 	  }
 	  
