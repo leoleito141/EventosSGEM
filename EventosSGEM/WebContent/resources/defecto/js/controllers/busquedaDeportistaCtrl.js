@@ -12,7 +12,13 @@ angular.module('eventosSGEM')
 	  $scope.sortReverse  = false;    // set the default sort order
 	  $scope.searchNombre   = '';      // set the default search/filter term
 	  
-	
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
 	  
 	  $scope.obtenerDeportes = function(sexo) { 
 		  dataFactory.listarFiltroDeportista(dataTenant.tenantId,sexo)

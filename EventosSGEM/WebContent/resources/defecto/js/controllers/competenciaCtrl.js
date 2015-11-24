@@ -3,7 +3,13 @@
 angular.module('eventosSGEM')
   .controller('competenciaCtrl', ['$scope','dataFactory','$state','dataTenant', function ($scope,dataFactory,$state,dataTenant) {
 	   
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
 	  
+	  }
 	  $scope.competencia={};
 	  
 	  $scope.deportes = {};

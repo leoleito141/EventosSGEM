@@ -3,7 +3,13 @@
 angular.module('eventosSGEM')
   .controller('NovedadCtrl', ['$scope','$state','dataFactory','dataTenant','$stateParams', 'sharedProperties',
                                      function ($scope, $state, dataFactory,dataTenant,$stateParams,sharedProperties) {
-
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
 	  $scope.column = function(col) {
 			
 			var size = (col==1)?6:12;

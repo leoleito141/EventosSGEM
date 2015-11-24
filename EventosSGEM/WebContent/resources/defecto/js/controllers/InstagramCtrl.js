@@ -15,6 +15,13 @@ angular.module('eventosSGEM')
 			'overlayShow'	:	false
   
   } );
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
 	  
 	  if($scope.widgetInstagram != ""){
 	  $.ajax({

@@ -4,6 +4,13 @@ angular.module('eventosSGEM')
   .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes','$document',
                                      function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes, $document) {
  
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
    const tipo_colectivo = "colectivo";
    const tipo_individual = "individual";
 	  

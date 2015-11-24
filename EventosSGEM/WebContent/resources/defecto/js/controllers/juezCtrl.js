@@ -2,7 +2,15 @@ angular.module('eventosSGEM')
   .controller('JuezCtrl', ['$scope','dataFactory','dataTenant', 
                            function ($scope, dataFactory,dataTenant) {
 	
-	  $scope.juez={};  
+	  $scope.juez={}; 
+	  
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
 
 $scope.altaJuez = function(){
 			  

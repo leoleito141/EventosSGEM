@@ -3,6 +3,15 @@
 angular.module('eventosSGEM')
   .controller('UsuarioCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes',
                                      function ($scope, $state, $auth, dataFactory,dataTenant,dataMensajes) {
+	  
+	  
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
  
    const usuario_comun = "UsuarioComun";
    const usuario_juez = "Juez";

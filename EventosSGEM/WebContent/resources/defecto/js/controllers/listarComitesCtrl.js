@@ -4,6 +4,13 @@ angular.module('eventosSGEM')
   .controller('listarComitesCtrl', ['$scope','$state','dataFactory','dataTenant','objetos',
                                      function ($scope, $state, dataFactory, dataTenant,objetos) {
  
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
 	  $scope.tenant = dataTenant.nombre_url;
 	  
 	  $scope.cargarDatos = function(){			  
