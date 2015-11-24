@@ -45,14 +45,18 @@
 		 
 	        <div class="row" id="{p.id}}">
 	        
-	        
-	       		<div class="row">
-	       		   
-            		<h3>{{p.nombre}}</h3>
+	       		<div class="row">	       		   
+	       		   	<h3>{{p.nombre}}</h3>
             	</div>
+				
+				<div class="row">
+            		<label>Posicion:</label>		N&#186; {{p.estadistica.posicion}}
+           	 	</div>
             	
-            	
-         
+            	<div class="row">
+            		<label>Dato Informativo:</label>	 {{p.estadistica.datoInformativo}}
+           	 	</div>
+				
 				
 	            <div ng-if="c.finalizada == true" class="row" >
 	            	<div class="col-sm-offset-8 col-sm-2">

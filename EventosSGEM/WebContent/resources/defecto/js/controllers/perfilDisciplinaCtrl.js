@@ -50,24 +50,37 @@ angular.module('eventosSGEM')
 		        }
 			  
 			  }else{
+				 
+				  var nombrePaises = [];
+				  var comites = [];
 				  
-				  var paises = [];
 				  $scope.paisesTodos = []; 
+				  
 				   for(var i = 0; i < $scope.competencia.deportistas.length; i++) {				    
-					   if(paises.indexOf($scope.competencia.deportistas[i].comite.pais.pais) == -1){					   
-						   paises.push($scope.competencia.deportistas[i].comite.pais.pais);
+					   if(nombrePaises.indexOf($scope.competencia.deportistas[i].comite.pais.pais) == -1){
+						   nombrePaises.push($scope.competencia.deportistas[i].comite.pais.pais);
+						   comites.push($scope.competencia.deportistas[i].comite.comiteId);// se corresponden indices.
 					   }
 				   }
-				   for(var i = 0; i < paises.length; i++) {	
+				   
+				   var contador = 0;
+				   for(var i = 0; i < nombrePaises.length; i++) {	
+					   var estadistica = {};
+					   dataFactory.listarEstadisticaPorPais(dataTenant.tenantId,$scope.competenciaSeleccionada,comites[i])
+					   .success(function (response, status, headers, config) {
+						   
+						   estadistica = response;
+
+						   $scope.paisesTodos.push({ 'id' : (contador+1),
+							   						 'nombre' : nombrePaises[contador] ,
+							   						 'estadistica' : estadistica
+						   });
+						   contador++;
+					   }).catch(function(error) {
+						   $scope.mensajeValidacion = "Error al obtener estadistica para :"+ paises[i].nombre;
+					   });
 					   
-						  $scope.paisesTodos.push({ 'id' : (i+1),
-							  						 'nombre' : paises[i] 
-				  									});
-					   }
-				   
-				   
-				  
-				  
+				   }				  
 				  
 			  }
 			  

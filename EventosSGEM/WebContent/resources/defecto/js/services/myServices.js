@@ -249,9 +249,14 @@
         return $http.get(dominio+'CompetenciaService/listarCompetenciasPorDisciplina/'+tenantId+'/'+nombreDeporte+'/'+nombreDisciplina+'/'+sexo);
     };
     
-    dataFactory.listarResultadosCompetencia = function(tenantId,competenciaID){//sin terminar
+    dataFactory.listarResultadosCompetencia = function(tenantId,competenciaID){
         return $http.get(dominio+'CompetenciaService/listarResultadosCompetencia/'+tenantId+'/'+competenciaID);
     };
+    
+    dataFactory.listarEstadisticaPorPais = function(tenantID,competenciaID,comiteID){
+        return $http.get(dominio+'CompetenciaService/listarEstadisticaPorPais/'+tenantID+'/'+competenciaID+'/'+comiteID);
+    };
+    
         
     return dataFactory;
 }]); 
