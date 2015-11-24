@@ -1,6 +1,8 @@
 <div ng-init="listarResultados()">
-
-		<div ng-if="estadisticas.length > 0">
+		
+		
+		<!-- Se muestran los resultados en caso de ser un deporte individual -->
+		<div ng-if="estadisticas.length > 0 && competencia.tipoDeporte == 'individual'">
 		<div ng-repeat="e in estadisticas">
 		 
 	        <div class="row" id="{{e.resultadoId}}">
@@ -33,6 +35,40 @@
 	        </div> 
 	    </div>
 	</div>
+	
+	
+	
+	
+			<!-- Se muestran los resultados en caso de ser un deporte individual -->
+		<div ng-if="paisesTodos.length > 0 && competencia.tipoDeporte == 'colectivo'">
+		<div ng-repeat="p in paisesTodos">
+		 
+	        <div class="row" id="{p.id}}">
+	        
+	        
+	       		<div class="row">
+	       		   
+            		<h3>{{p.nombre}}</h3>
+            	</div>
+            	
+            	
+         
+				
+	            <div ng-if="c.finalizada == true" class="row" >
+	            	<div class="col-sm-offset-8 col-sm-2">
+			            <a ng-click="setCompetenciaSeleccionada(c.idCompetencia)" ui-sref="perfilDisciplina.paso2" class="btn btn-block btn-info">
+			            	Ver mas 
+			            	<span class="glyphicon glyphicon-circle-arrow-right"></span>
+						</a>
+					</div>
+				</div>
+					
+	            <hr />
+	        </div> 
+	    </div>
+	</div>
+	
+	
 	
   	<div class="col-sm-2">
             <a class="btn btn-block btn-info" ui-sref="perfilDisciplina.paso1"> 

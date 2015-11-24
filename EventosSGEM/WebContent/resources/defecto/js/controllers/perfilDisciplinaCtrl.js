@@ -29,7 +29,11 @@ angular.module('eventosSGEM')
 		  dataFactory.listarResultadosCompetencia(dataTenant.tenantId,$scope.competenciaSeleccionada)
 		  .success(function (response, status, headers, config) {
 			  $scope.resultados = response;
+			  $scope.competencia = $scope.resultados.competencia;
 			  $scope.estadisticas = $scope.resultados.estadisticas;
+			  
+			  
+			  if( $scope.competencia.tipoDeporte == "individual"){
 			  
 			  
 			  /// Ordeno los resultados por posicion !!
@@ -45,7 +49,27 @@ angular.module('eventosSGEM')
 		            }
 		        }
 			  
-			
+			  }else{
+				  
+				  var paises = [];
+				  $scope.paisesTodos = []; 
+				   for(var i = 0; i < $scope.competencia.deportistas.length; i++) {				    
+					   if(paises.indexOf($scope.competencia.deportistas[i].comite.pais.pais) == -1){					   
+						   paises.push($scope.competencia.deportistas[i].comite.pais.pais);
+					   }
+				   }
+				   for(var i = 0; i < paises.length; i++) {	
+					   
+						  $scope.paisesTodos.push({ 'id' : (i+1),
+							  						 'nombre' : paises[i] 
+				  									});
+					   }
+				   
+				   
+				  
+				  
+				  
+			  }
 			  
 		
       	  }).catch(function(error) {
