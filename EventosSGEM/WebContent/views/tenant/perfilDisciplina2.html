@@ -1,29 +1,24 @@
 <div ng-init="listarResultados()">
 
-		<div ng-if="resultados.estadistica.length > 0">
-		<div ng-repeat="e in resultados.estadisticas">
+		<div ng-if="estadisticas.length > 0">
+		<div ng-repeat="e in estadisticas">
 		 
-	        <div class="row" id="{{c.idCompetencia}}">
+	        <div class="row" id="{{e.resultadoId}}">
+	        
 	        
 	       		<div class="row">
-            		<h3>Competencia {{e.datoInforativo}}</h3>
+	       		    <img class="imagen-comite" alt="no-image" ng-src="{{e.deportista.foto.ruta}}">
+            		<h3>{{e.deportista.nombre}} {{e.deportista.apellido}}</h3>
             	</div>
             	
+            	
             	<div class="row">
-            		<label>Ronda:</label>		N&#186; {{c.ronda}}
+            		<label>Posicion:</label>		N&#186; {{e.posicion}}
            	 	</div>
-            	 
+            	
             	<div class="row">
-            		<label>Deporte:</label>		{{c.nombreDeporte}} {{c.nombreDisciplina}} {{c.sexo}}
-				 </div>	            
-				
-             	<div class="row">
-            		<label>Fecha:</label>		{{c.fecha  | date:'dd-MM-yyyy HH:mm'}} hs.
-	            </div>
-	            
-				<div class="row">
-					<label>Lugar:</label>		{{c.estadio}}
-				</div>
+            		<label>Dato Informativo:</label>	 {{e.datoInformativo}}
+           	 	</div>
 				
 	            <div ng-if="c.finalizada == true" class="row" >
 	            	<div class="col-sm-offset-8 col-sm-2">
