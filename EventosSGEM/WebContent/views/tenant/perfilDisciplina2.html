@@ -1,6 +1,43 @@
 <div ng-init="listarResultados()">
 
-	ESTOY EN PASO 2
+		<div ng-if="resultados.estadistica.length > 0">
+		<div ng-repeat="e in resultados.estadisticas">
+		 
+	        <div class="row" id="{{c.idCompetencia}}">
+	        
+	       		<div class="row">
+            		<h3>Competencia {{e.datoInforativo}}</h3>
+            	</div>
+            	
+            	<div class="row">
+            		<label>Ronda:</label>		N&#186; {{c.ronda}}
+           	 	</div>
+            	 
+            	<div class="row">
+            		<label>Deporte:</label>		{{c.nombreDeporte}} {{c.nombreDisciplina}} {{c.sexo}}
+				 </div>	            
+				
+             	<div class="row">
+            		<label>Fecha:</label>		{{c.fecha  | date:'dd-MM-yyyy HH:mm'}} hs.
+	            </div>
+	            
+				<div class="row">
+					<label>Lugar:</label>		{{c.estadio}}
+				</div>
+				
+	            <div ng-if="c.finalizada == true" class="row" >
+	            	<div class="col-sm-offset-8 col-sm-2">
+			            <a ng-click="setCompetenciaSeleccionada(c.idCompetencia)" ui-sref="perfilDisciplina.paso2" class="btn btn-block btn-info">
+			            	Ver mas 
+			            	<span class="glyphicon glyphicon-circle-arrow-right"></span>
+						</a>
+					</div>
+				</div>
+					
+	            <hr />
+	        </div> 
+	    </div>
+	</div>
 	
   	<div class="col-sm-2">
             <a class="btn btn-block btn-info" ui-sref="perfilDisciplina.paso1"> 
