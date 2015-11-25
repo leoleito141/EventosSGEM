@@ -64,7 +64,7 @@ angular.module('eventosSGEM')
 		   		
 		   		$scope.listDeportistas = response;
 		   		
-		   		
+		   		console.log(response);
 		   		
 
 		   	    $state.go('buscarDeportistas.listado');

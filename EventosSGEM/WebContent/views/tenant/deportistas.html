@@ -15,12 +15,31 @@
     </div>
   </form>
   
-
+	<div class="row">
+	  <a href="" ng-click="sortType = 'nombre'; sortReverse = !sortReverse">
+             Nombre  
+            <span class="glyphicon sort-icon" ng-show="sortType == 'nombre'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>
+            
+      </a>
+	  <a href="" ng-click="sortType = 'apellido'; sortReverse = !sortReverse"> 
+          Apellido 
+          <span class="glyphicon sort-icon" ng-show="sortType == 'apellido'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>
+      </a>
+	  <a href="" ng-click="sortType = 'pais'; sortReverse = !sortReverse">
+          Pais
+         <span class="glyphicon sort-icon" ng-show="sortType == 'pais'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>           
+       </a>
+        <a href="" ng-click="sortType = 'deporte'; sortReverse = !sortReverse">
+          Deporte 
+          <span class="glyphicon sort-icon" ng-show="sortType == 'deporte'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>            
+          </a>
+	
+	</div>
     
     <div class="row" dir-paginate="depo in listDeportistas | orderBy:sortType:sortReverse | filter:searchNombre | itemsPerPage:2" ng-click="deportistaSeleccionado(depo)">
 			<div class="col-md-4 text-center">
               <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" ng-src="{{deportista.foto}}" width="40%" height="20%">
+              display:block; margin:auto;" ng-src="{{depo.foto.ruta}}" width="40%" height="20%">
             </div>
             <div class="col-md-8">
               <div class="row">
