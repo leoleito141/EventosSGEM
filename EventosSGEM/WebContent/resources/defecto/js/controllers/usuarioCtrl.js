@@ -275,7 +275,7 @@ angular.module('eventosSGEM')
 			then(function (response, status, headers, config) {
 				
 				var historial = response.data;
-			    var nombreMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "June",
+			    var nombreMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
 			                       "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 				var rows = [];
 				var c;	

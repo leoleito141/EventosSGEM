@@ -11,6 +11,8 @@ angular.module('eventosSGEM')
 	  
 	  } 
 	  $scope.nombreTenant = dataTenant.nombre_url;
+	  $scope.fechaInicio = dataTenant.fechaInicio;
+	  $scope.fechaFin = dataTenant.fechaFin;
 	  
 	  if (dataTenant.pagina != null){		   
 		  $scope.rutaLogo = dataTenant.pagina.ruta.substr(dataTenant.pagina.ruta.indexOf("resources")) ;
