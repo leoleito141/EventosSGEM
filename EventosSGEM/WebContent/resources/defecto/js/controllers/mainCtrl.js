@@ -24,7 +24,7 @@ angular.module('eventosSGEM')
   $scope.facebookUrl=(dataTenant.widgetFacebook!=null)? dataTenant.widgetFacebook :"" ;               //"Facebook";
   $scope.Hastag=    (dataTenant.widgetInstagram!=null)?dataTenant.widgetInstagram:"";                        //"Rio2016";
   $scope.idHashtag=   (dataTenant.widgetTwitter!=null)?dataTenant.widgetTwitter:"";              //"666003012909998085";
-  $scope.channelId=(dataTenant.widgetYoutube!=null)? dataTenant.widgetYoutube:"";    
+  $scope.channelId=(dataTenant.widgetYoutube!=null)? dataTenant.widgetYoutube:"";    //UCmp42s1dVuavyzhY0L-9CFw
   //if esta seteado lo cambio
   
   

@@ -2,7 +2,7 @@
 	
 	.contenedor-titulo{
 		padding-left:5%;
-		margin-top:5%;
+		/*margin-top:5%;*/
 		height:5%;
 	}
 	
@@ -22,32 +22,38 @@
 	
 </style>
 
-<div class="PerfilNews FullHeight" ng-init="cargarDatos()">
+<div class="FormCustom" style="margin-left: 10%;   margin-right: 10%;float:left;min-width: 80%" ng-init="cargarDatos()">
 
 		<div class="row">
 			<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
 		</div>
 	
-		<div class="HeaderPerfil">
+		<div class="HeaderPerfil" style="float:left;width:100%;" >
 			<div class="col-md-3 ImagenPerfil"> 
-				<img ng-src="{{rutaLogo}}" alt="no-image" style="width:100%;max-height:100%;" />
+				<img ng-src="{{rutaLogo}}" alt="no-image" style="width:100%;max-height:100%;border-radius: 10px 10px 10px 10px;-moz-border-radius: 10px 10px 10px 10px;-webkit-border-radius: 10px 10px 10px 10px;border: 7px outset #cfcfcf;" />
+							</div>
+			<div class="col-md-9 contenedor-titulo">
+				<div class="jumbotron text-center RoundedTop jumpbotrongb">
+				    <h1>{{comite.pais.pais}}</h1>   
+				</div>	
+				<span class="titulo-evento" ></span>
+				
 			</div>
 			<div class="col-md-9 contenedor-titulo">
-				<span class="titulo-evento" ng-bind="comite.pais.pais"></span>
+				<form style="" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="return" value="https://sgem-eventos.com:8443/#/{{tenant}}/exitoPaypal">
+				<input type="hidden" name="hosted_button_id" value="{{comite.paypal}}">
+				<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+				
 			</div>
 				
 		</div>
-		<hr>
-					    
-					   		    
-			    
-	    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="return" value="https://sgem-eventos.com:8443/#/{{tenant}}/exitoPaypal">
-			<input type="hidden" name="hosted_button_id" value="{{comite.paypal}}">
-			<input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-			<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-		</form>
+		<div class="col-md-12" style="min-height: 70%">
+		
+		
 	    
 		<div class="col-sm-12">
 			<h1>Deportistas</h1>
@@ -81,5 +87,12 @@
 				 </div>
 			</div>
 	    </div>
+		
+		
+		</div>
+					    
+					   		    
+			    
+	    
 		
 </div>

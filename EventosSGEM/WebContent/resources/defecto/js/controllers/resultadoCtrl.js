@@ -232,6 +232,7 @@ angular.module('eventosSGEM')
 	    }
 	});   
    
+   // documentacion: https://github.com/oblador/angular-scroll
    // importar $document
    $scope.goTop = function(){
 	   var top = 0;

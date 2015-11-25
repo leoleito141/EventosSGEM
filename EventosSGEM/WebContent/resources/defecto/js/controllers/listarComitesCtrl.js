@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('listarComitesCtrl', ['$scope','$state','dataFactory','dataTenant','objetos',
-                                     function ($scope, $state, dataFactory, dataTenant,objetos) {
+  .controller('listarComitesCtrl', ['$scope','$state','dataFactory','dataTenant','objetos','$timeout',
+                                     function ($scope, $state, dataFactory, dataTenant,objetos,$timeout) {
  
 	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
 		  
@@ -11,6 +11,10 @@ angular.module('eventosSGEM')
 		  });
 	  
 	  }
+	    
+	  
+	     
+	  
 	  $scope.tenant = dataTenant.nombre_url;
 	  
 	  $scope.cargarDatos = function(){			  
@@ -40,6 +44,7 @@ angular.module('eventosSGEM')
 	      			 var ruta = $scope.comitesOlimpicos[i].logo.ruta.substr($scope.comitesOlimpicos[i].logo.ruta.indexOf("resources")) ;
 	      			$scope.comitesOlimpicos[i].logo.ruta = ruta;
 	      		}
+	      	
     		  
 	      	}).catch(function(error,status) {
 	      		  $scope.mensajeValidacion = "Error al obtener comites olimpicos.";
@@ -61,4 +66,12 @@ angular.module('eventosSGEM')
       			}
 		  }		  
 	  }
+	  
+	  
+	  
+	  $timeout(function () {
+	     $('#PerfilWrapper').height();
+		  $('.PerfilNews').height();
+		  $('.FullHeight').height();
+	    }, 5000);
   }]);

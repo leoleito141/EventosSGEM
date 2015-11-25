@@ -14,6 +14,10 @@
 	.item-reporte{
 		text-align: center;		
 	}
+	.item-reporte:hover img{
+	transition: transform 1s ease;
+	transform: scale(1.2);
+	}
 		
 	.imagen-comite{
 		width:25%;
@@ -22,27 +26,24 @@
 	
 </style>
 
-<div class="PerfilNews FullHeight" ng-init="cargarDatos()">
 
-
-		
-		<div class="col-sm-12" >
-			<h1>Delegaciones</h1>
-			
-				<div ng-repeat="co in comitesOlimpicos">
-			        <div class="col-sm-4 item-reporte" id="{{co.comiteId}}">
-			          <a ng-click="irPerfilComite(co.comiteId)">
-			       		<div>
-		            		<h3>{{co.pais.pais}}</h3>
-		            	
-		            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}">
-	            	 	</div>
-		             </a>
-<!-- 			            <hr /> -->
-			        </div>
+		<div class=" FormCustom " style=" display:inline-block ; margin-left: 10%;   margin-right: 10%;"  ng-init="cargarDatos()" >
+			<div class="jumbotron text-center RoundedTop jumpbotrongb">
+			    <h1>Delegaciones</h1>   
+			</div>	
+			 <div class="col-md-12" >
+					<div ng-repeat="co in comitesOlimpicos" >
+				        <div class="col-sm-3 item-reporte" id="{{co.comiteId}}">				         
+				       		<a  ng-click="irPerfilComite(co.comiteId)">
+					       		<div >
+				            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}">
+				            		<h3>{{co.pais.pais}}</h3>
+			            	 	</div>
+		            	 	</a>
+				        </div>
+				    </div>
 			    </div>
 		
 		</div>
-		
-		
-</div>
+
+

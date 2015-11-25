@@ -29,15 +29,15 @@ angular.module('eventosSGEM')
 		  		  }
 		  		  
 	  		var  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-		  		//dataTenant.pais.ciudad
-		  		geocoder.geocode( { 'address': 'Montevideo'}, function(results, status) {				
+
+		  		geocoder.geocode( { 'address': dataTenant.pais.ciudad}, function(results, status) {				
 		  			if (status == google.maps.GeocoderStatus.OK) {
 		  			  map.setCenter(results[0].geometry.location);
 		  			  var marker = new google.maps.Marker({
 		  			      map: map,
 		  			      position: results[0].geometry.location
 //		  			      ,
-//		  			      icon: ruta
+//		  			      icon: $scope.rutaLogo
 		  			  });
 		  			} else {	
 		  				$scope.mensajeValidacion = "Error en Geocode.";
