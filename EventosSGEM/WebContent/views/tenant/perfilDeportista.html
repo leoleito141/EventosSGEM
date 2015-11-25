@@ -11,20 +11,20 @@
           <div class="row">
 			<div class="col-md-4 text-center">
               <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" ng-src="{{reporte.foto}}" width="40%" height="20%">
+              display:block; margin:auto;" ng-src="{{deportista.foto}}" width="40%" height="20%">
             </div>
             <div class="col-md-8">
               <div class="row">
                 <div class="col-md-12">
-                  <h1 class="only-bottom-margin">{{reporte.nombre}} {{reporte.apellido}}</h1>
+                  <h1 class="only-bottom-margin">{{deportista.nombre}} {{deportista.apellido}}</h1>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <span class="text-muted">Fecha Nacimiento:</span>{{reporte.fechaNac}}<br>
-                  <span class="text-muted">Genero:</span>{{reporte.sexo}} <br>
-                  <span class="text-muted">Deporte:</span>{{reporte.deporte}}<br><br>
-                  <small class="text-muted">Created: 01.01.2015</small>
+                  <span class="text-muted">Fecha Nacimiento:</span>{{deportista.fechaNac | date:'yyyy-MM-dd'}}<br>
+                  <span class="text-muted">Genero:</span>{{deportista.sexo}} <br>
+                  <span class="text-muted">Deporte:</span>{{deportista.listeventodeportivo[0].nombreDeporte}}<br><br>
+                  
                 </div>
                 
               </div>
@@ -32,7 +32,27 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <hr><button class="btn btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+            <h3><span class="label label-default">Competencias:</span></h3><br>
+              
+              <div ng-repeat="competencia in deportista.listcompetencias">
+        	  		<span class="text-muted">Deporte:</span> {{competencia.nombreDeporte}} <span class="text-muted">Disciplina:</span>{{competencia.nombreDisciplina}}<br>
+    		        <span class="text-muted">Ubicacion:</span> {{competencia.estadio}}	   <span class="text-muted">Fecha:</span> {{competencia.fecha | date:'yyyy-MM-dd'}}<br>
+    		
+    		 </div>
+    		 <h3><span class="label label-default">Eventos Deportivos:</span></h3><br>
+    		
+              <div ng-repeat="eventos in deportista.listeventodeportivo">
+        	  		<span class="text-muted">Deporte:</span> {{eventos.nombreDeporte}} <span class="text-muted">Disciplina:</span>{{eventos.nombreDisciplina}}<br>
+    		        <span class="text-muted">Fecha Inicio:</span> {{eventos.fechaInicio | date:'yyyy-MM-dd'}} <span class="text-muted">Fecha Finalizacion:</span> {{eventos.fechaFin | date:'yyyy-MM-dd'}}<br>
+    		
+    		 </div>
+    		 <h3><span class="label label-default">Estadisticas:</span></h3><br>
+    		 
+              <div ng-repeat="estadistica in deportista.listestadisticas">
+        	  		<span class="text-muted">Posicion:</span> {{estadistica.posicion}}<br>
+    		        <span class="text-muted">Informacion:</span> {{estadistica.datoInformativo}}<br>
+    		
+    		 </div>
             </div>
           </div>
         </div>

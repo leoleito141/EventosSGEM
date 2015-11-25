@@ -312,10 +312,16 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 		url:'/deportistas',
 		templateUrl : 'views/tenant/deportistas.html'
 
-	}).state('buscarDeportistas.reporte', {
-		url:'/perfilDeportista',
-		templateUrl : 'views/tenant/perfilDeportista.html'
+	}).state('perfilDeportista', {
+		url:'/:tenant/perfilDeportista',
+		templateUrl : 'views/tenant/perfilDeportista.html',
+		controller : 'perfilDeportistaCtrl',
+		resolve: { 
+		    dataTenant: function(dataFactory,$stateParams) {
+		    	return dataFactory.getDataTenant($stateParams.tenant);
 
+		    }
+		}
 	}).state('listarComites', {
 		url:'/:tenant/listarComites',
 		templateUrl : 'views/tenant/listaComitesOlimpicos.html',

@@ -1,11 +1,11 @@
 angular.module('eventosSGEM')
-  .controller('busquedaDeportistaCtrl', ['$scope','$state','dataFactory','dataTenant', 
-                           function ($scope,$state, dataFactory,dataTenant) {
+  .controller('busquedaDeportistaCtrl', ['$scope','$state','dataFactory','dataTenant','objetos', 
+                           function ($scope,$state, dataFactory,dataTenant,objetos) {
 	
 	  $scope.mensajeValidacion = ""; 
 	  $scope.deportista  = {};  
 	  $scope.deportes 	 = {};
-	  $scope.disciplinas = {};
+
 	  $scope.listDeportistas=[];
 	  
 	  $scope.sortType     = 'nombre';  // set the default sort type
@@ -26,17 +26,18 @@ angular.module('eventosSGEM')
               console.log(response); 
               $scope.deportes     = response.nombreDeporte;
               $scope.paises       = response.nombrePais;
-              $scope.disciplina   = response.nombreDisciplina;
+
               
               $scope.selectDeportes   = $scope.deportes[0];
               $scope.selectPaises     = $scope.paises[0];
-              $scope.selectDisciplina = $scope.disciplina[0]; 
-//              if(response){
-//	              event.preventDefault();
-//	        	  $state.go('tenantLogin', { tenant: $scope.nombreTenant});//$state.go just calls transitionTo with inherit and relative set to true. Almost no difference.
-//              }else{
-//            	  alert("Error al dar de alta");
-//              }
+
+
+
+
+
+
+
+
       	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
@@ -49,10 +50,11 @@ angular.module('eventosSGEM')
 		   $scope.databusqueda.tenantId = dataTenant.tenantId;
 		   $scope.databusqueda.nombreDeportista = $scope.deportista.nombre;
 		   $scope.databusqueda.deporte = $scope.selectDeportes;
-		   $scope.databusqueda.disciplina = $scope.selectDisciplina;
+
 		   $scope.databusqueda.pais = $scope.selectPaises;
 		   $scope.databusqueda.sexo = $scope.deportista.sexo;
-		   console.log($scope.databusqueda);
+		 
+
 		   dataFactory.buscarDesportistas($scope.databusqueda)
 		   	.success(function (response, status, headers, config) {
 		   		
@@ -61,7 +63,10 @@ angular.module('eventosSGEM')
 		   		}
 		   		
 		   		$scope.listDeportistas = response;
-		   		console.log($scope.listDeportistas);
+		   		
+		   		
+		   		
+
 		   	    $state.go('buscarDeportistas.listado');
 
       	}).catch(function(error) {
@@ -70,28 +75,24 @@ angular.module('eventosSGEM')
       	});
       
 	  };
+	  	 
 	  
-	  function search(nombre, arreglo){
-		    for (var i=0; i < arreglo.length; i++) {
-		        if (arreglo[i].nombre === nombre) {
-		            return arreglo[i];
-		        }
-		    }
-		}
-	  
-	  $scope.deportistaSeleccionado = function (nombreDeportista) {
-	       
-	        
-	        var resultObject = search(nombreDeportista, $scope.listDeportistas);
-	        console.log(resultObject);
+	 $scope.deportistaSeleccionado = function (de) {
+		    
+
+
+
+
 	        $scope.reporte={};
-	        $scope.reporte.nombre=resultObject.nombre;
-	        $scope.reporte.apellido=resultObject.apellido;
-	        $scope.reporte.fechaNac=resultObject.fechaNac;
-	        $scope.reporte.sexo=resultObject.sexo;
-	        $scope.reporte.deporte=resultObject.deporte;
-	        $scope.reporte.foto=resultObject.foto.ruta;
-	        $state.go('buscarDeportistas.reporte');
+	        $scope.reporte=de;
+	        objetos.setObjeto($scope.reporte);
+	        $state.go('perfilDeportista',{tenant: dataTenant.nombre_url});
+
+
+
+
+
+
 	    };
 	
 		  

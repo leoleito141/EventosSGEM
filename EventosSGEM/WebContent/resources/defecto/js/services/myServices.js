@@ -209,12 +209,12 @@
 	};   
 	
     dataFactory.listarFiltroDeportista = function(tenantId,sexo){
-        return $http.get(dominio+'EventoDeportivoService/listarFiltroDeportista/'+tenantId+'/'+sexo , 
+        return $http.get(dominio+'DeportistaService/listarFiltroDeportista/'+tenantId+'/'+sexo , 
                 {headers: { 'Rol' : 'USUARIO_COMUN'} });
     };
     dataFactory.buscarDesportistas = function(databusqueda){
         
-        return $http.post(dominio+'EventoDeportivoService/buscarDesportistas', databusqueda , 
+        return $http.post(dominio+'DeportistaService/buscarDesportistas', databusqueda , 
                 {headers: { 'Rol' : 'USUARIO_COMUN'} });
     };
     dataFactory.listarComitesOlimpicos = function(tenant){    	
