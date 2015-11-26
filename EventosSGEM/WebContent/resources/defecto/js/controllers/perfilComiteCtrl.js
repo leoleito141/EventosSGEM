@@ -85,5 +85,17 @@ angular.module('eventosSGEM')
 			});
 			  
 		}
+		
+			$scope.deportistaSeleccionado = function (de) {
+		    
+
+	        $scope.reporte={};
+	        $scope.reporte=de;
+	        objetos.setObjeto($scope.reporte);
+	        $state.go('perfilDeportista',{tenant: dataTenant.nombre_url});
+
+
+
+	    };
 
   }]);

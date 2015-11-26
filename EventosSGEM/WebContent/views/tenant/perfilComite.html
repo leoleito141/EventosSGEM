@@ -59,6 +59,7 @@
 			<h1>Deportistas</h1>
 			
 		<div ng-repeat="d in deportistas">
+		<a ng-click="deportistaSeleccionado(d)">
 	        <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}">
 	        
 	       		<div>
@@ -66,7 +67,7 @@
             	
             		<img class="imagen-deportista" alt="no-image" ng-src="{{d.foto.ruta}}">
            	 	</div>
-            	 
+            	 </a>
 	            <hr /> 
 	        </div>
 	    </div>
