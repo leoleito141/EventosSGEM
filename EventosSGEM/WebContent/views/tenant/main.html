@@ -1,89 +1,53 @@
-<!-- <div class="container"  > -->
-
-<!-- 	<div class="row"> -->
-<!--         <div class="col-md-12"> -->
-<!--            <div class="jumbotron text-center"> -->
-<!-- 	    <h1>MAIN <span class="text-danger" ng-bind="nombreTenant"></span></h1> -->
-<!-- 	</div> -->
-<!--         </div> -->
-<!--     </div> -->
-
-   
-<!--    <div class="row" >  -->
-<!-- 	   <div class="col-md-12"> -->
-<!-- 		   <button ng-show="!isAuthenticated()" ng-cloak ui-sref="login({ tenant: nombreTenant })">Login</button> -->
-<!-- 		   <button ng-show="!isAuthenticated()" ng-cloak ui-sref="altaUsuarioComun({ tenant: nombreTenant })">Registro</button> -->
-<!-- 	   </div> -->
-<!--    </div> -->
-<!-- </div> -->
 
 
 <style>
-	/*	#TwitterWidget > iframe{
-		
-			width:100% !important;
-			padding:10px!important;
-		}
-		*/
-		
-	/*	#FacebookWidget > div{
-		
-			width:98% !important;
-			padding-top:10px!important;
-			margin-left:-5%!important;
-		}*/
-		
+
+.fb-page, .fb-page iframe[style], .fb-page span {
+    width: 100% !important;
+}
+
 </style>
+
 <div id="PerfilWrapper" class="PerfilWrapper FullHeight" >
 
-		<div id="imgBanner" class="HeaderPerfilEvento">
-				
-				
-				
-		</div>
-
-		
-		
-
-
+	<div id="imgBanner" class="HeaderPerfilEvento">
+			
+			
+			
+	</div>
 	
 	<div class="PerfilNews">
 	
-	<div class="col-md-12  ">
-		<ul class="navbar navbar-default nav navbar-nav navbar-right">
-		  <li role="presentation"><a class="iconBtn twitter" id="TwitterWidgetBtn"></a></li>		 
-		  <li role="presentation"><a class="iconBtn facebook" id="FacebookWidgetBtn"></a></li>
-		  <li role="presentation"><a class="iconBtn youtube" id="YoutubeWidgetBtn"></a></li>
-		</ul>
-		</div>
-	
-		
-	    
-	    <div class="col-md-8 newsWrapper" style="" id="newsWrapper">
-	    
-	   
-	    
-	    <div ng-repeat="n in noticias"  >
-			 
+		<div  style="background-color: #e7e7e7; padding:0px;float:right;width:100%;">
 			
-			 <div ng-init="column()" class='{{cssclass}}'> 
-				 <div class='thumbnail'>
-					 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='height:400px!important'>
-					 <div class='caption'>
-					 	<h3>{{n.titulo}}</h3>
-					 	
-					 	<p><a ng-click="redirectNoticia(n)" class='btn-info btn glyphicon glyphicon-search' role='button'></a></p>
+			  <button class="iconBtn twitter btn" style="float:right" id="TwitterWidgetBtn"></button>
+			  <button class="iconBtn facebook btn" style="float:right" id="FacebookWidgetBtn"></button>
+			  <button class="iconBtn youtube btn" style="float:right" id="YoutubeWidgetBtn"></button>
+			
+		</div>
+		
+	    <div class="col-md-8 newsWrapper" style="float: left;" id="newsWrapper">
+		    <div ng-repeat="n in noticias"  >
+				 
+				
+				 <div ng-init="column()" class='{{cssclass}}'> 
+					 <div class='thumbnail'>
+						 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='height:400px!important'>
+						 <div class='caption'>
+						 	<h3>{{n.titulo}}</h3>
+						 	
+						 	<p><a ng-click="redirectNoticia(n)" class='btn-info btn glyphicon glyphicon-search' role='button'></a></p>
+						 </div>
 					 </div>
 				 </div>
-			 </div>
-		</div>
+			</div>
 	    </div>
 	    
-	    <div class="col-md-4"  id="SocialMedia" ng-init="cargarWidgets()">
+	    <div class="col-md-4 col-xs-12" style="float:right; "  id="SocialMedia" ng-init="cargarWidgets()">
 	    
-	    	<div class="col-md-12 "  id="FacebookWidget">
+	    	<div class="col-md-12"  id="FacebookWidget">
 	    		  
-				  <div id="facebookWidget" class="fb-page" data-href="" data-width="480"  data-height="900" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+				  <div id="facebookWidget" class="fb-page col-md-12" data-href="" data-height="900" data-width=400 data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
 				  	<div class="fb-xfbml-parse-ignore">
 <!-- 				   <blockquote cite="https://www.facebook.com/{facebookUrl}"> --> 
 <!-- 				   	<a href="https://www.facebook.com/{facebookUrl}">{facebookUrl}</a> -->
@@ -97,19 +61,13 @@
 	    	 	<a id="WidgetTwitter" class="twitter-timeline" href="" data-widget-id="">Tweets sobre {{Hastag}}</a>
 	    	</div>
 	    	
-	    	<div id="youtubeContainer" style=" border-style: solid;border-width: 1px;border-color:#e62f27;padding:0px!important;background-color: #f8f8f8;" class="col-md-9 col-md-offset-3 " >
-		    	<div style="background-color:#e62f27;width:100%;">
+	    	<div id="youtubeContainer" style="width:100%; border-style: solid;border-width: 1px;border-color:#e62f27;padding:0px!important;background-color: #f8f8f8;">
+		    	<div class="" style="background-color:#e62f27;">
 		    		<img  src='resources/defecto/img/social/youtubewidget.jpg' style='height:50px;width:auto;'>	    	
 		    	</div>
 			</div>
 			
-	    	<div class="col-md-12 "  id="YoutubePlayer" >
-<!-- 	    	<iframe id="player" type="text/html" width="640" height="390"  src="https://www.youtube.com/embed/M7lc1UVf-VE"  frameborder="0"> -->
 	    	
-<!-- 			</iframe> -->
-	    	
-	    	 	  <div id="player"></div>
-	    	</div>
 	    
 	    </div>
 	    

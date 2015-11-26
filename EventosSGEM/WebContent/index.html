@@ -62,79 +62,94 @@
 
   <div class="fullbody">
 
-	<div class="header"  ng-cloak>
-		<nav class="navbar navbar-default navbar-static-top">
-			<div class="container">
-
-				<ul class="nav navbar-nav">
-					<li  ">
-						<a id='logonav' ui-sref="main({tenant: tenant  })" style="padding:0px!important;" >
+	<div class="header" ng-cloak>
+		<nav id="navbar" class="navbar navbar-default ">
+			<div class="container container-fluid">
+				
+				<div class="navbar-header">		
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-parent="#navbar" data-target="#collapseOne">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>			
+					<a id='logonav' ui-sref="main({tenant: tenant  })" style="padding:0px!important;" ></a>
+				</div>
+				
+				<div id="collapseOne" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav" >
+						
+						<li> <a ui-sref="buscarDeportistas({tenant: tenant  })" >Deportistas</a> </li>
+						<li> <a ui-sref="listarComites({tenant: tenant })" >Comites Olimpicos</a> </li>
+						<li> <a ui-sref="Galeria({tenant: tenant  })" >Galeria</a> </li>
+						<li> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
 						
 						
-						</a>
-					</li>
-					<li> <a ui-sref="buscarDeportistas({tenant: tenant  })" >Deportistas</a> </li>
-					<li> <a ui-sref="listarComites({tenant: tenant })" >Comites Olimpicos</a> </li>
-					<li> <a ui-sref="Galeria({tenant: tenant  })" >Galeria</a> </li>
-					<li> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
+						<li ng-if="chequearComite()" class="dropdown">
+				          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+					          <ul class="dropdown-menu">
+					            <li><a ui-sref="perfilComite({tenant: tenant  })">Mi Perfil</a></li>
+					            <li><a ui-sref="altaDeportista({tenant: tenant  })">Crear Deportista</a></li>
+					            <li><a ui-sref="altaNovedad({tenant: tenant  })">Nueva Novedad</a></li>
+					         	
+					            
+	<!-- 				            <li role="separator" class="divider"></li> -->
+					          </ul>
+				        </li>
+						
+						<li ng-if="chequearUsuarioComun()" class="dropdown">
+				          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+					          <ul class="dropdown-menu">
+					            <li><a ui-sref="formCompraEntrada.Paso1({tenant: tenant  })">Comprar Entradas</a></li>
+					          </ul>
+				        </li>
+				        
+				        <li ng-if="chequearJuez()" class="dropdown">
+				          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+					          <ul class="dropdown-menu">
+					            <li><a ui-sref="altaResultado.paso1({tenant: tenant  })">Completar Resultados</a></li>
+					          </ul>
+				        </li>
+				        
+				        <li ng-if="chequearOrganizador()" class="dropdown">
+				          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+					          <ul class="dropdown-menu">
+					            <li><a ui-sref="formEdicionEvento.Paso1({tenant: tenant  })">Configurar Evento</a></li>
+					            <li><a ui-sref="usoSitio({tenant: tenant  })">Uso del sitio</a></li>
+					            <li><a ui-sref="formAltaCompetencia.Paso1({tenant: tenant  })">Alta competencia</a></li>
+					            <li><a ui-sref="altaEventoDeportivo({tenant: tenant  })">Crear Deportes</a></li>
+					            <li><a ui-sref="altaJuez({tenant: tenant  })">Crear Jueces</a></li>
+					            <li><a ui-sref="altaComite({tenant: tenant  })">Crear Delegaciones</a></li>
+					          </ul>
+				        </li>
+						
+					</ul>	
 					
+					<ul class="nav navbar-nav navbar-right">
 					
-					<li ng-if="chequearComite()" class="dropdown">
-			          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-				          <ul class="dropdown-menu">
-				            <li><a ui-sref="perfilComite({tenant: tenant  })">Mi Perfil</a></li>
-				            <li><a ui-sref="altaDeportista({tenant: tenant  })">Crear Deportista</a></li>
-				            <li><a ui-sref="altaNovedad({tenant: tenant  })">Nueva Novedad</a></li>
-				         	
-				            
-<!-- 				            <li role="separator" class="divider"></li> -->
-				          </ul>
-			        </li>
+						<li ng-show="!isAuthenticated()"  class="text-navbar"><a ng-show="!isAuthenticated()" ui-sref="login({ tenant: tenant })">Login</a></li>
+						<li ng-show="!isAuthenticated()" class="text-navbar"><a ui-sref="altaUsuarioComun({ tenant: tenant  })"  >Registro</a></li>
+						<li ng-show="isAuthenticated()" class="text-navbar"><a ng-click="salir()">Cerrar Sesion</a></li>
+						
+						<li> <a id="lnkFb" class="iconBtn facebook" ></a> </li>
+						<li> <a id="lnkTw" class="iconBtn twitter"></a> </li>
+						<li> <a id="lnkYT" class="iconBtn youtube"></a> </li>
+						<li> <a id="lnkIG" class="iconBtn instagram"></a> </li>
+						
+						
+					</ul>
 					
-					<li ng-if="chequearUsuarioComun()" class="dropdown">
-			          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-				          <ul class="dropdown-menu">
-				            <li><a ui-sref="formCompraEntrada.Paso1({tenant: tenant  })">Comprar Entradas</a></li>
-				          </ul>
-			        </li>
-			        
-			        <li ng-if="chequearJuez()" class="dropdown">
-			          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-				          <ul class="dropdown-menu">
-				            <li><a ui-sref="altaResultado.paso1({tenant: tenant  })">Completar Resultados</a></li>
-				          </ul>
-			        </li>
-			        
-			        <li ng-if="chequearOrganizador()" class="dropdown">
-			          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-				          <ul class="dropdown-menu">
-				            <li><a ui-sref="formEdicionEvento.Paso1({tenant: tenant  })">Configurar Evento</a></li>
-				            <li><a ui-sref="usoSitio({tenant: tenant  })">Uso del sitio</a></li>
-				            <li><a ui-sref="formAltaCompetencia.Paso1({tenant: tenant  })">Alta competencia</a></li>
-				            <li><a ui-sref="altaEventoDeportivo({tenant: tenant  })">Crear Deportes</a></li>
-				            <li><a ui-sref="altaJuez({tenant: tenant  })">Crear Jueces</a></li>
-				            <li><a ui-sref="altaComite({tenant: tenant  })">Crear Delegaciones</a></li>
-				          </ul>
-			        </li>
+<!-- 					<ul  class="nav navbar-nav navbar-right"> -->
+						
+<!-- 					</ul> -->
 					
-				</ul>	
-				
-				<ul class="nav navbar-nav navbar-right">
-					<li> <a id="lnkFb" class="iconBtn facebook" ></a> </li>
-					<li> <a id="lnkTw" class="iconBtn twitter"></a> </li>
-					<li> <a id="lnkYT" class="iconBtn youtube"></a> </li>
-					<li> <a id="lnkIG" class="iconBtn instagram"></a> </li>
-				</ul>
-				<ul ng-show="!isAuthenticated()" class="nav navbar-nav navbar-right">
-					<li class="text-navbar"><a ng-cloak ui-sref="altaUsuarioComun({ tenant: tenant  })"  >Registro</a></li>
-				</ul>
-				
-				<ul ng-show="!isAuthenticated()" class="nav navbar-nav navbar-right">
-					<li class="text-navbar"><a ng-cloak ng-show="!isAuthenticated()" ng-cloak ui-sref="login({ tenant: tenant })">Login</a></li>
-				</ul>
-				<ul ng-show="isAuthenticated()" class="nav navbar-nav navbar-right">
-					<li class="text-navbar"><a ng-click="salir()">Cerrar Sesion</a></li>
-				</ul>
+<!-- 					<ul class="nav navbar-nav navbar-right"> -->
+						
+<!-- 					</ul> -->
+<!-- 					<ul  class="nav navbar-nav navbar-right"> -->
+						
+<!-- 					</ul> -->
+				</div>
 			</div>
 		</nav>
 	</div>
@@ -150,7 +165,12 @@
     <script  type="text/javascript" src="resources/angular/shared/jquery/jquery.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/moment/moment.min.js"></script>
      <script  type="text/javascript" src="resources/angular/shared/bootstrap/js/bootstrap.js"></script> 
-     <script  type="text/javascript" src="resources/angular/shared/angular-bootstrap/ui-bootstrap-tpls-0.13.3.min.js"></script> 
+     
+     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.js"></script>
+<!--      <script  type="text/javascript" src="resources/angular/shared/angular-bootstrap/ui-bootstrap-tpls-0.13.3.min.js"></script>  -->
+     
+     
 <!--     <script  type="text/javascript" src="resources/angular/shared/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
     <script  type="text/javascript" src="resources/angular/shared/angular-route/angular-route.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/angular-cookies/angular-cookies.js"></script>

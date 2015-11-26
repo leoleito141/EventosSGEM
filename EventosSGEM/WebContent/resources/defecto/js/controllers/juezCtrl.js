@@ -3,6 +3,7 @@ angular.module('eventosSGEM')
                            function ($scope, dataFactory,dataTenant) {
 	
 	  $scope.juez={}; 
+	  $scope.nombreTenant = dataTenant.nombre_url;
 	  
 	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
 		  
@@ -12,28 +13,21 @@ angular.module('eventosSGEM')
 	  
 	  }
 
-$scope.altaJuez = function(){
+	  $scope.altaJuez = function(){
 			  
-			  $scope.juez.tenantId = dataTenant.tenantId;
-			 
+		  $scope.juez.tenantId = dataTenant.tenantId;			 
 			  
-			  dataFactory.altaJuez($scope.juez)
-		     	.then(function (data, status, headers, config) {
-		                $scope.status = data.status;
-		                console.log("Entre Alta Juez");
-		                console.log(data.status);
-		                console.log(status);
-		                console.log(headers);
-		                console.log(config);
-		                
-		            })
-		            .catch(function(response){
-		                // Si ha habido errores llegamos a esta parte
-		            	console.log(response); 
-		            });
+		  dataFactory.altaJuez($scope.juez)
+	     	.then(function (data, status, headers, config) {
+	     		$state.go('main', { tenant: $scope.nombreTenant } );
+            })
+            .catch(function(response){
+                // Si ha habido errores llegamos a esta parte
+            	console.log(response); 
+            });
 			  
 			  
 			  
-		  }; 
+	  }; 
 		  
 }]);

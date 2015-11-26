@@ -48,22 +48,9 @@ angular.module('eventosSGEM')
 	             var payLoad = $auth.getPayload();             
 	             var dataUsuario = payLoad.dataUsuario;
 	            
-	             // ver bien si es en el local o session...
+	           
 	             localStorage.setItem("dataUsuario", JSON.stringify(dataUsuario));  // localStorage.getItem("dataUsuario") para obtenerlo
-	             	             
-//	             if(dataUsuario.tipoUsuario == usuario_comun){ 
-//	            	 event.preventDefault();
-//	            	 $state.go('main', { tenant: $scope.nombreTenant } );
-//	             }else if (dataUsuario.tipoUsuario == usuario_comite){
-//	            	 event.preventDefault();
-//	            	 $state.go('altaNovedad', { tenant: $scope.nombreTenant} );
-//	             }else if(dataUsuario.tipoUsuario == usuario_juez){
-//	            	 event.preventDefault();
-//	            	 $state.go('altaResultado.paso1', { tenant: $scope.nombreTenant } );
-//	             }else if(dataUsuario.tipoUsuario == usuario_organizador){
-//	            	 event.preventDefault();
-//	            	 $state.go('usoSitio', { tenant: $scope.nombreTenant } );
-//	             }
+	             	    
 	             $state.go('main', { tenant: $scope.nombreTenant } );
 	             
 	         })
