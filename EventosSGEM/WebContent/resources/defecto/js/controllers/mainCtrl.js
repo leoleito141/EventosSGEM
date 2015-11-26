@@ -96,63 +96,63 @@ angular.module('eventosSGEM')
 		
 		if($scope.idHashtag!=""&&$scope.facebookUrl!=""){
 		
-		$("#WidgetTwitter").attr('data-widget-id',$scope.idHashtag);
-		$("#facebookWidget").attr('data-href','https://www.facebook.com/'+$scope.facebookUrl);
-		
-	   /**TWITTER***/
-	   !function(d,s,id){
-		   var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-		   if(!d.getElementById(id))
-		   {
-			   js=d.createElement(s);js.id=id;
-			   js.src=p+"://platform.twitter.com/widgets.js";
-			   fjs.parentNode.insertBefore(js,fjs);
-			   }
-		   }(document,"script","twitter-wjs");
-	  /**FACEBOOK**/		   
-	  (function(d, s, id) {
-			     var js, fjs = d.getElementsByTagName(s)[0];
-			     if (d.getElementById(id)) return;
-			     js = d.createElement(s); js.id = id;
-			     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-			     fjs.parentNode.insertBefore(js, fjs);
-			   }(document, 'script', 'facebook-jssdk'));
-	  
-		   try{
-			   $timeout = twttr.widgets.load(); 
-		       FB.XFBML.parse(); 
-		   }catch(ex){
-			   console.log(ex);
-		   }
-		   /**YOUTUBE**/		   
+			$("#WidgetTwitter").attr('data-widget-id',$scope.idHashtag);
+			$("#facebookWidget").attr('data-href','https://www.facebook.com/'+$scope.facebookUrl);
 			
-			$.ajax({
-
-	            url: "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCMIlK4EWwV1jBYRgMulke3cN0g6MKXih4&channelId="+$scope.channelId+"&part=snippet,id&order=date&maxResults=6",
-
-	            
-	            contentType: "application/json; charset=utf-8",
-	            dataType: "jsonp",
-	            responseType: "jsonp",
-	            success:
-	           function (data) {
-	               
-	             
-	             $.each(data.items, function(i, item) {	
-	            	if(item.id.kind !="youtube#channel"){
-	            	 var image = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><img style='display:block; margin:auto;' src='"+item.snippet.thumbnails.medium.url+"' alt='...' width='196px' height='110px'></a>";
-	            	// var titleLink = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><span >"+item.snippet.title+"</span></a>";
-	            	 
-	            	 var titleLink = "<a  onclick='loadplayer("+item.id.videoId+")'><span >"+item.snippet.title+"</span></a>";
-	            	 var description = "<p>"+item.snippet.description+"</p>";
-	            	 var merge = "<div class='col-sm-5 col-md-12'style='display:inline-block; margin:auto;text-align: center; border-bottom: solid #e62f27 1px;padding:3px;'>" +image+"" +titleLink+"</br>"+description +"</div>";
-	            	 $("#youtubeContainer").append(merge)
-	            	}
-	             });
-	              
-	           },
-
-	        });
+		   /**TWITTER***/
+		   !function(d,s,id){
+			   var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+			   if(!d.getElementById(id))
+			   {
+				   js=d.createElement(s);js.id=id;
+				   js.src=p+"://platform.twitter.com/widgets.js";
+				   fjs.parentNode.insertBefore(js,fjs);
+				   }
+			   }(document,"script","twitter-wjs");
+		  /**FACEBOOK**/		   
+		  (function(d, s, id) {
+				     var js, fjs = d.getElementsByTagName(s)[0];
+				     if (d.getElementById(id)) return;
+				     js = d.createElement(s); js.id = id;
+				     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+				     fjs.parentNode.insertBefore(js, fjs);
+				   }(document, 'script', 'facebook-jssdk'));
+		  
+			   try{
+				   $timeout = twttr.widgets.load(); 
+			       FB.XFBML.parse(); 
+			   }catch(ex){
+				   console.log(ex);
+			   }
+			   /**YOUTUBE**/		   
+				
+				$.ajax({
+	
+		            url: "https://www.googleapis.com/youtube/v3/search?key=AIzaSyCMIlK4EWwV1jBYRgMulke3cN0g6MKXih4&channelId="+$scope.channelId+"&part=snippet,id&order=date&maxResults=6",
+	
+		            
+		            contentType: "application/json; charset=utf-8",
+		            dataType: "jsonp",
+		            responseType: "jsonp",
+		            success:
+		           function (data) {
+		               
+		             
+		             $.each(data.items, function(i, item) {	
+		            	if(item.id.kind !="youtube#channel"){
+		            	 var image = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><img style='display:block; margin:auto;' src='"+item.snippet.thumbnails.medium.url+"' alt='...' width='196px' height='110px'></a>";
+		            	// var titleLink = "<a href='https://www.youtube.com/watch?v="+item.id.videoId+"'><span >"+item.snippet.title+"</span></a>";
+		            	 
+		            	 var titleLink = "<a  onclick='loadplayer("+item.id.videoId+")'><span >"+item.snippet.title+"</span></a>";
+		            	 var description = "<p>"+item.snippet.description+"</p>";
+		            	 var merge = "<div class='col-md-12'style=' background-color: #f8f8f8;margin:auto;text-align: center; border-bottom: solid #e62f27 1px;padding:3px;'>" +image+"" +titleLink+"</br>"+description +"</div>";
+		            	 $("#youtubeContainer").append(merge)
+		            	}
+		             });
+		              
+		           },
+	
+		        });
 		}
 	else {
 		  

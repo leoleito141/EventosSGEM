@@ -10,6 +10,8 @@ angular.module('eventosSGEM')
 		  });
 	  
 	  }
+	  
+	  $scope.nombreTenant = dataTenant.nombre_url;
 	  $scope.competencia={};
 	  
 	  $scope.deportes = {};
@@ -201,14 +203,8 @@ angular.module('eventosSGEM')
 			  $scope.datos.deportistas = deportistas;
 			  
 			  dataFactory.altaCompetencia($scope.datos)
-		     	.then(function (data, status, headers, config) {
-		                $scope.status = data.status;
-		                console.log("Entre Alta Deportista");
-		                console.log(data.status);
-		                console.log(status);
-		                console.log(headers);
-		                console.log(config);
-		                
+		     	.then(function (data, status, headers, config) {	              
+		                $state.go('main', { tenant: $scope.nombreTenant } );
 		            })
 		            .catch(function(response){
 		                // Si ha habido errores llegamos a esta parte
