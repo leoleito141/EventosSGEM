@@ -53,7 +53,11 @@ angular.module('eventosSGEM')
 			                }
 			            }
 			        }
-			  
+	      		  /*** adaptar a rutas relativas ***/
+		      	  for(var i = 0;i < $scope.deportistas.length; i++){
+		      		 var ruta = $scope.deportistas[i].foto.ruta.substr($scope.deportistas[i].foto.ruta.indexOf("resources"));
+		      		 $scope.deportistas[i].foto.ruta = ruta;
+		      	  }
 //			  $scope.rutaFoto = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
       	  }).catch(function(error) {
       		  $scope.mensajeValidacion = "Error al obtener deportistas para el evento deportivo :"+ $scope.nombreDeporte;
