@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('MainCtrl', ['$scope','$state','dataFactory','dataTenant','$timeout', 'sharedProperties',
-                                     function ($scope, $state, dataFactory,dataTenant,$timeout,sharedProperties) {
+  .controller('MainCtrl', ['$scope','$state','dataFactory','dataTenant','$timeout', 'sharedProperties','TenantLoader',
+                                     function ($scope, $state, dataFactory,dataTenant,$timeout,sharedProperties,TenantLoader) {
 
   // console.log(dataTenant.tenantId);
-   
+  
+	  
+		 
+		
   $scope.nombreTenant = dataTenant.nombre_url;
    
   $scope.confPerfil={};
@@ -18,13 +21,18 @@ angular.module('eventosSGEM')
 		    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
 	  });
   
-  }
+  }  
+ if( TenantLoader.getTenant()){
+	 
+	 localStorage.removeItem('tenantActual');	
+	 TenantLoader.setTenant(false);
+ }
   
   
   $scope.facebookUrl=(dataTenant.widgetFacebook!=null)? dataTenant.widgetFacebook :"" ;               //"Facebook";
-  $scope.Hastag=    (dataTenant.widgetInstagram!=null)?dataTenant.widgetInstagram:"";                        //"Rio2016";
-  $scope.idHashtag=   (dataTenant.widgetTwitter!=null)?dataTenant.widgetTwitter:"";              //"666003012909998085";
-  $scope.channelId=(dataTenant.widgetYoutube!=null)? dataTenant.widgetYoutube:"";    //UCmp42s1dVuavyzhY0L-9CFw
+  $scope.Hastag=    (dataTenant.widgetInstagram!=null)?dataTenant.widgetInstagram:"";				  //"Rio2016";
+  $scope.idHashtag=   (dataTenant.widgetTwitter!=null)?dataTenant.widgetTwitter:"";  			      //"666003012909998085";
+  $scope.channelId=(dataTenant.widgetYoutube!=null)? dataTenant.widgetYoutube:"";    				  //UCmp42s1dVuavyzhY0L-9CFw
   //if esta seteado lo cambio
   
   

@@ -1,20 +1,40 @@
 <div id="PerfilWrapper" class="PerfilWrapper FullHeight">
 	
-	<div class="PerfilNews FormCustom">
+	<div class=" FormCustom" style="margin-left: 10%;margin-right: 10%;">
 	
 	
 	
 	<form role="form" name="formDeportista">
-	<div class="jumbotron text-center RoundedTop">
+	<div class="jumbotron text-center RoundedTop jumpbotrongb">
 	    <h1>Deportistas</h1>   
-	</div>
-	
+	</div>	
 			<div class="form-group">
 			
+		
+			
 			<div class="row">
-				<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-					Sexo: </label>
-				<div class="control-label col-sm-2">
+				<label class="col-md-1"  >Nombre:</label>
+				<div class="col-sm-5">
+					<input id="inputNombreDeportista" placeholder="Nombre" ng-model="deportista.nombre" class="form-control">
+				</div>
+				
+				<label class="col-md-1" for="inputDeportes">Deportes:</label>
+				<div class="col-sm-2">
+		   			<select class="form-control" data-ng-model="selectDeportes" ng-options="d as d for d in deportes"></select>
+		   		</div>
+				
+				<label class="col-md-1" for="inputPaises">Paises:</label>
+				<div class="col-sm-2">
+		   			<select class="form-control" data-ng-model="selectPaises" ng-options="p as p for p in paises"></select>
+		   		</div>
+			</div>			
+				
+		<div class="row">
+				
+		<label class="control-label col-sm-1" for="singleSelect">
+					Sexo: 
+				</label>
+				<div class="control-label col-sm-5" style="display: inline-block;">
 					<label>
 						<input type="radio" ng-model="deportista.sexo" ng-change="obtenerDeportes(deportista.sexo)" value="Masculino"> Masculino
 					</label> 
@@ -22,36 +42,11 @@
 						<input type="radio" ng-model="deportista.sexo" ng-change="obtenerDeportes(deportista.sexo)" value="Femenino"> Femenino
 					</label><br>
 				</div>
-			</div>
+		</div>
 			
 			<div class="row">
-				
-				<div class="span4">
-					<label  for="inputDeportista">Nombre:</label>
-				
-					<input id="inputNombreDeportista" placeholder="Nombre" ng-model="deportista.nombre" class="form-control">
-					
-				</div>
-				<div class="span4">
-					<label  for="inputDeportes">Deportes:</label>
-					
-			   		<select data-ng-model="selectDeportes" ng-options="d as d for d in deportes"></select>
-			   		
-				</div>
-				<div class="span4">
-					<label  for="inputPaises">Paises:</label>
-					
-			   		<select data-ng-model="selectPaises" ng-options="p as p for p in paises"></select>
-			   		
-				</div>
-				
-				
-			</div>
-
-			
-			<div class="row">
-				<div class="col-sm-offset-10 col-sm-4">
-					<button type="submit" ng-click="buscarDesportistas()" class="btn btn-success">Buscar</button>
+				<div class="col-sm-offset-10 col-sm-2 ">
+					<button type="submit" ng-click="buscarDesportistas()" class="btn btn-info glyphicon glyphicon-search"></button>
 				</div>
 	
 			</div>
@@ -60,17 +55,18 @@
 	</form>
 	
 
+
+
+	
+
+
 	
 	
 	</div>
-</div>
-
-
-<div class="container">
-
-	<div id="form-views" ui-view></div>
 
 </div>
+
+	<div class="" style="margin-left: 10%;margin-right: 10%; width: 80%;" id="form-views" ui-view></div>
 
 
 	

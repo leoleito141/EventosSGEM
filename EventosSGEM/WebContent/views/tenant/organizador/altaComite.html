@@ -7,69 +7,73 @@
 			    <h1>Creacion de delegaciones</h1>   
 			</div>	
 
-<div class="container">
-	
-	<div class="row">
-		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
-	</div>
-	
 	<form role="form" name="formComite">
 		<div class="form-group">
-				
-			<label class="control-label col-sm-2" for="inputEmail">Email:</label>
-			<div class="col-sm-10">
-				<input id="email" type="email" placeholder="Email" ng-model="comite.email"
-					class="form-control">
-			</div>			
-			
-			<label class="control-label col-sm-2" for="inputPassword">Contrase&ntildea:</label>
-			<div class="col-sm-10">
-				<input id="inputPassword"  type="password" placeholder="Contrase&ntilde;a" ng-model="comite.password"
-					class="form-control">
-			</div>
-			
-			
-			<label class="control-label col-sm-2" for="inputpais">Pais:</label>
-			<div class="col-sm-10">
-				<input id="inputpais" placeholder="Pais" ng-model="pais.pais"
-					class="form-control">
-			</div>
-			
-			<label class="control-label col-sm-2" for="inputciudad">Ciudad:</label>
-			<div class="col-sm-10">
-				<input id="inputciudad" placeholder="ciudad" ng-model="pais.ciudad"
-					class="form-control">
-			</div>
-			
-			<label class="control-label col-sm-2" for="inputCodigo">C&oacutedigo Comite:</label>
-			<div class="col-sm-10">
-				<input id="inputcodigo" placeholder="C&oacute;digo Comite" ng-model="comite.codigo"
-					class="form-control">
-			</div>
-			
-			<label class="control-label col-sm-2" for="inputFacebook">Cuenta Facebook:</label>
-			<div class="col-sm-10">
-				<input id="inputFacebook" placeholder="Facebook" ng-model="comite.facebook"
-					class="form-control">
-			</div>
-			
-			<label class="control-label col-sm-2" for="inputTwitter">Cuenta Twitter:</label>
-			<div class="col-sm-10">
-				<input id="inputTwitter" placeholder="Twiter" ng-model="comite.twitter"
-					class="form-control">
-			</div>	
-			
-			
-			<label class="control-label col-sm-2" for="inputTwitter">PayPal:</label>
-			<div class="col-sm-10">
-				<input id="inputPaypal" placeholder="Paypal" ng-model="comite.paypal"
-					class="form-control">
-			</div>			
 		
-			<div class="col-sm-offset-2 col-sm-2">
-				<input id="file" name="file" type="file" file-model="myFile"/>
-			</div>	
-
+			
+			<div class="row">	
+				<label class="control-label col-sm-3" for="inputEmail">Email:</label>
+				<div class="col-sm-9">
+					<input id="email" type="email" placeholder="Email" ng-model="comite.email"
+						class="form-control">
+				</div>
+			</div>			
+			<div class="row">
+				<label class="control-label col-sm-3" for="inputPassword">Contrase&ntildea:</label>
+				<div class="col-sm-9">
+					<input id="inputPassword"  type="password" placeholder="Contrase&ntilde;a" ng-model="comite.password"
+						class="form-control">
+				</div>
+			</div>
+			
+			<div class="row">
+				<label class="control-label col-sm-3" for="inputpais">Pais:</label>
+				<div class="col-sm-9">
+					<input id="inputpais" placeholder="Pais" ng-model="pais.pais"
+						class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<label class="control-label col-sm-3" for="inputciudad">Ciudad:</label>
+				<div class="col-sm-9">
+					<input id="inputciudad" placeholder="ciudad" ng-model="pais.ciudad"
+						class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<label class="control-label col-sm-3" for="inputCodigo">C&oacutedigo Comite:</label>
+				<div class="col-sm-9">
+					<input id="inputcodigo" placeholder="C&oacute;digo Comite" ng-model="comite.codigo"
+						class="form-control">
+				</div>
+			</div>
+			
+			<div class="row">
+				<label class="control-label col-sm-3" for="inputFacebook">Cuenta Facebook:</label>
+				<div class="col-sm-9">
+					<input id="inputFacebook" placeholder="Facebook" ng-model="comite.facebook"
+						class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<label class="control-label col-sm-3" for="inputTwitter">Cuenta Twitter:</label>
+				<div class="col-sm-9">
+					<input id="inputTwitter" placeholder="Twiter" ng-model="comite.twitter"
+						class="form-control">
+				</div>	
+			</div>
+			<div class="row">
+				<label class="control-label col-sm-3" for="inputTwitter">PayPal:</label>
+				<div class="col-sm-9">
+					<input id="inputPaypal" placeholder="Paypal" ng-model="comite.paypal"
+						class="form-control">
+				</div>	
+			</div>		
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-2">
+					<input id="file" name="file" type="file" file-model="myFile"/>
+				</div>	
+			</div>
 			<div class="col-sm-offset-11 col-sm-2">
 			
 <!-- 			ng-disabled="deshabilitarFormComite()"  -->
@@ -82,6 +86,6 @@
 
 	</form>
 
-</div>	
+
 </div>
 </div>

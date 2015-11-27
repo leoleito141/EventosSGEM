@@ -8,8 +8,10 @@ angular.module('eventosSGEM')
    const usuario_comite = "ComiteOlimpico";
    const usuario_organizador = "Organizador";	 
 	  
+   
 	var dataTenant = JSON.parse(localStorage.getItem("tenantActual"));
-
+	
+	
 	/*************** PARA CARGAR ESTILO DEL TENANT *****************/
 	
 	if (dataTenant !=null){

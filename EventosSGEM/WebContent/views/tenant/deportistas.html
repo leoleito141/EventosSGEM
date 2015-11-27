@@ -1,21 +1,22 @@
-
+<div class="col-md-12 FormCustom" style="float:left;">
+  <div class="alert alert-info col-md-12" style="float: left;">
   
-  <div class="alert alert-info">
-    <p>Ordenado Por: {{ sortType }}</p>
-    <p>Busqueda: {{ searchNombre }}</p>
+    <p>Ordenado Por: "{{ sortType }}", Busqueda: "{{ searchNombre }}" </p>
+    
   </div>
    <form>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-
-        <input type="text" class="form-control" placeholder="Busqueda por nombre" ng-model="searchNombre">
-
-      </div>      
-    </div>
-  </form>
+   
+	      <div class="input-group">
+	        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+	
+	        <input type="text" class="form-control" placeholder="Busqueda por nombre" ng-model="searchNombre">
+	
+	      </div>      
+   
+  
   
 	<div class="row">
+	<div class="col-md-12" style="margin-top:4%;" >
 	  <a href="" ng-click="sortType = 'nombre'; sortReverse = !sortReverse">
              Nombre  
             <span class="glyphicon sort-icon" ng-show="sortType == 'nombre'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>
@@ -33,34 +34,57 @@
           Deporte 
           <span class="glyphicon sort-icon" ng-show="sortType == 'deporte'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>            
           </a>
+	</div>
+	</div>
 	
-	</div>
+    </form>
+    <div class="col-md-12 ">
     
-    <div class="row" dir-paginate="depo in listDeportistas | orderBy:sortType:sortReverse | filter:searchNombre | itemsPerPage:2" ng-click="deportistaSeleccionado(depo)">
-			<div class="col-md-4 text-center">
-              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" ng-src="{{depo.foto.ruta}}" width="40%" height="20%">
-            </div>
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-md-12">
-                  <h1 class="only-bottom-margin">{{depo.nombre}} {{depo.apellido}}</h1>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <span class="text-muted">Fecha Nacimiento:</span>{{depo.fechaNac | date:'yyyy-MM-dd'}}<br>
-                  <span class="text-muted">Genero:</span>{{depo.sexo}} <br>
-                  <span class="text-muted">Deporte:</span>{{depo.listeventodeportivo[0].nombreDeporte}}<br><br>
-                  
-                </div>
-                
-              </div>
-            </div>
-	</div>
-    <dir-pagination-controls
+	    <div class="row col-md-6" style="padding:2%;"  dir-paginate="depo in listDeportistas | orderBy:sortType:sortReverse | filter:searchNombre | itemsPerPage:2" ng-click="deportistaSeleccionado(depo)">
+				<div class="col-md-12" style="background-color: #f2f2f2;border-radius: 5px;">
+					<div class="col-md-4 text-center">
+		              <img class="avatar avatar-original" style="-webkit-user-select:none; 
+		              display:block; margin:auto;" ng-src="{{depo.foto.ruta  || 'resources/defecto/img/NoPicDeportista.png'}}" width="100%" >
+		            </div>
+		            <div class="col-md-8">
+		              <div class="row">
+		                <div class="col-md-12">
+		                  <h1 class="only-bottom-margin">{{depo.nombre}} {{depo.apellido}}</h1>
+		                </div>
+		              </div>
+		            
+		                <div class="col-md-12" style="line-height: 15px;list-style-type: none;">
+		                <ul>
+		                	<li>
+		                		<span class="text-muted">Fecha Nacimiento: {{depo.fechaNac | date:'yyyy-MM-dd'}}</span>
+		                	
+		                	</li>
+		                	<li>
+		                		<span class="text-muted">Genero: {{depo.sexo}}</span>
+		                	
+		                	</li>
+		                	<li>
+		                	  <span class="text-muted">Deporte: {{depo.listeventodeportivo[0].nombreDeporte}}</span>
+		                	
+		                	</li>
+		                </ul>
+		                  
+		                  
+		                
+		                  
+		                </div>
+		                
+		            
+		            </div>
+	            </div>
+		</div>
+		<div class="col-md-12">
+		<dir-pagination-controls
         max-size="5"
         direction-links="true"
         boundary-links="true" >
     </dir-pagination-controls>
+    </div>
+	</div>
+    
   
