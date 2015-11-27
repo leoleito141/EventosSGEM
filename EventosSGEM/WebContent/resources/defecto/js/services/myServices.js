@@ -210,12 +210,12 @@
 	
     dataFactory.listarFiltroDeportista = function(tenantId,sexo){
         return $http.get(dominio+'DeportistaService/listarFiltroDeportista/'+tenantId+'/'+sexo , 
-                {headers: { 'Rol' : 'USUARIO_COMUN'} });
+                {headers: { 'Rol' : 'VISITANTE'} });
     };
     dataFactory.buscarDesportistas = function(databusqueda){
         
         return $http.post(dominio+'DeportistaService/buscarDesportistas', databusqueda , 
-                {headers: { 'Rol' : 'USUARIO_COMUN'} });
+                {headers: { 'Rol' : 'VISITANTE'} });
     };
     dataFactory.listarComitesOlimpicos = function(tenant){    	
     	 return $http.get(dominio+'UsuarioService/listarComitesOlimpicos/'+tenant);  		 
