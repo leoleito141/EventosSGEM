@@ -2,14 +2,10 @@
 <html>
   <head>
    <link rel="stylesheet" href="resources/angular/shared/bootstrap/css/bootstrap.css" />  
-  <!--    <link rel="stylesheet" href="resources/angular/shared/bootstrap/css/bootstrap.min.css" /> -->
+
     <link rel="stylesheet" href="resources/defecto/css/Perfil.css" /> 
     <link rel="stylesheet" href="resources/defecto/css/Index.css" /> 
     <link rel="stylesheet" href="/resources/angular/shared/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
-    
-<!--   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />-->
-
-<!--     <base href="/"> -->
   
   	<link rel="stylesheet" href="resources/angular/shared/minicolors/css/jquery.minicolors.css" />
   	 
@@ -17,12 +13,9 @@
 	
 	<link rel="stylesheet" href="resources/Others/fotorama/fotorama.css" /> 
 	
+ 	<link rel="icon" href="resources/defecto/img/favicon.png" type="image/x-icon" />
 
-
-<!--  	<link rel="icon" href="resources/defecto/img/favicon.jpg" type="image/x-icon" /> -->
-
-	<link href='https://fonts.googleapis.com/css?family=Aldrich'
-		rel='stylesheet' type='text/css'></link>
+	<link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'></link>
   </head>
 
 
@@ -79,10 +72,11 @@
 				<div id="collapseOne" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav" >
 						
-						<li> <a ui-sref="buscarDeportistas({tenant: tenant  })" >Deportistas</a> </li>
-						<li> <a ui-sref="listarComites({tenant: tenant })" >Comites Olimpicos</a> </li>
-						<li> <a ui-sref="Galeria({tenant: tenant  })" >Galeria</a> </li>
 						<li> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
+						<li> <a ui-sref="buscarDeportistas({tenant: tenant  })" >Deportistas</a> </li>
+						<li> <a ui-sref="listarEventosDeportivos({tenant: tenant  })" >Deportes</a> </li>
+						<li> <a ui-sref="listarComites({tenant: tenant })" >Delegaciones</a> </li>
+						<li> <a ui-sref="Galeria({tenant: tenant  })" >Galeria</a> </li>
 						
 						
 						<li ng-if="chequearComite()" class="dropdown">
@@ -210,7 +204,8 @@
     <script src="resources/defecto/js/controllers/listarComitesCtrl.js"></script>
     <script src="resources/defecto/js/controllers/busquedaDeportistaCtrl.js"></script>
 	<script src="resources/defecto/js/controllers/perfilDeportistaCtrl.js"></script>
-
+	<script src="resources/defecto/js/controllers/listarEventosDeportivos.js"></script>
+	
     <!-- Services -->
     <script src="resources/defecto/js/services/myServices.js"></script>
     <script src="resources/defecto/js/services/mensajes.js"></script>
