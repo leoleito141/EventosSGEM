@@ -81,15 +81,17 @@
 			<h1>Deportistas</h1>
 					
 			<div ng-repeat="d in deportistas">
-			        <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}">
-				       	<a ng-click="irPerfilDeportista(d.deportistaID)">
-				       		<div>
-			            		<h3>{{d.nombre}} {{d.apellido}}</h3>								            	
-			<!-- 				<img class="imagen-eventoDeportivo" alt="no-image" ng-src="{{d.foto.ruta}}"> -->
-			         		</div>	
-			        	</a>
-			     </div>
-			</div>
+		<a ng-click="deportistaSeleccionado(d)">
+	        <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}">
+	        
+	       		<div>
+            		<h3>{{d.nombre}} {{d.apellido}}</h3>
+            	
+            		<img class="imagen-deportista" alt="no-image" ng-src="{{d.foto.ruta}}">
+           	 	</div>
+            	 </a>
+	            <hr /> 
+	        </div>
 						
 			</div>			
 		</div>

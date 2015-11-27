@@ -105,4 +105,17 @@ angular.module('eventosSGEM')
 		  $state.go('perfilDisciplina.paso1',{tenant: $scope.nombreTenant, nombreDeporte : $scope.nombreDeporte, nombreDisciplina : nombreDisciplina, sexo : sexo });
 	  }
 	  
+	  
+	  $scope.deportistaSeleccionado = function (de) {
+		    
+
+	        $scope.reporte={};
+	        $scope.reporte=de;
+	        objetos.setObjeto($scope.reporte);
+	        $state.go('perfilDeportista',{tenant: dataTenant.nombre_url});
+
+
+
+	    };
+	  
   }]);
