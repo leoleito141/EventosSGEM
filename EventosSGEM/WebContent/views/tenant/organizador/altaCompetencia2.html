@@ -12,19 +12,21 @@
 		
 		
 		<div class="row">
-		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
+		<label class="col-sm-offset-1 control-label col-sm-12" for="singleSelect">
 				Seleccionar Competidores:    </label>
-				<div class="control-label col-sm-2">
+		<div class="col-sm-offset-1 control-label col-sm-12">
 		  	 
-		 <label ng-repeat="nombreDis in deportistas">
+		 <div class="control-label col-sm-4" ng-repeat="nombreDis in deportistas">
 			  <input
 			    type="checkbox"
 			    name="selectDisciplinas[]"
 			    value="{{nombreDis}}"
 			    ng-checked="selection.indexOf(nombreDis) > -1"
 			    ng-click="toggleSelection(nombreDis)"
-			  > {{nombreDis.nombre}} {{nombreDis.apellido}}  ({{nombreDis.comite.pais.pais}})
-			</label>
+			  >{{nombreDis.nombre}} {{nombreDis.apellido}}  ({{nombreDis.comite.pais.pais}})
+			   <img class="imagen-deportista" alt="no-image" ng-src="{{nombreDis.foto.ruta}}">
+			 <hr>
+			</div>
 		  	 
 		  	 
 		  	 

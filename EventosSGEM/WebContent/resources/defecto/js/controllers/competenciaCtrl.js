@@ -131,7 +131,18 @@ angular.module('eventosSGEM')
               
               $scope.deportistas = response;
               
+              
+              for(var i = 0;i < $scope.deportistas.length; i++){
+		      		 var ruta = $scope.deportistas[i].foto.ruta.substr($scope.deportistas[i].foto.ruta.indexOf("resources"));
+		      		 $scope.deportistas[i].foto.ruta = ruta;
+		      	  }
+              
               $scope.selectDeportistas = $scope.deportistas [0];
+              
+              
+              
+              
+              
 
       	}).catch(function(error) {
       		console.log(error);
