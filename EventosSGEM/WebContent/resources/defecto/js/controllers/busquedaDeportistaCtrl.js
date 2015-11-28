@@ -28,10 +28,41 @@ angular.module('eventosSGEM')
               $scope.paises       = response.nombrePais;
 
               
+              
+            /// Se ordenan los paises por orden alfabetico
+	      		 for(var i=0;i<($scope.paises.length-1);i++){
+			            for(var j=i+1;j<$scope.paises.length;j++){
+			                if($scope.paises[i]>$scope.paises[j]){
+			                    //Intercambiamos valores
+			                    var variableauxiliar=$scope.paises[i];
+			                    $scope.paises[i]=$scope.paises[j];
+			                    $scope.paises[j]=variableauxiliar;
+			                    
+			                }
+			            }
+			        }
+              
+              
+	      		 /// Se ordenan los deportes por orden alfabetico
+	      		 for(var i=0;i<($scope.deportes.length-1);i++){
+			            for(var j=i+1;j<$scope.deportes.length;j++){
+			                if($scope.deportes[i]>$scope.deportes[j]){
+			                    //Intercambiamos valores
+			                    var variableauxiliar=$scope.deportes[i];
+			                    $scope.deportes[i]=$scope.deportes[j];
+			                    $scope.deportes[j]=variableauxiliar;
+			                    
+			                }
+			            }
+			        }
+	      		 
+	      		 
+              
               $scope.selectDeportes   = $scope.deportes[0];
               $scope.selectPaises     = $scope.paises[0];
 
-
+              
+            
 
 
 
