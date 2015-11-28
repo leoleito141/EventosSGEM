@@ -1,0 +1,39 @@
+<style>
+<!--
+.backToTop{
+	position:fixed; right: 10px; bottom: 10px; display:none;
+}
+-->
+</style>
+<div class="container" ng-init="listarEntradasCompradasUsuario()">
+	<form role="form" name="form">
+		<div class="form-group">
+
+			<h1>Entradas Compradas</h1>
+			<hr />
+		    <div ng-repeat="c in compras">
+		        <div class="row" id="{{c.entradaId}}">
+		        
+		       		<div class="row">
+	            		<h3>{{c.competencia.nombreDeporte}} {{c.competencia.nombreDisciplina}} {{c.competencia.sexo}}</h3>
+	            	</div>
+	       			<div class="row">
+	            		<label>Ronda:</label>		N&#186; {{c.competencia.ronda}}
+            	 	</div>
+					
+		   			<div class="row">
+	            		<label>Estadio:</label>  {{c.competencia.estadio}} <label>Fecha:</label>  {{c.competencia.fecha | date:'dd-MM-yyyy HH:mm'}} hs.
+            	 	</div>
+            	 	
+            	 	<div class="row">
+	            		<label>Asiento:</label>		N&#186; {{c.numeroAsiento}} <label>Precio:</label> US$ {{c.precioEntrada}}
+            	 	</div>
+            	 	
+		            <hr />
+		        </div>
+		    </div>
+		    
+		</div>
+	</form>
+
+</div>

@@ -257,6 +257,10 @@
         return $http.get(dominio+'CompetenciaService/listarEstadisticaPorPais/'+tenantID+'/'+competenciaID+'/'+comiteID);
     };
     
-        
+    dataFactory.listarEntradasCompradasUsuario = function(tenantID,usuarioID){
+        return $http.get(dominio+'UsuarioService/listarEntradasCompradasUsuario/'+tenantID+'/'+usuarioID ,
+        		{headers: { 'Rol' : 'USUARIO_COMUN'}}); 
+    };  
+    
     return dataFactory;
 }]); 
