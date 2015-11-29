@@ -65,7 +65,8 @@ angular.module('eventosSGEM')
 			   for(var i = 0; i < $scope.competenciaSeleccionada.deportistas.length; i++) {				    
 				   $scope.objetosCombo.push({'id': $scope.competenciaSeleccionada.deportistas[i].deportistaID, 
 					   						'nombre' : $scope.competenciaSeleccionada.deportistas[i].nombre + " " + 
-			   										   $scope.competenciaSeleccionada.deportistas[i].apellido
+			   										   $scope.competenciaSeleccionada.deportistas[i].apellido,
+			   								 'foto'  : $scope.competenciaSeleccionada.deportistas[i].foto.ruta		   
    											});
 			   }
 			   
@@ -85,7 +86,7 @@ angular.module('eventosSGEM')
 			   
 			   for(var i = 0; i < paises.length; i++) {				    
 				  $scope.objetosCombo.push({ 'id' : (i+1),
-					  						 'nombre' : paises[i] 
+					  						 'nombre' : paises[i]
 		  									});
 			   }
 			   

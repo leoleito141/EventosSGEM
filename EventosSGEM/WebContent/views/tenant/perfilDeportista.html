@@ -21,7 +21,8 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <span class="text-muted">Fecha Nacimiento:</span>{{deportista.fechaNac | date:'yyyy-MM-dd'}}<br>
+                  <span class="text-muted">Fecha Nacimiento:</span>{{deportista.fechaNac | date:'dd/MM/yyyy'}}<br>
+                  <span class="text-muted">Edad:</span>{{edad}} a&ntilde;os<br>				
                   <span class="text-muted">Genero:</span>{{deportista.sexo}} <br>
                   <span class="text-muted">Deporte:</span>{{deportista.listeventodeportivo[0].nombreDeporte}}<br><br>
                   
