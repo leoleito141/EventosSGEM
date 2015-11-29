@@ -13,20 +13,30 @@ angular.module('eventosSGEM')
 	  $scope.cargarDatos = function(){			  
 		  
 		  if((objetos.getObjetos() != null)&&(objetos.getObjetos().length >= 1) ){
-			  $scope.deportes = objetos.getObjetos();
 			  $scope.nombreDeporte = $stateParams.nombreDeporte;
+			  $scope.deportes = objetos.getObjetos();
 			  
-			  discriminarPorSexo($scope.deportes);
-//			  $scope.rutaFoto = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
+			  /*** adaptar a rutas relativas ***/
+      		  for(var i = 0;i < $scope.deportes.length; i++){
+      			 var ruta = $scope.deportes[i].foto.ruta.substr($scope.deportes[i].foto.ruta.indexOf("resources")) ;
+      			 $scope.deportes[i].foto.ruta = ruta;
+      		  }
+			  
+			  discriminarPorSexo($scope.deportes);			  
 			  listarDeportistasPorEventoDeportivo(dataTenant.tenantId,$scope.nombreDeporte);
 		  }else{			
 			  dataFactory.listarDisciplinasDeporte(dataTenant.tenantId,$stateParams.nombreDeporte)
 			  .success(function (response, status, headers, config) {
-				  $scope.deportes = response;
 				  $scope.nombreDeporte = $stateParams.nombreDeporte;
+				  $scope.deportes = response;
+
+				  /*** adaptar a rutas relativas ***/
+	      		  for(var i = 0;i < $scope.deportes.length; i++){
+	      			 var ruta = $scope.deportes[i].foto.ruta.substr($scope.deportes[i].foto.ruta.indexOf("resources")) ;
+	      			 $scope.deportes[i].foto.ruta = ruta;
+	      		  }
 				  
 				  discriminarPorSexo($scope.deportes);
-//				  $scope.rutaFoto = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
 				  listarDeportistasPorEventoDeportivo(dataTenant.tenantId,$scope.nombreDeporte);
 	      	  }).catch(function(error) {
 	      		  $scope.mensajeValidacion = "Error al obtener disciplinas para el evento deportivo :"+ $scope.nombreDeporte;

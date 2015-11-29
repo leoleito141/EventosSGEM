@@ -69,8 +69,18 @@
     dataFactory.altaEventoDeportivo = function(datos){
     	console.log(datos);
         return $http.post(dominio+'EventoDeportivoService/altaEventoDeportivo', datos,
-        		{headers: { 'Rol' : 'ADMIN'}});       	
+        		{headers: { 'Rol' : 'ORGANIZADOR'}});       	
     }; 
+    
+    dataFactory.subirImagenDeporte = function(foto,tenantID){
+    	var formData = new FormData();
+    	formData.append("file", foto);
+    	formData.append("tenantID", tenantID);
+    	return $http.post(dominio+'EventoDeportivoService/subirImagenDeporte', formData,{
+    		transformRequest: angular.identity,
+    		headers: {'Content-Type': undefined , 'Rol' : 'ORGANIZADOR' }
+    	}); 
+    };
     
     
     dataFactory.altaComite = function(datos){

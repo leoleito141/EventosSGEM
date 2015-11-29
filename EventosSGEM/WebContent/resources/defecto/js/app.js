@@ -102,8 +102,8 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 		}
 	}).state('altaEventoDeportivo', {
 		url:'/:tenant/altaEventoDeportivo',
-		templateUrl : 'views/tenant/organizador/altaEventDeportivo.html',
-		controller : 'EventDeportivoCtrl',
+		templateUrl : 'views/tenant/organizador/altaEventoDeportivo.html',
+		controller : 'EventoDeportivoCtrl',
 		resolve: { 
 	    	dataTenant: function(dataFactory,$stateParams) {
 	    			    			return dataFactory.getDataTenant($stateParams.tenant);

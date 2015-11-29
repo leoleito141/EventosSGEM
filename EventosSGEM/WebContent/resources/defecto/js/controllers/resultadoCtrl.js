@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes','$document',
-                                     function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes, $document) {
+  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes','$window','$document',
+                                     function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes, $window, $document) {
  
 	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
 		  
@@ -32,9 +32,18 @@ angular.module('eventosSGEM')
 		   dataFactory.listarCompetenciasPendientes(dataTenant.tenantId,juez.usuarioId).
 		   		then(function (response, status, headers, config) {	
 				
-					$scope.competencias = response.data;			
-	//				console.log($scope.competencias);
+					$scope.competencias = response.data;	
 					
+					/*** adaptar a rutas relativas las fotos de los participantes ***/
+					for(var i = 0;i < $scope.competencias.length; i++){
+						for(var j = 0;j < $scope.competencias[i].deportistas.length; j++){
+							var ruta = $scope.competencias[i].deportistas[j].foto.ruta.substr($scope.competencias[i].deportistas[j].foto.ruta.indexOf("resources")) ;
+			      			$scope.competencias[i].deportistas[j].foto.ruta = ruta;
+			      			 
+			      			ruta = $scope.competencias[i].deportistas[j].comite.logo.ruta.substr($scope.competencias[i].deportistas[j].comite.logo.ruta.indexOf("resources")) ;
+			      			$scope.competencias[i].deportistas[j].comite.logo.ruta = ruta;
+						}
+					}
 				}).catch(function(response){
 					$scope.mensajeValidacion = "Error obteniendo competencias pendientes.";
 				});
@@ -77,15 +86,16 @@ angular.module('eventosSGEM')
 		   }else{//cargo paises
 			   
 			   var paises = [];
-			   
+			   var comites = [];
 			   for(var i = 0; i < $scope.competenciaSeleccionada.deportistas.length; i++) {				    
 				   if(paises.indexOf($scope.competenciaSeleccionada.deportistas[i].comite.pais.pais) == -1){					   
 					   paises.push($scope.competenciaSeleccionada.deportistas[i].comite.pais.pais);
+					   comites.push($scope.competenciaSeleccionada.deportistas[i].comite.comiteId);
 				   }
 			   }
 			   
 			   for(var i = 0; i < paises.length; i++) {				    
-				  $scope.objetosCombo.push({ 'id' : (i+1),
+				  $scope.objetosCombo.push({ 'id' : comites[i],
 					  						 'nombre' : paises[i]
 		  									});
 			   }
@@ -97,8 +107,7 @@ angular.module('eventosSGEM')
 		   
 		   $scope.estadistica.objeto = $scope.objetosCombo[0];
 		   $scope.estadistica.posicion = $scope.posiciones[0];
-		   
-//		   $state.go("altaResultado.paso2"); 
+		   $scope.actualizarFoto(); 
 		   
 	   }else{
 		   $scope.mensajeValidacion = "No hay competencias!";
@@ -213,7 +222,7 @@ angular.module('eventosSGEM')
 		   $scope.posiciones = [];
 		   $scope.estadisticas = [];
 		   $scope.estadistica = {};
-		   
+		   $scope.imagenSeleccionada = {};
 		   $state.go("altaResultado.paso1"); 
 	   }else if (siguiente){
 		   $scope.competenciaSeleccionada = {};	   
@@ -221,17 +230,43 @@ angular.module('eventosSGEM')
 		   $scope.posiciones = [];
 		   $scope.estadisticas = [];
 		   $scope.estadistica = {};
+		   $scope.imagenSeleccionada = {};
 	   }
    };
    
-   $(window).scroll(function() {
-	   	var verticalCenter = Math.floor(window.innerHeight/2);
-	    if ($(this).scrollTop() >= verticalCenter) {
+   $scope.actualizarFoto = function(){	   
+	   
+	   if($scope.competenciaSeleccionada.tipoDeporte == tipo_individual){//cargo deportistas
+	   
+		   for(var i = 0; i <$scope.competenciaSeleccionada.deportistas.length ; i++ ){
+			   if($scope.competenciaSeleccionada.deportistas[i].deportistaID == $scope.estadistica.objeto.id){
+			     $scope.imagenSeleccionada = $scope.competenciaSeleccionada.deportistas[i].foto.ruta;
+			     return;
+			   }
+		   }	   
+	   
+	   } else{
+		   
+		   for(var i = 0; i <$scope.competenciaSeleccionada.deportistas.length ; i++ ){
+			   if($scope.competenciaSeleccionada.deportistas[i].comite.comiteId == $scope.estadistica.objeto.id){
+			     $scope.imagenSeleccionada = $scope.competenciaSeleccionada.deportistas[i].comite.logo.ruta;
+			     return;
+			   }
+		   }
+	   
+	   }	   
+	   
+   }
+
+   $window.onscroll = function(){
+	   var verticalCenter = Math.floor(window.innerHeight/2);	   
+	   if ($window.pageYOffset >= verticalCenter) {
 	        $('.backToTop:hidden').stop(true, true).fadeIn();
 	    } else {
 	        $('.backToTop').stop(true, true).fadeOut();
 	    }
-	});   
+//	    $scope.$digest()
+   };
    
    // documentacion: https://github.com/oblador/angular-scroll
    // importar $document

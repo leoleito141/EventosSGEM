@@ -2,6 +2,10 @@
 <style>
 	textarea { resize:vertical ; }
 	
+	.imagen-eventoDeportivo{
+		width:8%;
+		height:8%;
+	}
 	
 </style>
 
@@ -14,8 +18,12 @@
 				<div class="control-label col-sm-2">				
 	   				<select  ng-model="estadistica.objeto" 
 							 ng-options="o.nombre for o in objetosCombo track by o.id"
-	   						 ng-disabled="objetosCombo.length == 0">
+	   						 ng-disabled="objetosCombo.length == 0"
+	   						 ng-change="actualizarFoto()">
 					 </select>
+		   		</div>
+		   		<div>
+		   			<img class="imagen-eventoDeportivo" ng-src="{{imagenSeleccionada}}" alt="no-image">
 		   		</div>
 			</div>
 			

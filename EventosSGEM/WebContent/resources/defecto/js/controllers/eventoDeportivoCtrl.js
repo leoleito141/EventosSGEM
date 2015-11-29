@@ -1,6 +1,6 @@
 angular.module('eventosSGEM')
-  .controller('EventDeportivoCtrl', ['$scope','dataFactory','dataTenant', 
-                           function ($scope, dataFactory,dataTenant) {
+  .controller('EventoDeportivoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant', 
+                           function ($scope, $state,$auth, dataFactory, dataTenant) {
 	
 	  $scope.eventoDeportivo={};
 	  $scope.nombreTenant = dataTenant.nombre_url;
@@ -37,23 +37,68 @@ angular.module('eventosSGEM')
 	  
 	  $scope.altaEventoDeportivo = function(){
 		  
-		  $scope.eventoDeportivo.tenantId = dataTenant.tenantId;
-		  
-		  dataFactory.altaEventoDeportivo($scope.eventoDeportivo)
-	     	.then(function (data, status, headers, config) {
-	     		
-	     		$state.go('main', { tenant: $scope.nombreTenant } );
-                
-            })
-            .catch(function(response){
-                // Si ha habido errores llegamos a esta parte
-            	console.log(response); 
-            });
-		  
+		  if($auth.isAuthenticated()){
+			  
+			  var foto = $scope.imagenEventoDeportivo;
+			  
+			  if(foto != null){
+				  
+				  dataFactory.subirImagenDeporte(foto,dataTenant.tenantId).
+					then(function (response, status, headers, config) {
+						
+					     var foto = {};
+					     foto.mime = response.data.mime;
+					     foto.ruta = response.data.ruta;
+					     foto.tenantId = response.data.tenantId;						  
+			 
+						 $scope.eventoDeportivo.tenantId = dataTenant.tenantId;
+						 $scope.eventoDeportivo.foto = foto;
+						 
+						 dataFactory.altaEventoDeportivo($scope.eventoDeportivo)
+					     	.then(function (data, status, headers, config) {
+					     		
+					     		$state.go('main', { tenant: $scope.nombreTenant } );
+				                
+				         }).catch(function(response){
+				        		if(status == 302){
+					      			$scope.cargando = false;
+					      			$scope.mensajeValidacion = "El comite con codigo: '"+ $scope.comite.codigo + "' ya existe en el sistema.";
+					       		}else{
+					       			$scope.cargando = false;
+					       			$scope.mensajeValidacion = "Error al crear comit\u00e9 Ol\u00edmpico. Contacte con soporte.";
+					       		}
+				         });						  
+						  
+					}).catch(function(response){
+						$scope.cargando = false;
+						$scope.mensajeValidacion = "Error al subir foto del evento deportivo. Contacte con soporte.";
+					});	
+					  
+			   }else{
+				  $scope.cargando = false;		
+				  $scope.mensajeValidacion = "Debe seleccionar una im\u00E1gen, para el logo del cmite Ol\u00edmpico.";
+			   }					 
+		   }else{		 
+			   	localStorage.removeItem("dataUsuario");
+				dataMensajes.add("Sesion Caducada");
+				$scope.mensajeValidacion = dataMensajes.getMensaje();
+				$state.go('login', { tenant: $scope.nombreTenant});
+		   }
 		  
 		  
 	  };
 	  
+	  $scope.deshabilitarForm = function(){		  
+		  if($scope.eventoDeportivo == undefined){
+			  return true;
+		  }
+		  return (($scope.eventoDeportivo.nombreDeporte != null && $scope.eventoDeportivo.nombreDeporte == "") ||
+				  ($scope.eventoDeportivo.nombreDisciplina != null && $scope.eventoDeportivo.nombreDisciplina == "") ||
+				  $scope.eventoDeportivo.nombreDeporte == null || $scope.eventoDeportivo.nombreDisciplina == null
+				  || $scope.eventoDeportivo.sexo == null || $scope.eventoDeportivo.tipo == null
+				  || $scope.eventoDeportivo.fechaInicio == null || $scope.eventoDeportivo.fechaFin == null 
+				  || $scope.eventoDeportivo.cantRondas == null || $scope.imagenEventoDeportivo == null);	
+	  }
 	  
 	  
 	  

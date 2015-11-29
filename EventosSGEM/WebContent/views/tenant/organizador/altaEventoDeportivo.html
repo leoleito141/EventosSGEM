@@ -1,0 +1,140 @@
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+  
+</style>
+
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight">
+	
+	<div class="PerfilNews FormCustom">
+	
+		<div class="jumbotron text-center RoundedTop jumpbotrongb">
+		    <h1>Nuevo Evento Deportivo</h1>   
+		</div>
+		
+		<form role="form" >
+			<div class="form-group">			
+			
+			<div class="row">
+				<label class="control-label col-sm-2" for="inputNombreDeporte">Nombre Deporte:</label>
+				<div class="col-sm-10">
+					<input id="inputNombreDeporte" placeholder="Nombre Deporte"
+						ng-model="eventoDeportivo.nombreDeporte" class="form-control">
+				</div>
+			</div>
+			
+			<div class="row">
+				<label class="control-label col-sm-2" for="inputDisciplina">Disciplina:</label>
+				<div class="col-sm-10">
+					<input id="inputDisciplina" placeholder="Disciplina"
+						ng-model="eventoDeportivo.nombreDisciplina" class="form-control">
+				</div>
+				
+			</div>
+
+			<div class="row">
+				<label class="control-label col-sm-2" for="singleSelect">
+					Sexo: </label><br>
+				<div class="control-label col-sm-2">
+					<label> <input type="radio"
+						ng-model="eventoDeportivo.sexo" value="Masculino">
+						Masculino
+					</label> <label> <input type="radio"
+						ng-model="eventoDeportivo.sexo" value="Femenino">
+						Femenino
+					</label>
+				</div>
+				<br>
+			</div>
+
+			<div class="row">
+					<label class="control-label col-sm-2" for="singleSelect">
+						Tipo: </label><br>
+	
+	
+					<div class="control-label col-sm-2">
+						<select name="singleSelect" ng-model="eventoDeportivo.tipo">
+							<option value="individual">Individual</option>
+							<option value="colectivo">Colectivo</option>
+						</select>
+					</div>
+	
+				</div>
+	
+	
+				<div class="row">
+					<label class="control-label col-sm-2" for="inputCantidadEntradas">Fecha
+						Inicio:</label>
+					<div class="col-md-3">
+						<div class="form-group">
+							<div class='input-group date' id='datetimepicker1'>
+								<input type='text' class="form-control" /> <span
+									class="input-group-addon"> <span
+									class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+					</div>
+	
+				</div>
+	
+				<div class="row">
+					<label class="control-label col-sm-2" for="inputCantidadEntradas">Fecha
+						Fin:</label>
+					<div class="col-md-3">
+						<div class="form-group">
+							<div class='input-group date' id='datetimepicker2'>
+								<input type='text' class="form-control" /> <span
+									class="input-group-addon"> <span
+									class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+					</div>
+	
+				</div>
+	
+	
+				<div class="row">
+					<label class="control-label col-sm-2" for="singleSelect">
+						Rondas: </label><br>
+		
+					<div class="control-label col-sm-2">
+						<select name="singleSelect" ng-model="eventoDeportivo.cantRondas">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+					</div>
+	
+				</div>
+	
+				<div class="row">
+					<label class="control-label col-sm-2" for="columna">Im&#225gen: </label>
+					<div class="col-sm-10">
+						<input id="file" name="file" type="file" file-model="imagenEventoDeportivo" />
+					</div>
+				</div>
+	
+				<div class="col-sm-offset-11 col-sm-2">
+					<button type="submit" ng-click="altaEventoDeportivo()" ng-disabled="deshabilitarForm()"
+						class="btn btn-success">Guardar</button>
+				</div>
+	
+			</div>
+	
+		</form>
+	</div>
+</div>
+	
