@@ -10,29 +10,23 @@
 		<div class="form-group">
 
 			<h1>Competencias Pendientes</h1>
-			<hr />
-		    <div ng-repeat="c in competencias">
-		        <div class="row" id="{{c.idCompetencia}}">
-		        
-		       		<div class="row">
+			
+		    <div ng-repeat="c in competencias" style="width: 82%;" >
+		        <div class="col-md-12" id="{{c.idCompetencia}}"  style="line-height:2em;background-color: white;border-radius:10px;padding:10px;margin-bottom: 5px; ">		        
+		       		<div class="row  col-md-12" style="width: 75%">
 	            		<h3>Competencia {{c.idCompetencia}}</h3>
-	            	</div>
-	            	
-	            	<div class="row">
+	            	</div>	            	
+	            	<div class="row col-md-12 " style="width: 75%">
 	            		<label>Ronda:</label>		N&#186; {{c.ronda}}
-            	 	</div>
-	            	 
-	            	<div class="row">
+            	 	</div>	            	 
+	            	<div class="row col-md-12" style="width: 75%">
 	            		<label>Deporte:</label>		{{c.nombreDeporte}} {{c.nombreDisciplina}} {{c.sexo}}
 <!-- 										   			{{c.tipoDeporte}} -->
 					 </div>
-		            
-					
-	             	<div class="row">
+	             	<div class="row col-md-12" style="width: 75%">
 	            		<label>Fecha:</label>		{{c.fecha  | date:'dd-MM-yyyy HH:mm'}} hs.
-		            </div>
-		            
-					<div class="row">
+		            </div>		            
+					<div class="row col-md-12" style="width: 75%">
 						<label>Lugar:</label>		{{c.estadio}}
 					</div>
 					
@@ -50,7 +44,7 @@
 							</a>
 						</div>
 					</div>
-		            <hr />
+		           
 		        </div>
 		    </div>
 		    
