@@ -101,7 +101,7 @@ angular.module('eventosSGEM')
 	    
 	    $scope.redirectNoticia = function(novedad){
 			
-			$state.go('Novedad', {tenant: $scope.nombreTenant,idnovedad:novedad.id});		
+			$state.go('Novedad', {tenant: $scope.tenant,idnovedad:novedad.id});		
 				 
 				
 		};

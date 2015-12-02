@@ -4,6 +4,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 .run(['dataFactory','$rootScope','$state','$auth',function(dataFactory,$rootScope, $state, $auth){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
 	  
+	$document.scrollTop(0, 0);  
     if(!$auth.isAuthenticated()){
     	
 //      if (next.templateUrl=='views/altaEvento.html' ) {
