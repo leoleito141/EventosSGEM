@@ -73,6 +73,7 @@
 					<ul class="nav navbar-nav" >
 						
 						<li> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
+						<li> <a ui-sref="medallero({tenant: tenant })" class="" >Medallero</a> </li>
 						<li> <a ui-sref="buscarDeportistas({tenant: tenant  })" >Deportistas</a> </li>
 						<li> <a ui-sref="listarEventosDeportivos({tenant: tenant  })" >Deportes</a> </li>
 						<li> <a ui-sref="listarComites({tenant: tenant })" >Delegaciones</a> </li>
@@ -110,7 +111,7 @@
 					          <ul class="dropdown-menu">
 					            <li><a ui-sref="formEdicionEvento.Paso1({tenant: tenant  })">Configurar Evento</a></li>
 					            <li><a ui-sref="usoSitio({tenant: tenant  })">Uso del sitio</a></li>
-					            <li><a ui-sref="formAltaCompetencia.Paso1({tenant: tenant  })">Alta competencia</a></li>
+					            <li><a ui-sref="formAltaCompetencia.Paso1({tenant: tenant  })">Crear competencia</a></li>
 					            <li><a ui-sref="altaEventoDeportivo({tenant: tenant  })">Crear Deportes</a></li>
 					            <li><a ui-sref="altaJuez({tenant: tenant  })">Crear Jueces</a></li>
 					            <li><a ui-sref="altaComite({tenant: tenant  })">Crear Delegaciones</a></li>
@@ -180,6 +181,7 @@
     <script  type="text/javascript" src="resources/angular/shared/angularUtils-pagination/dirPagination.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <script  type="text/javascript" src="resources/angular/shared/moment/locale/es.js"></script>
+    <script  type="text/javascript" src="resources/Others/smart-table/smart-table.min.js"></script>
 
     
     <!-- Modules -->
@@ -206,6 +208,7 @@
 	<script src="resources/defecto/js/controllers/perfilDeportistaCtrl.js"></script>
 	<script src="resources/defecto/js/controllers/listarEventosDeportivosCtrl.js"></script>
 	<script src="resources/defecto/js/controllers/comprasRealizadasCtrl.js"></script>
+	<script src="resources/defecto/js/controllers/medalleroCtrl.js"></script>
 	
     <!-- Services -->
     <script src="resources/defecto/js/services/myServices.js"></script>

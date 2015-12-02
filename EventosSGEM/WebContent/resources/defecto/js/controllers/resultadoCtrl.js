@@ -108,7 +108,7 @@ angular.module('eventosSGEM')
 		   $scope.estadistica.objeto = $scope.objetosCombo[0];
 		   $scope.estadistica.posicion = $scope.posiciones[0];
 		   $scope.actualizarFoto(); 
-		   
+		   $scope.cantParticipantes = $scope.objetosCombo.length == null ? 0 : $scope.objetosCombo.length;
 	   }else{
 		   $scope.mensajeValidacion = "No hay competencias!";
 	   }
@@ -116,7 +116,7 @@ angular.module('eventosSGEM')
    
    
    $scope.agregarEstadistica = function(){	 
-	   if(!$scope.habilitar()){
+	   if(!$scope.habilitarAceptar()){
 		   		   
 		   if($scope.competenciaSeleccionada.tipoDeporte == tipo_individual){
 			   var e = {};
@@ -160,11 +160,11 @@ angular.module('eventosSGEM')
 		   
 		   var indicePos = $scope.posiciones.indexOf($scope.estadistica.posicion);	   
 		   $scope.posiciones.splice(indicePos,1);// quito la posicion que ya tiene la estadistica.	
-		   		   	   
 		   if($scope.objetosCombo.length != 0){
 			   $scope.estadistica.objeto = $scope.objetosCombo[0];
 			   $scope.estadistica.posicion = $scope.posiciones[0];			   
 			   $scope.estadistica.datoInformativo = null;	   
+			   $scope.actualizarFoto();  	   
 		   }else{
 			   $scope.estadistica = {};
 		   }
@@ -207,13 +207,20 @@ angular.module('eventosSGEM')
 	   
    };
    
-   $scope.habilitar = function() {		  
+   $scope.habilitarAceptar = function() {		  
 	  if($scope.objetosCombo == undefined){
 		  return false;
 	  }
 	  return ($scope.objetosCombo.length <= 0) || 
   			 ($scope.estadistica.datoInformativo == null || $scope.estadistica.posicion == null || $scope.estadistica.objeto == null);	
    };
+   
+   $scope.habilitarFinalizar = function() {		  
+		  if($scope.objetosCombo == null || $scope.posiciones == null){
+			  return false;
+		  }
+		  return $scope.posiciones.length != 0 && $scope.objetosCombo.length != 0;	
+	};
    
    $scope.limpiarDatos = function(siguiente){
 	   if(!siguiente && $scope.estadisticas.length == 0){
@@ -223,6 +230,7 @@ angular.module('eventosSGEM')
 		   $scope.estadisticas = [];
 		   $scope.estadistica = {};
 		   $scope.imagenSeleccionada = {};
+		   $scope.cantParticipantes = 0;
 		   $state.go("altaResultado.paso1"); 
 	   }else if (siguiente){
 		   $scope.competenciaSeleccionada = {};	   

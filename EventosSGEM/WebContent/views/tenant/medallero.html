@@ -1,0 +1,66 @@
+<style>
+	.imagen-comite {
+		width : 5%;
+	}
+	
+	.imagen-medalla{
+		width : 30%;
+	}
+	
+	
+</style>
+
+
+<div id="PerfilWrapper" class="PerfilWrapper FullHeight" ng-init="cargarDatos()">
+	
+	<div class=" FormCustom" style="margin-left: 10%;margin-right: 10%;">
+
+		<div class="jumbotron text-center RoundedTop jumpbotrongb">
+		    <h1>Medallero</h1>   
+		</div>	
+			
+	
+	<table st-table="rowCollection" class="table table-striped">
+		<thead>
+		<tr>
+			<th>Posicion</th>
+			<th>Delegaci&#243;n</th>
+			<th>
+			<img class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro"> 
+			</th>
+			<th>
+			<img class="imagen-medalla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
+			</th>
+			<th>
+			<img class="imagen-medalla" ng-src="resources/defecto/img/bronce.png" alt="Bronce"> 
+			</th>
+			<th>Total</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="medalla in medallas">
+			<td>{{medalla.posicion}}</td>
+			<td>
+				<a ng-click="irPerfilComite(medalla.comiteID)">
+					<img class="imagen-comite" ng-src="{{medalla.foto}}" alt="no-image"> {{medalla.pais}}
+				</a>
+			</td>
+			<td>{{medalla.oro}}</td>
+			<td>{{medalla.plata}}</td>
+			<td>{{medalla.bronce}}</td>
+			<td><b>{{medalla.total}}</b></td>
+		</tr>
+		</tbody>
+	</table>
+
+
+
+	
+
+
+	
+	
+	</div>
+
+</div>
+	

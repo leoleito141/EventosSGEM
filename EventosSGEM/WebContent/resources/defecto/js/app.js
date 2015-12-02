@@ -419,6 +419,15 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 
 	    	}
 		}
+	}).state('medallero', {
+		url:'/:tenant/medallero',
+		templateUrl : 'views/tenant/medallero.html',
+		controller : 'MedalleroCtrl',
+		resolve: { 
+	    	dataTenant: function(dataFactory,$stateParams) {
+	    			return dataFactory.getDataTenant($stateParams.tenant);
+	    	}
+		}
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){

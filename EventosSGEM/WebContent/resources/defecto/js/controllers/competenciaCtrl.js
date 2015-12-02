@@ -189,8 +189,13 @@ angular.module('eventosSGEM')
 	      	});
 	      
 		  };  
-		  
-		  
+		  		  
+		  $scope.esUltimaRonda = function(){	
+			  if($scope.rondas == null || $scope.competencia.ronda == null){
+				  return false;
+			  }
+			  return $scope.rondas.length == $scope.competencia.ronda;
+		  };
 		 
 		  $scope.guardarCompetencia = function(sexo,estadio,cantEntradas,precioEntrada,fechaInicio,nombreDeporte,nombreDisciplina,ronda,juez,selection){
 			  
@@ -212,6 +217,7 @@ angular.module('eventosSGEM')
 			  $scope.datos.ronda = ronda;
 			  $scope.datos.juez = juez1;
 			  $scope.datos.deportistas = deportistas;
+			  $scope.datos.puesto = $scope.competencia.puesto;
 			  
 			  dataFactory.altaCompetencia($scope.datos)
 		     	.then(function (data, status, headers, config) {	              

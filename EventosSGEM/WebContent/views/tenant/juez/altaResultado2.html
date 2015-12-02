@@ -23,7 +23,7 @@
 					 </select>
 		   		</div>
 		   		<div>
-		   			<img class="imagen-eventoDeportivo" ng-src="{{imagenSeleccionada}}" alt="no-image">
+		   			<img ng-show="habilitarFinalizar()" class="imagen-eventoDeportivo" ng-src="{{imagenSeleccionada}}" alt="no-image">
 		   		</div>
 			</div>
 			
@@ -55,12 +55,12 @@
 			
 			<div class="row">
 	            <div class="col-sm-offset-8 col-sm-1">
-					<button type="submit" ng-disabled="estadisticas.length == 0" ng-click="altaResultado()" class="btn btn-default btn-danger">Finalizar</button>
+					<button type="submit" ng-disabled="habilitarFinalizar()" ng-click="altaResultado()" class="btn btn-default btn-danger">Finalizar</button>
 	            	<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />
 	        	</div>
 			
 	            <div class="col-sm-offset-1 col-sm-1">
-		            <a ng-disabled="habilitar()" ng-click="agregarEstadistica()" class="btn btn-default"> 
+		            <a ng-disabled="habilitarAceptar()" ng-click="agregarEstadistica()" class="btn btn-default"> 
 			            Aceptar
 		            </a>        
 					
