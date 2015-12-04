@@ -72,12 +72,12 @@
 				<div id="collapseOne" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav" >
 						
-						<li> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
-						<li> <a ui-sref="medallero({tenant: tenant })" class="" >Medallero</a> </li>
-						<li> <a ui-sref="buscarDeportistas({tenant: tenant  })" >Deportistas</a> </li>
-						<li> <a ui-sref="listarEventosDeportivos({tenant: tenant  })" >Deportes</a> </li>
-						<li> <a ui-sref="listarComites({tenant: tenant })" >Delegaciones</a> </li>
-						<li> <a ui-sref="Galeria({tenant: tenant  })" >Galeria</a> </li>
+						<li ng-if="!soyJuez() && !soyOrganizador() && !soyComiteOlimpico()"> <a ui-sref="perfilEvento({tenant: tenant })" class="" >{{tenant}}</a> </li>
+						<li ng-if="!soyJuez() && !soyOrganizador() && !soyComiteOlimpico()"> <a ui-sref="medallero({tenant: tenant })" class="" >Medallero</a> </li>
+						<li ng-if="!soyJuez() && !soyOrganizador() && !soyComiteOlimpico()"> <a ui-sref="buscarDeportistas({tenant: tenant  })" >Deportistas</a> </li>
+						<li ng-if="!soyJuez() && !soyOrganizador() && !soyComiteOlimpico()"> <a ui-sref="listarEventosDeportivos({tenant: tenant  })" >Deportes</a> </li>
+						<li ng-if="!soyJuez() && !soyOrganizador() && !soyComiteOlimpico()"> <a ui-sref="listarComites({tenant: tenant })" >Delegaciones</a> </li>
+						<li ng-if="!soyJuez() && !soyOrganizador() && !soyComiteOlimpico()"> <a ui-sref="Galeria({tenant: tenant  })" >Galeria</a> </li>
 						
 						
 						<li ng-if="chequearComite()" class="dropdown">

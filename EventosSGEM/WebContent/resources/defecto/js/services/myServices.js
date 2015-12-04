@@ -272,5 +272,9 @@
         		{headers: { 'Rol' : 'USUARIO_COMUN'}}); 
     };  
     
+    dataFactory.obtenerBalance = function(){
+        return $http.get(dominio+'UsuarioService/obtenerBalance/',
+        		{headers: { 'Rol' : 'COMITE_OLIMPICO'}}); 
+    };  
     return dataFactory;
 }]); 

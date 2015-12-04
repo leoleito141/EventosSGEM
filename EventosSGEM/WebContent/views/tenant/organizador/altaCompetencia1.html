@@ -4,7 +4,7 @@
 		<div class="row">
 			<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
 				Sexo: </label>
-			<div class="control-label col-sm-2">
+			<div class="control-label col-sm-4">
 				<label>
 					<input type="radio" ng-model="competencia.sexo" ng-change="obtenerDeportes(competencia.sexo)" value="Masculino"> Masculino
 				</label> 
@@ -40,15 +40,15 @@
 	 		</div>
 		</div>
 		
-		<div ng-if="esUltimaRonda()" class="row">
+		<div ng-show="esUltimaRonda()" class="row  hide-fade"  >
 			<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-				Puesto: </label>
-			<div class="control-label col-sm-2">
+				Define: </label>
+			<div class="control-label col-sm-4  " >
 				<label>
-					<input type="radio" ng-model="competencia.puesto" value="1"> 1
+					<input type="radio" ng-model="competencia.puesto" value="1"> 1er Puesto
 				</label> 
 				<label> 
-					<input type="radio" ng-model="competencia.puesto" value="3"> 3
+					<input type="radio" ng-model="competencia.puesto" value="3"> 3er Puesto
 				</label><br>
 			</div>
 		</div>

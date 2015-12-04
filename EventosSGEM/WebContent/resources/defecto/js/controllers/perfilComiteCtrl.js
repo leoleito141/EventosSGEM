@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('PerfilComiteCtrl',['$scope','$state','$stateParams','dataFactory','dataTenant', 'objetos',
-                            function($scope, $state, $stateParams, dataFactory, dataTenant, objetos) {
+  .controller('PerfilComiteCtrl',['$scope','$state','$auth','$stateParams','dataFactory','dataTenant', 'objetos',
+                            function($scope, $state, $auth, $stateParams, dataFactory, dataTenant, objetos) {
 	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
 		  
 		  $('.PerfilNews').css({
@@ -25,6 +25,9 @@ angular.module('eventosSGEM')
 			  $scope.rutaLogo = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
 			  listarDeportistas(dataTenant.tenantId,parseInt($stateParams.comiteId));
 			  obtenerNovedades(dataTenant.tenantId,parseInt($stateParams.comiteId));
+			  if((JSON.parse(localStorage.getItem("dataUsuario"))).tipoUsuario == "ComiteOlimpico" && (JSON.parse(localStorage.getItem("dataUsuario"))).comiteId == 2){
+				  obtenerBalance();
+		  	  }
 		  }else{			
 			  dataFactory.obtenerComite(dataTenant.tenantId,$stateParams.comiteId)
 			  .success(function (response, status, headers, config) {
@@ -32,6 +35,9 @@ angular.module('eventosSGEM')
 				  $scope.rutaLogo = $scope.comite.logo.ruta.substr($scope.comite.logo.ruta.indexOf("resources"));
 				  listarDeportistas(dataTenant.tenantId,parseInt($stateParams.comiteId));
 				  obtenerNovedades(dataTenant.tenantId,parseInt($stateParams.comiteId));
+				  if((JSON.parse(localStorage.getItem("dataUsuario"))).tipoUsuario == "ComiteOlimpico" && (JSON.parse(localStorage.getItem("dataUsuario"))).comiteId == 2){
+					  obtenerBalance();
+			  	  }
 	      	  }).catch(function(error) {
 		      		if(error.status = 404){
 		      			$scope.mensajeValidacion = "Error al obtener comites olimpico, no existe el comite.";
@@ -106,5 +112,27 @@ angular.module('eventosSGEM')
 				
 		};
 	    
+		function obtenerBalance(){
+			dataFactory.obtenerBalance()
+			  .success(function (response, status, headers, config) {
+				  console.log(response);
+				  $scope.balance = response;
+				  
+		  }).catch(function(error) {
+				$scope.mensajeValidacion = "Error al obtener Balance";
+			});
+				
+		}
+		
+		$scope.mostrarBoton = function(){
+			return $auth.isAuthenticated() && (JSON.parse(localStorage.getItem("dataUsuario"))).tipoUsuario == "UsuarioComun"; 
+		};
 
+		
+		$scope.mostrarBalance = function(){
+			return $auth.isAuthenticated() && (JSON.parse(localStorage.getItem("dataUsuario"))).comiteId == 2; 
+		};
+		
+		
+		
   }]);

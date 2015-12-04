@@ -1,38 +1,4 @@
 
-<style>
-.archive-item.ng-enter-stagger,
-.archive-item.ng-leave-stagger,
-.archive-item.ng-move-stagger {
-    
-    transition-delay:0.1s;
-}
-.archive-item.ng-enter,
-.archive-item.ng-leave,
-.archive-item.ng-move {
-    transition: transform 0.3s linear, opacity 0.3s linear, color 0.6s linear;
-    
-}
-
-.archive-item.ng-enter{
-    transition-delay: 1.3s;
-    height: 0;
-}
-
-.archive-item.ng-leave.ng-leave-active,
-.archive-item.ng-enter,
-.archive-item.ng-move {
-  opacity:0;
-  transform: scale(0.8);
-}
-
-.archive-item.ng-leave,
-.archive-item.ng-move.ng-move-active,
-.archive-item.ng-enter.ng-enter-active {
-  opacity:1;
-  
-  transform: scale(1);
-}
-</style>
 <div class="col-md-12 FormCustom" style="float:left;">
   <div class="alert alert-info col-md-12" style="float: left;">
   
@@ -75,7 +41,7 @@
     </form>
     <div class="col-md-12 ">
     
-	    <div class="row col-md-6 archive-item" style="padding:2%;"   dir-paginate="depo in listDeportistas | orderBy:sortType:sortReverse | filter:searchNombre | itemsPerPage:2" ng-click="deportistaSeleccionado(depo)">
+	    <div class="row col-md-6 repeat-animation" style="padding:2%;"   dir-paginate="depo in listDeportistas | orderBy:sortType:sortReverse | filter:searchNombre | itemsPerPage:2" ng-click="deportistaSeleccionado(depo)">
 				<div class="col-md-12" style="background-color: #f2f2f2;border-radius: 5px;">
 					<div class="col-md-4 text-center">
 		              <img class="avatar avatar-original" style="-webkit-user-select:none; 

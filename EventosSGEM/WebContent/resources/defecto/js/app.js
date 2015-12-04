@@ -1,7 +1,7 @@
 'use strict';
 //,'ui.bootstrap.datetimepicker'
 angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart','ngAnimate','duScroll','angularUtils.directives.dirPagination'])
-.run(['dataFactory','$rootScope','$state','$auth',function(dataFactory,$rootScope, $state, $auth){ // esto se ejecuta en tiempo de ejecucion,
+.run(['dataFactory','$rootScope','$state','$auth','$document',function(dataFactory,$rootScope, $state, $auth,$document){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
 	  
 	$document.scrollTop(0, 0);  
