@@ -103,16 +103,5 @@ angular.module('eventosSGEM')
 	    	return (JSON.parse(localStorage.getItem("dataUsuario")) != null && $auth.isAuthenticated() && JSON.parse(localStorage.getItem("dataUsuario")).tipoUsuario == usuario_organizador);	    	
 	 };
 	 
-	 $scope.soyJuez = function() {
-		 return $auth.isAuthenticated() && (JSON.parse(localStorage.getItem("dataUsuario"))).tipoUsuario == usuario_juez;
-	 }
-	 
-	 $scope.soyOrganizador = function() {
-		 return $auth.isAuthenticated() && (JSON.parse(localStorage.getItem("dataUsuario"))).tipoUsuario == usuario_organizador;
-	 }
-	 
-	 $scope.soyComiteOlimpico = function() {
-		 return $auth.isAuthenticated() && (JSON.parse(localStorage.getItem("dataUsuario"))).tipoUsuario == usuario_comite;
-	 }
 
   }]);

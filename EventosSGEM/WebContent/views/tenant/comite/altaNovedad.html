@@ -2,6 +2,8 @@
 	
 	<div class="PerfilNews FormCustom">
 	
+	<div class="FormCustom">
+	
 	<div class="jumbotron text-center RoundedTop jumpbotrongb">
 	    <h1>Nueva Novedad</h1>   
 	</div>
@@ -13,22 +15,22 @@
 							<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
 						</div>		
 			<div class="row">
-				<label class="col-sm-offset-1 control-label col-sm-2" for="titulo">T&iacutetulo :</label>
-				<div class="col-sm-9">
+				<label class="col-sm-offset-1 control-label col-sm-3" for="titulo">T&iacutetulo :</label>
+				<div class="col-sm-8">
 					<input type="text" id="titulo" placeholder="Mi T&iacute;tulo" ng-model="novedad.titulo"
 						class="form-control" required>
 				</div>
 			</div>
 			
 			<div class="row">
-				<label class="col-sm-offset-1 control-label col-sm-2" for="descripcion">Descripci&oacuten:</label>
-				<div class="col-sm-9">
+				<label class="col-sm-offset-1 control-label col-sm-3" for="descripcion">Descripci&oacuten:</label>
+				<div class="col-sm-8">
 					<textarea id="descripcion" ng-model="novedad.descripcion" rows="10" cols="30" placeholder="Descripci&oacute;n" class="form-control" required></textarea>
 				</div>
 			</div>
 			
 			<div class="row">
-				<label class="col-sm-offset-1 control-label col-sm-2" for="columna">Columna:</label>
+				<label class="col-sm-offset-1 control-label col-sm-3" for="columna">Columna:</label>
 				<div class="col-sm-1">
 				 	<select id="selectColumna" name="selectColumna" ng-model="dataColumna.selectedOption" 
 				 	 	ng-options="valor.valor for valor in dataColumna.valores track by valor.id"
@@ -38,14 +40,14 @@
 			</div>	
 			
 			<div class="row">
-			<label class="col-sm-offset-1 control-label col-sm-2" for="columna">Seleccione la imagen: </label>
-				<div class="col-sm-9">
+			<label class="col-sm-offset-1 control-label col-sm-3" for="columna">Seleccione la imagen: </label>
+				<div class="col-sm-8">
 					<input id="file" name="file" type="file" file-model="myFile"/>
 				</div>				
 			</div>
 			
 			<div class="row">
-	            <div class="col-sm-offset-10 col-sm-4">
+	            <div class="col-sm-offset-9 col-sm-4">
 	           		<a ui-sref="main({ tenant: nombreTenant })" class="btn btn-danger">Cancelar</a>
 					<button type="submit" ng-disabled="deshabilitarFormNovedad()" ng-click="altaNovedad()" class="btn btn-success">Aceptar</button>
 	            	<img ng-if="cargando" src="/resources/defecto/img/ajax_loader_gray_32.gif" />
@@ -56,6 +58,7 @@
 		</div>
 
 	</form>
+	</div>
 	</div>
 </div>
 <style>

@@ -1,8 +1,8 @@
 .jumpbotrongb{
 	
 	
-	/*background-image: url('../img/jumpBG.jpg');*/
-	background-image: url('../img/bg2.jpg');
+ background-image: url('../img/jumpBG.jpg');
+	/*background-image: url('../img/bg2.jpg');*/
 /*	background-image: url('../img/bg1.jpg');*/
 	
 
@@ -102,6 +102,7 @@
 	padding:2%;
 	line-height: 2px;
 	opacity: 0.97;	
+	min-height: 500px!Important;
 }
 .form-group > div {
 	

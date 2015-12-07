@@ -24,7 +24,12 @@
 		width:50%;
 		height:50%;
 	}
+	.item-reporte:hover{
 	
+		transform: scale(1.1);
+		transition: all .2s ease-in-out;
+	
+	}
 	
 </style>
 
@@ -86,16 +91,28 @@
 					
 			<div ng-repeat="d in deportistas">
 		<a ng-click="deportistaSeleccionado(d)">
-	        <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}">
+		  <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}">
+				 <div class="thumbnail" >
+				     <img class="imagen-deportista" alt="no-image" ng-src="{{d.foto.ruta}}">
+			     	<div class="caption">
+				      <h3>{{d.nombre}} {{d.apellido}}</h3>			
+			        </div>
+		        </div>
+			</div>
+		</a>
+			  </div>
+		
+<!-- 	        <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}"> -->
 	        
-	       		<div>
-            		<h3>{{d.nombre}} {{d.apellido}}</h3>
+<!-- 	       		<div> -->
+<!--             		<h3>{{d.nombre}} {{d.apellido}}</h3> -->
             	
-            		<img class="imagen-deportista" alt="no-image" ng-src="{{d.foto.ruta}}">
-           	 	</div>
-            	 </a>
-	            <hr /> 
-	        </div>
+<!--             		<img class="imagen-deportista" alt="no-image" ng-src="{{d.foto.ruta}}"> -->
+<!--            	 	</div> -->
+<!--             	 </a> -->
+<!--             	 </div> -->
+<!-- 	            <hr />  -->
+	      
 						
 			</div>			
 		</div>

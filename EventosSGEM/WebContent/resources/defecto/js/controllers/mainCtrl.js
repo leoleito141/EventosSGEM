@@ -22,11 +22,7 @@ angular.module('eventosSGEM')
 	  });
   
   }  
- if( TenantLoader.getTenant()){
-	 
-	 localStorage.removeItem('tenantActual');	
-	 TenantLoader.setTenant(false);
- }
+
   
   
   $scope.facebookUrl=(dataTenant.widgetFacebook!=null)? dataTenant.widgetFacebook :"" ;               //"Facebook";
