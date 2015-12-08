@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes','$window','$document',
-                                     function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes, $window, $document) {
+  .controller('ResultadoCtrl', ['$scope','$state','$auth','dataFactory','dataTenant','dataMensajes',
+                                     function ($scope, $state, $auth, dataFactory, dataTenant,dataMensajes) {
  
 	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
 		  
@@ -266,26 +266,5 @@ angular.module('eventosSGEM')
 	   
    }
 
-   $window.onscroll = function(){
-	   var verticalCenter = Math.floor(window.innerHeight/2);	   
-	   if ($window.pageYOffset >= verticalCenter) {
-	        $('.backToTop:hidden').stop(true, true).fadeIn();
-	    } else {
-	        $('.backToTop').stop(true, true).fadeOut();
-	    }
-//	    $scope.$digest()
-   };
-   
-   // documentacion: https://github.com/oblador/angular-scroll
-   // importar $document
-   $scope.goTop = function(){
-	   var top = 0;
-	   var duration = 2000; //milliseconds 
-	   
-	   //Scroll to the exact position 
-	   $document.scrollTop(top, duration).then(function() {
-	     console && console.log('You just scrolled to the top!');
-	   });
-   }
-	  
+  
   }]);

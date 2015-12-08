@@ -7,7 +7,9 @@
 		width : 30%;
 	}
 	
-
+	.centrado { 
+		text-align:center;
+	}
 	
 </style>
 
@@ -24,32 +26,32 @@
 	<table st-table="rowCollection" class="table table-striped">
 		<thead>
 		<tr>
-			<th>Posicion</th>
+			<th class="centrado">Posicion</th>
 			<th>Delegaci&#243;n</th>
-			<th>
+			<th class="centrado">
 			<img class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro"> 
 			</th>
-			<th>
+			<th class="centrado">
 			<img class="imagen-medalla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
 			</th>
-			<th>
+			<th class="centrado">
 			<img class="imagen-medalla" ng-src="resources/defecto/img/bronce.png" alt="Bronce"> 
 			</th>
-			<th>Total</th>
+			<th class="centrado">Total</th>
 		</tr>
 		</thead>
 		<tbody>
-		<tr  ng-repeat="medalla in medallas">
-			<td>{{medalla.posicion}}</td>
+		<tr ng-repeat="medalla in medallas">
+			<td class="centrado">{{medalla.posicion}}</td>
 			<td>
 				<a ng-click="irPerfilComite(medalla.comiteID)">
 					<img class="imagen-comite" ng-src="{{medalla.foto}}" alt="no-image"> {{medalla.pais}}
 				</a>
 			</td>
-			<td>{{medalla.oro}}</td>
-			<td>{{medalla.plata}}</td>
-			<td>{{medalla.bronce}}</td>
-			<td><b>{{medalla.total}}</b></td>
+			<td class="centrado">{{medalla.oro}}</td>
+			<td class="centrado">{{medalla.plata}}</td>
+			<td class="centrado">{{medalla.bronce}}</td>
+			<td class="centrado"><b>{{medalla.total}}</b></td>
 		</tr>
 		</tbody>
 	</table>

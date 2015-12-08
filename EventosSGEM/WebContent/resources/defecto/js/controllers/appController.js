@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('AppCtrl', ['$scope','$state','$auth', function ($scope,$state,$auth) {
+  .controller('AppCtrl', ['$scope','$state','$auth','$window','$document', function ($scope,$state,$auth,$window,$document) {
   
    const usuario_comun = "UsuarioComun";
    const usuario_juez = "Juez";
@@ -102,6 +102,30 @@ angular.module('eventosSGEM')
 	 $scope.chequearOrganizador = function() {		 		 
 	    	return (JSON.parse(localStorage.getItem("dataUsuario")) != null && $auth.isAuthenticated() && JSON.parse(localStorage.getItem("dataUsuario")).tipoUsuario == usuario_organizador);	    	
 	 };
-	 
-
+	
+	 angular.element(document).ready(function () {
+	        	    
+		 $window.onscroll = function(){
+			   var verticalCenter = Math.floor(window.innerHeight/2);	   
+			   if ($window.pageYOffset >= verticalCenter) {
+			        $('.backToTop:hidden').stop(true, true).fadeIn();
+			    } else {
+			        $('.backToTop').stop(true, true).fadeOut();
+			    }
+	//		    $scope.$digest()
+		   };
+		   
+		   // documentacion: https://github.com/oblador/angular-scroll
+		   // importar $document
+		   $scope.goTop = function(){
+			   var top = 0;
+			   var duration = 2000; //milliseconds 
+			   
+			   //Scroll to the exact position 
+			   $document.scrollTop(top, duration).then(function() {
+			     console && console.log('YA ESCROLIE PAPEI!');
+			   });
+		   }
+		   
+	 });
   }]);

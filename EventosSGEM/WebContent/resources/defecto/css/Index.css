@@ -66,6 +66,8 @@
     background-color: #e7e7e7;
 }
 
-
+.backToTop{
+	position:fixed; right: 2%; bottom: 2%; display:none;
+}
 
 
