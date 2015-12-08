@@ -1,69 +1,72 @@
-<form role="form" >
-		<div class="form-group" style="line-height:2em">
-		
+<form role="form">
+	<div class="form-group" style="line-height: 2em">
+
 		<div class="row">
-			<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-				Sexo: </label>
+			<label class="col-sm-offset-1 control-label col-sm-2"
+				for="singleSelect"> Sexo: </label>
 			<div class="control-label col-sm-4">
-				<label>
-					<input type="radio" ng-model="competencia.sexo" ng-change="obtenerDeportes(competencia.sexo)" value="Masculino"> Masculino
-				</label> 
-				<label> 
-					<input type="radio" ng-model="competencia.sexo" ng-change="obtenerDeportes(competencia.sexo)" value="Femenino"> Femenino
+				<label> <input type="radio" ng-model="competencia.sexo"
+					ng-change="obtenerDeportes(competencia.sexo)" value="Masculino">
+					Masculino
+				</label> <label> <input type="radio" ng-model="competencia.sexo"
+					ng-change="obtenerDeportes(competencia.sexo)" value="Femenino">
+					Femenino
 				</label><br>
 			</div>
 		</div>
-		
+
 		<div class="row">
-		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-				Deporte:    </label>
-				<div class="control-label col-sm-2">
-		   <select  ng-model="competencia.nombreDeporte" ng-options="d as d for d in deportes" ng-change="obtenerDisciplina(competencia.sexo, competencia.nombreDeporte)"></select>
-		   		</div>
+			<label class="col-sm-offset-1 control-label col-sm-2"
+				for="singleSelect"> Deporte: </label>
+			<div class="control-label col-sm-2">
+				<select ng-model="competencia.nombreDeporte"
+					ng-options="d as d for d in deportes"
+					ng-change="obtenerDisciplina(competencia.sexo, competencia.nombreDeporte)"></select>
+			</div>
 		</div>
-		
+
 		<div class="row">
-		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-				Disciplina:    </label>
-				<div class="control-label col-sm-2">
-		  	  <select ng-model="competencia.nombreDisciplina" ng-options="d as d for d in disciplinas" ng-change="obtenerRondas(competencia.sexo,competencia.nombreDeporte,competencia.nombreDisciplina)"></select>
-	
-	 		</div>
+			<label class="col-sm-offset-1 control-label col-sm-2"
+				for="singleSelect"> Disciplina: </label>
+			<div class="control-label col-sm-2">
+				<select ng-model="competencia.nombreDisciplina"
+					ng-options="d.nombreDisciplina as d.nombreDisciplina for d in disciplinas"
+					ng-change="obtenerRondas(competencia.sexo,competencia.nombreDeporte,competencia.nombreDisciplina)"></select>
+
+			</div>
 		</div>
-		
-			<div class="row">
-		<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-				Ronda:    </label>
-				<div class="control-label col-sm-2">
-		  	  <select ng-model="competencia.ronda" ng-options="r as r for r in rondas"  ng-change="obtenerPuestos()"></select>
-	
-	 		</div>
+
+		<div class="row">
+			<label class="col-sm-offset-1 control-label col-sm-2"
+				for="singleSelect"> Ronda: </label>
+			<div class="control-label col-sm-2">
+				<select ng-model="competencia.ronda"
+					ng-options="r as r for r in rondas" ng-change="obtenerPuestos()"></select>
+
+			</div>
 		</div>
-		
-		<div ng-show="esUltimaRonda()" class="row  hide-fade"  >
-			<label class="col-sm-offset-1 control-label col-sm-2" for="singleSelect">
-				Define: </label>
-			<div class="control-label col-sm-4  " >
-				<label>
-					<input type="radio" ng-model="competencia.puesto" value="1"> 1er Puesto
-				</label> 
-				<label> 
-					<input type="radio" ng-model="competencia.puesto" value="3"> 3er Puesto
+
+		<div ng-show="esUltimaRonda()" class="row  hide-fade">
+			<label class="col-sm-offset-1 control-label col-sm-2"
+				for="singleSelect"> Define: </label>
+			<div class="control-label col-sm-4  ">
+				<label> <input type="radio" ng-model="competencia.puesto"
+					value="1"> 1er Puesto
+				</label> <label> <input type="radio" ng-model="competencia.puesto"
+					value="3"> 3er Puesto
 				</label><br>
 			</div>
 		</div>
-		
-		
+
+
 		<div class="row">
-	<md-button ng-click="obtenerDeportistas(competencia.sexo,competencia.nombreDeporte,competencia.nombreDisciplina)" 
-			  >
-	<md-button ng-click="obtenerJueces()"  >
-	
-		<a ui-sref="formAltaCompetencia.Paso2"	class="btn btn-block btn-success"> 
-		Siguiente <span class="glyphicon glyphicon-circle-arrow-right"></span>
-		</a>
-	</md-button>
-	
-	</md-button>
+			<md-button
+				ng-click="paso2()">
+			 <a
+				class="btn btn-block btn-success"> Siguiente <span
+				class="glyphicon glyphicon-circle-arrow-right"></span>
+			</a> </md-button>
 		</div>
-		<div class="row"></form>
+		
+	<div class="row">
+</form>

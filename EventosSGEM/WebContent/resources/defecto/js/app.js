@@ -3,9 +3,13 @@
 angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlechart','ngAnimate','duScroll','angularUtils.directives.dirPagination'])
 .run(['dataFactory','$rootScope','$state','$auth','$document',function(dataFactory,$rootScope, $state, $auth,$document){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
-	  
-	$document.scrollTop(0, 0);  
-    if(!$auth.isAuthenticated()){
+	
+	  if (next.templateUrl != 'views/tenant/organizador/altaCompetencia1.html' && next.templateUrl != 'views/tenant/organizador/altaCompetencia2.html' && next.templateUrl != 'views/tenant/organizador/altaCompetencia3.html' ) {
+	   	  $document.scrollTop(0, 0); 
+	  } 
+    
+	
+	if(!$auth.isAuthenticated()){
     	
 //      if (next.templateUrl=='views/altaEvento.html' ) {
 //       	  event.preventDefault();

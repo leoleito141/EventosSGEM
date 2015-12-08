@@ -11,7 +11,7 @@ angular.module('eventosSGEM')
 	  }
 	  $scope.deportes = {};
 	  
-	  $scope.disciplinas = {};
+	  $scope.disciplinas = [];
 	  
 	  $scope.rondas = {};
 	  
@@ -78,8 +78,9 @@ angular.module('eventosSGEM')
               console.log(headers);
               console.log(config);
               
-              $scope.disciplinas = response;
-              
+              for(var i = 0; i<response.length ; i++){
+            	  $scope.disciplinas.push(response[i].nombreDisciplina);
+              }
               $scope.nombreDisciplina = $scope.disciplinas [0];
 
       	}).catch(function(error) {

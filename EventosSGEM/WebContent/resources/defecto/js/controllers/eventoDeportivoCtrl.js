@@ -13,18 +13,23 @@ angular.module('eventosSGEM')
 	  
 	  }
 	  
+	  var fechaInicio = new Date(dataTenant.fechaInicio);
+	  var fechaFin = new Date(dataTenant.fechaFin);
+	 
 	  $scope.$on('$viewContentLoaded' , function(){
           $('#datetimepicker2').datetimepicker({
-        	  locale: 'es'	 
-        	  
+        	  locale: 'es',
+        	  minDate: fechaInicio,
+        	  maxDate: fechaFin      	  
         	});
           $("#datetimepicker2").on("dp.change", function (e) {
         	  $scope.eventoDeportivo.fechaFin = e.date;
               
           });
           $('#datetimepicker1').datetimepicker({
-        	  locale: 'es'
-        	  
+        	  locale: 'es',
+        	  minDate: fechaInicio,
+        	  maxDate: fechaFin        	  
         	});
           $("#datetimepicker1").on("dp.change", function (e) {
         	  $scope.eventoDeportivo.fechaInicio = e.date;

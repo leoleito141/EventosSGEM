@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('competenciaCtrl', ['$scope','dataFactory','$state','dataTenant', function ($scope,dataFactory,$state,dataTenant) {
-	   
+  .controller('competenciaCtrl', ['$scope','dataFactory','$state','dataTenant','$document',
+                                  function ($scope,dataFactory,$state,dataTenant,$document) {
+	   	  
 	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
 		  
 		  $('.PerfilNews').css({
@@ -10,38 +11,65 @@ angular.module('eventosSGEM')
 		  });
 	  
 	  }
-	  
 	  $scope.nombreTenant = dataTenant.nombre_url;
 	  $scope.competencia={};
 	  
 	  $scope.deportes = {};
 	  
-	  $scope.disciplinas = {};
+	  $scope.disciplinas = [];
 	  
 	  $scope.rondas = {};
 	  
 	  $scope.deportistas = {};
 	  
-	  $scope.$on('$viewContentLoaded' , function(){
-         
-          $('#datetimepicker1').datetimepicker({
-        	  locale: 'es'
-        	  
-        	});
-          $("#datetimepicker1").on("dp.change", function (e) {
-        	  $scope.competencia.fechaInicio = e.date;
-              
-          });
-          
-          
-
-	  });
-	 	    
+	  $scope.nombreDisciplinas = {}
+	  $scope.deporteSeleccionado = {};
+	  $scope.fechaInicio = {};
+	  $scope.fechaFin = {};
+	  
+//	  $scope.$on('$viewContentLoaded' , function(){
+//         
+//          $('#datetimepicker1').datetimepicker({
+//        	  locale: 'es'     	  
+//        	});
+//          $("#datetimepicker1").on("dp.change", function (e) {
+//        	  $scope.competencia.fechaInicio = e.date;
+//              
+//          });
+//          
+//          
+//
+//	  });
+	  
+	  $scope.paso1 = function(){
+		  $state.go('formAltaCompetencia.Paso1', { tenant: $scope.nombreTenant } );
+		  var someElement = angular.element(document.querySelector('.coolbtn'))
+		  $document.scrollToElement(someElement, 30, 2000);
+	  }   
+	  
+	  $scope.paso2 = function(){
+		  $scope.obtenerDeportistas($scope.competencia.sexo,$scope.competencia.nombreDeporte,$scope.competencia.nombreDisciplina);
+		  $scope.obtenerJueces();
+		  
+		  $state.go('formAltaCompetencia.Paso2', { tenant: $scope.nombreTenant } );
+		  var someElement = angular.element(document.querySelector('.coolbtn'))
+		  $document.scrollToElement(someElement, 30, 2000);
+	  }   
+	  
+	  $scope.paso3 = function(){
+		  $state.go('formAltaCompetencia.Paso3', { tenant: $scope.nombreTenant } );
+		  var someElement = angular.element(document.querySelector('.coolbtn'))
+		  $document.scrollToElement(someElement, 30, 2000);
+	  }   
+	  
 	  $scope.obtenerDeportes = function(sexo) {
 		  
 		  
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
+		  
+		  $scope.disciplinas = [];
+		  $scope.competencia.nombreDeporte = {};
 		  
 		  dataFactory.listarDeportes(dataTenant.tenantId,sexo)
 		  .success(function (response, status, headers, config) {
@@ -52,7 +80,7 @@ angular.module('eventosSGEM')
               
               $scope.deportes = response;
               
-              $scope.nombreDeporte = $scope.deportes[0];
+//              $scope.nombreDeporte = $scope.deportes[0].nombreDisciplina;
 
       	}).catch(function(error) {
       		console.log(error);
@@ -61,6 +89,7 @@ angular.module('eventosSGEM')
       
 	  };
 	  
+	
 	  $scope.obtenerDisciplina = function(sexo, nombreDeporte) {
 		    
 		  console.log(dataTenant.tenantId);
@@ -76,9 +105,9 @@ angular.module('eventosSGEM')
               console.log(headers);
               console.log(config);
               
-              $scope.disciplinas = response;
-              
-              $scope.nombreDisciplina = $scope.disciplinas [0];
+              $scope.disciplinas = response;              
+            
+//              $scope.nombreDisciplina = $scope.disciplinas[0].nombreDisciplina;
 
       	}).catch(function(error) {
       		console.log(error);
@@ -87,12 +116,33 @@ angular.module('eventosSGEM')
       
 	  };  
 	  
+	  $scope.initCalendar = function(){
+		  var fechaInicio = $scope.fechaInicio;
+		  var fechFin = $scope.fechaFin;
+		  $('#datetimepicker1').datetimepicker({
+        	  locale: 'es',
+        	  minDate: fechaInicio,
+        	  maxDate: fechFin   
+        	});
+          $("#datetimepicker1").on("dp.change", function (e) {
+        	  $scope.competencia.fechaInicio = e.date;
+              
+          });
+	  }
+	  
 	  $scope.obtenerRondas = function(sexo, nombreDeporte,nombreDisciplina) {
 		    
+		  
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
 		  console.log(nombreDeporte);
-		  
+
+		  for(var i =0; i < $scope.disciplinas.length ; i++){
+			  if($scope.disciplinas[i].nombreDisciplina == nombreDisciplina){
+				 $scope.fechaInicio = new Date($scope.disciplinas[i].fechaInicio);
+				 $scope.fechaFin = new Date($scope.disciplinas[i].fechaFin);
+			  }
+		  }
 		  
 		  
 		  dataFactory.listarRondas(dataTenant.tenantId,sexo,nombreDeporte,nombreDisciplina)
@@ -139,11 +189,6 @@ angular.module('eventosSGEM')
               
               $scope.selectDeportistas = $scope.deportistas [0];
               
-              
-              
-              
-              
-
       	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");
