@@ -21,19 +21,20 @@
 		<div class="row">
 			<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
 		</div>
-		
-		
-		<div>
-	<!-- 		<div class="col-md-3 ImagenPerfil">  -->
-	<!-- 			<img ng-src="{{rutaFoto}}" alt="no-image" style="width:100%;max-height:100%;" /> -->
-	<!-- 		</div> -->
-			
-			<div class="col-md-12 contenedor-titulo" style="text-align: center;">
+				
+		<div>					
+			<div class="col-md-12 contenedor-titulo" style="text-align:center;">				
 				<span class="titulo-evento" ng-bind="nombreDisciplina"></span>
-			</div>				
-			
+				<div> 
+					<img ng-src="{{disciplina.foto}}" alt="no-image" style="width:15%;max-height:15%;" />
+				</div>	
+			</div>			
 		</div>
 	
+		<div class="col-sm-12 " style="text-align:center">
+			Del <span style="font-weight:bold">{{disciplina.fechaInicio  | date:'dd'}} de {{disciplina.fechaInicio  | date:'MMMM'}} de {{disciplina.fechaInicio  | date:'yyyy'}}</span> al <span style="font-weight:bold">{{disciplina.fechaFin  | date:'dd'}} de {{disciplina.fechaFin  | date:'MMMM'}} de {{disciplina.fechaFin  | date:'yyyy'}}</span> 
+		</div>
+		
 		<form id="perfilDisciplina" role="form" style="float:left;width: 100% " name="perfilDisciplina">
 			<div id="form-views" class="FormCustom" style="line-height: 2em;" ui-view></div>
 		</form>

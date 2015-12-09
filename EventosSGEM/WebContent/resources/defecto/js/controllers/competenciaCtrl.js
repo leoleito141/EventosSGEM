@@ -141,6 +141,7 @@ angular.module('eventosSGEM')
 			  if($scope.disciplinas[i].nombreDisciplina == nombreDisciplina){
 				 $scope.fechaInicio = new Date($scope.disciplinas[i].fechaInicio);
 				 $scope.fechaFin = new Date($scope.disciplinas[i].fechaFin);
+				 break;
 			  }
 		  }
 		  

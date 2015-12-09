@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('eventosSGEM')
-  .controller('PerfilDisciplinaCtrl',['$scope','$state','$stateParams','dataFactory','dataTenant',
-                            function($scope, $state, $stateParams, dataFactory, dataTenant) {
+  .controller('PerfilDisciplinaCtrl',['$scope','$state','$stateParams','dataFactory','dataTenant','objetos',
+                            function($scope, $state, $stateParams, dataFactory, dataTenant,objetos) {
    
 	  $scope.tenant = dataTenant.nombre_url;
 	  $scope.nombreDeporte= $stateParams.nombreDeporte;
 	  $scope.nombreDisciplina = $stateParams.nombreDisciplina;
 	  $scope.sexo = $stateParams.sexo;
+	  
+	  $scope.disciplina = objetos.getObjeto();
+	  
+//	  $scope.fechaInicio = $scope.disciplina.fechaInicio;
+//	  $scope.fechaFin = $scope.disciplina.fechaFin;
+	  
+	  $scope.disciplina.foto = $scope.disciplina.foto.ruta.substr($scope.disciplina.foto.ruta.indexOf("resources"));
 	  
 	  $scope.listarCompetencias = function(){	
 		  

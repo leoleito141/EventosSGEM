@@ -14,9 +14,9 @@ angular.module('eventosSGEM')
 	  $scope.deportista={};
 	  console.log($scope.deportista);
 	  
-	  $scope.deportes = {};
+	  $scope.deportes = [];
 	  
-	  $scope.disciplinas = {};
+	  $scope.disciplinas = [];
 	  
 	  
 	  $scope.$on('$viewContentLoaded' , function(){
@@ -36,6 +36,8 @@ angular.module('eventosSGEM')
 		    
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
+		  $scope.deportes = [];
+		  $scope.disciplinas = [];
 		  
 		  dataFactory.listarDeportes(dataTenant.tenantId,sexo)
 		  .success(function (response, status, headers, config) {
@@ -46,7 +48,8 @@ angular.module('eventosSGEM')
               
               $scope.deportes = response;
               
-              $scope.selectDeportes = $scope.deportes[0];
+//              $scope.selectDeportes = $scope.deportes[0];
+              
 //              if(response){
 //	              event.preventDefault();
 //	        	  $state.go('tenantLogin', { tenant: $scope.nombreTenant});//$state.go just calls transitionTo with inherit and relative set to true. Almost no difference.
@@ -66,7 +69,7 @@ angular.module('eventosSGEM')
 		  console.log(sexo);
 		  console.log(selectDeportes);
 		  
-		  
+		  $scope.disciplinas = [];
 		  
 		  dataFactory.listarDisciplinas(dataTenant.tenantId,sexo,selectDeportes)
 		  .success(function (response, status, headers, config) {
@@ -75,7 +78,9 @@ angular.module('eventosSGEM')
               console.log(headers);
               console.log(config);
               
-              $scope.disciplinas = response;
+              for(var i = 0; i<response.length ; i++){
+            	  $scope.disciplinas.push(response[i].nombreDisciplina);
+              }
               
               $scope.selectDisciplinas = $scope.disciplinas [0];
 

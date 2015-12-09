@@ -115,7 +115,15 @@ angular.module('eventosSGEM')
 		  
 	  }
 	  
-	  $scope.irDisciplina = function(nombreDisciplina,sexo){		  
+	  $scope.irDisciplina = function(nombreDisciplina,sexo){
+		  
+		  for(var i = 0; i < $scope.deportes.length ; i++){
+			  if($scope.deportes[i].nombreDisciplina == nombreDisciplina){
+				  objetos.setObjeto($scope.deportes[i]);
+				  break;
+			  }
+		  }
+		  
 		  $state.go('perfilDisciplina.paso1',{tenant: $scope.nombreTenant, nombreDeporte : $scope.nombreDeporte, nombreDisciplina : nombreDisciplina, sexo : sexo });
 	  }
 	  

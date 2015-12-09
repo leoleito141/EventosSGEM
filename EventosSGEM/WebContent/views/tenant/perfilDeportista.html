@@ -1,6 +1,14 @@
+<style>
 	
+	.imagen-medalla {
+		width : 3%;
+	}
+	
+</style>
+
 <br>
-<div class="container">
+<div class="container" ng-init="cargarDatos()">
+
   <div class="row">
     <div class="col-md-9">
       <div class="panel panel-default">
@@ -52,7 +60,10 @@
               <div ng-repeat="estadistica in deportista.listestadisticas">
         	  		<span class="text-muted">Posicion:</span> {{estadistica.posicion}}<br>
     		        <span class="text-muted">Informacion:</span> {{estadistica.datoInformativo}}<br>
-    		
+    				<img ng-if="estadistica.esPrimero" class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro">
+    				<img ng-if="estadistica.esSegundo" class="imagen-medalla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
+    				<img ng-if="estadistica.esTercero" class="imagen-medalla" ng-src="resources/defecto/img/bronce.png" alt="Bronce">
+    				<hr>
     		 </div>
             </div>
           </div>

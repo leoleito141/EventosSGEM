@@ -276,5 +276,11 @@
         return $http.get(dominio+'UsuarioService/obtenerBalance/',
         		{headers: { 'Rol' : 'COMITE_OLIMPICO'}}); 
     };  
+    
+    dataFactory.getCompetenciaPorEstadistica = function(tenantID,estadisticaID){
+    	return $http.get(dominio+'CompetenciaService/getCompetenciaPorEstadistica/'+tenantID+'/'+estadisticaID);
+    };
+    
+    
     return dataFactory;
 }]); 
