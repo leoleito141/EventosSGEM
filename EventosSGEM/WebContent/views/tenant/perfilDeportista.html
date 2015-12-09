@@ -2,6 +2,14 @@
 	
 	.imagen-medalla {
 		width : 3%;
+		margin-left: 1%;
+	}
+	.imagen-medallaTabla{ 
+ 		width : 60%; 
+ 	} 
+	
+	.centrado { 
+		text-align:center;
 	}
 	
 </style>
@@ -37,8 +45,34 @@
                 </div>
                 
               </div>
-            </div>
+            </div>            
           </div>
+          <div class="col-md-3 centrado">
+    		<table st-table="rowCollection" class="table table-striped">
+				<thead>
+					<tr>
+						<th class="centrado">
+							<img class="imagen-medallaTabla" ng-src="resources/defecto/img/oro.png" alt="Oro"> 
+						</th>
+						<th class="centrado">
+							<img class="imagen-medallaTabla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
+						</th>
+						<th class="centrado">
+							<img class="imagen-medallaTabla" ng-src="resources/defecto/img/bronce.png" alt="Bronce"> 
+						</th>
+						<th class="centrado">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="centrado">{{cantOro}}</td>
+						<td class="centrado">{{cantPlata}}</td>
+						<td class="centrado">{{cantBronce}}</td>
+						<td class="centrado"><b>{{cantOro + cantPlata + cantBronce}}</b></td>
+					</tr>
+				</tbody>
+			</table>		
+   		 </div>
           <div class="row">
             <div class="col-md-12">
             <h3><span class="label label-default">Competencias:</span></h3><br>
@@ -57,19 +91,22 @@
     		 </div>
     		 <h3><span class="label label-default">Resultados:</span></h3><br>
     		 
-              <div ng-repeat="estadistica in deportista.listestadisticas">
-        	  		<span class="text-muted">Posicion:</span> {{estadistica.posicion}}<br>
-    		        <span class="text-muted">Informacion:</span> {{estadistica.datoInformativo}}<br>
-    				<img ng-if="estadistica.esPrimero" class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro">
+              <div ng-repeat="estadistica in deportista.listestadisticas" class="col-md-12">
+        	  		<span class="text-muted">Posicion:</span> {{estadistica.posicion}}
+        	  		<img ng-if="estadistica.esPrimero" class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro">
     				<img ng-if="estadistica.esSegundo" class="imagen-medalla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
     				<img ng-if="estadistica.esTercero" class="imagen-medalla" ng-src="resources/defecto/img/bronce.png" alt="Bronce">
-    				<hr>
+    				<br>
+    		        <span class="text-muted">Informacion:</span> {{estadistica.datoInformativo}}<br>    				
     		 </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
+   
+    
   </div>
 </div>
 	

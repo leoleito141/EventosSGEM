@@ -7,9 +7,9 @@ angular.module('eventosSGEM')
 	  	  
 	  $scope.fechaNacimiento = $scope.deportista.fechaNac;
 	
-	  $scope.esPrimero = false;
-	  $scope.esSegundo = false;
-	  $scope.esTercero = false;
+	  $scope.cantOro = 0;
+	  $scope.cantPlata = 0;
+	  $scope.cantBronce = 0;
 		  	 
 	   var dt1 = new Date();
 	   var dt2 = new Date($scope.fechaNacimiento);
@@ -51,14 +51,17 @@ angular.module('eventosSGEM')
 									$scope.deportista.listestadisticas[contador].esPrimero = true;
 									$scope.deportista.listestadisticas[contador].esSegundo = false;
 									$scope.deportista.listestadisticas[contador].esTercero = false;
+									$scope.cantOro++;
 								}else if($scope.deportista.listestadisticas[contador].posicion == 2){
 									$scope.deportista.listestadisticas[contador].esPrimero = false;
 									$scope.deportista.listestadisticas[contador].esSegundo = true;
 									$scope.deportista.listestadisticas[contador].esTercero = false;
+									$scope.cantPlata++;
 								}else if($scope.deportista.listestadisticas[contador].posicion == 3){
 									$scope.deportista.listestadisticas[contador].esPrimero = false;
 									$scope.deportista.listestadisticas[contador].esSegundo = false;
 									$scope.deportista.listestadisticas[contador].esTercero = true;
+									$scope.cantBronce++;
 								}else{
 									$scope.deportista.listestadisticas[contador].esPrimero = false;
 									$scope.deportista.listestadisticas[contador].esSegundo = false;
@@ -70,10 +73,12 @@ angular.module('eventosSGEM')
 									$scope.deportista.listestadisticas[contador].esPrimero = true;
 									$scope.deportista.listestadisticas[contador].esSegundo = false;
 									$scope.deportista.listestadisticas[contador].esTercero = false;
+									$scope.cantOro++;
 								}else{
 									$scope.deportista.listestadisticas[contador].esPrimero = false;
 									$scope.deportista.listestadisticas[contador].esSegundo = true;
 									$scope.deportista.listestadisticas[contador].esTercero = false;
+									$scope.cantPlata++;
 								}
 							}
 									
@@ -85,14 +90,17 @@ angular.module('eventosSGEM')
 										$scope.deportista.listestadisticas[contador].esPrimero = true;
 										$scope.deportista.listestadisticas[contador].esSegundo = false;
 										$scope.deportista.listestadisticas[contador].esTercero = false;
+										$scope.cantOro++;
 									}else if($scope.deportista.listestadisticas[contador].posicion == 2){
 										$scope.deportista.listestadisticas[contador].esPrimero = false;
 										$scope.deportista.listestadisticas[contador].esSegundo = true;
 										$scope.deportista.listestadisticas[contador].esTercero = false;
+										$scope.cantPlata++;
 									}else if($scope.deportista.listestadisticas[contador].posicion == 3){
 										$scope.deportista.listestadisticas[contador].esPrimero = false;
 										$scope.deportista.listestadisticas[contador].esSegundo = false;
 										$scope.deportista.listestadisticas[contador].esTercero = true;
+										$scope.cantBronce++;
 									}else{
 										$scope.deportista.listestadisticas[contador].esPrimero = false;
 										$scope.deportista.listestadisticas[contador].esSegundo = false;
@@ -105,10 +113,12 @@ angular.module('eventosSGEM')
 										$scope.deportista.listestadisticas[contador].esPrimero = true;
 										$scope.deportista.listestadisticas[contador].esSegundo = false;
 										$scope.deportista.listestadisticas[contador].esTercero = false;
+										$scope.cantOro++;
 									}else if($scope.deportista.listestadisticas[contador].posicion == 2){
 										$scope.deportista.listestadisticas[contador].esPrimero = false;
 										$scope.deportista.listestadisticas[contador].esSegundo = true;
 										$scope.deportista.listestadisticas[contador].esTercero = false;
+										$scope.cantPlata++;
 									}else{
 										$scope.deportista.listestadisticas[contador].esPrimero = false;
 										$scope.deportista.listestadisticas[contador].esSegundo = false;
@@ -123,6 +133,7 @@ angular.module('eventosSGEM')
 									$scope.deportista.listestadisticas[contador].esPrimero = false;
 									$scope.deportista.listestadisticas[contador].esSegundo = false;
 									$scope.deportista.listestadisticas[contador].esTercero = true;
+									$scope.cantBronce++;
 								}else{
 									$scope.deportista.listestadisticas[contador].esPrimero = false;
 									$scope.deportista.listestadisticas[contador].esSegundo = false;
