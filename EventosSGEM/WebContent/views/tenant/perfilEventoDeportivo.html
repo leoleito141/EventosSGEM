@@ -20,16 +20,53 @@
 		height:45%;
 	}
    
-   .imagen-deportista{
-		width:50%;
-		height:50%;
-	}
-	.item-reporte:hover{
+/*    .imagen-deportista{ */
+/* 		width:50%; */
+/* 		height:50%; */
+/* 	} */
+/* 	.item-reporte:hover{ */
 	
-		transform: scale(1.1);
-		transition: all .2s ease-in-out;
+/* 		transform: scale(1.1); */
+/* 		transition: all .2s ease-in-out; */
 	
-	}
+/* 	} */
+	
+	.image-wrap {
+	
+}
+ 
+    .image-wrap img {
+   		height:auto;
+        width: 70%;
+        overflow: hidden;
+	/*border: 10px solid #fff;
+ 	/*border-bottom: 45px solid #fff;*/
+  /*	-webkit-box-shadow: 3px 3px 3px #777;
+    -moz-box-shadow: 3px 3px 3px #777;
+    box-shadow: 3px 3px 3px #777;*/
+
+    }
+    
+.pepito{
+
+
+   	border: 10px solid #fff;
+ 	/*border-bottom: 45px solid #fff;*/
+  	-webkit-box-shadow: 3px 3px 3px #777;
+    -moz-box-shadow: 3px 3px 3px #777;
+    box-shadow: 3px 3px 3px #777;
+
+}
+     .pepito:hover{ 
+ 
+	
+	transform: scale(1.05);  
+  	transition: all .5s ease-in-out;  
+	-webkit-box-shadow: 5px 5px 3px #777;
+    -moz-box-shadow: 5px 5px 3px #777;
+    box-shadow: 5px 5px 3px #777;
+    
+ 	}
 	
 </style>
 
@@ -91,12 +128,15 @@
 					
 			<div ng-repeat="d in deportistas">
 		<a ng-click="deportistaSeleccionado(d)">
-		  <div class="col-sm-4 item-reporte" id="{{d.deportistaID}}">
-				 <div class="thumbnail" >
-				     <img class="imagen-deportista" alt="no-image" ng-src="{{d.foto.ruta}}">
-			     	<div class="caption">
-				      <h3>{{d.nombre}} {{d.apellido}}</h3>			
-			        </div>
+		  <div class="col-sm-3 item-reporte" id="{{d.deportistaID}}" style="padding: 1%;">
+				 <div class=" pepito" >
+					 <div class="image-wrap" style="padding-bottom: 10px">			  
+					     <img class="" alt="no-image" ng-src="{{d.foto.ruta}}">	
+				     </div>	
+				     
+				     <div class="col-md-12" style="color: #888;">
+				     	 <p>{{d.nombre}} {{d.apellido}}<p>		
+				      </div>	     	
 		        </div>
 			</div>
 		</a>

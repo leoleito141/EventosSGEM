@@ -14,102 +14,108 @@
 	
 </style>
 
-<br>
-<div class="container" ng-init="cargarDatos()">
+<div id="PerfilWrapper" class="PerfilNews FormCustom ">
+<div class="FormCustom" style="line-height: 2em;">
 
-  <div class="row">
-    <div class="col-md-9">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12 lead">Perfil Deportista<hr></div>
-          </div>
-          <div class="row">
-			<div class="col-md-4 text-center">
-              <img class=" avatar avatar-original" style="-webkit-user-select:none; 
-              display:block; margin:auto;" ng-src="{{deportista.foto.ruta || 'resources/defecto/img/NoPicDeportista.png'}}" width="40%" height="20%">
-            </div>
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-md-12">
-                  <h1 class="only-bottom-margin">{{deportista.nombre}} {{deportista.apellido}}</h1>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <span class="text-muted">Fecha Nacimiento:</span>{{deportista.fechaNac | date:'dd/MM/yyyy'}}<br>
-                  <span class="text-muted">Edad:</span>{{edad}} a&ntilde;os<br>				
-                  <span class="text-muted">Genero:</span>{{deportista.sexo}} <br>
-                  <span class="text-muted">Deporte:</span>{{deportista.listeventodeportivo[0].nombreDeporte}}<br><br>
-                  
-                </div>
-                
-              </div>
-            </div>            
-          </div>
-          <div class="col-md-3 centrado">
-    		<table st-table="rowCollection" class="table table-striped">
-				<thead>
-					<tr>
-						<th class="centrado">
-							<img class="imagen-medallaTabla" ng-src="resources/defecto/img/oro.png" alt="Oro"> 
-						</th>
-						<th class="centrado">
-							<img class="imagen-medallaTabla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
-						</th>
-						<th class="centrado">
-							<img class="imagen-medallaTabla" ng-src="resources/defecto/img/bronce.png" alt="Bronce"> 
-						</th>
-						<th class="centrado">Total</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="centrado">{{cantOro}}</td>
-						<td class="centrado">{{cantPlata}}</td>
-						<td class="centrado">{{cantBronce}}</td>
-						<td class="centrado"><b>{{cantOro + cantPlata + cantBronce}}</b></td>
-					</tr>
-				</tbody>
-			</table>		
-   		 </div>
-          <div class="row">
-            <div class="col-md-12">
-            <h3><span class="label label-default">Competencias:</span></h3><br>
-              
-              <div ng-repeat="competencia in deportista.listcompetencias">
-        	  		<span class="text-muted">Deporte:</span> {{competencia.nombreDeporte}} <span class="text-muted">Disciplina:</span>{{competencia.nombreDisciplina}} <span class="text-muted">Ronda:</span> {{competencia.ronda}}<br>
-    		        <span class="text-muted">Estadio:</span> {{competencia.estadio}}	   <span class="text-muted">Fecha:</span> {{competencia.fecha | date:'yyyy-MM-dd'}}<br>
-    		
-    		 </div>
-    		 <h3><span class="label label-default">Eventos Deportivos:</span></h3><br>
-    		
-              <div ng-repeat="eventos in deportista.listeventodeportivo">
-        	  		<span class="text-muted">Deporte:</span> {{eventos.nombreDeporte}} <span class="text-muted">Disciplina:</span>{{eventos.nombreDisciplina}}<br>
-    		        <span class="text-muted">Fecha Inicio:</span> {{eventos.fechaInicio | date:'yyyy-MM-dd'}} <span class="text-muted">Fecha Finalizacion:</span> {{eventos.fechaFin | date:'yyyy-MM-dd'}}<br>
-    		
-    		 </div>
-    		 <h3><span class="label label-default">Resultados:</span></h3><br>
-    		 
-              <div ng-repeat="estadistica in deportista.listestadisticas" class="col-md-12">
-        	  		<span class="text-muted">Posicion:</span> {{estadistica.posicion}}
-        	  		<img ng-if="estadistica.esPrimero" class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro">
-    				<img ng-if="estadistica.esSegundo" class="imagen-medalla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
-    				<img ng-if="estadistica.esTercero" class="imagen-medalla" ng-src="resources/defecto/img/bronce.png" alt="Bronce">
-    				<br>
-    		        <span class="text-muted">Informacion:</span> {{estadistica.datoInformativo}}<br>    				
-    		 </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-   
-    
-  </div>
-</div>
+
+
+	<div class="" ng-init="cargarDatos()">
 	
+	  <div class="row">
+	    <div class="col-md-12">
+	      <div class="panel panel-default">
+	        <div class="panel-body" style="padding: 2%">
+	          <div class="row">
+	            <div class="col-md-12 lead">Perfil Deportista<hr></div>
+	          </div>
+	          <div class="row">
+	          
+				<div class="col-md-4 text-center">
+	              <img class=" avatar avatar-original" style="-webkit-user-select:none;display:block; margin:auto;border: 10px solid #fff;box-shadow: 5px 5px 15px grey;" 
+	              ng-src="{{deportista.foto.ruta || 'resources/defecto/img/NoPicDeportista.png'}}" width="60%" >
+	            </div>
+	            <div class="col-md-8  " style="padding: 1%;>
+	              <div class="row">
+	                <div class="col-md-12">
+	                  <h1 class="only-bottom-margin">{{deportista.nombre}} {{deportista.apellido}}</h1>
+	                </div>
+	              </div>
+	              <div class="row">
+	                <div class="col-md-6">
+	                  <span class="text-muted">Fecha Nacimiento:</span>{{deportista.fechaNac | date:'dd/MM/yyyy'}}<br>
+	                  <span class="text-muted">Edad:</span>{{edad}} a&ntilde;os<br>				
+	                  <span class="text-muted">Genero:</span>{{deportista.sexo}} <br>
+	                  <span class="text-muted">Deporte:</span>{{deportista.listeventodeportivo[0].nombreDeporte}}<br><br>
+	                  
+	                </div>
+	                
+	              </div>
+	            </div>            
+	          </div>
+	          <div class="col-md-3 centrado" style="margin: 2%;    border: 1px solid #ddd;    border-radius: 11px;">
+	    		<table st-table="rowCollection" class="table table-striped">
+					<thead>
+						<tr>
+							<th class="centrado">
+								<img class="imagen-medallaTabla" ng-src="resources/defecto/img/oro.png" alt="Oro"> 
+							</th>
+							<th class="centrado">
+								<img class="imagen-medallaTabla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
+							</th>
+							<th class="centrado">
+								<img class="imagen-medallaTabla" ng-src="resources/defecto/img/bronce.png" alt="Bronce"> 
+							</th>
+							<th class="centrado">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="centrado">{{cantOro}}</td>
+							<td class="centrado">{{cantPlata}}</td>
+							<td class="centrado">{{cantBronce}}</td>
+							<td class="centrado"><b>{{cantOro + cantPlata + cantBronce}}</b></td>
+						</tr>
+					</tbody>
+				</table>		
+	   		 </div>
+	          <div class="row">
+	            <div class="col-md-12 ">
+	            <h3><span class="label label-default">Competencias:</span></h3><br>
+	              
+	              <div ng-repeat="competencia in deportista.listcompetencias">
+	        	  		<span class="text-muted">Deporte:</span> {{competencia.nombreDeporte}} <span class="text-muted">Disciplina:</span>{{competencia.nombreDisciplina}} <span class="text-muted">Ronda:</span> {{competencia.ronda}}<br>
+	    		        <span class="text-muted">Estadio:</span> {{competencia.estadio}}	   <span class="text-muted">Fecha:</span> {{competencia.fecha | date:'yyyy-MM-dd'}}<br>
+	    		
+	    		 </div>
+	    		 <h3><span class="label label-default">Eventos Deportivos:</span></h3><br>
+	    		
+	              <div ng-repeat="eventos in deportista.listeventodeportivo">
+	        	  		<span class="text-muted">Deporte:</span> {{eventos.nombreDeporte}} <span class="text-muted">Disciplina:</span>{{eventos.nombreDisciplina}}<br>
+	    		        <span class="text-muted">Fecha Inicio:</span> {{eventos.fechaInicio | date:'yyyy-MM-dd'}} <span class="text-muted">Fecha Finalizacion:</span> {{eventos.fechaFin | date:'yyyy-MM-dd'}}<br>
+	    		
+	    		 </div>
+	    		 <h3><span class="label label-default">Resultados:</span></h3><br>
+	    		 
+	              <div ng-repeat="estadistica in deportista.listestadisticas" class="col-md-12">
+	        	  		<span class="text-muted">Posicion:</span> {{estadistica.posicion}}
+	        	  		<img ng-if="estadistica.esPrimero" class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro">
+	    				<img ng-if="estadistica.esSegundo" class="imagen-medalla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 
+	    				<img ng-if="estadistica.esTercero" class="imagen-medalla" ng-src="resources/defecto/img/bronce.png" alt="Bronce">
+	    				<br>
+	    		        <span class="text-muted">Informacion:</span> {{estadistica.datoInformativo}}<br>    				
+	    		 </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	    
+	   
+	    
+	  </div>
+	</div>
+</div>
+	</div>
 
 
 

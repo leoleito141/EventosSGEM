@@ -96,12 +96,30 @@ angular.module('eventosSGEM')
     $("#player").attr('src',"https://www.youtube.com/embed/M7lc1UVf-VE")  ;
    
    
-	$scope.cargarWidgets = function() {
+$scope.cargarWidgets = function() {
 		
 		if($scope.idHashtag!=""&&$scope.facebookUrl!=""){
 		
 			$("#WidgetTwitter").attr('data-widget-id',$scope.idHashtag);
 			$("#facebookWidget").attr('data-href','https://www.facebook.com/'+$scope.facebookUrl);
+			
+			angular.element(document).ready(function () {
+			    //Angular breaks if this is done earlier than document ready.
+				twttr.ready(function (twttr) {
+				   try{
+					   $timeout = twttr.widgets.load(); 
+				   }catch(ex){
+					   console.log(ex);
+				   }
+				});
+				
+				 try{
+					 FB.XFBML.parse(); 
+				 }catch(ex){
+					 console.log(ex);
+   				 }
+				
+			});
 			
 		   /**TWITTER***/
 		   !function(d,s,id){
@@ -113,6 +131,8 @@ angular.module('eventosSGEM')
 				   fjs.parentNode.insertBefore(js,fjs);
 				   }
 			   }(document,"script","twitter-wjs");
+
+			   
 		  /**FACEBOOK**/		   
 		  (function(d, s, id) {
 				     var js, fjs = d.getElementsByTagName(s)[0];
@@ -122,12 +142,7 @@ angular.module('eventosSGEM')
 				     fjs.parentNode.insertBefore(js, fjs);
 				   }(document, 'script', 'facebook-jssdk'));
 		  
-			   try{
-				   $timeout = twttr.widgets.load(); 
-			       FB.XFBML.parse(); 
-			   }catch(ex){
-				   console.log(ex);
-			   }
+
 			   /**YOUTUBE**/		   
 				
 				$.ajax({
@@ -159,13 +174,13 @@ angular.module('eventosSGEM')
 		        });
 		}
 	else {
-		  
+		angular.element(document).ready(function () {
 		  $("#SocialMedia").html("");
 		 
 		  $("#SocialMedia").css("background-color","grey");
 		  $("#SocialMedia").html("<h1 style='heigth:50%'>Hay uno o mas widget sin configurar</h1>");
 		  
-		  
+		});
 	  }   
 	}
 	

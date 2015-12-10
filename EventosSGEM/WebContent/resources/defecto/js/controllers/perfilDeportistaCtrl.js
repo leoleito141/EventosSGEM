@@ -7,6 +7,15 @@ angular.module('eventosSGEM')
 	  	  
 	  $scope.fechaNacimiento = $scope.deportista.fechaNac;
 	
+ if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
+	  
+	  
 	  $scope.cantOro = 0;
 	  $scope.cantPlata = 0;
 	  $scope.cantBronce = 0;
