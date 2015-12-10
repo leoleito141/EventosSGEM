@@ -97,6 +97,10 @@
 	    		 <h3><span class="label label-default">Resultados:</span></h3><br>
 	    		 
 	              <div ng-repeat="estadistica in deportista.listestadisticas" class="col-md-12">
+	              		
+	              		<span class="text-muted">Deporte:</span> {{estadistica.nombreDeporte}} <span class="text-muted">Disciplina:</span>{{estadistica.nombreDisciplina}} <span class="text-muted">Ronda:</span> {{estadistica.ronda}}<br>
+	              		<span class="text-muted">Estadio:</span> {{estadistica.estadio}} <span class="text-muted">Fecha:</span> {{estadistica.fecha | date:'yyyy-MM-dd'}}<br>
+	        	  		<span ng-if="competidor1"><span class="text-muted">Competidores:</span> {{competidor1}} vs {{competidor2}}<br></span>
 	        	  		<span class="text-muted">Posicion:</span> {{estadistica.posicion}}
 	        	  		<img ng-if="estadistica.esPrimero" class="imagen-medalla" ng-src="resources/defecto/img/oro.png" alt="Oro">
 	    				<img ng-if="estadistica.esSegundo" class="imagen-medalla" ng-src="resources/defecto/img/plata.png" alt="Plata"> 

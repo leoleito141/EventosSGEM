@@ -2,6 +2,9 @@
 
 angular.module('eventosSGEM')
   .controller('entradasCtrl', ['$scope','dataFactory','$state','dataTenant', function ($scope,dataFactory,$state,dataTenant) {
+	 
+	  $scope.nombreTenant = dataTenant.nombre_url;
+	  
 	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
 		  
 		  $('.PerfilNews').css({
@@ -13,7 +16,7 @@ angular.module('eventosSGEM')
 	  
 	  $scope.disciplinas = [];
 	  
-	  $scope.rondas = {};
+	  $scope.rondas = [];
 	  
 	  $scope.entrada={};
 	  $scope.entrada.cantEntradas = 0;
@@ -45,6 +48,10 @@ angular.module('eventosSGEM')
 		  console.log(dataTenant.tenantId);
 		  console.log(sexo);
 		  
+		  $scope.disciplinas = [];
+		  $scope.rondas = [];
+		  $scope.entrada.nombreDeporte = {};
+		  
 		  dataFactory.listarDeportes(dataTenant.tenantId,sexo)
 		  .success(function (response, status, headers, config) {
               console.log(response);
@@ -54,7 +61,7 @@ angular.module('eventosSGEM')
               
               $scope.deportes = response;
               
-              $scope.nombreDeporte = $scope.deportes[0];
+//              $scope.nombreDeporte = $scope.deportes[0];
 
       	}).catch(function(error) {
       		console.log(error);
@@ -69,7 +76,7 @@ angular.module('eventosSGEM')
 		  console.log(sexo);
 		  console.log(nombreDeporte);
 		  
-		  
+		  $scope.rondas = [];
 		  
 		  dataFactory.listarDisciplinas(dataTenant.tenantId,sexo,nombreDeporte)
 		  .success(function (response, status, headers, config) {
@@ -81,7 +88,7 @@ angular.module('eventosSGEM')
               for(var i = 0; i<response.length ; i++){
             	  $scope.disciplinas.push(response[i].nombreDisciplina);
               }
-              $scope.nombreDisciplina = $scope.disciplinas [0];
+//              $scope.nombreDisciplina = $scope.disciplinas [0];
 
       	}).catch(function(error) {
       		console.log(error);
@@ -147,7 +154,7 @@ angular.module('eventosSGEM')
 	  
 	  
 	 		  
- $scope.obtenerPrecio = function(idCompetencia){
+	  $scope.obtenerPrecio = function(idCompetencia){
 	
 		  
 		  dataFactory.obtenerPrecio(dataTenant.tenantId,idCompetencia)
@@ -186,12 +193,7 @@ angular.module('eventosSGEM')
 		  
 		  dataFactory.realizarCompraEntradas($scope.datos)
 	     	.then(function (data, status, headers, config) {
-	                $scope.status = data.status;
-	                console.log("Entre a realizarCompra");
-	                console.log(data.status);
-	                console.log(status);
-	                console.log(headers);
-	                console.log(config);
+	     			$state.go('main', { tenant: $scope.nombreTenant } );
 	                
 	            })
 	            .catch(function(response){

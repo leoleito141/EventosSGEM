@@ -70,4 +70,16 @@
 	position:fixed; right: 2%; bottom: 2%; display:none;
 }
 
+.navbar-default {
+    font-size: 14px;
+    background-color: rgba(237, 237, 237, 1);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 237, 237, 1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(237, 237, 237, 1) 100%);
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.fb-comments {
+	margin-left:1%;	
+}
 

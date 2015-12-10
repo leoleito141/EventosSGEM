@@ -36,6 +36,18 @@ angular.module('eventosSGEM')
 			  medallas[i] = medalla;
 		  }  
 		  
+		  /** Se ordenan por total **/
+		  for(var i=0;i<(medallas.length-1);i++){
+	            for(var j=i+1;j<medallas.length;j++){
+	                if(medallas[i].total<medallas[j].total){
+	                    //Intercambiamos valores
+	                    var variableauxiliar=medallas[i];
+	                    medallas[i]=medallas[j];
+	                    medallas[j]=variableauxiliar;	                    
+	                }
+	            }
+	        }
+		  
 		  /** Se ordenan por oro **/
 		  for(var i=0;i<(medallas.length-1);i++){
 	            for(var j=i+1;j<medallas.length;j++){

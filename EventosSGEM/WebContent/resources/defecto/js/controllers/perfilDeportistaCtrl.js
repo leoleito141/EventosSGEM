@@ -47,8 +47,8 @@ angular.module('eventosSGEM')
 						  var comites = [];
 						  
 						  for(var i = 0; i< $scope.competencia.deportistas.length; i++){
-							  if(comites.indexOf($scope.competencia.deportistas[i].comite.comiteId) == -1){
-								  comites.push($scope.competencia.deportistas[i].comite.comiteId);
+							  if(comites.indexOf($scope.competencia.deportistas[i].comite.pais.pais) == -1){
+								  comites.push($scope.competencia.deportistas[i].comite.pais.pais);
 							  }
 						  }
 						  
@@ -152,6 +152,21 @@ angular.module('eventosSGEM')
 							}						  					  
 				  	}
 					  
+					  
+					  $scope.deportista.listestadisticas[contador].nombreDeporte = $scope.competencia.nombreDeporte
+					  $scope.deportista.listestadisticas[contador].nombreDisciplina = $scope.competencia.nombreDisciplina
+					  $scope.deportista.listestadisticas[contador].ronda = $scope.competencia.ronda
+					  $scope.deportista.listestadisticas[contador].estadio = $scope.competencia.estadio
+					  $scope.deportista.listestadisticas[contador].fecha = $scope.competencia.fecha
+					  
+					  if( $scope.competencia.tipoDeporte == "colectivo" &&  comites.length <= 2){
+						  $scope.competidor1 = comites[0];
+						  $scope.competidor2 = comites[1];
+					  }else if($scope.competencia.tipoDeporte == "individual" && $scope.competencia.deportistas.length <= 2){
+						  $scope.competidor1 = $scope.competencia.deportistas[0].nombre + " " + $scope.competencia.deportistas[0].apellido;
+						  $scope.competidor2 = $scope.competencia.deportistas[1].nombre + " " + $scope.competencia.deportistas[1].apellido;
+					  }
+					  					  
 					  contador++;
 		      	  }).catch(function(error) {
 		      		  console.log("Error al obtener competencia para la estadistica: "+ estadistica.estadisticaId);
