@@ -4,7 +4,7 @@
 		<div class="row">
 			<label class="col-sm-offset-1 control-label col-sm-2"
 				for="singleSelect"> Sexo: </label>
-			<div class="control-label col-sm-2">
+			<div class="control-label col-sm-4">
 				<label> <input type="radio" ng-model="entrada.sexo"
 					ng-change="obtenerDeportes(entrada.sexo)" value="Masculino">
 					Masculino
@@ -51,9 +51,10 @@
 			<md-button
 				ng-click="obtenerCompetencias(entrada.sexo,entrada.nombreDeporte,entrada.nombreDisciplina,entrada.ronda)">
 
-			<a ui-sref="formCompraEntrada.Paso2" class="btn btn-block btn-info">
+			<a ui-sref="formCompraEntrada.Paso2" class="btn btn-block btn-success">
 				Siguiente<span class="glyphicon glyphicon-circle-arrow-right"></span>
 			</a></md-button>
+			
 		</div>
 		
 		

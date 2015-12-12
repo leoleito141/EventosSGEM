@@ -76,6 +76,7 @@ angular.module('eventosSGEM')
 		  console.log(sexo);
 		  console.log(nombreDeporte);
 		  
+		  $scope.disciplinas = [];
 		  $scope.rondas = [];
 		  
 		  dataFactory.listarDisciplinas(dataTenant.tenantId,sexo,nombreDeporte)

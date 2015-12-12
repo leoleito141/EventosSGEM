@@ -79,7 +79,7 @@ angular.module('eventosSGEM')
 						   estadistica = response;
 
 						   $scope.paisesTodos.push({ 'id' : (contador+1),
-							   						 'nombre' : nombrePaises[contador] ,
+							   						 'nombre' : estadistica.deportista.comite.pais.pais ,
 							   						 'estadistica' : estadistica
 						   });
 						   contador++;
