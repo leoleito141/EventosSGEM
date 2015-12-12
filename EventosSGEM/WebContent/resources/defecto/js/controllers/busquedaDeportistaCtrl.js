@@ -1,6 +1,6 @@
 angular.module('eventosSGEM')
-  .controller('busquedaDeportistaCtrl', ['$scope','$state','dataFactory','dataTenant','objetos', 
-                           function ($scope,$state, dataFactory,dataTenant,objetos) {
+  .controller('busquedaDeportistaCtrl', ['$scope','$state','dataFactory','dataTenant','objetos', '$document',
+                           function ($scope,$state, dataFactory,dataTenant,objetos,$document) {
 	
 	  $scope.mensajeValidacion = ""; 
 	  $scope.deportista  = {};  
@@ -20,6 +20,13 @@ angular.module('eventosSGEM')
 	  
 	  }
 	  
+	  angular.element(document).ready(function () {
+		  var checkMasculino = angular.element(document.querySelector('.masculino'));
+		  checkMasculino[0].checked = true;
+		  $scope.obtenerDeportes("Masculino");
+		  $scope.deportista.sexo = "Masculino";
+	  });
+		  
 	  $scope.obtenerDeportes = function(sexo) { 
 		  dataFactory.listarFiltroDeportista(dataTenant.tenantId,sexo)
 		  .success(function (response, status, headers, config) {
@@ -99,7 +106,9 @@ angular.module('eventosSGEM')
 		   		
 
 		   	    $state.go('buscarDeportistas.listado');
-
+		   	    var someElement = angular.element(document.querySelector('.resultadoBusqueda'))
+		   	    $document.scrollToElement(someElement, 0, 1000);		   	    
+		   	    
       	}).catch(function(error) {
       		console.log(error);
       		alert("Error al listar deportistas");

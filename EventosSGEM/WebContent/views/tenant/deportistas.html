@@ -1,11 +1,6 @@
 
 <div class="col-md-12 FormCustom" style="float:left;">
 
-  <div class="alert alert-info col-md-12" style="float: left;">
-  
-    <p>Ordenado Por: "{{ sortType }}", Busqueda: "{{ searchNombre }}" </p>
-    
-  </div>
    <form>
    
 	      <div class="input-group">
@@ -28,14 +23,7 @@
           Apellido 
           <span class="glyphicon sort-icon" ng-show="sortType == 'apellido'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>
       </a>
-	  <a href="" ng-click="sortType = 'pais'; sortReverse = !sortReverse">
-          Pais
-         <span class="glyphicon sort-icon" ng-show="sortType == 'pais'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>           
-       </a>
-        <a href="" ng-click="sortType = 'deporte'; sortReverse = !sortReverse">
-          Deporte 
-          <span class="glyphicon sort-icon" ng-show="sortType == 'deporte'" ng-class="{'glyphicon-chevron-up':sortReverse,'glyphicon-chevron-down':!sortReverse}"></span>            
-          </a>
+
 	</div>
 	</div>
 	

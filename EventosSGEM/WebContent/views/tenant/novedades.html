@@ -15,10 +15,10 @@
 	
 	<div class="PerfilNews FormCustom" style="overflow-y:auto;">
 	
-	<div class=" FormCustom">
 	
 	
-		<div ng-hide="!existeNovedad()" class='col-sm-5 col-md-12'> 
+	
+		<div ng-hide="!existeNovedad()" class='col-sm-5 col-md-12 FormCustom noBotRad' > 
 		
 			 <div class='col-sm-5 col-md-6 col-sm-offset-3'> 
 				 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style='width:100%!important'>
@@ -38,8 +38,8 @@
 			<h1>No existe la novedad a la que intenta acceder!</h1>
 		
 		</div>
-		</div>
-		<div class="col-md-12" style="background-color: white;border-radius:25px;text-align: center;opacity:0.97;">
+		
+		<div class="col-md-12 noTopRad" style="background-color: white;border-radius:25px;text-align: center;opacity:0.97;">
 			<div  class="fb-comments " data-href="https://sgem-eventos.com:8443/#/{{nombreTenant}}/Novedad/{{idnovedad}}" data-width="500" data-numposts="5" ng-init=loadwidget()>
 		
 		

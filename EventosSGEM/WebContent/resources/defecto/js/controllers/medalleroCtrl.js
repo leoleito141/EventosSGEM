@@ -6,8 +6,15 @@ angular.module('eventosSGEM')
       
 	  $scope.tenant = dataTenant.nombre_url;
 	  $scope.medallero = [];	  
-	  $scope.cargarDatos = function(){			  
-		  		  
+	  $scope.cargarDatos = function(){			
+		  
+		  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+			  
+			  $('.PerfilNews').css({
+				    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+			  });
+		  
+		  }  		  
    			/*** Cargo Deportes ***/	      		
     		dataFactory.listarComitesOlimpicos(dataTenant.tenantId)
 	      	.success(function (response, status, headers, config) {	

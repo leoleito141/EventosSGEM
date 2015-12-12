@@ -9,7 +9,15 @@ angular.module('eventosSGEM')
 	  
 	  $scope.nombreTenant = dataTenant.nombre_url;
 	  $scope.tenantID = dataTenant.tenantId;
-	  	 
+	  
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  }
+	  
 	  $scope.cargarDatos = function(){			  
 		  
 		  if((objetos.getObjetos() != null)&&(objetos.getObjetos().length >= 1) ){

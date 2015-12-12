@@ -35,7 +35,8 @@
 </style>
 
 <div class="PerfilNews FormCustom"  style="float:left;width:80%;border-radius:25px;padding-bottom:20px;	" ng-init="cargarDatos()">
-<div class="FormCustom">
+<div class="FormCustom noBotRad">
+ 
 	<div class="row">
 		<div ng-show="mensajeValidacion" class="alert alert-danger">{{mensajeValidacion}}</div>
 	</div>
@@ -47,7 +48,7 @@
 		<div class="col-md-9 contenedor-titulo" style="text-align: center;">
 			<span class="titulo-evento" ng-bind="nombreTenant"></span>
 		</div>				
-		<div class="col-sm-9 " style="text-align:-webkit-center; margin-top: 3%;">
+		<div class="col-sm-9 " style="text-align:-webkit-center; margin-top: 5%;">
 			Del <span style="font-weight:bold">{{fechaInicio  | date:'dd'}} de {{fechaInicio  | date:'MMMM'}} de {{fechaInicio  | date:'yyyy'}}</span> al <span style="font-weight:bold">{{fechaFin  | date:'dd'}} de {{fechaFin  | date:'MMMM'}} de {{fechaFin  | date:'yyyy'}}</span> 
 		</div>
 		
@@ -56,9 +57,9 @@
 	<div id="map-canvas" class="FormCustom" style="border-radius: 0px 0px 0px 0px; -moz-border-radius: 0px 0px 0px 0px; -webkit-border-radius: 0px 0px 0px 0px; border: 7.5px double #000000;width: 92%;    margin-left: auto;   margin-right: auto;"></div>
 	</div>		
 		
-	<div class="col-sm-12 FormCustom" >
+	<div class="col-sm-12 FormCustom noTopRad noBotRad" >
 		
-		<div class="col-sm-12 FormCustom">
+		<div class="col-sm-12 FormCustom ">
 		
 			<h1>Delegaciones</h1>
 			
@@ -75,7 +76,7 @@
 			</div>
 	</div>	
 		
-		<div class="col-sm-12 FormCustom">				
+		<div class="col-sm-12 FormCustom noTopRad">				
 			<h1>Deportes</h1>
 					
 			<div ng-repeat="d in nombreDeportes">

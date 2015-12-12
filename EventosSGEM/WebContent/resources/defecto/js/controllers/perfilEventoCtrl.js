@@ -3,13 +3,8 @@
 angular.module('eventosSGEM')
   .controller('PerfilEventoCtrl', ['$scope','$state','dataFactory','dataTenant','Initializer', 'objetos',
                                      function ($scope, $state, dataFactory, dataTenant, Initializer,objetos) {
-	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
-		  
-		  $('.PerfilNews').css({
-			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
-		  });
 	  
-	  } 
+
 	  $scope.nombreTenant = dataTenant.nombre_url;
 	  $scope.fechaInicio = dataTenant.fechaInicio;
 	  $scope.fechaFin = dataTenant.fechaFin;
@@ -17,7 +12,13 @@ angular.module('eventosSGEM')
 	  if (dataTenant.pagina != null){		   
 		  $scope.rutaLogo = dataTenant.pagina.ruta.substr(dataTenant.pagina.ruta.indexOf("resources")) ;
 	   }
-	
+	  if(dataTenant.colorFondo!=null&&dataTenant.colorNews ){
+		  
+		  $('.PerfilNews').css({
+			    background: "-webkit-gradient(linear, left top, left bottom,from("+dataTenant.colorFondo+"), to("+dataTenant.colorNews+"))" 
+		  });
+	  
+	  } 
 	  Initializer.mapsInitialized
 		    .then(function(){
 	    	

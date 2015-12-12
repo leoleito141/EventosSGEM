@@ -11,12 +11,15 @@
 	<div class="PerfilNews FormCustom">
 	
 	<div class="FormCustom" style="line-height: 2em!important;">
+			
+			<div class="jumbotron text-center RoundedTop jumpbotrongb">
+			   <h1>Entradas Compradas</h1>
+			</div>	
 <div class="container" ng-init="listarEntradasCompradasUsuario()">
+
 	<form role="form" name="form">
 		<div class="form-group">
 
-			<h1>Entradas Compradas</h1>
-			<hr />
 			<div class="col-md-12" >
 		    <div ng-repeat="c in compras">
 		        <div class="col-sm-4 item-reporte" id="{{c.entradaId}}">
