@@ -4,7 +4,8 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 .run(['dataFactory','$rootScope','$state','$auth','$document',function(dataFactory,$rootScope, $state, $auth,$document){ // esto se ejecuta en tiempo de ejecucion,
   $rootScope.$on('$stateChangeStart', function(event, next, current) {
 	
-	  if (next.templateUrl != 'views/tenant/organizador/altaCompetencia1.html' && next.templateUrl != 'views/tenant/organizador/altaCompetencia2.html' && next.templateUrl != 'views/tenant/organizador/altaCompetencia3.html' ) {
+	  if (next.templateUrl != 'views/tenant/organizador/altaCompetencia1.html' && next.templateUrl != 'views/tenant/organizador/altaCompetencia2.html' && next.templateUrl != 'views/tenant/organizador/altaCompetencia3.html' 
+		  && next.templateUrl != 'views/tenant/organizador/EdicionEvento1.html'  && next.templateUrl != 'views/tenant/organizador/EdicionEvento2.html'  && next.templateUrl != 'views/tenant/organizador/EdicionEvento3.html' ) {
 	   	  $document.scrollTop(0, 0); 
 	  } 
     
