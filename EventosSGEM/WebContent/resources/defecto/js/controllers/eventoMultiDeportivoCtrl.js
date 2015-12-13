@@ -1,6 +1,6 @@
 angular.module('eventosSGEM')
-  .controller('EventMultiDeportivoCtrl', ['$scope','dataFactory','dataTenant','$state', 
-                           function ($scope, dataFactory,dataTenant,$state) {
+  .controller('EventMultiDeportivoCtrl', ['$scope','dataFactory','dataTenant','$state', '$document',
+                           function ($scope, dataFactory,dataTenant,$state,$document) {
 	
 	  
  $scope.DataEstilo={}; 
@@ -17,7 +17,26 @@ angular.module('eventosSGEM')
  
  }
  
+ $scope.paso1 = function(){
+	  $state.go('formEdicionEvento.Paso1', { tenant: $scope.nombreTenant } );
+	  var someElement = angular.element(document.querySelector('.coolbtn'))
+	  $document.scrollToElement(someElement, 30, 2000);
+ }   
+ 
+ $scope.paso2 = function(){
+	  $state.go('formEdicionEvento.Paso2', { tenant: $scope.nombreTenant } );
+	  var someElement = angular.element(document.querySelector('.coolbtn'))
+	  $document.scrollToElement(someElement, 30, 2000);
+ }   
+ 
+ $scope.paso3 = function(){
+	  $state.go('formEdicionEvento.Paso3', { tenant: $scope.nombreTenant } );
+	  var someElement = angular.element(document.querySelector('.coolbtn'))
+	  $document.scrollToElement(someElement, 30, 2000);
+ }   
+ 
  $scope.widget = {};
+ 
 	  $scope.$on('$viewContentLoaded', function() {		  
 		  		  
 		  
