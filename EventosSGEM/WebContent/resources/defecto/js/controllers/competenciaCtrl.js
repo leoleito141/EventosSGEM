@@ -118,11 +118,16 @@ angular.module('eventosSGEM')
 	  
 	  $scope.initCalendar = function(){
 		  var fechaInicio = $scope.fechaInicio;
-		  var fechFin = $scope.fechaFin;
+		  var fechaFin = $scope.fechaFin;
+		  
+		  if($scope.competencia.fechaInicio  == undefined){			  
+			  $scope.competencia.fechaInicio = fechaInicio;
+		  }
+		  
 		  $('#datetimepicker1').datetimepicker({
         	  locale: 'es',
         	  minDate: fechaInicio,
-        	  maxDate: fechFin   
+        	  maxDate: fechaFin   
         	});
           $("#datetimepicker1").on("dp.change", function (e) {
         	  $scope.competencia.fechaInicio = e.date;
@@ -242,6 +247,24 @@ angular.module('eventosSGEM')
 			  }
 			  return $scope.rondas.length == $scope.competencia.ronda;
 		  };
+		  
+		  $scope.habilitarGuardar = function() {		  
+			  if($scope.competencia == undefined){
+				  return false;
+			  }
+			  return  ($scope.competencia.sexo == null || $scope.competencia.nombreDeporte == null 
+				    || $scope.competencia.nombreDisciplina == null || $scope.competencia.ronda == null 
+				    || $scope.competencia.juez == null || $scope.competencia.estadio == null
+				    || $scope.competencia.precioEntrada == null || $scope.competencia.cantEntradas == null 
+				    || $scope.selection == null || $scope.selection.length == 0
+				    || $scope.competencia.fechaInicio == null
+				    
+				    || $scope.competencia.sexo == "" || $scope.competencia.nombreDeporte == ""
+				    || $scope.competencia.nombreDisciplina == "" || $scope.competencia.ronda == 0 
+				    || $scope.competencia.estadio == ""
+				    || $scope.competencia.precioEntrada == 0 || $scope.competencia.cantEntradas == 0);	
+
+			  };
 		 
 		  $scope.guardarCompetencia = function(sexo,estadio,cantEntradas,precioEntrada,fechaInicio,nombreDeporte,nombreDisciplina,ronda,juez,selection){
 			  
