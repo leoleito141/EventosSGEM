@@ -1,9 +1,12 @@
  angular.module('eventosSGEM')
-   .factory('dataFactory', ['$http', function($http) {
+   .factory('dataFactory', ['$http','$q','$timeout', function($http,$q,$timeout) {
 	   
-    var dataFactory = {};    
-    const dominio = "https://sgem.com/rest/";
+	   
 
+    var dataFactory = {};
+    const dominio = "https://sgem.com/rest/";
+  
+    
     dataFactory.getStatus = function () {
 
         console.log($location.absUrl());
@@ -13,18 +16,21 @@
     };
            
     dataFactory.getDataTenant = function(tenant){
-   
-	   	 if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual"))).nombre_url != tenant){
+    	  if(localStorage.getItem("tenantActual") == null || (JSON.parse(localStorage.getItem("tenantActual")).nombre_url != tenant)){
 
              return $http.get(dominio+'EventoMultiService/obtenerDataTenant/'+tenant)
                 .then(function (response) {
-
-                    localStorage.setItem("tenantActual", JSON.stringify(response.data));    
-                    return response; 
+                	
+                	var deferred = $q.defer();
+                	localStorage.removeItem('dataUsuario');
+                	localStorage.removeItem('myApp_token');
+                    localStorage.setItem("tenantActual", JSON.stringify(response.data));   
+                    
+                    deferred.resolve(response.data);
+                    return deferred.promise;
                                  
-                 }).error(function(response){
-                     console.log(response); 
                  });
+
             
         }else{
             return JSON.parse(localStorage.getItem("tenantActual"));

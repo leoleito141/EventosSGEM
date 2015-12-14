@@ -37,6 +37,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
     	template: '<div>error, el recurso no esta disponible</div>',
     })
     .state('main', {
+    	cache: false,
     	url:'/:tenant/',
 		templateUrl : 'views/tenant/main.html',
 		controller : 'MainCtrl',
@@ -436,7 +437,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	});
 	
     $urlRouterProvider.otherwise(function($injector, $location){
-//    	localStorage.removeItem("tenantActual"); OJO
+    	localStorage.removeItem("tenantActual"); 
         var state = $injector.get('$state');
         state.go('404');
         return $location.path();

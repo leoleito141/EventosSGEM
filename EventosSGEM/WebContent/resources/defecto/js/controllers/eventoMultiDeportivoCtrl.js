@@ -1,8 +1,8 @@
 angular.module('eventosSGEM')
-  .controller('EventMultiDeportivoCtrl', ['$scope','dataFactory','dataTenant','$state', '$document',
-                           function ($scope, dataFactory,dataTenant,$state,$document) {
+  .controller('EventMultiDeportivoCtrl', ['$scope','dataFactory','dataTenant','$state', '$timeout','$document','$stateParams',
+                           function ($scope, dataFactory,dataTenant,$state,$timeout,$document,$stateParams) {
 	
-	  
+
  $scope.DataEstilo={}; 
  
  $scope.nombreTenant = dataTenant.nombre_url;
@@ -17,26 +17,27 @@ angular.module('eventosSGEM')
  
  }
  
- $scope.paso1 = function(){
+  $scope.paso1 = function(){
 	  $state.go('formEdicionEvento.Paso1', { tenant: $scope.nombreTenant } );
 	  var someElement = angular.element(document.querySelector('.coolbtn'))
-	  $document.scrollToElement(someElement, 30, 2000);
+	  $document.scrollToElement(someElement, 30, 1000);
  }   
  
  $scope.paso2 = function(){
 	  $state.go('formEdicionEvento.Paso2', { tenant: $scope.nombreTenant } );
 	  var someElement = angular.element(document.querySelector('.coolbtn'))
-	  $document.scrollToElement(someElement, 30, 2000);
+	  $document.scrollToElement(someElement, 30, 1000);
  }   
  
  $scope.paso3 = function(){
 	  $state.go('formEdicionEvento.Paso3', { tenant: $scope.nombreTenant } );
 	  var someElement = angular.element(document.querySelector('.coolbtn'))
-	  $document.scrollToElement(someElement, 30, 2000);
+	  $document.scrollToElement(someElement, 30, 1000);
  }   
  
- $scope.widget = {};
  
+ 
+ $scope.widget = {};
 	  $scope.$on('$viewContentLoaded', function() {		  
 		  		  
 		  
@@ -128,7 +129,7 @@ angular.module('eventosSGEM')
 				  dataFactory.subirImagenConf(banner,fondo,pagina,dataTenant.tenantId).
 					then(function (response, status, headers, config){
 						console.log(response.data);
-						
+						localStorage.removeItem('tenantActual');	
 						var banner = {};
 						 banner.mime = response.data[0].mime;
 						 banner.ruta = response.data[0].ruta;
@@ -162,7 +163,22 @@ angular.module('eventosSGEM')
 						then(function(response, status, headers, config){
 							
 						console.log("imagen guardada");							
-						localStorage.removeItem('tenantActual');						
+						  
+						 dataFactory.getDataTenant($stateParams.tenant)
+					      .then(
+					          function (dataTenant) { 
+					        	  
+					        	  $body = $("body");
+					        	  $body.addClass("loading"); 
+					        	  
+					        	  $timeout(function() {					        	  
+					        		  $body = $("body");
+									  $body.removeClass("loading");
+					        		  $state.go('main', { tenant: $scope.nombreTenant } );
+					        	  }, 3000);
+					          }
+				          );
+						
 							
 						}).catch(function (response){
 							console.log(response);
@@ -170,12 +186,14 @@ angular.module('eventosSGEM')
 					}).catch(function(response){
 						console.log("error en prueba");
 					});
-				  $state.go('main', { tenant: $scope.nombreTenant } );
+				 
 				  
 			  }else{				  
 				  console.log("Imagen null");
 				  
 			  } 
+			  
+		
 		  };
 	  
 	  

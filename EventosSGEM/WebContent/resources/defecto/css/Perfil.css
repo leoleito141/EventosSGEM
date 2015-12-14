@@ -224,3 +224,31 @@ html, body  { height: 100%; width: 100%; margin: 0;
 	
 	
 }
+
+ /* our animation centered, and no-repeating */
+.modal {
+    display:    none !Important;
+    position:   fixed !Important;
+    z-index:    1000 !Important;
+    top:        0 !Important;
+    left:       0 !Important;
+    height:     100% !Important;
+    width:      100% !Important;
+    background: rgba(0, 0, 0, 0.32) 
+                url('../img/ajax-loader.gif') 
+                50% 50% 
+                no-repeat !Important;
+    background-size: 10% 18% !Important;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden !Important;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block !Important;
+}
