@@ -34,7 +34,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
         
     $stateProvider	 
     .state('404', {
-    	template: '<div>error, el recurso no esta disponible</div>',
+    	templateUrl: 'views/tenant/error.html',
     })
     .state('main', {
     	cache: false,
