@@ -124,7 +124,13 @@
 					
 						<li ng-show="!isAuthenticated()"  class="text-navbar"><a ng-show="!isAuthenticated()" ui-sref="login({ tenant: tenant })">Login</a></li>
 						<li ng-show="!isAuthenticated()" class="text-navbar"><a ui-sref="altaUsuarioComun({ tenant: tenant  })"  >Registro</a></li>
-						<li ng-show="isAuthenticated()" class="text-navbar"><a ng-click="salir()">Cerrar Sesion</a></li>
+						<li ng-show="isAuthenticated()" class="text-navbar">
+<!-- 							<a ng-click="salir()">Cerrar Sesion</a> -->
+								<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getEmailUsuario()}}<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+					            	<li><a ng-click="salir()">Cerrar Sesion</a></li>
+					            </ul>
+						</li>
 						
 						<li> <a id="lnkFb" class="iconBtn facebook" ></a> </li>
 						<li> <a id="lnkTw" class="iconBtn twitter"></a> </li>

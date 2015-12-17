@@ -126,12 +126,19 @@ angular.module('eventosSGEM')
 				   
 				   //Scroll to the exact position 
 				   $document.scrollTop(top, duration).then(function() {
-				     console && console.log('YA ESCROLIE PAPEI!');
+//				     console && console.log('YA ESCROLIE PAPEI!');
 				   });
 			   }
 			   
 		 });
 	 
+		 $scope.getEmailUsuario = function() {    	 
+		    var email = "";	
+			 if($scope.isAuthenticated()){
+		    		email = JSON.parse(localStorage.getItem("dataUsuario")).email;
+		    	}
+			 return email;
+	    };
 	 
 	}, 1000);
 	 
