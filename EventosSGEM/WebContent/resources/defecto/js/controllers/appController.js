@@ -135,7 +135,8 @@ angular.module('eventosSGEM')
 		 $scope.getEmailUsuario = function() {    	 
 		    var email = "";	
 			 if($scope.isAuthenticated()){
-		    		email = JSON.parse(localStorage.getItem("dataUsuario")).email;
+				 var palabras = JSON.parse(localStorage.getItem("dataUsuario")).email.split('@');
+		    		email = palabras[0];
 		    	}
 			 return email;
 	    };

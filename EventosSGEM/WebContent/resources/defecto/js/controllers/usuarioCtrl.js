@@ -24,6 +24,7 @@ angular.module('eventosSGEM')
    $scope.comite={};
    $scope.pais={};
    $scope.co={};
+   $scope.cargando = false;	
    
    if(dataMensajes.mensaje != null && dataMensajes.mensaje != ""){
 	   $scope.mensajeValidacion = dataMensajes.mensaje;

@@ -163,19 +163,17 @@ angular.module('eventosSGEM')
 						then(function(response, status, headers, config){
 							
 						console.log("imagen guardada");							
-						  
+						$body = $("body");
+			        	$body.addClass("loading"); 
 						 dataFactory.getDataTenant($stateParams.tenant)
 					      .then(
 					          function (dataTenant) { 
-					        	  
-					        	  $body = $("body");
-					        	  $body.addClass("loading"); 
 					        	  
 					        	  $timeout(function() {					        	  
 					        		  $body = $("body");
 									  $body.removeClass("loading");
 					        		  $state.go('main', { tenant: $scope.nombreTenant } );
-					        	  }, 3000);
+					        	  }, 10000);
 					          }
 				          );
 						
