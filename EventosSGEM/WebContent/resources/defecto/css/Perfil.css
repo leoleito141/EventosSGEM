@@ -1,3 +1,21 @@
+@font-face {
+    font-family: 'custom'; /*a name to be used later*/
+    src: url('2.otf'); /*URL to font*/
+
+}
+
+.customFont {
+    font-family: 'custom';
+        font-size:4em !important;
+   
+}
+.customFont:hover {
+    font-family: 'custom';
+       
+  
+    cursor: pointer; cursor: hand;
+}
+
 .noTopRad{
 		border-top-left-radius: 0px!important;
 border-top-right-radius: 0px!important;

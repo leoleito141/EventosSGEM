@@ -36,10 +36,10 @@
 			 <div class="col-md-12" >
 					<div ng-repeat="co in comitesOlimpicos" >
 				        <div class="col-sm-3 item-reporte" id="{{co.comiteId}}">				         
-				       		<a  ng-click="irPerfilComite(co.comiteId)">
+				       		<a  ng-click="irPerfilComite(co.comiteId)" style="text-decoration:none!important">
 					       		<div >
 				            		<img class="imagen-comite" alt="no-image" ng-src="{{co.logo.ruta}}">
-				            		<h3>{{co.pais.pais}}</h3>
+				            		<h3 class="customFont">{{co.pais.pais}}</h3>
 			            	 	</div>
 		            	 	</a>
 				        </div>

@@ -1,3 +1,25 @@
+<style>
+
+@media only screen and (min-height: 850px) and (max-height: 1080px){
+
+	.novedades{
+	
+	height:300px!important;
+	
+	}
+}
+@media only screen and (min-height: 0px) and (max-height: 849px){
+
+	.novedades{
+	
+	height:200px!important;
+	
+	}
+}
+
+
+
+</style>
 <div id="PerfilWrapper" class="PerfilWrapper FullHeight" >
 
 	<div id="imgBanner" class="HeaderPerfilEvento">
@@ -17,14 +39,14 @@
 		</div>
 		
 	    <div class="col-md-8 newsWrapper" style="float: left;" id="newsWrapper">
-		    <div ng-repeat="n in noticias"  >
+		    <div ng-repeat="n in noticias"   >
 				 
 				
-				 <div ng-init="column()" class='{{cssclass}}'> 
-					 <div class='thumbnail'>
-						 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style="background-size:cover" height="400px" width="auto">
-						 <div class='caption'>
-						 	<a ng-click="redirectNoticia(n)"><h3>{{n.titulo}}</h3></a>
+				 <div ng-init="column()" class='col-md-6  col-xs-12' style="float:left;"> 
+					 <div class='thumbnail novedades' style="width: 100%">
+						 <img class='reloadimg' ng-src="{{n.imagen.ruta.substr(n.imagen.ruta.indexOf('resources'))}}" alt='...' style="height: 75%" height="auto"  width="auto">
+						 <div class='caption' style="height: 25%!important;text-align: center">
+						 	<a ng-click="redirectNoticia(n)"><span style="font-weight: bold;">{{n.titulo}}</span></a>
 						 </div>
 					 </div>
 				 </div>

@@ -374,7 +374,7 @@ angular.module('eventosSGEM', ['ui.router','ui.bootstrap','satellizer','googlech
 	})
 	.state('exitoPaypal', {
 		url:'/:tenant/exitoPaypal',
-		template : '<div>Donacion realizada con exito!</div>',
+		templateUrl : 'views/tenant/exitoPaypal.html',
 	    resolve: { 
 	    	dataTenant:function(dataFactory,$stateParams) {
 	    		return dataFactory.getDataTenant($stateParams.tenant);
